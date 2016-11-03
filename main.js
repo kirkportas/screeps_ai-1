@@ -21,18 +21,20 @@ module.exports.loop = function () {
 
     var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
     var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
+
+    Game.spawns['Spawn1'].room.memory.allSources=[];
     for (var i = 0; i < sources.length; i++) {
         var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         var pathLen = path.path.length;
-        var sources[i].pathLen=pathLen;
-        if (path.incomplete) {sources.delete(i);continue;}
+        if (path.incomplete) {continue;}
+        Game.spawns['Spawn1'].room.memory.allSources.push(sources[i]);
 
         //Do something
     }
 
     //if (!path.incomplete) {
     console.log(sources.length);
-    Game.spawns['Spawn1'].room.memory.allSources=sources;
+    //Game.spawns['Spawn1'].room.memory.allSources=sources;
 
     mainSpawn.run();
 
