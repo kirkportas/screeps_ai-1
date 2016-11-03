@@ -26,15 +26,16 @@ module.exports.loop = function () {
     for (var i = 0; i < sources.length; i++) {
         var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         var pathLen = path.path.length;
+        var safe=true;
         var x=path.path[pathLen-1].x;
         var y=path.path[pathLen-1].y;
-        var structures = Game.spawns['Spawn1'].room.lookAtArea(y-10,x-10,y+10,x+10);
-        Game.spawns['Spawn1'].room.memory.strctures=structures;
+        var structures = Game.spawns['Spawn1'].room.lookAtArea(y+10,x-10,y-10,x+10);
+        //Game.spawns['Spawn1'].room.memory.strctures=structures;
         for (let i=0;i<structures.length;i++) {
           //  if (items[i].terrain=='plain') {c++;}
         }
         //   {id: sources[i].id, len: pathLen}
-        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen});
+        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen,struct: strctures});
 
         //Do something
     }
