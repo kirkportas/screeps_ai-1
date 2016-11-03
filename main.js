@@ -11,9 +11,6 @@ var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
 
-
-
-
     var extensions = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {filter: { structureType: STRUCTURE_EXTENSION }});
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     var roads = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_ROAD }});
@@ -22,6 +19,8 @@ module.exports.loop = function () {
     if (containers.length>=1) buildExtension.run()
     if (containers.length>=1&&extensions.length>=3) buildRoads.run();
 
+    var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
+    console.log(sources.length);
 
     mainSpawn.run();
 
