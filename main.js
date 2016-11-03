@@ -22,11 +22,11 @@ module.exports.loop = function () {
     var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
     var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
     for (var i = 0; i < sources.length; i++) {
-        var path = new PathFinder.search(sources[i],{pos:source,range:1});
+        var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         //Do something
     }
     for(var source in sources) {
-          var path = new PathFinder.search(sources[i],{pos:source,range:1});
+          //var path = new PathFinder.search(sources[i],{pos:source,range:1});
     }
 
     //if (!path.incomplete) {
