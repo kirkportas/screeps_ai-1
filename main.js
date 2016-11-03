@@ -19,7 +19,13 @@ module.exports.loop = function () {
     if (containers.length>=1) buildExtension.run()
     if (containers.length>=1&&extensions.length>=3) buildRoads.run();
 
+    var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
     var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
+    for(var source in sources) {
+          var path = new PathFinder.search(Game.spawns['Spawn1'],{pos:source,range:1});
+    }
+
+    //if (!path.incomplete) {
     console.log(sources.length);
 
     mainSpawn.run();
