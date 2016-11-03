@@ -24,7 +24,7 @@ module.exports.loop = function () {
     for (var i = 0; i < sources.length; i++) {
         var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         var pathLen = path.path.length;
-        sources[i].pathLen=pathlen;
+        var sources[i].pathLen=pathlen;
         if (path.incomplete) {sources.delete(i);continue;}
 
         //Do something
