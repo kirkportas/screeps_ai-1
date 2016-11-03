@@ -27,7 +27,7 @@ module.exports.loop = function () {
         var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         var pathLen = path.path.length;
         if (path.incomplete) {continue;}
-        Game.spawns['Spawn1'].room.memory.allSources.push(sources[i]);
+        //Game.spawns['Spawn1'].room.memory.allSources.push(sources[i]);
 
         //Do something
     }
