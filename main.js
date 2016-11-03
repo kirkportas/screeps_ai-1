@@ -23,7 +23,7 @@ module.exports.loop = function () {
     var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
     for(var source in sources) {
           var path = new PathFinder.search(posSpawn,{pos:source,range:1});
-          if (path.incomplete) sources.remove(source);
+          if (path.incomplete) sources.delete(source);
     }
 
     //if (!path.incomplete) {
