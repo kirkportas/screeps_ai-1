@@ -28,7 +28,7 @@ module.exports.loop = function () {
         var x=path.path[path.path.length-1].x;
         var y=path.path[path.path.length-1].y;
         var structures = Game.spawns['Spawn1'].room.lookForAtArea(LOOK_STRUCTURES,y-10,x-10,y+10,x+10);
-        Game.spawns['Spawn1'].room.memory=strctures;
+        Game.spawns['Spawn1'].room.memory=structures;
         for (let i=0;i<items.length;i++) {
           //  if (items[i].terrain=='plain') {c++;}
 
