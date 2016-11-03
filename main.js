@@ -35,7 +35,7 @@ module.exports.loop = function () {
           //  if (items[i].terrain=='plain') {c++;}
         }
         //   {id: sources[i].id, len: pathLen}
-        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen,struct: strctures});
+        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen,struct: structures});
 
         //Do something
     }
