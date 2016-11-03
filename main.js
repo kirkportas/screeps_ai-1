@@ -29,7 +29,7 @@ module.exports.loop = function () {
         var safe=true;
         var x=path.path[pathLen-1].x;
         var y=path.path[pathLen-1].y;
-        var structures = Game.spawns['Spawn1'].room.lookAtArea(y+10,x-10,y-10,x+10);
+        var structures = Game.spawns['Spawn1'].room.lookAtArea(y-10,x-10,y+10,x+10);
         //Game.spawns['Spawn1'].room.memory.strctures=structures;
         for (let i=0;i<structures.length;i++) {
           //  if (items[i].terrain=='plain') {c++;}
