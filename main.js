@@ -46,11 +46,11 @@ module.exports.loop = function () {
           }
         if (dist<10) safe=false;
 
-        let slots = 0;
-        for (let x1=-1;x1<2;x1++) {
-            for (let y1=-1;y1<2;y1++) {
+        var slots = 0;
+        for (var x1=-1;x1<2;x1++) {
+            for (var y1=-1;y1<2;y1++) {
 
-             let items = Game.spawns['Spawn1'].room.lookAt(sources[i].pos.x,sources[i].pos.y);
+             let items = Game.spawns['Spawn1'].room.lookAt(sources[i].pos.x+x1,sources[i].pos.y+y1);
                for (let i=0;i<items.length;i++) {
                    if (items[i].terrain=='plain') {slots++;}
                }
