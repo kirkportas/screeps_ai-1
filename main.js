@@ -35,6 +35,7 @@ module.exports.loop = function () {
         var safe=true;
         var x=path.path[pathLen-1].x;
         var y=path.path[pathLen-1].y;
+        Memory.test=lair;
         var dist = 100;
         for(var lair in lairs) {
           var a = x - lair.x;
