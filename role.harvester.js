@@ -16,11 +16,9 @@ var roleHarvester = {
 
         if(creep.memory.delivering && creep.carry.energy == 0) {
               creep.memory.delivering = false;
-              creep.say('delivering');
         }
         if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
             creep.memory.delivering = true;
-            creep.say('mining');
         }
 
 	    if(!creep.memory.delivering) {
