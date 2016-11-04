@@ -38,6 +38,7 @@ var mainSpawn = {
           var name = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
           if(_.isString(name)) {
             source.miners.push(name);
+            break;
           }
 
         }
