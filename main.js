@@ -35,11 +35,14 @@ module.exports.loop = function () {
         var safe=true;
         var x=path.path[pathLen-1].x;
         var y=path.path[pathLen-1].y;
-        var structures = Game.spawns['Spawn1'].room.lookForAtArea(LOOK_STRUCTURES,y-10,x-10,y+10,x+10);
-        //Game.spawns['Spawn1'].room.memory.strctures=structures;
-        filter: (structure) => {
-            return (structure.structureType == STRUCTURE_SPAWN);
-        }
+        var dist = 100;
+        for(var lair in lairs) {
+          var a = x - lair.pos.x;
+          var b = y - lair.y;
+          var c = Math.sqrt( a*a + b*b );
+          if (c<dist) dist=c;
+          }
+          console.log('dist is ', dist);
         //   {id: sources[i].id, len: pathLen}
         Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen,struct: structures});
 
