@@ -34,7 +34,7 @@ var mainSpawn = {
       for (var ii=0;ii<source.miners.length;ii++) {
         if (Game.getObjectById(source.miners[ii]) == null) {
         console.log('dedicated miner died. Remove');
-        source.miners.delete(source.miners[ii]);
+        array.splice(index, ii);
       }
     }
       //console.log('source ',i,'. Miners: ',source.miners.length,' / ',source.slots);
