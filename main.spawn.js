@@ -30,7 +30,7 @@ var mainSpawn = {
 
     var sources = Game.spawns['Spawn1'].room.memory.allSources;
     for (var i=0;i<sources.length;i++) {
-      source=sources[i];
+      var source=sources[i];
       console.log('source ',i,'. Miners: ',source.miners.length);
     }
 
