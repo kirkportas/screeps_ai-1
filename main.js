@@ -24,7 +24,7 @@ module.exports.loop = function () {
     var lairs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (
-                    structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false  }
+                    structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
     });
 
 
