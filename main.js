@@ -42,15 +42,23 @@ module.exports.loop = function () {
           var a = x - lairs[ii].pos.x;
           var b = y - lairs[ii].pos.y;
           var c = Math.sqrt( a*a + b*b );
-            if (c<dist) dist=c;
+          if (c<dist) dist=c;
           }
-          if (dist<10) {
-            safe=false;
-            console.log('unsuage');
-          }
+        if (dist<10) safe=false;
+
+        let slots = 0;
+        for (let x1=-1;x1<2;x1++) {
+            for (let y1=-1;y1<2;y1++) {
+
+             let items = Game.spawns['Spawn1'].room.lookAt(pos.x+x1+x2,pos.y+y1+y2);
+               for (let i=0;i<items.length;i++) {
+                   if (items[i].terrain=='plain') {slots++;}
+               }
+            }
+        }
 
         //   {id: sources[i].id, len: pathLen}
-        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe});
+        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots});
 
         //Do something
     }
