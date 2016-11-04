@@ -26,7 +26,7 @@ var buildContainers = {
 
                                let items = Game.spawns['Spawn1'].room.lookAt(pos.x+x1+x2,pos.y+y1+y2);
                                  for (let i=0;i<items.length;i++) {
-                                     if (items[i].terrain=='plain') {c++;}
+                                     if (items[i].terrain=='plain' || items[i].terrain=='swamp') {c++;}
                                      //TODO: LEgg inn sjekk om det er en struktur
                                  }
                               }
