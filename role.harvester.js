@@ -29,7 +29,7 @@ var roleHarvester = {
         var containersUnfinished = creep.room.find(FIND_CONSTRUCTION_SITES, {
           filter: (structure) => {
             return (
-              structure.structureType == STRUCTURE_CONTAINER && (new PathFinder.search(creep.pos,structure.pos )).length<5 ) }
+              structure.structureType == STRUCTURE_CONTAINER }
         });
         console.log('container id: ',containersUnfinished.length,' + ',containers.length);
 
