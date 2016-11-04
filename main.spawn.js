@@ -27,7 +27,7 @@ var mainSpawn = {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-
+    //getObjectById('sss')
     var sources = Game.spawns['Spawn1'].room.memory.allSources;
     for (var i=0;i<sources.length;i++) {
       var source=sources[i];
@@ -37,7 +37,7 @@ var mainSpawn = {
           var preferedSource = source.id;
           var name = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
           if(_.isString(name)) {
-            source.miners.push(name);
+            source.miners.push(Memory.creeps[name].id);
             break;
           }
 
