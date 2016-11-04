@@ -4,6 +4,7 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        // -- INIT --
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
@@ -13,7 +14,16 @@ var roleHarvester = {
           }
         }
 
-	    if(creep.carry.energy < creep.carryCapacity) {
+        if(creep.memory.delivering && creep.carry.energy == 0) {
+              creep.memory.delivering = false;
+              creep.say('delivering');
+        }
+        if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.delivering = true;
+            creep.say('mining');
+        }
+
+	    if(!delivering) {
         if (creep.memory.pref) {
           tasks.harvestPrefered(creep);
         } else {
@@ -22,17 +32,13 @@ var roleHarvester = {
       } else {
         var containers = creep.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
         var containersUnfinished = creep.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
-        //console.log('container id: ',containersUnfinished.length,' + ',containers.length);
         if (containers.length>0) {
           tasks.deliverSource(creep);
-          creep.say('cont');
         } else {
           if (containersUnfinished.length>0) {
             tasks.buildContainer(creep);
-            creep.say('buil');
           } else {
             tasks.deliverSource(creep);
-            creep.say('spwn');
           }
 
         }
