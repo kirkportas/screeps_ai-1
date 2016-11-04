@@ -17,8 +17,8 @@ var tasks = {
               creep.moveTo(targets[0]);
           }
       }
-    };
+    }
 
 
-}
+};
 module.exports = tasks;
