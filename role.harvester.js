@@ -7,7 +7,7 @@ var roleHarvester = {
           var source=sources[i];
           console.log(source.id);
           console.log(creep.memory.pref);
-          if (source.id===creep.pref) {
+          if (source.id= == creep.memory.pref) {
             console.log('test');
             source.miners.push(creep.id);
           }
