@@ -38,7 +38,7 @@ var mainSpawn = {
       }
     }
       //console.log('source ',i,'. Miners: ',source.miners.length,' / ',source.slots);
-      if (source.miners.length<source.slots /*&& source.safe*/) {
+      if (source.miners.length<source.slots && source.safe) {
         if (Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE] == OK)) {
           var preferedSource = source.id;
           var name = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
