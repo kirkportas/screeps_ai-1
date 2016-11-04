@@ -36,7 +36,7 @@ var tasks = {
                       return (structure.structureType == STRUCTURE_CONTAINER);
                   }
           });
-          if(target.length) {
+          if(target!=null) {
               if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                   creep.moveTo(targets[0]);
               }
