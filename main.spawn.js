@@ -28,9 +28,15 @@ var mainSpawn = {
         }
     }
 
-
+    var sources = Game.spawns['Spawn1'].room.memory.allSources;
+    for (var i=0;i<sources.length;i++) {
+      source=sources[i];
+      console.log('source ',i,'. Miners: ',source.miners.length);
+    }
 
      var energy = Game.spawns['Spawn1'].room.energyAvailable;
+
+     /*
     if (energy>=200) {
         if(harvesters < 3) {
             var preferedSource = Game.spawns['Spawn1'].room.memory.allSources[0].id;
@@ -49,6 +55,7 @@ var mainSpawn = {
             console.log('Spawning new builder: ' + newName);
         }
     }
+    */
 
      }
 
