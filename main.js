@@ -15,9 +15,7 @@ module.exports.loop = function () {
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     var roads = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_ROAD }});
 
-    buildContainers.run();
-    if (containers.length>=1) buildExtension.run()
-    if (containers.length>=1&&extensions.length>=3) buildRoads.run();
+
 
     var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
     var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
@@ -66,6 +64,10 @@ module.exports.loop = function () {
           return (a.len-a.safe*100) - (b.len-b.safe*10);
       });
   }
+
+  buildContainers.run();
+  if (containers.length>=1) buildExtension.run()
+  if (containers.length>=1&&extensions.length>=3) buildRoads.run();
 
     mainSpawn.run();
 
