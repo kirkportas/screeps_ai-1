@@ -37,7 +37,7 @@ module.exports.loop = function () {
         var y=path.path[pathLen-1].y;
 
         var dist = 100;
-        for (var i = 0; i < lairs.length; i++) {
+        for (var ii = 0; ii < lairs.length; ii++) {
           Memory.test=lairs[i];
           var a = x - lairs[i].x;
           var b = y - lairs[i].y;
