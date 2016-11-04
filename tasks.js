@@ -29,6 +29,19 @@ var tasks = {
       if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
           creep.moveTo(source);
       }
+    },
+    buildContainer: function(creep) {
+      var target = creep.room.findClosestByRange(FIND_STRUCTURES, {
+                  filter: (structure) => {
+                      return (structure.structureType == STRUCTURE_CONTAINER);
+                  }
+          });
+          if(target.length) {
+              if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                  creep.moveTo(targets[0]);
+              }
+          }
+
     }
 
 

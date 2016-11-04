@@ -20,22 +20,21 @@ var roleHarvester = {
           tasks.harvestClosest(creep);
         }
       } else {
+        var container = creep.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+        var containersUnfinished = creep.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
+        //console.log('container id: ',containersUnfinished.length,' + ',containers.length);
+        if (containers.length>0) {
+          tasks.deliverSource(creep);
+        } else {
+          if (containersUnfinished.length>0) {
+            tasks.buildContainer(creep);
+          } else {
+            tasks.deliverSource(creep);
+          }
 
-        var containers = creep.pos.findInRange(FIND_STRUCTURES,5,{
-          filter: (structure) => {
-              return (
-                  structure.structureType == STRUCTURE_CONTAINER )  }
+        }
 
-        });
-        var containersUnfinished = creep.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{
-          filter: (structure) => {
-              return (
-                  structure.structureType == STRUCTURE_CONTAINER )  }
 
-        });
-        console.log('container id: ',containersUnfinished.length,' + ',containers.length);
-
-        tasks.deliverSource(creep);
       }
 	}
 };
