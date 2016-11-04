@@ -50,7 +50,7 @@ module.exports.loop = function () {
           }
 
         //   {id: sources[i].id, len: pathLen}
-        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen}, safe: safe);
+        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe)};
 
         //Do something
     }
