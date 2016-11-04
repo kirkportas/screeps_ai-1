@@ -21,6 +21,12 @@ module.exports.loop = function () {
 
     var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
     var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
+    var lairs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (
+                    structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false  }
+    });
+
 
     Game.spawns['Spawn1'].room.memory.allSources=[];
     for (var i = 0; i < sources.length; i++) {
@@ -31,8 +37,8 @@ module.exports.loop = function () {
         var y=path.path[pathLen-1].y;
         var structures = Game.spawns['Spawn1'].room.lookForAtArea(LOOK_STRUCTURES,y-10,x-10,y+10,x+10);
         //Game.spawns['Spawn1'].room.memory.strctures=structures;
-        for (let i=0;i<structures.length;i++) {
-          //  if (items[i].terrain=='plain') {c++;}
+        filter: (structure) => {
+            return (structure.structureType == STRUCTURE_SPAWN);
         }
         //   {id: sources[i].id, len: pathLen}
         Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen,struct: structures});
@@ -41,7 +47,7 @@ module.exports.loop = function () {
     }
 
     //if (!path.incomplete) {
-    console.log(sources.length);
+    console.log(sources.length,' vs ', lairs.length);
     //Game.spawns['Spawn1'].room.memory.allSources=sources;
 
     mainSpawn.run();
