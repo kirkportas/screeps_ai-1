@@ -20,7 +20,7 @@ var roleHarvester = {
           tasks.harvestClosest(creep);
         }
       } else {
-        var container = creep.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+        var containers = creep.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
         var containersUnfinished = creep.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
         //console.log('container id: ',containersUnfinished.length,' + ',containers.length);
         if (containers.length>0) {
