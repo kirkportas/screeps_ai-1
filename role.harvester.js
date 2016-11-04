@@ -31,7 +31,7 @@ var roleHarvester = {
             return (
               structure.structureType == STRUCTURE_CONTAINER && (new PathFinder.search(creep.pos,structure.pos )).length<5 ) }
         });
-        console.log('container id: ',containers.length);
+        console.log('container id: ',containersUnfinished.length,' + ',containers.length);
 
         tasks.deliverSource(creep);
       }
