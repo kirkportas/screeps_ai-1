@@ -1,19 +1,18 @@
 var mainSpawn = {
 
-
     run: function() {
 
     global.findNextName = function(type) {
         var finaleName
         for (var i=1;true;i++) {
-            var name = type+i;
-            if(!Game.creeps[name]) {
-                finaleName=name;
+            if(!Game.creeps[type+i]) {
+                finaleName=type+i;
                 break;
             }
         }
         return finaleName;
     }
+
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
     var harvestersBig = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvesterBig'&& creep.ticksToLive>50).length;
@@ -34,7 +33,7 @@ var mainSpawn = {
      var energy = Game.spawns['Spawn1'].room.energyAvailable;
     if (energy>=200) {
         if(harvesters < 3) {
-            var preferedSource = Game.spawns['Spawn1'].room.memory.allSources[1].id;
+            var preferedSource = Game.spawns['Spawn1'].room.memory.allSources[0].id;
             console.log(preferedSource);
             var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
         } else if(haulers < 1 && containers>=1) {

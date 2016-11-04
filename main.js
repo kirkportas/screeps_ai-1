@@ -32,7 +32,7 @@ module.exports.loop = function () {
     for (var i = 0; i < sources.length; i++) {
         var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         var pathLen = path.path.length;
-        var safe=true;
+        var safe=1;
         var x=path.path[pathLen-1].x;
         var y=path.path[pathLen-1].y;
 
@@ -43,7 +43,7 @@ module.exports.loop = function () {
           var c = Math.sqrt( a*a + b*b );
           if (c<dist) dist=c;
           }
-        if (dist<10) safe=false;
+        if (dist<10) safe=0;
 
         var slots = 0;
         for (var x1=-1;x1<2;x1++) {
@@ -59,8 +59,11 @@ module.exports.loop = function () {
         //   {id: sources[i].id, len: pathLen}
         Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots});
 
-        //Do something
     }
+    Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
+        return (a.len-a.safe*100) - (b.len-b.safe*10);
+    });
+
 
     //if (!path.incomplete) {
     console.log(sources.length,' vs ', lairs.length);
