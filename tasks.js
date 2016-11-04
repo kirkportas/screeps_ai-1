@@ -31,7 +31,7 @@ var tasks = {
       }
     },
     buildContainer: function(creep) {
-      var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+      var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES, {
                   filter: (structure) => {
                       return (structure.structureType == STRUCTURE_CONTAINER);
                   }
