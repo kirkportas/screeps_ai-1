@@ -36,7 +36,7 @@ var mainSpawn = {
         if (Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE]==0)) {
           var preferedSource = Game.spawns['Spawn1'].room.memory.allSources[0].id;
           var name = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
-          source.miners.add(name);
+          source.miners.push(name);
         }
       }
 
