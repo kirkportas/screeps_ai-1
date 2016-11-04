@@ -50,7 +50,7 @@ module.exports.loop = function () {
         for (let x1=-1;x1<2;x1++) {
             for (let y1=-1;y1<2;y1++) {
 
-             let items = Game.spawns['Spawn1'].room.lookAt(pos.x+x1+x2,pos.y+y1+y2);
+             let items = Game.spawns['Spawn1'].room.lookAt(sources[i].pos.x,sources[i].pos.y);
                for (let i=0;i<items.length;i++) {
                    if (items[i].terrain=='plain') {slots++;}
                }
