@@ -28,7 +28,7 @@ module.exports.loop = function () {
     });
 
 
-    Game.spawns['Spawn1'].room.memory.allSources=[];
+    //Game.spawns['Spawn1'].room.memory.allSources=[];
     for (var i = 0; i < sources.length; i++) {
         var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
         var pathLen = path.path.length;
@@ -63,11 +63,6 @@ module.exports.loop = function () {
     Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
         return (a.len-a.safe*100) - (b.len-b.safe*10);
     });
-
-
-    //if (!path.incomplete) {
-    console.log(sources.length,' vs ', lairs.length);
-    //Game.spawns['Spawn1'].room.memory.allSources=sources;
 
     mainSpawn.run();
 
