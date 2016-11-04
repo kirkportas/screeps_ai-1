@@ -5,9 +5,7 @@ var roleHarvester = {
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
-          console.log(source.id);
-          console.log(creep.memory.pref);
-          if (source.id === creep.memory.pref && !source.miners.includes(creep.id)) {
+          if (source.id === creep.memory.pref && !source.miners.includes(creep.id) && !creep.id===null) {
             console.log('test');
             source.miners.push(creep.id);
           }
