@@ -2,6 +2,15 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        var sources = Game.spawns['Spawn1'].room.memory.allSources;
+        for (var i=0;i<sources.length;i++) {
+          var source=sources[i];
+          if (source.id==pref) {
+            console.log('test');
+            source.miners.push(creep.id);
+          }
+        }
+
 	    if(creep.carry.energy < creep.carryCapacity) {
         if (creep.memory.pref) {
           var source = Game.getObjectById(creep.memory.pref)
