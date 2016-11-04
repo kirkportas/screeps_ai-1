@@ -25,11 +25,14 @@ var roleHarvester = {
         //console.log('container id: ',containersUnfinished.length,' + ',containers.length);
         if (containers.length>0) {
           tasks.deliverSource(creep);
+          creep.say('cont');
         } else {
           if (containersUnfinished.length>0) {
             tasks.buildContainer(creep);
+            creep.say('buil');
           } else {
             tasks.deliverSource(creep);
+            creep.say('spwn');
           }
 
         }
