@@ -38,7 +38,7 @@ module.exports.loop = function () {
 
         var dist = 100;
         for(var lair in lairs) {
-          Memory.test=lair;
+          Memory.test=lairs[0];
           var a = x - lair.x;
           var b = y - lair.y;
           var c = Math.sqrt( a*a + b*b );
