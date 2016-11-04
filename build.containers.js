@@ -13,9 +13,10 @@ var buildContainers = {
               for (let i=0;i<items.length;i++) {
                   if (items[i].terrain=='plain' || items[i].terrain=='swamp') {c++;}
               }
-              console.log(c);
+
             }
           }
+          console.log(c);
         }
 
 
