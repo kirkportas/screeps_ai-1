@@ -20,6 +20,10 @@ var roleHarvester = {
           tasks.harvestClosest(creep);
         }
       } else {
+
+        var containers = creep.room.find(FIND_STRUCTURES, {filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER && (new PathFinder.search(creep.pos,structure.pos )).length<5  }});
+        console.log('container id: ',container.length);
+
         tasks.deliverSource(creep);
       }
 	}

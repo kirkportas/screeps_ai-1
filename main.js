@@ -59,7 +59,7 @@ module.exports.loop = function () {
           }
 
           //   {id: sources[i].id, len: pathLen}
-          Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots,miners: []});
+          Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots,miners: [], container: null});
 
       }
       Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
