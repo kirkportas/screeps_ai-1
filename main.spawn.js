@@ -31,7 +31,15 @@ var mainSpawn = {
     var sources = Game.spawns['Spawn1'].room.memory.allSources;
     for (var i=0;i<sources.length;i++) {
       var source=sources[i];
-      console.log('source ',i,'. Miners: ',source.miners.length);
+      console.log('source ',i,'. Miners: ',source.miners.length,' / ',source.slots);
+      if (source.miners.length<source.slots) {
+        if (Game.spawns['Spawn1'].canCreateCreep([WORK,CARRY,MOVE]==0) {
+          var preferedSource = Game.spawns['Spawn1'].room.memory.allSources[0].id;
+          var name = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+          source.miners.add(name);
+        }
+      }
+
     }
 
      var energy = Game.spawns['Spawn1'].room.energyAvailable;
