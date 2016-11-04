@@ -37,7 +37,7 @@ module.exports.loop = function () {
         var y=path.path[pathLen-1].y;
         var dist = 100;
         for(var lair in lairs) {
-          var a = x - lair.pos.x;
+          var a = x - lair.x;
           var b = y - lair.y;
           var c = Math.sqrt( a*a + b*b );
           if (c<dist) dist=c;
