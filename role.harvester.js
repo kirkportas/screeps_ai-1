@@ -23,7 +23,7 @@ var roleHarvester = {
             creep.say('mining');
         }
 
-	    if(!delivering) {
+	    if(!creep.memory.delivering) {
         if (creep.memory.pref) {
           tasks.harvestPrefered(creep);
         } else {
