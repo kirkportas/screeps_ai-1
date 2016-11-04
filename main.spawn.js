@@ -34,7 +34,9 @@ var mainSpawn = {
      var energy = Game.spawns['Spawn1'].room.energyAvailable;
     if (energy>=200) {
         if(harvesters < 3) {
-            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester'});
+            var preferedSource = Memory.rooms.room.allSources[3].id;
+            console.log(preferedSource);
+            var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
         } else if(haulers < 1 && containers>=1) {
             var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('hauler'), {role: 'hauler'});
         } else if(harvestersBig < 0 && energy>=300) {
