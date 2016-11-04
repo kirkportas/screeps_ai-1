@@ -3,8 +3,8 @@ var buildContainers = {
 
         var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
-        for (var i=0;i<sources.length;i++) {
-          var source=sources[i];
+        for (var s=0;s<sources.length;s++) {
+          var source=sources[s];
           var posRes = Game.getObjectById(source.id).pos;
 
           //BYGG VEI TIL NÆRMESTE SOURCE
