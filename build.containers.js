@@ -5,10 +5,11 @@ var buildContainers = {
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var s=0;s<sources.length;s++) {
           var source=sources[s];
+          var sourceObj = Game.getObjectById(source.id);
           for (var x1=-1;x1<2;x1++) { //LOOP though spots around source
             for (var y1=-1;y1<2;y1++) {
               var c=0;
-              var items = Game.spawns['Spawn1'].room.lookAt(source.pos.x+x1,source.pos.y+y1);
+              var items = Game.spawns['Spawn1'].room.lookAt(sourceObj.pos.x+x1,sourceObj.pos.y+y1);
               for (let i=0;i<items.length;i++) {
                   if (items[i].terrain=='plain' || items[i].terrain=='swamp') {c++;}
               }
