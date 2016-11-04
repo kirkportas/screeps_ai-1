@@ -38,11 +38,15 @@ module.exports.loop = function () {
 
         var dist = 100;
         for (var ii = 0; ii < lairs.length; ii++) {
-          Memory.test=lairs[ii];
+          Memory.test=lairs[iisss];
           var a = x - lairs[ii].pos.x;
           var b = y - lairs[ii].pos.y;
           var c = Math.sqrt( a*a + b*b );
             if (c<dist) dist=c;
+          }
+          if (dist<10) {
+            safe=false;
+            console.log('unsuage');
           }
 
         //   {id: sources[i].id, len: pathLen}
