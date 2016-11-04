@@ -40,9 +40,9 @@ module.exports.loop = function () {
           var a = x - lair.x;
           var b = y - lair.y;
           var c = Math.sqrt( a*a + b*b );
-          if (c<dist) dist=c;
+            if (c<dist) dist=c;
           }
-          console.log('dist is ', dist);
+          console.log('dist is ',lair.x, dist);
         //   {id: sources[i].id, len: pathLen}
         Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen});
 
