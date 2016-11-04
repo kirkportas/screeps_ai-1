@@ -28,44 +28,44 @@ module.exports.loop = function () {
     });
 
 
-    if (!Game.spawns['Spawn1'].room.memory.allSources) {
-      console.log('init')
+    if (!Game.spawns['Spawn1'].room.memory.allSources) {}
       Game.spawns['Spawn1'].room.memory.allSources=[];
-    }
-    for (var i = 0; i < sources.length; i++) {
-        var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
-        var pathLen = path.path.length;
-        var safe=1;
-        var x=path.path[pathLen-1].x;
-        var y=path.path[pathLen-1].y;
 
-        var dist = 100;
-        for (var ii = 0; ii < lairs.length; ii++) {
-          var a = x - lairs[ii].pos.x;
-          var b = y - lairs[ii].pos.y;
-          var c = Math.sqrt( a*a + b*b );
-          if (c<dist) dist=c;
-          }
-        if (dist<10) safe=0;
+      for (var i = 0; i < sources.length; i++) {
+          var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
+          var pathLen = path.path.length;
+          var safe=1;
+          var x=path.path[pathLen-1].x;
+          var y=path.path[pathLen-1].y;
 
-        var slots = 0;
-        for (var x1=-1;x1<2;x1++) {
-            for (var y1=-1;y1<2;y1++) {
-
-             let items = Game.spawns['Spawn1'].room.lookAt(sources[i].pos.x+x1,sources[i].pos.y+y1);
-               for (let i=0;i<items.length;i++) {
-                   if (items[i].terrain=='plain') {slots++;}
-               }
+          var dist = 100;
+          for (var ii = 0; ii < lairs.length; ii++) {
+            var a = x - lairs[ii].pos.x;
+            var b = y - lairs[ii].pos.y;
+            var c = Math.sqrt( a*a + b*b );
+            if (c<dist) dist=c;
             }
-        }
+          if (dist<10) safe=0;
 
-        //   {id: sources[i].id, len: pathLen}
-        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots});
+          var slots = 0;
+          for (var x1=-1;x1<2;x1++) {
+              for (var y1=-1;y1<2;y1++) {
 
-    }
-    Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
-        return (a.len-a.safe*100) - (b.len-b.safe*10);
-    });
+               let items = Game.spawns['Spawn1'].room.lookAt(sources[i].pos.x+x1,sources[i].pos.y+y1);
+                 for (let i=0;i<items.length;i++) {
+                     if (items[i].terrain=='plain') {slots++;}
+                 }
+              }
+          }
+
+          //   {id: sources[i].id, len: pathLen}
+          Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots,miners: []});
+
+      }
+      Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
+          return (a.len-a.safe*100) - (b.len-b.safe*10);
+      });
+  }
 
     mainSpawn.run();
 
