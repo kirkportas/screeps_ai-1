@@ -44,7 +44,7 @@ module.exports.loop = function () {
           }
           console.log('dist is ', dist);
         //   {id: sources[i].id, len: pathLen}
-        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen,struct: structures});
+        Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen});
 
         //Do something
     }
