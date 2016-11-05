@@ -20,8 +20,8 @@ var buildContainers = {
               }
             }
           }
-          for (var x1=-2;x1<3;x1++) { //LOOP though spots around source
-            for (var y1=-2;y1<3;y1++) {
+          for (var x1=-3;x1<4;x1++) { //LOOP though spots around source
+            for (var y1=-3;y1<4;y1++) {
               var points=0;
               var items = Game.spawns['Spawn1'].room.lookAt(sourceObj.pos.x+x1,sourceObj.pos.y+y1);
               for (let i=0;i<items.length;i++) {
