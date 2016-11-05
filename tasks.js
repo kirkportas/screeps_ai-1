@@ -24,7 +24,7 @@ var tasks = {
       filter: (structure) => {
       return (
           structure.structureType == STRUCTURE_SPAWN
-              ) && (structure.energy < structure.energyCapacity));
+              ) && (structure.energy < structure.energyCapacity);
             }
     });
   _.sortBy(targets, s => creep.pos.getRangeTo(s))
