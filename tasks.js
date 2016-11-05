@@ -48,12 +48,14 @@ var tasks = {
           creep.moveTo(source);
       }
     },
-    buildContainer: function(creep) {
+    buildContainer: function(creep,target) {
+      /*
       var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES, {
                   filter: (structure) => {
                       return (structure.structureType == STRUCTURE_CONTAINER);
                   }
           });
+          */
           if(target!=null) {
               if(creep.build(target) == ERR_NOT_IN_RANGE) {
                   creep.moveTo(target);
