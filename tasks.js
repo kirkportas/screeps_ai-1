@@ -18,12 +18,26 @@ var tasks = {
           }
       }
     },
+
+  checkSourceNeeded: function(creep) {
+    var targets = creep.room.find(FIND_MY_STRUCTURES, {
+      filter: (structure) => {
+      return (
+          structure.structureType == STRUCTURE_SPAWN
+              ) && (structure.energy < structure.energyCapacity));
+            }
+    });
+  _.sortBy(targets, s => creep.pos.getRangeTo(s))
+    if (targets>0) return true; else return false;
+    },
+
     harvestClosest: function(creep) {
       var sources = creep.room.find(FIND_SOURCES);
       if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
           creep.moveTo(sources[0]);
       }
     },
+
     harvestPrefered: function(creep) {
       var source = Game.getObjectById(creep.memory.pref)
       if(creep.harvest(source) == ERR_NOT_IN_RANGE) {

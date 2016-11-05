@@ -33,7 +33,7 @@ var roleHarvester = {
         if (containers.length>0) {
           tasks.deliverSource(creep);
         } else {
-          if (containersUnfinished.length>0) {
+          if (containersUnfinished.length>0 && !tasks.checkSourceNeeded(creep)) {
             tasks.buildContainer(creep);
           } else {
             tasks.deliverSource(creep);
