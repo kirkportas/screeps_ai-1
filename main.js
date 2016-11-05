@@ -1,5 +1,5 @@
 var mainSpawn = require('main.spawn');
-var mainSpawn = require('main.room');
+var mainRoom = require('main.room');
 var buildExtension = require('build.extension');
 var buildContainers = require('build.containers');
 var buildRoads = require('build.roads');
