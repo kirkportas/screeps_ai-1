@@ -7,6 +7,8 @@ var buildContainers = {
           var source=sources[s];
           var sourceObj = Game.getObjectById(source.id);
           var spots = [];
+          var bestSpot=null;
+          var bestSpotPoints=-1;
           for (var x1=-1;x1<2;x1++) { //LOOP though spots around source
             for (var y1=-1;y1<2;y1++) {
               var items = Game.spawns['Spawn1'].room.lookAt(sourceObj.pos.x+x1,sourceObj.pos.y+y1);
@@ -16,9 +18,32 @@ var buildContainers = {
                     if (!spots.includes(newPos)) {spots.push(newPos);}
                   }
               }
-
             }
           }
+          for (var x1=-2;x1<3;x1++) { //LOOP though spots around source
+            for (var y1=-2;y1<3;y1++) {
+              var points=0;
+              var items = Game.spawns['Spawn1'].room.lookAt(sourceObj.pos.x+x1,sourceObj.pos.y+y1);
+              for (let i=0;i<items.length;i++) {
+                  if (items[i].terrain=='plain' || items[i].terrain=='swamp') {
+                    var newPos = new RoomPosition(sourceObj.pos.x+x1,sourceObj.pos.y+y1,Game.spawns['Spawn1'].room.name);
+
+                    if (!spots.includes(newPos)) {
+                      for (var ii=0;ii<spots.length;ii++) {
+                        if (Math.abs(sourceObj.pos.x+x1- spots[ii].x)<2 && Math.abs(sourceObj.pos.y+y1- spots[ii].y)<2) {
+                          points++;
+                        }
+                      }
+                    }
+                  }
+              }
+              if (points>bestSpotPoints) {
+                bestSpotPoints=points;
+                bestSpot= new RoomPosition(sourceObj.pos.x+x1,sourceObj.pos.y+y1,Game.spawns['Spawn1'].room.name);
+              }
+            }
+          }
+          Game.spawns['Spawn1'].room.createConstructionSite(bestSpot.x,bestSpot.y,STRUCTURE_CONTAINER)
           console.log(spots.length);
         }
 
