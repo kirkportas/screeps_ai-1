@@ -14,9 +14,10 @@ var roleHauler = {
 	    }
 
 	    if(creep.memory.building) {
-        tasks.haulFromDedicatedCotainers(creep);
-	    } else {
         tasks.deliverSourceToMain(creep);
+	    } else {
+        tasks.haulFromDedicatedCotainers(creep);
+
 	    }
 	}
 };
