@@ -38,21 +38,22 @@ var mainSpawn = {
         source.miners.splice(ii, 1);
       }
     }
-      //console.log('source ',i,'. Miners: ',source.miners.length,' / ',source.slots);
+      //spawns harvesters per source
       if (source.miners.length<source.slots && source.safe) {
         if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
           var preferedSource = source.id;
           var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
           if(_.isString(name)) {
-            //Sucsess
-            //source.miners.push(Game.creeps[name].id);
             break;
           }
         }
       }
     }
+
   if (containers.length>=1) {
-    if(builders < 2) {
+    if(haulers < 1 && containers>=1) {
+        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('hauler'), {role: 'hauler'});
+    } else  if(builders < 2) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
         console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1) {
