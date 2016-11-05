@@ -2,6 +2,8 @@ var buildContainers = {
     run: function() {
 
         var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
+        Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+2,STRUCTURE_CONTAINER)
+
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var s=0;s<sources.length;s++) {
           var source=sources[s];
@@ -45,7 +47,7 @@ var buildContainers = {
             }
           }
           Game.spawns['Spawn1'].room.createConstructionSite(bestSpot.x,bestSpot.y,STRUCTURE_CONTAINER)
-          console.log(spots.length);
+          //console.log(spots.length);
         }
 
 

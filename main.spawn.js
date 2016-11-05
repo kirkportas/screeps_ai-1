@@ -27,7 +27,8 @@ var mainSpawn = {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
-    //getObjectById('sss')
+
+    //cleanup dedicated miners
     var sources = Game.spawns['Spawn1'].room.memory.allSources;
     for (var i=0;i<sources.length;i++) {
       var source=sources[i];
@@ -47,11 +48,20 @@ var mainSpawn = {
             //source.miners.push(Game.creeps[name].id);
             break;
           }
-
         }
       }
-
     }
+  if (containers.length>=1) {
+    if(builders < 2) {
+        var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
+        console.log('Spawning new builder: ' + newName);
+    } else if(upgraders < 1) {
+      var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('upgrader'), {role: 'upgrader'});
+      console.log('Spawning new upgrader: ' + newName);
+    }
+  }
+
+
 
      var energy = Game.spawns['Spawn1'].room.energyAvailable;
 
