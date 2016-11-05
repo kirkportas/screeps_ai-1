@@ -30,10 +30,13 @@ var buildContainers = {
                   if (items[i].terrain=='plain' || items[i].terrain=='swamp') {
                   for (var ii=0;ii<spots.length;ii++) {
                     if (Math.abs(sourceObj.pos.x+x1-spots[ii].x)<2 && Math.abs(sourceObj.pos.y+y1-spots[ii].y)<2) {
+                      if (sourceObj.pos.x+x1===spots[ii].x && sourceObj.pos.y+y1===pots[ii].y) {
+                        console.log('colli');
+                      }
                       points++;
                     }
-                    }
                   }
+                }
               }
               if (points>bestSpotPoints) {
                 bestSpotPoints=points;
