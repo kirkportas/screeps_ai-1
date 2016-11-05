@@ -24,14 +24,14 @@ var buildContainers = {
             for (var y1=-2;y1<3;y1++) {
               var points=0;
               var newPos = new RoomPosition(sourceObj.pos.x+x1,sourceObj.pos.y+y1,Game.spawns['Spawn1'].room.name);
-              if (spots.includes(newPos)) { continue;}
+              //if (spots.includes(newPos)) { continue;}
               var items = Game.spawns['Spawn1'].room.lookAt(sourceObj.pos.x+x1,sourceObj.pos.y+y1);
               for (let i=0;i<items.length;i++) {
                   if (items[i].terrain=='plain' || items[i].terrain=='swamp') {
                   for (var ii=0;ii<spots.length;ii++) {
                     if (Math.abs(sourceObj.pos.x+x1-spots[ii].x)<2 && Math.abs(sourceObj.pos.y+y1-spots[ii].y)<2) {
                       if (sourceObj.pos.x+x1===spots[ii].x && sourceObj.pos.y+y1===spots[ii].y) {
-                        console.log('colli');
+                        continue;
                       }
                       points++;
                     }
