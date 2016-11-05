@@ -1,8 +1,5 @@
 var mainSpawn = require('main.spawn');
 var mainRoom = require('main.room');
-var buildExtension = require('build.extension');
-var buildContainers = require('build.containers');
-var buildRoads = require('build.roads');
 
 var roleHarvester = require('role.harvester');
 var roleHarvesterBig = require('role.harvesterBig');
