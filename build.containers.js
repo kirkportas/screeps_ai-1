@@ -12,7 +12,7 @@ var buildContainers = {
               var items = Game.spawns['Spawn1'].room.lookAt(sourceObj.pos.x+x1,sourceObj.pos.y+y1);
               for (let i=0;i<items.length;i++) {
                   if (items[i].terrain=='plain' || items[i].terrain=='swamp') {
-                    var newPos = new RoomPosition(1+x1,1+y1,Game.spawns['Spawn1'].room);
+                    var newPos = new RoomPosition(sourceObj.pos.x+x1,sourceObj.pos.y+y1,Game.spawns['Spawn1'].room.name);
                     if (!spots.includes(newPos)) {spots.push(newPos);}
                   }
               }
