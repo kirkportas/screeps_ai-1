@@ -18,6 +18,11 @@ var tasks = {
           }
       }
     },
+    deliverSource: function(creep,target) {
+        if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target);
+        }
+    },
     deliverSourceToMain: function(creep) {
       var target=null;
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {
