@@ -54,7 +54,7 @@ var tasks = {
                  creep.moveTo(sources[0]);
              }
          }
-    }
+    },
 
   checkSourceNeeded: function(creep) {
     var targets = creep.room.find(FIND_MY_STRUCTURES, {
