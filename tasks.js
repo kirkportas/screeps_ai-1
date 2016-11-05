@@ -27,8 +27,12 @@ var tasks = {
               ) && (structure.energy < structure.energyCapacity);
             }
     });
-  _.sortBy(targets, s => creep.pos.getRangeTo(s))
-    if (targets>0) return true; else return false;
+    _.sortBy(targets, s => creep.pos.getRangeTo(s))
+    if (targets.length>0) {
+      return true;
+    } else {
+      return false;
+    }
     },
 
     harvestClosest: function(creep) {
