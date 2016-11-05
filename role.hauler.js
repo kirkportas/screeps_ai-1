@@ -15,7 +15,7 @@ var roleHauler = {
 
 	    if(creep.memory.building) {
         tasks.haulFromDedicatedCotainers(creep);
-	    else {
+	    } else {
         tasks.deliverSourceToMain(creep);
 	    }
 	}
