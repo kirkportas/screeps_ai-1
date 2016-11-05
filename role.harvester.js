@@ -28,8 +28,9 @@ var roleHarvester = {
           tasks.harvestClosest(creep);
         }
       } else {
-        var containers = creep.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
-        var containersUnfinished = creep.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
+        var sourceObj=Game.getObjectById(pref);
+        var containers = sourceObj.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+        var containersUnfinished = sourceObj.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
         if (containers.length>0) {
           tasks.deliverSource(creep);
         } else {
