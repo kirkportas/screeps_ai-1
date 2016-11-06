@@ -22,7 +22,7 @@ var roleHauler = {
         } else {
           creep.memory.target= tasks.findContainerDedicatedBiggest(creep);
           tasks.withdrawFromId(creep,creep.memory.target);
-          creep.say('new id');
+          creep.say(creep.memory.target);
         }
 
 	    }
