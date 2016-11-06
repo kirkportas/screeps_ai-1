@@ -8,22 +8,17 @@ var roleHauler = {
             creep.memory.delivering = false;
 	    }
 	    if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
-        creep.say('reset');
           creep.memory.targetContainer= null;
 	        creep.memory.delivering = true;
 	    }
 
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
-        //creep.say('del');
 	    } else {
-        //tasks.haulFromDedicatedCotainers(creep);
         if (creep.memory.targetContainer===null) {
-          //creep.say('new');
           creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
         }
           tasks.withdrawFromId(creep,creep.memory.targetContainer);
-          //console.log(creep.memory.target);
 	    }
 	}
 };
