@@ -17,7 +17,7 @@ var roleHauler = {
         creep.say('del');
 	    } else {
         //tasks.haulFromDedicatedCotainers(creep);
-        if (creep.memory.targetContainer!=null) {
+        if (creep.memory.targetContainer!==null) {
           tasks.withdrawFromId(creep,target);
         } else {
           creep.memory.target= tasks.findContainerDedicatedBiggest(creep);
