@@ -50,9 +50,7 @@ var mainRoom = {
             }
 
             //   {id: sources[i].id, len: pathLen}
-            console.log('adding');
             Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots,miners: [], container: null});
-            console.log('added');
 
         }
         Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
