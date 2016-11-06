@@ -81,9 +81,9 @@ var tasks = {
       return targets[0];
     },
 
-    withdrawFromId: function(creep,id) {
-      if(creep.withdraw(Game.getObjectById(id), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(Game.getObjectById(id));
+    withdrawFromId: function(creep,targetId) {
+      if(creep.withdraw(Game.getObjectById(targetId), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(Game.getObjectById(targetId));
       }
     },
 
