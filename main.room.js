@@ -20,7 +20,7 @@ var mainRoom = {
       });
 
       console.log('pre');
-      if (!Game.spawns['Spawn1'].room.memory.allSources) {
+      if (Game.spawns['Spawn1'].room.memory.allSources != null) {
         Game.spawns['Spawn1'].room.memory.allSources=[];
 
         for (var i = 0; i < sources.length; i++) {
