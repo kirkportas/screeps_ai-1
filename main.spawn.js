@@ -21,7 +21,7 @@ var mainSpawn = {
 
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
     var energyNeeded = 0;
-    var constructionSites = Game.rooms[roomName].find(
+    var constructionSites = Game.spawns['Spawn1'].room.find(
         FIND_CONSTRUCTION_SITES);
     constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
     console.log(constructionSites.length,' sites need energy: ', energyNeeded);
