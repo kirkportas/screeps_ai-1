@@ -18,7 +18,7 @@ var buildRoads = {
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
-          var path = posSpawn.findPathTo(source,{range:1, ignoreCreeps: true});
+          var path = posSpawn.findPathTo(Game.getElementById(source.id),{range:1, ignoreCreeps: true});
           if (!path.incomplete) {
               for (i = 0; i < path.length; i++) {
                   let pos = path[i];
