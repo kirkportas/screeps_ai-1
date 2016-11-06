@@ -6,7 +6,7 @@ var buildRoads = {
 
 
         //BYGG VEI TIL NÆRMESTE SOURCE
-        var path = posSpawn.findPathTo(posRes,{range:1});
+        var path = posSpawn.findPathTo(posRes,{range:1, ignoreCreeps: true});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
                 let pos = path[i];
@@ -15,7 +15,7 @@ var buildRoads = {
         }
 
         //BYGG VEI TIL KONTROLLER
-        var path = posSpawn.findPathTo(posCtr,{range:1});
+        var path = posSpawn.findPathTo(posCtr,{range:1, ignoreCreeps: true});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
                 let pos = path[i];
