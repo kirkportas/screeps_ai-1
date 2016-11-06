@@ -19,7 +19,7 @@ var mainRoom = {
                       structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
       });
 
-
+      console.log('pre');
       if (!Game.spawns['Spawn1'].room.memory.allSources) {
         Game.spawns['Spawn1'].room.memory.allSources=[];
 
