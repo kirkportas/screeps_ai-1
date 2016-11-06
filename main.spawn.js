@@ -65,7 +65,7 @@ var mainSpawn = {
         for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
         for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
         var newName = Game.spawns['Spawn1'].createCreep(modules, findNextName('hauler'), {role: 'hauler'});
-    } else  if(builders < 5) {
+    } else  if(builders < buildersNeeded) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
         console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1) {
