@@ -6,10 +6,10 @@ var buildRoads = {
 
 
         //BYGG VEI TIL NÆRMESTE SOURCE
-        var path = new PathFinder.search(posSpawn,{pos:posRes,range:1});
+        var path = posSpawn.findPathTo(posRes,{range:1});
         if (!path.incomplete) {
-            for (i = 0; i < path.path.length; i++) {
-                let pos = path.path[i];
+            for (i = 0; i < path.length; i++) {
+                let pos = path[i];
                 Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
