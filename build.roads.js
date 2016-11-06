@@ -17,8 +17,8 @@ var buildRoads = {
         //BYGG VEI TIL KONTROLLER
         var path = new PathFinder.search(posSpawn,{pos:posCtr,range:1});
         if (!path.incomplete) {
-            for (i = 0; i < path.path.length; i++) {
-                let pos = path.path[i];
+            for (i = 0; i < path.length; i++) {
+                let pos = path[i];
                 Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
