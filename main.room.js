@@ -57,9 +57,9 @@ var mainRoom = {
         });
     }
 
-    buildContainers.run();
-    if (containers.length>=1) buildExtension.run()
-    if (containers.length>=1&&extensions.length>=3) buildRoads.run();
+    buildContainers.run(room);
+    if (containers.length>=1) buildExtension.run(room)
+    if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
   }
 };
 
