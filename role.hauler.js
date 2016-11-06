@@ -17,14 +17,12 @@ var roleHauler = {
         creep.say('del');
 	    } else {
         //tasks.haulFromDedicatedCotainers(creep);
-        if (creep.memory.targetContainer!==null) {
-          tasks.withdrawFromId(creep,creep.memory.target);
-        } else {
+        if (creep.memory.targetContainer===null) {
+          creep.say('new');
           creep.memory.target= tasks.findContainerDedicatedBiggest(creep);
-          tasks.withdrawFromId(creep,creep.memory.target);
-          console.log(creep.memory.target);
         }
-
+          tasks.withdrawFromId(creep,creep.memory.target);
+          //console.log(creep.memory.target);
 	    }
 	}
 };
