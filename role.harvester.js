@@ -12,6 +12,7 @@ var roleHarvester = {
           if (source.id === creep.memory.pref && (source.miners.includes(creep.id)==false) && (creep.id != null)) {
             console.log('adding ',creep.id);
             Game.spawns['Spawn1'].room.memory.allSources[i].miners.push(creep.id);
+            console.log(' ',Game.spawns['Spawn1'].room.memory.allSources[i].miners.length);
           }
         }
         creep.say(creep.memory.pref);
