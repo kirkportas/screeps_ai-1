@@ -1,5 +1,5 @@
 var buildRoads = {
-    run: function() {
+    run: function(room) {
         var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
         var posRes = posSpawn.findClosestByRange(FIND_SOURCES);
         var posCtr = Game.spawns['Spawn1'].room.controller;
