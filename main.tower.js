@@ -15,5 +15,5 @@ var mainTower = {
         }
     }
 
-}
+};
 module.exports = mainTower;
