@@ -27,6 +27,17 @@ var roleBuilder = {
                     */
 
         	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+                  for (var i=0;targets.length;i++) {
+                    var t=targets[i];
+                    var lairs = t.pos.findInRange(FIND_STRUCTURES,10, {
+                            filter: (structure) => {
+                                return (
+                                    structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
+                    });
+                    if (lairs.length>0) {
+                      targets.splice(i,1);
+                    }
+                  }
                     if(targets.length) {
                         if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(targets[0]);
