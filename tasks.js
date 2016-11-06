@@ -76,7 +76,7 @@ var tasks = {
       var index = targets.indexOf(centralContainer);
       if(index != -1) targets.splice( index, 1 );
 
-      targets = _.sortBy(targets, s => -s.energy);
+      targets = _.sortBy(targets, s => s.energy);
       //console.log(targets[0]);
       return targets[0];
     },
