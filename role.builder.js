@@ -27,7 +27,7 @@ var roleBuilder = {
                     */
 
         	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-                  for (var i=0;targets.length;i++) {
+                  for (var i=0;i<targets.length;i++) {
                     var t=targets[i];
                     var lairs = t.pos.findInRange(FIND_STRUCTURES,10, {
                             filter: (structure) => {
