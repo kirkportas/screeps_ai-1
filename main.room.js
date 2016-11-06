@@ -31,8 +31,8 @@ var mainRoom = {
             var path = posSpawn.findPathTo(sources[i],{range:1})
             var pathLen = path.length;
             var safe=1;
-            var x=path.path[pathLen-1].x;
-            var y=path.path[pathLen-1].y;
+            var x=path[pathLen-1].x;
+            var y=path[pathLen-1].y;
 
             var dist = 100;
             for (var ii = 0; ii < lairs.length; ii++) {
