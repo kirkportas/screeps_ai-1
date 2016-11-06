@@ -6,9 +6,10 @@ var buildRoads = {
 
 
         // FJERNER ALLE VEIER
+        /*
         var allRoads = Game.spawns['Spawn1'].room.find(FIND_CONSTRUCTION_SITES, {filter: { structureType: STRUCTURE_ROAD }});
         allRoads.forEach(road => road.remove());
-
+        */
         // ----------------
 
         //BYGG VEI TIL NÆRMESTE SOURCE
