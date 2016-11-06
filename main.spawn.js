@@ -23,8 +23,9 @@ var mainSpawn = {
     var energyNeeded = 0;
     var constructionSites = Game.spawns['Spawn1'].room.find(FIND_CONSTRUCTION_SITES);
     constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
-    //console.log(constructionSites.length,' sites need energy: ', energyNeeded);
+
     var buildersNeeded = Math.min(1,Math.ceil(energyNeeded/2000));
+    console.log(constructionSites.length,' sites need energy: ', energyNeeded,' needed builders: ',buildersNeeded);
 
 
     for(var name in Memory.creeps) {
