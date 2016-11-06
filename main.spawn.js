@@ -20,6 +20,12 @@ var mainSpawn = {
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
 
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
+    var energyNeeded = 0;
+    var constructionSites = Game.rooms[roomName].find(
+        FIND_CONSTRUCTION_SITES);
+    constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress);
+    console.log(constructionSites.length,' sites need energy: ', energyNeeded);
+
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
