@@ -85,7 +85,7 @@ var tasks = {
                              ) && (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 50);
                  }
          });
-         _.sortBy(targets, s => creep.pos.getRangeTo(s.pos))
+        targets =  _.sortBy(targets, s => creep.pos.getRangeTo(s))
          if(targets.length > 0) {
              if(creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                creep.moveTo(targets[0]);
