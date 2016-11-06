@@ -40,7 +40,6 @@ var mainSpawn = {
       }
     }
       //spawns harvesters per source
-      console.log(Game.spawns['Spawn1'].room.memory.allSources[i].miners.length,' vs ',source.slots);
       if (source.miners.length<source.slots && source.safe) {
         if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
           var preferedSource = source.id;
