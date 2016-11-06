@@ -58,7 +58,7 @@ var mainSpawn = {
     }
 
   if (containers>=1) {
-    if(haulers < 2) {
+    if(haulers < 5) {
         var newName = Game.spawns['Spawn1'].createCreep([CARRY,CARRY,CARRY,MOVE,MOVE,MOVE], findNextName('hauler'), {role: 'hauler'});
     } else  if(builders < 5) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
