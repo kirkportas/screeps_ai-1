@@ -15,7 +15,6 @@ var roleHarvester = {
             //console.log(' ',Game.spawns['Spawn1'].room.memory.allSources[i].miners.length);
           }
         }
-        creep.say(creep.memory.pref);
 
         if(creep.memory.delivering && creep.carry.energy == 0) {
               creep.memory.delivering = false;
