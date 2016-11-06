@@ -8,6 +8,7 @@ var roleHauler = {
             creep.memory.delivering = false;
 	    }
 	    if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
+        creep.say('reset');
           creep.memory.targetContainer= null;
 	        creep.memory.delivering = true;
 	    }
