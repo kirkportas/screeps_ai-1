@@ -17,7 +17,7 @@ var mainRoom = {
                       structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
       });
 
-      if (Game.spawns['Spawn1'].room.memory.allSources !== undefined) {
+      if (Game.spawns['Spawn1'].room.memory.allSources.length===0) {
         console.log('init room');
         Game.spawns['Spawn1'].room.memory.allSources=[];
 
