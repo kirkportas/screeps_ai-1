@@ -14,6 +14,6 @@ var mainTower = {
             tower.attack(closestHostile);
         }
     }
-
+  }
 };
 module.exports = mainTower;
