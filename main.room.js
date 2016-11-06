@@ -9,8 +9,6 @@ var mainRoom = {
       var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
       var roads = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_ROAD }});
 
-
-
       var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
       var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
       var lairs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
@@ -20,6 +18,7 @@ var mainRoom = {
       });
 
       if (Game.spawns['Spawn1'].room.memory.allSources != null) {
+        console.log('init room');
         Game.spawns['Spawn1'].room.memory.allSources=[];
 
         for (var i = 0; i < sources.length; i++) {
