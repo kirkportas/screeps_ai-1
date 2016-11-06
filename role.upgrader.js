@@ -1,3 +1,4 @@
+var tasks = require('tasks');
 var roleUpgrader = {
 
     /** @param {Creep} creep **/
