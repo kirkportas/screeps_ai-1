@@ -18,13 +18,13 @@ var buildRoads = {
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
-        }
-        var path = posSpawn.findPathTo(posRes,{range:1, ignoreCreeps: true});
-        if (!path.incomplete) {
-            for (i = 0; i < path.length; i++) {
-                let pos = path[i];
-                Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
-            }
+          var path = posSpawn.findPathTo(source.pos,{range:1, ignoreCreeps: true});
+          if (!path.incomplete) {
+              for (i = 0; i < path.length; i++) {
+                  let pos = path[i];
+                  Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+              }
+          }
         }
 
         //BYGG VEI TIL KONTROLLER
