@@ -32,13 +32,11 @@ var roleHarvester = {
         var containers = sourceObj.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
         var containersUnfinished = sourceObj.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
         if (containers.length>0) {
-          creep.say('cont');
           tasks.deliverSourceDedicated(creep,containers[0]);//
         } else {
           if (containersUnfinished.length>0 && !(tasks.checkSourceNeeded(creep))) {
             tasks.buildContainer(creep,containersUnfinished[0]);
           } else {
-            creep.say('spawn');
             tasks.deliverSource(creep);
           }
 
