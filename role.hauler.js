@@ -20,9 +20,9 @@ var roleHauler = {
         //tasks.haulFromDedicatedCotainers(creep);
         if (creep.memory.targetContainer===null) {
           //creep.say('new');
-          creep.memory.target= tasks.findContainerDedicatedBiggest(creep);
+          creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
         }
-          tasks.withdrawFromId(creep,creep.memory.target);
+          tasks.withdrawFromId(creep,creep.memory.targetContainer);
           //console.log(creep.memory.target);
 	    }
 	}
