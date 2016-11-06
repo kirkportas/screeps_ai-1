@@ -15,9 +15,11 @@ module.exports.loop = function () {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
 
+    mainRoom.run(room);
+
   }
 
-    mainRoom.run();
+    //mainRoom.run();
     mainSpawn.run();
     mainTower.run();
 
