@@ -15,7 +15,7 @@ var buildRoads = {
         }
 
         //BYGG VEI TIL KONTROLLER
-        var path = new PathFinder.search(posSpawn,{pos:posCtr,range:1});
+        var path = posSpawn.findPathTo(posCtr,{range:1});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
                 let pos = path[i];
