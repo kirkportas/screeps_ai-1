@@ -24,6 +24,7 @@ var mainRoom = {
         Game.spawns['Spawn1'].room.memory.allSources=[];
 
         for (var i = 0; i < sources.length; i++) {
+          console.log('entering');
             //var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
             var path = posSpawn.findPathTo(sources[i],{range:1})
             var pathLen = path.path.length;
