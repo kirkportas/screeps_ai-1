@@ -64,7 +64,7 @@ var mainSpawn = {
         var modules=[];
         for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
         for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
-        console.log(modules);
+        console.log(energyAvav);
         var newName = Game.spawns['Spawn1'].createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         console.log('Spawning new hauler: ' + newName);
     } else  if(builders < buildersNeeded) {
