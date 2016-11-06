@@ -25,7 +25,14 @@ var roleBuilder = {
                         }
                     */
 
-        	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+        	        var targetsPri = creep.room.find(FIND_CONSTRUCTION_SITES,{
+                          filter: (structure) => {
+                              return (
+                                  structure.structureType == STRUCTURE_CONTAINER ||
+                                  structure.structureType == STRUCTURE_EXTENSION )  }
+                  });
+                  var targetsAll = creep.room.find(FIND_CONSTRUCTION_SITES);
+                  /*
                   for (var i=0;i<targets.length;i++) {
                     var t=targets[i];
                     var lairs = t.pos.findInRange(FIND_STRUCTURES,10, {
@@ -36,11 +43,15 @@ var roleBuilder = {
                     if (lairs.length>0) {
                       targets.splice(i,1);
                     }
-                  }
-                    if(targets.length) {
-                        if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[0]);
+                  } */
+                    if(targetsPri.length) {
+                        if(creep.build(targetsPri[0]) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(targetsPri[0]);
                         }
+                    } if (targetsAll.length) {
+                      if(creep.build(targetsAll[0]) == ERR_NOT_IN_RANGE) {
+                          creep.moveTo(targetsAll[0]);
+                      }
                     } else {
                         creep.say('idle');
                         var targets = creep.room.find(FIND_STRUCTURES, {
