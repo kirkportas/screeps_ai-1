@@ -10,8 +10,8 @@ var roleBuilder = require('role.builder');
 module.exports.loop = function () {
 
 
-    mainRoom.run();
-    mainSpawn.run();
+    //mainRoom.run();
+    //mainSpawn.run();
 
     var tower = Game.getObjectById('fae2cfd64a4dd0ef19707798');
     if(tower) {
