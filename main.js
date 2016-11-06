@@ -1,5 +1,6 @@
 var mainSpawn = require('main.spawn');
 var mainRoom = require('main.room');
+var mainTower = require('main.tower');
 
 var roleHarvester = require('role.harvester');
 var roleHarvesterBig = require('role.harvesterBig');
