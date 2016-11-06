@@ -25,7 +25,7 @@ var mainRoom = {
 
         for (var i = 0; i < sources.length; i++) {
             //var path = new PathFinder.search(posSpawn,{pos:sources[i],range:1});
-            var path = posSpawn.findPathTo(pos:sources[i],{range:1})
+            var path = posSpawn.findPathTo(sources[i],{range:1})
             var pathLen = path.path.length;
             var safe=1;
             var x=path.path[pathLen-1].x;
