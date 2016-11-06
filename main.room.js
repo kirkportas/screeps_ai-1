@@ -10,16 +10,16 @@ var mainRoom = {
       var roads = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_ROAD }});
 
       var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
-      var sources = Game.spawns['Spawn1'].room.find(FIND_SOURCES);
-      var lairs = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
+      var sources = room.find(FIND_SOURCES);
+      var lairs = room.find(FIND_STRUCTURES, {
               filter: (structure) => {
                   return (
                       structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
       });
 
-      if (Game.spawns['Spawn1'].room.memory.allSources.length===0) {
+      if (room.memory.allSources.length===0) {
         console.log('init room');
-        Game.spawns['Spawn1'].room.memory.allSources=[];
+        room.memory.allSources=[];
 
         for (var i = 0; i < sources.length; i++) {
             var path = posSpawn.findPathTo(sources[i],{range:1})
@@ -41,7 +41,7 @@ var mainRoom = {
             for (var x1=-1;x1<2;x1++) {
                 for (var y1=-1;y1<2;y1++) {
 
-                 let items = Game.spawns['Spawn1'].room.lookAt(sources[i].pos.x+x1,sources[i].pos.y+y1);
+                 let items = room.lookAt(sources[i].pos.x+x1,sources[i].pos.y+y1);
                    for (let i=0;i<items.length;i++) {
                        if (items[i].terrain=='plain') {slots++;}
                    }
@@ -49,10 +49,10 @@ var mainRoom = {
             }
 
             //   {id: sources[i].id, len: pathLen}
-            Game.spawns['Spawn1'].room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots,miners: [], container: null});
+            room.memory.allSources.push({id: sources[i].id, len: pathLen, safe: safe, slots: slots,miners: [], container: null});
 
         }
-        Game.spawns['Spawn1'].room.memory.allSources.sort(function(a, b) {
+        room.memory.allSources.sort(function(a, b) {
             return (a.len-a.safe*100) - (b.len-b.safe*10);
         });
     }
