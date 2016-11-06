@@ -31,7 +31,7 @@ var mainSpawn = {
     //cleanup dedicated miners
     var sources = Game.spawns['Spawn1'].room.memory.allSources;
     for (var i=0;i<sources.length;i++) {
-      var source=sources.get(i);
+      var source=sources[i];
 
       for (var ii=0;ii<source.miners.length;ii++) {
         if (Game.getObjectById(source.miners[ii]) == null) {
