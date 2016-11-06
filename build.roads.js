@@ -12,7 +12,13 @@ var buildRoads = {
         */
         // ----------------
 
-        //BYGG VEI TIL NÆRMESTE SOURCE
+
+
+        //BYGG VEI TIL sources
+        var sources = Game.spawns['Spawn1'].room.memory.allSources;
+        for (var i=0;i<sources.length;i++) {
+          var source=sources[i];
+        }
         var path = posSpawn.findPathTo(posRes,{range:1, ignoreCreeps: true});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {

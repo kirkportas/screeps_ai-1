@@ -68,6 +68,7 @@ var tasks = {
      }
     },
     haulFromCentralCotainers: function(creep) {
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
 
       //targets = _.sortBy(targets, s => -s.energy);
