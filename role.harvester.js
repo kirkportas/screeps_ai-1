@@ -10,7 +10,7 @@ var roleHarvester = {
           var source=sources[i];
           if (source.id === creep.memory.pref && !source.miners.includes(creep.id) && creep.id != null) {
             console.log('adding ',creep.id);
-            source.miners.push(creep.id);
+            room.memory.allSources.miners.push(creep.id);
           }
         }
 
