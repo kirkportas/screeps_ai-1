@@ -8,13 +8,20 @@ var roleHauler = {
             creep.memory.delivering = false;
 	    }
 	    if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
+          creep.memory.targetContainer= null;
 	        creep.memory.delivering = true;
 	    }
 
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
 	    } else {
-        tasks.haulFromDedicatedCotainers(creep);
+        //tasks.haulFromDedicatedCotainers(creep);
+        if (creep.memory.targetContainer!=null) {
+          tasks.withdrawFromId(creep,target);
+        } else {
+          creep.memory.target= tasks.findContainerDedicatedBiggest(creep);
+          tasks.withdrawFromId(creep,creep.memory.target);
+        }
 
 	    }
 	}

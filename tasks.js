@@ -59,13 +59,31 @@ var tasks = {
 
       var index = targets.indexOf(centralContainer);
       if(index != -1) targets.splice( index, 1 );
-      
+
       //targets = _.sortBy(targets, s => -s.energy);
      if(targets.length > 0) {
          if(creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
            creep.moveTo(targets[0]);
          }
      }
+    },
+    findContainerDedicatedBiggest: function(creep) {
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
+      var targets = creep.room.find(FIND_STRUCTURES, {filter: (structure) => { return ( structure.structureType == STRUCTURE_CONTAINER
+                             ) && (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 50); } });
+
+      var index = targets.indexOf(centralContainer);
+      if(index != -1) targets.splice( index, 1 );
+
+      targets = _.sortBy(targets, s => -s.energy);
+      return targets[0];
+    },
+
+    withdrawFromId: function(creep,id) {
+      if(creep.withdraw(id, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(id);
+      }
     },
 
     haulFromContainerAny: function(creep) {
