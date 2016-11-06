@@ -29,7 +29,7 @@ var mainRoom = {
             console.log(posSpawn.x);
             console.log(sources[i].pos.x);
             var path = posSpawn.findPathTo(sources[i],{range:1})
-            var pathLen = path.path.length;
+            var pathLen = path.length;
             var safe=1;
             var x=path.path[pathLen-1].x;
             var y=path.path[pathLen-1].y;
