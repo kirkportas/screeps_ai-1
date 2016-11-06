@@ -77,6 +77,7 @@ var tasks = {
     },
 
     haulFromContainerAny: function(creep) {
+      creep.say('test');
       var targets = creep.room.find(FIND_STRUCTURES, {
                  filter: (structure) => {
                      return (
