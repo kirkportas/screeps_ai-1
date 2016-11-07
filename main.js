@@ -17,8 +17,8 @@ module.exports.loop = function () {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
     timeLast=cpu.getUsed(); mainRoom.run(room); console.log('time mainRoom: ',cpu.getUsed()-timeLast);
-    timeLast=cpu.getUsed(); mainTower.run(room); console.log('time mainRoom: ',cpu.getUsed()-timeLast);
-    timeLast=cpu.getUsed(); mainSpawn.run(); console.log('time mainRoom: ',cpu.getUsed()-timeLast);
+    timeLast=cpu.getUsed(); mainTower.run(room); console.log('time tower: ',cpu.getUsed()-timeLast);
+    timeLast=cpu.getUsed(); mainSpawn.run(); console.log('time spawn: ',cpu.getUsed()-timeLast);
 
   }
 /*
@@ -30,7 +30,7 @@ module.exports.loop = function () {
     mainSpawn.run();
 
   } */
-
+  timeLast=cpu.getUsed();
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         //try {
@@ -40,6 +40,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
       //} catch(err) { Game.notify(err)}
+    }
+    console.log('creep AI time: ',cpu.getUsed()-timeLast);
 
-};
 }
