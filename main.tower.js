@@ -3,10 +3,14 @@ var mainTower = {
     var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 
     _.forEach(towers, function(tower){
-      var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-      if(closestHostile) {
 
-          tower.attack(closestHostile);
+      var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+      var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: (structure) => structure.hits < structure.hitsMax});
+
+      if(closestHostile) {
+        tower.attack(closestHostile);
+      } else if (closestDamagedStructure) {
+        tower.repair(closestDamagedStructure);
       }
 
     });
