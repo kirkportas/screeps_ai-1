@@ -97,8 +97,12 @@ var tasks = {
          filter: object => object.hits < (object.hitsMax/2)
         });
         targets.sort((a,b) => a.hits - b.hits);
-        var idReturn = targets[0].id;
-        return idReturn;
+
+        if (targets.length) {
+          var idReturn = targets[0].id;
+          return idReturn;
+        } else return null;
+
 
     },
 
