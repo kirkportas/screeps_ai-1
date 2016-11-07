@@ -3,18 +3,40 @@ var tasks = require('tasks');
 var roleScout = {
 
     run: function(creep) {
-      var anotherRoomName='E65S61';
-      console.log(creep.room.name, '-----',anotherRoomName);
-      if(creep.room.name != anotherRoomName) {
-        creep.say('room1');
-        var exitDir = Game.map.findExit(creep.room, anotherRoomName);
-        var exit = creep.pos.findClosestByRange(exitDir);
-        creep.moveTo(exit);
-      } else {
-        creep.say('room2');
-        console.log('-----------in other room');
-        tasks.harvestClosest(creep);
+      if(creep.memory.delivering && creep.carry.energy == 0) {
+            creep.memory.delivering = false;
       }
+      if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
+          creep.memory.delivering = true;
+      }
+      var firstRoom='E65S62';
+      var anotherRoomName='E65S61';
+
+      if(!creep.memory.delivering) {
+        if(creep.room.name != anotherRoomName) {
+          var exitDir = Game.map.findExit(creep.room, anotherRoomName);
+          var exit = creep.pos.findClosestByRange(exitDir);
+          creep.moveTo(exit);
+        } else {
+          tasks.harvestClosest(creep);
+        }
+      } else {
+        if(creep.room.name != firstRoom) {
+          var exitDir = Game.map.findExit(creep.room, firstRoom);
+          var exit = creep.pos.findClosestByRange(exitDir);
+          creep.moveTo(exit);
+        } else {
+          tasks.harvestClosest(creep);
+          var containers = sourceObj.pos.findClosestByRange(FIND_STRUCTURES,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+          if (containers.length>0) {
+            tasks.deliverSourceDedicated(creep,containers[0]);
+          }
+        }
+
+
+      }
+
+
     }
 };
 
