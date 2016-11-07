@@ -15,7 +15,7 @@ var roleScout = {
       //var targetRoom='E65S61';
 
       if(!creep.memory.delivering) {
-        if(creep.room.name != creep.memory.targetRoom) {
+        if(creep.room.name != creep.memory.targetRoom.name) {
           var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
