@@ -22,7 +22,7 @@ var roleScout = {
         }
       } else {
         if(creep.room.name != firstRoom) {
-          creep.say('...');
+          creep.say(creep.room.name);
           var exitDir = Game.map.findExit(creep.room, firstRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
