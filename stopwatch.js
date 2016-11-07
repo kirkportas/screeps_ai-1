@@ -6,7 +6,7 @@ var roleHauler = {
       console.log(timeNow);
 	},
   start: function() {
-    var test=0;
+    
   }
 
 };

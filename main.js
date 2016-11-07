@@ -13,6 +13,7 @@ var stopwatch = require('stopwatch');
 module.exports.loop = function () {
 
 stopwatch.start();
+var test=0;
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
