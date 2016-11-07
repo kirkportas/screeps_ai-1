@@ -32,5 +32,5 @@ stopwatch.start();
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
-    stopwatch.timeSinceStart();
+    stopwatch.timeSinceLast();
 }
