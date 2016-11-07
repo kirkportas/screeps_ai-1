@@ -9,7 +9,7 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
-
+        tasks.harvestClosest(creep);
       }
     }
 };
