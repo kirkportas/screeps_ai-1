@@ -11,29 +11,29 @@ var roleScout = {
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
           creep.memory.delivering = true;
       }
-      var firstRoom='E65S62';
-      var anotherRoomName='E65S61';
+      var startRoom='E65S62';
+      var targetRoom='E65S61';
       //creep.say(creep.room.name);
 
       if(!creep.memory.delivering) {
-        if(creep.room.name != anotherRoomName) {
-          var exitDir = Game.map.findExit(creep.room, anotherRoomName);
+        if(creep.room.name != targetRoom) {
+          var exitDir = Game.map.findExit(creep.room, targetRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
           if (creep.memory.target===null || creep.memory.target===undefined) {
-            creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[anotherRoomName]);
+            creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[targetRoom]);
           }
-          tasks.harvestBiggestInRoom(creep,Game.rooms[anotherRoomName],creep.memory.target);
+          tasks.harvestBiggestInRoom(creep,Game.rooms[targetRoom],creep.memory.target);
         }
       } else {
-        if(creep.room.name != firstRoom) {
+        if(creep.room.name != startRoom) {
 
-          var exitDir = Game.map.findExit(creep.room, firstRoom);
+          var exitDir = Game.map.findExit(creep.room, startRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          var containers = Game.rooms[firstRoom].find(FIND_MY_STRUCTURES);
+          var containers = Game.rooms[startRoom].find(FIND_MY_STRUCTURES);
           var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,5, {
                           filter: (structure) => {
                             return (structure.structureType == STRUCTURE_CONTAINER)
