@@ -4,6 +4,7 @@ var roleScout = {
 
     run: function(creep) {
       var anotherRoomName='E65S61';
+      console.log(creep.room, '-----',anotherRoomName);
       if(creep.room != anotherRoomName) {
         creep.say('room1');
         var exitDir = Game.map.findExit(creep.room, anotherRoomName);
