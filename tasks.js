@@ -163,7 +163,7 @@ var tasks = {
     findBiggestInRoom: function(creep,room) {
       var sources = room.find(FIND_SOURCES);
       sources=_.sortBy(sources, s => -s.energy)
-      if (sources.length) {return sources[0;]} else {return null;}
+      if (sources.length) {return sources[0];} else {return null;}
     },
 
     harvestBiggestInRoom: function(creep,room,target) {
