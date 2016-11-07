@@ -167,8 +167,9 @@ var tasks = {
     },
 
     harvestBiggestInRoom: function(creep,room,target) {
-      if(creep.harvest(target) == ERR_NOT_IN_RANGE) {
-          creep.moveTo(target);
+      var object = Game.getObjectById(target);
+      if(creep.harvest(object) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(object);
       }
     },
 
