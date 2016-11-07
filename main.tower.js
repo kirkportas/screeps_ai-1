@@ -1,6 +1,6 @@
 var mainTower = {
   run: function(room) {
-    var towers = Game.rooms[room].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+    var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 
     _.forEach(structures, function(struc){
       console.log('found a tower');
