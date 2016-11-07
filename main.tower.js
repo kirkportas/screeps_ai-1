@@ -2,7 +2,7 @@ var mainTower = {
   run: function(room) {
     var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 
-    _.forEach(structures, function(struc){
+    _.forEach(towers, function(tower){
       console.log('found a tower');
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
       if(closestHostile) {
