@@ -11,6 +11,7 @@ var roleScout = {
       } else {
 
       }
+    }
 };
 
 module.exports = roleScout;
