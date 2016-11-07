@@ -11,7 +11,6 @@ var roleBuilder = require('role.builder');
 module.exports.loop = function () {
 
   for(var iRoom in Game.rooms) {
-    console.log('a room');
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
 

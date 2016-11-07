@@ -21,11 +21,15 @@ var mainSpawn = {
 
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
     var energyNeeded = 0;
+    var repairNeeded = 0;
     var constructionSites = Game.spawns['Spawn1'].room.find(FIND_CONSTRUCTION_SITES);
     constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
+    var structures = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES);
+    structures.forEach(struc => repairNeeded+= (struc.hitsMax-struc.hitsMax) );
+
 
     var buildersNeeded = Math.max(1,Math.ceil(energyNeeded/2000));
-    console.log(constructionSites.length,' sites need energy: ', energyNeeded,' needed builders: ',buildersNeeded);
+    console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
 
 
     for(var name in Memory.creeps) {
