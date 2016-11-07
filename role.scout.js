@@ -20,7 +20,7 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          tasks.harvestClosest(creep);
+          tasks.harvestClosestInRoom(creep,Game.rooms[anotherRoomName]);
         }
       } else {
         if(creep.room.name != firstRoom) {
