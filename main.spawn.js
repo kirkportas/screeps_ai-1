@@ -57,9 +57,9 @@ var mainSpawn = {
     }
       //spawns harvesters per source
       var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
-      if (energyAvav>=800) {
+      if (energyAvav>=700) {
         if (source.miners.length<1 && source.safe) {
-          if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE] == OK)) {
+          if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
             var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
             if(_.isString(name)) {break;}
