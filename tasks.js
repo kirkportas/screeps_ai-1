@@ -46,8 +46,11 @@ var tasks = {
       } else {
         target=spawn;
       }
-      if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+      var returnCode = creep.transfer(target, RESOURCE_ENERGY);
+      if(returnCode== ERR_NOT_IN_RANGE) {
           creep.moveTo(target);
+      } else if (returnCode == ERR_FULL) {
+        creep.drop(RESOURCES_ENERGY);
       }
     },
 
