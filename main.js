@@ -16,20 +16,18 @@ module.exports.loop = function () {
 
     mainRoom.run(room);
     mainTower.run(room);
+    mainSpawn.run();
 
   }
 
-    //mainRoom.run();
-    mainSpawn.run();
-
-
-
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
-        if(creep.memory.role == 'harvesterBig') {roleHarvesterBig.run(creep);}
-        if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
-        if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
-        if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
+        try {
+          if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
+          if(creep.memory.role == 'harvesterBig') {roleHarvesterBig.run(creep);}
+          if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
+          if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
+          if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
+      } catch(err) { Game.notify(err)}
     }
 }
