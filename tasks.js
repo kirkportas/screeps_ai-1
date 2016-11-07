@@ -100,8 +100,9 @@ var tasks = {
       return targets[0];
     },
     findStructureToRepair: function(creep) {
+      //if((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL) || (struct.hits<struct.hitsMax*0.01 && struct.structureType==STRUCTURE_WALL))
       var targets = creep.room.find(FIND_STRUCTURES, {
-         filter: object => (object.structureType!=STRUCTURE_WALL && object.hits < (object.hitsMax/2))
+         filter: struct => ((struct.hits<struct.hitsMax*0.50 && struct.structureType!=STRUCTURE_WALL) || (struct.hits<struct.hitsMax*0.005 && struct.structureType==STRUCTURE_WALL))
         });
         targets.sort((a,b) => a.hits - b.hits);
 
