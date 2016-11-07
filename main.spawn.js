@@ -79,7 +79,7 @@ var mainSpawn = {
     } else  if(builders < buildersNeeded) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
         console.log('Spawning new builder: ' + newName);
-    } else if(upgraders < 10-buildersNeeded) {
+    } else if(upgraders < 5-buildersNeeded) {
       var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
     }
