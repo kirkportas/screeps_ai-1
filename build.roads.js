@@ -6,10 +6,10 @@ var buildRoads = {
 
 
         // FJERNER ALLE VEIER
-        /*
+        
         var allRoads = room.find(FIND_CONSTRUCTION_SITES, {filter: { structureType: STRUCTURE_ROAD }});
         allRoads.forEach(road => road.remove());
-        */
+
         // ----------------
 
 
@@ -18,7 +18,7 @@ var buildRoads = {
         var sources = Game.spawns['Spawn1'].room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
-          var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true});
+          var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true, ignoreRoads: true});
           if (!path.incomplete) {
               for (i = 0; i < path.length; i++) {
                   let pos = path[i];
