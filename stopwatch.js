@@ -6,7 +6,7 @@ var roleHauler = {
       console.log(timeNow);
 	},
   start: function() {
-    Memory.test=1;
+    Memory.test='1';
   }
 
 };
