@@ -50,7 +50,7 @@ var tasks = {
       if(returnCode== ERR_NOT_IN_RANGE) {
           creep.moveTo(target);
       } else if (returnCode == ERR_FULL) {
-        creep.drop(RESOURCES_ENERGY);
+        creep.drop(RESOURCE_ENERGY);
       }
     },
 
