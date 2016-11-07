@@ -19,7 +19,9 @@ var mainSpawn = {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
 
+    var spawn = Game.spawns['Spawn1'];
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
+    var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
     var energyNeeded = 0;
     var repairNeeded = 0;
     var constructionSites = Game.spawns['Spawn1'].room.find(FIND_CONSTRUCTION_SITES);
@@ -80,7 +82,7 @@ var mainSpawn = {
     }
 
   if (containers>=1) {
-    if(haulers < 4) {
+    if(haulers < 3) {
         var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
         var modulesOfEach = Math.min(Math.floor(6,energyAvav/100));
         var modules=[];
@@ -91,7 +93,7 @@ var mainSpawn = {
     } else  if(builders < buildersNeeded) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
         console.log('Spawning new builder: ' + newName);
-    } else if(upgraders < 5-buildersNeeded) {
+    } else if(upgraders < 1 || (centralContainer.store[RESOURCE_ENERGY]>1800 && upgraders<10)) {
       var newName = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE], findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
     }
