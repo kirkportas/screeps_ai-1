@@ -8,22 +8,21 @@ var roleBuilder = {
             creep.memory.building = false;
 	    }
 	    if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
+        creep.memory.targetFix= null;
 	        creep.memory.building = true;
 	    }
 
 	    if(creep.memory.building) {
 
-                var targets = creep.room.find(FIND_STRUCTURES, {
-                   filter: object => object.hits < (object.hitsMax)
-                  });
+        if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
+          creep.memory.targetFix= tasks.findStructureToRepair(creep);
+        }
 
-                  //targets.sort((a,b) => a.hits - b.hits);
-
-                  if(targets.length > 0) {
-                      if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                          creep.moveTo(targets[0]);
-                      }
-                    } else {
+        if(creep.memory.targetFix.hits<creep.memory.targetFix.hitsMax) {
+            if(creep.repair(creep.memory.targetFix) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(creep.memory.targetFix);
+            }
+          } else {
 
 
         	        var targetsPri = creep.room.find(FIND_CONSTRUCTION_SITES,{

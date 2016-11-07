@@ -92,6 +92,14 @@ var tasks = {
       //console.log(targets[0]);
       return targets[0];
     },
+    findStructureToRepair: function(creep) {
+      var targets = creep.room.find(FIND_STRUCTURES, {
+         filter: object => object.hits < (object.hitsMax/2)
+        });
+        targets.sort((a,b) => a.hits - b.hits);
+        return targets[0];
+
+    },
 
     withdrawFromId: function(creep,targetId) {
       if(creep.withdraw(Game.getObjectById(targetId), RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
