@@ -145,12 +145,12 @@ var tasks = {
           structure.structureType == STRUCTURE_SPAWN
               ) && (structure.energy < structure.energyCapacity);
             }
-    });
-    if (targets.length>0) {
-      return true;
-    } else {
-      return false;
-    }
+      });
+      if (targets.length>0) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     harvestClosest: function(creep) {
