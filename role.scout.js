@@ -29,7 +29,7 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          var containers = firstRoom.find(FIND_STRUCTURES);
+          var containers = Room[firstRoom].find(FIND_MY_STRUCTURES);
           console.log('yaaaaay ',containers.length);
           if (containers.length>0) {
             creep.moveTo(containers[0]);
