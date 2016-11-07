@@ -37,7 +37,7 @@ var buildRoads = {
         }
 
         //BYgg vei nord til E65S61
-        //Game.spawns['Spawn1'].pos.
+        /*
         var exitDir = Game.map.fi ndExit(Game.spawns['Spawn1'].room.name, 'E65S61');
         var exit = posSpawn.findClosestByRange(exitDir);
         var path = posSpawn.findPathTo(exit,{range:1, ignoreCreeps: true});
@@ -47,6 +47,7 @@ var buildRoads = {
                 Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
+        */
 
 
     }
