@@ -6,6 +6,7 @@ var roleScout = {
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
             creep.memory.delivered+=creep.carryCapacity;
+            creep.memory.target=null;
       }
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
           creep.memory.delivering = true;
@@ -20,7 +21,10 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          tasks.harvestBiggestInRoom(creep,Game.rooms[anotherRoomName]);
+          if (creep.memory.target==null || creep.memory.target==undefined) {
+            creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[anotherRoomName]);
+          }
+          tasks.harvestBiggestInRoom(creep,Game.rooms[anotherRoomName],creep.memory.target);
         }
       } else {
         if(creep.room.name != firstRoom) {

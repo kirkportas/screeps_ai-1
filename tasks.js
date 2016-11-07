@@ -159,11 +159,16 @@ var tasks = {
           creep.moveTo(sources[0]);
       }
     },
-    harvestBiggestInRoom: function(creep,room) {
+
+    findBiggestInRoom: function(creep,room) {
       var sources = room.find(FIND_SOURCES);
       sources=_.sortBy(sources, s => -s.energy)
-      if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-          creep.moveTo(sources[0]);
+      if (sources.length) {return sources[0;]} else {return null;}
+    },
+
+    harvestBiggestInRoom: function(creep,room,target) {
+      if(creep.harvest(target) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(target);
       }
     },
 
