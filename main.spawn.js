@@ -62,7 +62,7 @@ var mainSpawn = {
       //console.log(energyAvav);
       if (energyAvav>=700) {
         //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
-        if ((source.miners.length<1 || Game.getObjectById(source.miners[0]).ticksToLive<200) && source.safe) {
+        if ((source.miners.length<1 || (Game.getObjectById(source.miners[0]).ticksToLive<200) && source.safe)) {
           if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
             var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
