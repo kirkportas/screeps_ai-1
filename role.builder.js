@@ -12,18 +12,19 @@ var roleBuilder = {
 	    }
 
 	    if(creep.memory.building) {
-	                /*
-                  var targets = creep.room.find(FIND_STRUCTURES, {
-                     filter: object => object.hits < (object.hitsMax/4)
-                    });
 
-                    targets.sort((a,b) => a.hits - b.hits);
+                var targets = creep.room.find(FIND_STRUCTURES, {
+                   filter: object => object.hits < (object.hitsMax/2)
+                  });
 
-                    if(targets.length > 0) {
-                        if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[0]);
-                        }
-                    */
+                  targets.sort((a,b) => a.hits - b.hits);
+
+                  if(targets.length > 0) {
+                      if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                          creep.moveTo(targets[0]);
+                      }
+                    } else {
+                    
 
         	        var targetsPri = creep.room.find(FIND_CONSTRUCTION_SITES,{
                           filter: (structure) => {
@@ -65,8 +66,8 @@ var roleBuilder = {
                                 }
                         }
             }
-	    }
-	    else {
+          }
+	    } else {
         tasks.haulFromContainerAny(creep);
 	    }
 	}
