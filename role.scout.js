@@ -5,6 +5,7 @@ var roleScout = {
     run: function(creep) {
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
+            creep.memory.delivered+=creep.carryCapacity;
       }
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
           creep.memory.delivering = true;
