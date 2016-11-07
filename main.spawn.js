@@ -18,7 +18,8 @@ var mainSpawn = {
     var harvestersBig = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvesterBig'&& creep.ticksToLive>50).length;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
-    var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.ticksToLive>50).length;
+    var scoutsN = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S61' && creep.ticksToLive>50).length;
+    var scoutsS = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S63' && creep.ticksToLive>50).length;
 
     var spawn = Game.spawns['Spawn1'];
     var containers = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
@@ -110,8 +111,11 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = Game.spawns['Spawn1'].createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
-    } else if(scouts < 3) {
+    } else if(scoutsN < 3) {
       var newName = Game.spawns['Spawn1'].createCreep([MOVE,MOVE,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: Game.spawns['Spawn1'].room,targetRoom:'E65S61'});
+      console.log('Spawning new scout: ' + newName);
+    } else if(scoutsS < 1) {
+      var newName = Game.spawns['Spawn1'].createCreep([MOVE,MOVE,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: Game.spawns['Spawn1'].room,targetRoom:'E65S63'});
       console.log('Spawning new scout: ' + newName);
     }
   }
