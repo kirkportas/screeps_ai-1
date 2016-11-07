@@ -26,9 +26,10 @@ var mainSpawn = {
     constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
     var structures = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES);
     _.forEach(structures, function(struc){
-      if (struc.hitsMax===undefined) continue;
-      repairNeeded+= (struc.hitsMax-struc.hits)
-      console.log('hp: ',struc.hits,'/',struc.hitsMax);
+      if (struc.hitsMax!==undefined) {
+        repairNeeded+= (struc.hitsMax-struc.hits)
+        console.log('hp: ',struc.hits,'/',struc.hitsMax);
+    }
     });
 
 
