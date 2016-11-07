@@ -29,8 +29,8 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          console.log('yaaaaay');
           var containers = creep.pos.findClosestByRange(FIND_STRUCTURES,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+          console.log('yaaaaay ',containers.length);
           if (containers.length>0) {
             tasks.deliverSourceDedicated(creep,containers[0]);
           }
