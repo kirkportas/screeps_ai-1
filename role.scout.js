@@ -21,7 +21,7 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          if (creep.memory.target==null || creep.memory.target==undefined) {
+          if (creep.memory.target===null || creep.memory.target===undefined) {
             creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[anotherRoomName]);
           }
           tasks.harvestBiggestInRoom(creep,Game.rooms[anotherRoomName],creep.memory.target);
