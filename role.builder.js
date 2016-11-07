@@ -8,7 +8,6 @@ var roleBuilder = {
             creep.memory.building = false;
 	    }
 	    if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
-        creep.memory.targetFix= null;
 	        creep.memory.building = true;
 	    }
 
