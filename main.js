@@ -12,13 +12,17 @@ module.exports.loop = function () {
 
   var cpu = Game.cpu;
 
+
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
-
+console.log('CPU info 0, ',cpu.getUsed());
     mainRoom.run(room);
+    console.log('CPU info 1, ',cpu.getUsed());
     mainTower.run(room);
+    console.log('CPU info 2, ',cpu.getUsed());
     mainSpawn.run();
+    console.log('CPU info 3, ',cpu.getUsed());
 
   }
 
@@ -32,4 +36,5 @@ module.exports.loop = function () {
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
+    console.log('CPU info 4, ',cpu.getUsed());
 }
