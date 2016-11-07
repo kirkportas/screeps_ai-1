@@ -10,6 +10,8 @@ var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
 
+  var cpu = Game.cpu;
+
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];

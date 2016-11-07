@@ -30,7 +30,7 @@ var mainSpawn = {
     _.forEach(structures, function(struc){
       if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5) {
         repairNeeded+= (struc.hitsMax*0.75-struc.hits)
-        console.log('hp: ',struc.hits,'/',struc.hitsMax);
+        //console.log('hp: ',struc.hits,'/',struc.hitsMax);
     }
     });
 
@@ -59,7 +59,7 @@ var mainSpawn = {
     }
       //spawns harvesters per source
       var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
-      console.log(energyAvav);
+      //console.log(energyAvav);
       if (energyAvav>=700) {
         if (source.miners.length<1 && source.safe) {
           if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE] == OK)) {
