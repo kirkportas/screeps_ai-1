@@ -5,7 +5,7 @@ var mainTower = {
     _.forEach(towers, function(tower){
 
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-      var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: (structure) => structure.hits < structure.hitsMax});
+      var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: (structure) => structure.hits < structure.hitsMax*0.25});
 
       if(closestHostile) {
         tower.attack(closestHostile);
