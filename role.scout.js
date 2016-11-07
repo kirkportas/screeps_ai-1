@@ -21,7 +21,7 @@ var roleScout = {
           tasks.harvestClosest(creep);
         }
       } else {
-        if(creep.room.name != firstRoom) {
+        if(creep.room.name != anotherRoomName) {
           creep.say(creep.room.name);
           var exitDir = Game.map.findExit(creep.room, firstRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
