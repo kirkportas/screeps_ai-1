@@ -111,7 +111,7 @@ var mainSpawn = {
       var newName = Game.spawns['Spawn1'].createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
     } else if(scouts < 3) {
-      var newName = Game.spawns['Spawn1'].createCreep([MOVE,MOVE,CARRY,WORK]], findNextName('scout'), {role: 'scout'});
+      var newName = Game.spawns['Spawn1'].createCreep([MOVE,MOVE,CARRY,WORK], findNextName('scout'), {role: 'scout'});
       console.log('Spawning new scout: ' + newName);
     }
   }
