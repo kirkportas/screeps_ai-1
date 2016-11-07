@@ -9,6 +9,7 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
+        console.log('in other room');
         tasks.harvestClosest(creep);
       }
     }
