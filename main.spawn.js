@@ -102,7 +102,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = Game.spawns['Spawn1'].createCreep(modules, findNextName('builder'), {role: 'builder'});
       console.log('Spawning new builder: ' + newName);
-    } else if(upgraders < 1 || (centralContainer.store[RESOURCE_ENERGY]>1500 && upgraders<4)) {
+    } else if(upgraders < 1 || (centralContainer.store[RESOURCE_ENERGY]>1500 && upgraders<6)) {
       var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
       var modules=[];
