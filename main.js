@@ -8,18 +8,16 @@ var roleHauler = require('role.hauler');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 
-var stopwatch = require('stopwatch');
-
 module.exports.loop = function () {
 
-stopwatch.start();
-var test=0;
+  var cpu = Game.cpu;
+  var timeLast=cpu.getUsed();
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
-    mainRoom.run(room);
-    mainTower.run(room);
-    mainSpawn.run();
+    timeLast=cpu.getUsed(); mainRoom.run(room); Console.log('time mainRoom: ',cpu.getUsed()-timeLast);
+    timeLast=cpu.getUsed(); mainTower.run(room); Console.log('time mainRoom: ',cpu.getUsed()-timeLast);
+    timeLast=cpu.getUsed(); mainSpawn.run(); Console.log('time mainRoom: ',cpu.getUsed()-timeLast);
 
   }
 
@@ -32,6 +30,5 @@ var test=0;
           if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
       //} catch(err) { Game.notify(err)}
-    }
-    stopwatch.timeSinceLast();
+
 }
