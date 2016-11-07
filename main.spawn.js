@@ -61,7 +61,7 @@ var mainSpawn = {
       var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
       //console.log(energyAvav);
       if (energyAvav>=700) {
-        console.log(Game.getObjectById(source.miners[0]).ticksToDecay);
+        console.log(Game.getObjectById(source.miners[0]).ticksToLive);
         if (source.miners.length<1 && source.safe) {
           if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
