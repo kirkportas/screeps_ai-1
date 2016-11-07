@@ -1,6 +1,11 @@
 var buildExtension = {
     place: function(x,y) {
-      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+1,Game.spawns['Spawn1'].pos.y+1,STRUCTURE_EXTENSION);
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x,Game.spawns['Spawn1'].pos.y+y,STRUCTURE_EXTENSION);
+
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x+1,Game.spawns['Spawn1'].pos.y+y+1,STRUCTURE_ROAD);
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x-1,Game.spawns['Spawn1'].pos.y+y+1,STRUCTURE_ROAD);
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x+1,Game.spawns['Spawn1'].pos.y+y-1,STRUCTURE_ROAD);
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x-1,Game.spawns['Spawn1'].pos.y+y-1,STRUCTURE_ROAD);
     },
 
     run: function() {
