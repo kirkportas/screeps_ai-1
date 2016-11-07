@@ -29,10 +29,10 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          var containers = creep.pos.findClosestByRange(FIND_STRUCTURES,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+          var containers = creep.pos.findClosestByRange(FIND_STRUCTURES);
           console.log('yaaaaay ',containers.length);
           if (containers.length>0) {
-            tasks.deliverSourceDedicated(creep,containers[0]);
+            creep.moveTo(containers[0]);
           }
         }
 
