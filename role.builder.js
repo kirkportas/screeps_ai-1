@@ -34,7 +34,7 @@ var roleBuilder = {
                 creep.say('idle');
               }
             } else {
-              if(creep.memory.targetFix.hits<creep.memory.targetFix.hitsMax*0.75) {
+              if(creep.memory.targetFix.hits<(creep.memory.targetFix.hitsMax*0.75)) {
                   if(creep.repair(Game.getObjectById(creep.memory.targetFix.id)) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(Game.getObjectById(creep.memory.targetFix.id));
                   }
