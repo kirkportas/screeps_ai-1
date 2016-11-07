@@ -63,6 +63,7 @@ var mainSpawn = {
           if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
             var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+            console.log(name);
             if(_.isString(name)) {break;}
           }
         }
