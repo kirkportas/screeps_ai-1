@@ -159,8 +159,9 @@ var tasks = {
           creep.moveTo(sources[0]);
       }
     },
-    harvestClosestInRoom: function(creep,room) {
+    harvestBiggestInRoom: function(creep,room) {
       var sources = room.find(FIND_SOURCES);
+      sources=_.sortBy(sources, s => s.energy)
       if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
           creep.moveTo(sources[0]);
       }

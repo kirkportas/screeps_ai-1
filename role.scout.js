@@ -15,13 +15,12 @@ var roleScout = {
       //creep.say(creep.room.name);
 
       if(!creep.memory.delivering) {
-        console.log('going to seonc room');
         if(creep.room.name != anotherRoomName) {
           var exitDir = Game.map.findExit(creep.room, anotherRoomName);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          tasks.harvestClosestInRoom(creep,Game.rooms[anotherRoomName]);
+          tasks.harvestBiggestInRoom(creep,Game.rooms[anotherRoomName]);
         }
       } else {
         if(creep.room.name != firstRoom) {
