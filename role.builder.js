@@ -35,13 +35,13 @@ var roleBuilder = {
                 creep.say('idle');
               }
             } else {
-
-            }
-            if(creep.memory.targetFix.hits<creep.memory.targetFix.hitsMax) {
-                if(creep.repair(Game.getObjectById(creep.memory.targetFix.id)) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.getObjectById(creep.memory.targetFix.id));
+              if(creep.memory.targetFix.hits<creep.memory.targetFix.hitsMax) {
+                  if(creep.repair(Game.getObjectById(creep.memory.targetFix.id)) == ERR_NOT_IN_RANGE) {
+                      creep.moveTo(Game.getObjectById(creep.memory.targetFix.id));
+                  }
                 }
-              }
+            }
+
 	    } else {
         tasks.haulFromContainerAny(creep);
 	    }
