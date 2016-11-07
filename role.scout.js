@@ -32,7 +32,7 @@ var roleScout = {
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          var containers = Game.rooms[creep.memory.startRoom].find(FIND_MY_STRUCTURES);
+          var containers = Game.rooms[creep.memory.startRoom.name].find(FIND_MY_STRUCTURES);
           var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,5, {
                           filter: (structure) => {
                             return (structure.structureType == STRUCTURE_CONTAINER)
