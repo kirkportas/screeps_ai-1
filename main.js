@@ -10,7 +10,6 @@ var roleScout = require('role.scout');
 
 module.exports.loop = function () {
 
-
   var cpu = Game.cpu;
   var timeLast=cpu.getUsed();
   for(var iRoom in Game.rooms) {

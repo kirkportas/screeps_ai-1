@@ -27,7 +27,7 @@ var roleScout = {
           creep.moveTo(exit);
         } else {
           tasks.harvestClosest(creep);
-          var containers = sourceObj.pos.findClosestByRange(FIND_STRUCTURES,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
+          var containers = creep.pos.findClosestByRange(FIND_STRUCTURES,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
           if (containers.length>0) {
             tasks.deliverSourceDedicated(creep,containers[0]);
           }
