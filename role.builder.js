@@ -48,7 +48,7 @@ var roleBuilder = {
                         if(creep.build(targetsPri[0]) == ERR_NOT_IN_RANGE) {
                             creep.moveTo(targetsPri[0]);
                         }
-                    } if (targetsAll.length) {
+                    } else if (targetsAll.length) {
                       if(creep.build(targetsAll[0]) == ERR_NOT_IN_RANGE) {
                           creep.moveTo(targetsAll[0]);
                       }
