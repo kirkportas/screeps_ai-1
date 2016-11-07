@@ -28,7 +28,7 @@ var mainSpawn = {
     structures.forEach(struc => repairNeeded+= (struc.hitsMax-struc.hits));
     _.forEach(structures, function(struc){
       console.log('hp: ',struc.hits,'/',struc.hitsMax);
-    }
+    })
 
 
     var buildersNeeded = Math.max(1,Math.ceil(energyNeeded/2000));
