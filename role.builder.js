@@ -35,15 +35,15 @@ var roleBuilder = {
               }
             } else {
               if (Game.getObjectById(creep.memory.targetFix)===null) creep.say('kill');
-              if(Game.getObjectById(creep.memory.targetFix).hits<(Game.getObjectById(creep.memory.targetFix).hitsMax*0.75)) {
+              //if(Game.getObjectById(creep.memory.targetFix).hits<(Game.getObjectById(creep.memory.targetFix).hitsMax*0.75)) {
                 console.log(Game.getObjectById(creep.memory.targetFix).hits,'  ',Game.getObjectById(creep.memory.targetFix).hitsMax*0.75);
                   //if(creep.repair(Game.getObjectById(creep.memory.targetFix)) == ERR_NOT_IN_RANGE) {
                     //  creep.moveTo(Game.getObjectById(creep.memory.targetFix));
                   //}
-                } else {
-                  creep.say('reset');
-                  creep.memory.targetFix=null;
-                }
+                //} else {
+                //  creep.say('reset');
+                //  creep.memory.targetFix=null;
+                //}
             }
 
 	    } else {
