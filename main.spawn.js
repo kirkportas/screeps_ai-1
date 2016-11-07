@@ -111,10 +111,10 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = Game.spawns['Spawn1'].createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
-    } else if(scoutsN < 4) {
+    } else if(scoutsN < 6) {
       var newName = Game.spawns['Spawn1'].createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: Game.spawns['Spawn1'].room.name,targetRoom:'E65S61'});
       console.log('Spawning new scout: ' + newName);
-    } else if(scoutsS < 2) {
+    } else if(scoutsS < 3) {
       var newName = Game.spawns['Spawn1'].createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: Game.spawns['Spawn1'].room.name,targetRoom:'E65S63'});
       console.log('Spawning new scout: ' + newName);
     }
