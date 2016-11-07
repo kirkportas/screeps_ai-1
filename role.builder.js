@@ -19,6 +19,7 @@ var roleBuilder = {
 
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
           var targetsPri = creep.room.find(FIND_CONSTRUCTION_SITES,{filter: (structure) => { return (
+                          structure.structureType == STRUCTURE_TOWER ||
                           structure.structureType == STRUCTURE_CONTAINER ||
                           structure.structureType == STRUCTURE_EXTENSION )  } });
           var targetsAll = creep.room.find(FIND_CONSTRUCTION_SITES);
