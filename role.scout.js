@@ -30,13 +30,12 @@ var roleScout = {
           creep.moveTo(exit);
         } else {
           var containers = Game.rooms[firstRoom].find(FIND_MY_STRUCTURES);
-          var centralContainer=Game.spawns['Spawn1'].findInRange(FIND_STRUCTURES,5, {
+          var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,5, {
                           filter: (structure) => {
                             return (structure.structureType == STRUCTURE_CONTAINER)
                         }})[0];
-          console.log('yaaaaay ',containers.length);
-          if (centralContainer) {
-            creep.moveTo(centralContainer);
+          if(creep.transfer(centralContainer, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+              creep.moveTo(centralContainer);
           }
         }
 
