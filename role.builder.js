@@ -17,14 +17,14 @@ var roleBuilder = {
                    filter: object => object.hits < (object.hitsMax/2)
                   });
 
-                  targets.sort((a,b) => a.hits - b.hits);
+                  //targets.sort((a,b) => a.hits - b.hits);
 
                   if(targets.length > 0) {
                       if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                           creep.moveTo(targets[0]);
                       }
                     } else {
-                    
+
 
         	        var targetsPri = creep.room.find(FIND_CONSTRUCTION_SITES,{
                           filter: (structure) => {
