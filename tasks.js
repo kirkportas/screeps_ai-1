@@ -143,7 +143,7 @@ var tasks = {
       var source = Game.getObjectById(creep.memory.pref)
       if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
           creep.moveTo(source);
-      } else if (creep.harvest(source) {
+      } else if (creep.harvest(source)) {
         var route = Game.map.findRoute(creep.room, Game.flags['flag1'].room);
         if(route.length > 0) {
           console.log('Now heading to room '+route[0].room);
