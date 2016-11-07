@@ -56,7 +56,7 @@ var mainSpawn = {
       }
     }
       //spawns harvesters per source
-      var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailabl;
+      var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
       console.log(energyAvav);
       if (energyAvav>=700) {
         if (source.miners.length<1 && source.safe) {
