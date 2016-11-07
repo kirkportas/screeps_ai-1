@@ -143,7 +143,7 @@ var tasks = {
       var source = Game.getObjectById(creep.memory.pref)
       if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
           creep.moveTo(source);
-      }
+      } else console.log(creep.harvest(source));
     },
     buildContainer: function(creep,target) {
       /*
