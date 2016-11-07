@@ -38,8 +38,8 @@ var buildRoads = {
 
         //BYgg vei nord til E65S61
         //Game.spawns['Spawn1'].pos.
-        var exitDir = Game.map.findExit(Game.spawns['Spawn1'].room.name, 'E65S61');
-        var exit = creep.pos.findClosestByRange(exitDir);
+        var exitDir = Game.map.fi ndExit(Game.spawns['Spawn1'].room.name, 'E65S61');
+        var exit = Game.spawns['Spawn1'].pos.findClosestByRange(exitDir);
         var path = posSpawn.findPathTo(exit,{range:1, ignoreCreeps: true});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
