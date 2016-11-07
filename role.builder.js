@@ -38,7 +38,10 @@ var roleBuilder = {
                   if(creep.repair(Game.getObjectById(creep.memory.targetFix.id)) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(Game.getObjectById(creep.memory.targetFix.id));
                   }
-                } else creep.memory.targetFix=null;
+                } else {
+                  creep.say('reset');
+                  creep.memory.targetFix=null;
+                }
             }
 
 	    } else {
