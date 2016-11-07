@@ -12,8 +12,6 @@ var stopwatch = require('stopwatch');
 
 module.exports.loop = function () {
 
-  var cpu = Game.cpu;
-
 stopwatch.start();
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]

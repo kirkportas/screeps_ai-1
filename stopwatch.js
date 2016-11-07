@@ -1,7 +1,7 @@
 var roleHauler = {
 
     timeSinceStart: function() {
-      var timeNow= Game.cpu;
+      var timeNow= Game.cpu.getUsed();
       console.log(timeNow);
 	},
   start: function() {
