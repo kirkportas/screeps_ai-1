@@ -11,7 +11,7 @@ var roleScout = {
       }
       var firstRoom='E65S62';
       var anotherRoomName='E65S61';
-      creep.say(creep.room.name);
+      //creep.say(creep.room.name);
 
       if(!creep.memory.delivering) {
         console.log('going to seonc room');
