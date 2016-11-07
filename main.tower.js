@@ -13,7 +13,7 @@ var mainTower = {
       } else if (damagedCreeps) {
         tower.heal(damagedCreeps);
       } else if (closestDamagedStructure) {
-        tower.repair(closestDamagedStructure);
+        //tower.repair(closestDamagedStructure);
       }
 
     });
