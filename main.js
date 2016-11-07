@@ -7,6 +7,7 @@ var roleHarvesterBig = require('role.harvesterBig');
 var roleHauler = require('role.hauler');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
+var roleBuilder = require('role.scout');
 
 module.exports.loop = function () {
 
@@ -39,6 +40,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
           if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
+          if(creep.memory.role == 'scout') {roleScout.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
     console.log('creep AI time: ',cpu.getUsed()-timeLast);
