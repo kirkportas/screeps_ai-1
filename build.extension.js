@@ -1,6 +1,6 @@
 var buildExtension = {
     place: function(x,y) {
-      Game.spawns['Spawn1'].room.createConstructionSite(x,y,STRUCTURE_EXTENSION);
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+1,Game.spawns['Spawn1'].pos.y+1,STRUCTURE_EXTENSION);
     },
 
     run: function() {
@@ -8,7 +8,7 @@ var buildExtension = {
 
 
       //innerste runde
-      buildExtension.place(x+1,y+1);
+      buildExtension.place(1,1);
       //Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+1,Game.spawns['Spawn1'].pos.y+1,STRUCTURE_EXTENSION);
       Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x-1,Game.spawns['Spawn1'].pos.y+1,STRUCTURE_EXTENSION);
       Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+1,Game.spawns['Spawn1'].pos.y-1,STRUCTURE_EXTENSION);
