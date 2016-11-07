@@ -10,7 +10,7 @@ var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
 
-/*
+
   var cpu = Game.cpu;
   var timeLast=cpu.getUsed();
   for(var iRoom in Game.rooms) {
@@ -20,8 +20,8 @@ module.exports.loop = function () {
     timeLast=cpu.getUsed(); mainTower.run(room); Console.log('time mainRoom: ',cpu.getUsed()-timeLast);
     timeLast=cpu.getUsed(); mainSpawn.run(); Console.log('time mainRoom: ',cpu.getUsed()-timeLast);
 
-  } */
-
+  }
+/*
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
@@ -29,7 +29,7 @@ module.exports.loop = function () {
     mainTower.run(room);
     mainSpawn.run();
 
-  }
+  } */
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
