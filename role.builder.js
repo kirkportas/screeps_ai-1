@@ -14,7 +14,7 @@ var roleBuilder = {
 	    if(creep.memory.building) {
 
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
-          creep.memory.targetFix= tasks.findStructureToRepair(creep).id;
+          creep.memory.targetFix= tasks.findStructureToRepair(creep);
         }
 
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
