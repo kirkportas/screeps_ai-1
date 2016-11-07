@@ -15,12 +15,13 @@ module.exports.loop = function () {
     var spawn = room.find(FIND_MY_SPAWNS)[0];
 
     mainRoom.run(room);
+    mainTower.run(room);
 
   }
 
     //mainRoom.run();
     mainSpawn.run();
-    mainTower.run();
+
 
 
     for(var name in Game.creeps) {
