@@ -6,12 +6,12 @@ var mainTower = {
 
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
       var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: (structure) => structure.hits < structure.hitsMax*0.25});
-      var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax*1.1});
+      var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits-1 < creep.hitsMax});
 
       if(closestHostile) {
         tower.attack(closestHostile);
       } else if (damagedCreeps) {
-        tower.heal(damagedCreeps);
+        console.log(tower.heal(damagedCreeps));
       } else if (closestDamagedStructure) {
         tower.repair(closestDamagedStructure);
       }
