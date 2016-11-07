@@ -11,6 +11,7 @@ var roleScout = {
       }
       var firstRoom='E65S62';
       var anotherRoomName='E65S61';
+      creep.say(creep.room.name);
 
       if(!creep.memory.delivering) {
         console.log('going to seonc room');
@@ -23,7 +24,7 @@ var roleScout = {
         }
       } else {
         if(creep.room.name != firstRoom) {
-          creep.say(creep.room.name);
+
           var exitDir = Game.map.findExit(creep.room, firstRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
