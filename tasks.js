@@ -25,6 +25,10 @@ var tasks = {
     },
     deliverSourceToMain: function(creep) {
       var target=null;
+      var tower=spawn.pos.find(FIND_MY_STRUCTURES, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity)
+                    }})[0];
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_SPAWN)
@@ -37,7 +41,10 @@ var tasks = {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER)
                     }})[0];
-      if (spawn.energy < spawn.energyCapacity) {
+
+      if (tower.length>0) {
+         target=tower[0];
+       } else if (spawn.energy < spawn.energyCapacity) {
         target=spawn;
       } else if (extensions.length>0) {
         target=extensions[0];
