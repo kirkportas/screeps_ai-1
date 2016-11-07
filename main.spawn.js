@@ -93,7 +93,7 @@ var mainSpawn = {
         console.log('Spawning new hauler: ' + newName);
     } else  if(builders < buildersNeeded) {
       var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
-      var modulesOfEach = Math.min(Math.floor(3,energyAvav/200));
+      var modulesOfEach = Math.min(Math.floor(5,energyAvav/200));
       var modules=[];
       for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
@@ -102,6 +102,7 @@ var mainSpawn = {
       console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1 || (centralContainer.store[RESOURCE_ENERGY]>1500 && upgraders<4)) {
       var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
+      var modulesOfEach = Math.min(Math.floor(5,energyAvav/200));
       var modules=[];
       for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
