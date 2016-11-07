@@ -56,21 +56,31 @@ var mainSpawn = {
       }
     }
       //spawns harvesters per source
-      if (source.miners.length<source.slots && source.safe) {
-        if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
-          var preferedSource = source.id;
-          var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
-          if(_.isString(name)) {
-            break;
+      var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
+      if (energyAvav>=800) {
+        if (source.miners.length<1 && source.safe) {
+          if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE] == OK)) {
+            var preferedSource = source.id;
+            var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+            if(_.isString(name)) {break;}
+          }
+        }
+      } else {
+        if (source.miners.length<source.slots && source.safe) {
+          if (Game.spawns['Spawn1'].canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
+            var preferedSource = source.id;
+            var name = Game.spawns['Spawn1'].createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+            if(_.isString(name)) {break;}
           }
         }
       }
+
     }
 
   if (containers>=1) {
-    if(haulers < 5) {
+    if(haulers < 4) {
         var energyAvav = Game.spawns['Spawn1'].room.energyCapacityAvailable;
-        var modulesOfEach = Math.floor(energyAvav/100);
+        var modulesOfEach = Math.min(Math.floor(6,energyAvav/100));
         var modules=[];
         for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
         for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
