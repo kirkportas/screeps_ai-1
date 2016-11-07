@@ -1,6 +1,6 @@
 var tasks = require('tasks');
 
-var roleHarvester = {
+var roleScout = {
 
     run: function(creep) {
       var anotherRoomName='E65S61';
@@ -13,4 +13,4 @@ var roleHarvester = {
       }
 };
 
-module.exports = roleHarvester;
+module.exports = roleScout;
