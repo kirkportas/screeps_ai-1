@@ -4,8 +4,8 @@ var roleScout = {
 
     run: function(creep) {
       var anotherRoomName='E65S61';
-      console.log(creep.room, '-----',anotherRoomName);
-      if(creep.room != anotherRoomName) {
+      console.log(creep.room.name, '-----',anotherRoomName);
+      if(creep.room.name != anotherRoomName) {
         creep.say('room1');
         var exitDir = Game.map.findExit(creep.room, anotherRoomName);
         var exit = creep.pos.findClosestByRange(exitDir);
