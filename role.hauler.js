@@ -21,7 +21,8 @@ var roleHauler = {
           creep.say('fond e');
           if(creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
             creep.moveTo(droppedEnergy);
-          } else if (droppedRes) {
+          }
+        } else if (droppedRes) {
             creep.say('fond r');
             if(creep.pickup(droppedRes) == ERR_NOT_IN_RANGE) {
               creep.moveTo(droppedRes);
