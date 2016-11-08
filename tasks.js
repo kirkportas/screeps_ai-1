@@ -47,7 +47,7 @@ var tasks = {
        } else if (spawn.energy < spawn.energyCapacity) {
         target=spawn;
       } else if (extensions.length>0) {
-        extensions= _.sortBy(extensions, e => -creep.pos.getRangeTo(e.pos));
+        extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
         target=extensions[0];
       } else if (centralContainer!=null) {
         target = centralContainer;
