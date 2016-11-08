@@ -15,6 +15,7 @@ var roleHauler = {
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
 	    } else {
+        /*
         var droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY,{filter: (dropped) => {return (dropped.amount>=200)}});
         var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
         if (droppedEnergy) {
@@ -29,12 +30,12 @@ var roleHauler = {
             }
 
 
-        } else {
+        } else { */
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
             creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
           }
             tasks.withdrawFromId(creep,creep.memory.targetContainer.id);
-          }
+          //}
 	    }
 	}
 };
