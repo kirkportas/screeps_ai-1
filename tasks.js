@@ -59,12 +59,14 @@ var tasks = {
       target = target.concat(tower);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
+      /*
       for(var resourceType in creep.carry) {
-	        if (creep.transfer(target, resourceType) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target[0]);
-          }
+	        if (creep.transfer(storage, resourceType) == ERR_NOT_IN_RANGE) {}
         }
-
+        */
+      if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+          creep.moveTo(target[0]);
+      }
     },
 
     haulFromDedicatedCotainers: function(creep) {
