@@ -88,7 +88,7 @@ var mainSpawn = {
     }
 
   if (containers>=1) {
-    if(haulers < 3) {
+    if(haulers < 2) {
         var energyAvav = spawn.room.energyCapacityAvailable;
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/100));
         var modules=[];
