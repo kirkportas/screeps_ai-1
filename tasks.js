@@ -24,7 +24,7 @@ var tasks = {
         }
     },
     deliverSourceToMain: function(creep) {
-      try {
+      //try {
       var target=[];
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
@@ -61,7 +61,7 @@ var tasks = {
       if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
           creep.moveTo(target[0]);
       }
-    } catch(err) {console.console.error('err');}
+    //} catch(err) {console.console.error('err');}
     },
 
     haulFromDedicatedCotainers: function(creep) {
