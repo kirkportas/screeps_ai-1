@@ -36,8 +36,8 @@ var mainSpawn = {
     }
     });
 
-
-    var buildersNeeded = Math.min(3,Math.max(1,Math.ceil( (energyNeeded/6000) + (repairNeeded/100000) )));
+    var energyPerBuilder=6000;
+    var buildersNeeded = Math.min(3,Math.max(1,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder/20)) )));
     console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
 
 
