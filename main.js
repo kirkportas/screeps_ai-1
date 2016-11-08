@@ -15,9 +15,9 @@ module.exports.loop = function () {
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
     var spawn = room.find(FIND_MY_SPAWNS)[0];
-    timeLast=cpu.getUsed(); mainRoom.run(room); console.log('time mainRoom: ',cpu.getUsed()-timeLast);
-    timeLast=cpu.getUsed(); mainTower.run(room); console.log('time tower: ',cpu.getUsed()-timeLast);
-    timeLast=cpu.getUsed(); mainSpawn.run(); console.log('time spawn: ',cpu.getUsed()-timeLast);
+    timeLast=cpu.getUsed(); mainRoom.run(room); var timeMain= cpu.getUsed()-timeLast;
+    timeLast=cpu.getUsed(); mainTower.run(room); var timeTower= cpu.getUsed()-timeLast;
+    timeLast=cpu.getUsed(); mainSpawn.run(); var timeSpawn = cpu.getUsed()-timeLast;
 
   }
 /*
@@ -40,6 +40,8 @@ module.exports.loop = function () {
           if(creep.memory.role == 'scout') {roleScout.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
-    console.log('creep AI time: ',cpu.getUsed()-timeLast);
+    var timeAI = cpu.getUsed()-timeLast;
+
+    console.log('CPU('+cpu.getUsed()+'): main: '+timeMain+', tower: '+timeTower+', spawn: '+timeSpawn+', AI: '+timeAI);
 
 }
