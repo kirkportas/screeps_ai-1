@@ -56,7 +56,8 @@ var mainRoom = {
             return (a.len-a.safe*100) - (b.len-b.safe*10);
         });
     }
-
+    room.memory.wallHitsMax=200000;
+    room.memory.wallHitsmin=100000;
     if (room.memory.timeToRecheck===null) room.memory.timeToRecheck=0;
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
