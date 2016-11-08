@@ -56,7 +56,7 @@ var tasks = {
       if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
           creep.moveTo(target[0]);
       }
-    }
+    } catch(err) {console.console.error('err');}
     },
 
     haulFromDedicatedCotainers: function(creep) {
