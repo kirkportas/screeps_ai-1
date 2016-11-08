@@ -35,6 +35,7 @@ var roleBuilder = {
               }
             } else {
                 creep.say('idle');
+                creep.memory.targetFix= tasks.findStructureToRepairIdle(creep);
               }
             } else {
               var struct=Game.getObjectById(creep.memory.targetFix);
