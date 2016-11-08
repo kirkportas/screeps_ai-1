@@ -99,7 +99,7 @@ var tasks = {
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
       if (target.length) {
-        return target[0;]
+        return target[0];
       } else {
         return false;
       }
