@@ -15,12 +15,18 @@ var roleHauler = {
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
 	    } else {
-        var dropped = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY,{filter: (dropped) => {return (dropped.amount>=200)}});
-        if (dropped) {
-          creep.say('fond d');
-          if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(dropped);
-          }
+        var droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY,{filter: (dropped) => {return (dropped.amount>=200)}});
+        var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+        if (droppedEnergy) {
+          creep.say('fond e');
+          if(creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(droppedEnergy);
+          } else if (droppedRes) {
+            creep.say('fond r');
+            if(creep.pickup(droppedRes) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(droppedRes);
+            }
+
 
         } else {
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
