@@ -32,7 +32,7 @@ var mainSpawn = {
       if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
         repairNeeded+= (struc.hitsMax*0.75-struc.hits)
       }
-      if (struc.hitsMax!==undefined && struc.hits<room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
+      if (struc.hitsMax!==undefined && struc.hits<spawn.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
         repairNeeded+= (room.memory.wallHitsMax-struc.hits)
       }
     });
