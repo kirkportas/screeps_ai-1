@@ -33,7 +33,7 @@ var tasks = {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_SPAWN)
                     }})[0];
-      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,5, {
+      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,10, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
                     }});
@@ -47,6 +47,7 @@ var tasks = {
        } else if (spawn.energy < spawn.energyCapacity) {
         target=spawn;
       } else if (extensions.length>0) {
+        extensions= _.sortBy(extensions, e => -creep.pos.getRangeTo(e.pos));
         target=extensions[0];
       } else if (centralContainer!=null) {
         target = centralContainer;
