@@ -53,10 +53,10 @@ var tasks = {
                     }});
 
       extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
-      target.concat(tower);
-      target.concat(spawnTar);
-      target.concat(extensions);
-      target.concat(centralContainer);
+      target = target.concat(tower);
+      target = target.concat(spawnTar);
+      target = target.concat(extensions);
+      target = target.concat(centralContainer);
       console.log(target.length)
       if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
           creep.moveTo(target[0]);
