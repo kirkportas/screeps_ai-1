@@ -30,7 +30,10 @@ var tasks = {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_SPAWN)
                     }})[0];
-
+      var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.5)
+                    }});
       var tower=creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity)
@@ -53,9 +56,10 @@ var tasks = {
                     }});
 
       extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
-      target = target.concat(tower);
+      target = target.concat(towerCritical);
       target = target.concat(spawnTar);
       target = target.concat(extensions);
+      target = target.concat(tower);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
       var code =creep.transfer(target[1], RESOURCE_ENERGY);
