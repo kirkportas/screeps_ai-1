@@ -135,7 +135,7 @@ var mainSpawn = {
   if (hostileSpawn||hostileConstroller) {
     var value = spawn.room.controller.activateSafeMode();
     console.log('WARNING - ENEMY IN BASE - safemode activated: '+value);
-    Game.notif('WARNING - ENEMY IN BASE - safemode activated: '+value);
+    Game.notify('WARNING - ENEMY IN BASE - safemode activated: '+value);
   }
 
 
