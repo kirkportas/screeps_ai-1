@@ -33,7 +33,7 @@ var mainSpawn = {
         repairNeeded+= (struc.hitsMax*0.75-struc.hits)
       }
       if (struc.hitsMax!==undefined && struc.hits<spawn.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
-        repairNeeded+= (room.memory.wallHitsMax-struc.hits)
+        repairNeeded+= (spawn.room.memory.wallHitsMax-struc.hits)
       }
     });
 
