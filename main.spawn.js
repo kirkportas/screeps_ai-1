@@ -20,6 +20,7 @@ var mainSpawn = {
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
     var scoutsN = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S61' && creep.ticksToLive>50).length;
     var scoutsS = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S63' && creep.ticksToLive>50).length;
+    var warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
     var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
@@ -118,6 +119,9 @@ var mainSpawn = {
       console.log('Spawning new scout: ' + newName);
     } else if(scoutsS < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S63'});
+      console.log('Spawning new scout: ' + newName);
+    } else if(warriors < 1) {
+      var newName = spawn.createCreep([MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'));
       console.log('Spawning new scout: ' + newName);
     }
   }
