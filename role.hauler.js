@@ -16,7 +16,9 @@ var roleHauler = {
         tasks.deliverSourceToMain(creep);
 	    } else {
 
-        var dropped = creep.pos.findInRange(FIND_DROPPED_ENERGY,5);
+        var droppedEne = creep.pos.findInRange(FIND_DROPPED_ENERGY,5);
+        var droppedRes = creep.pos.findInRange(FIND_DROPPED_RESOURCES,5);
+        var dropped = droppedRes.concat(droppedEne);
         //var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
         if (dropped.length>0) {
           creep.say(dropped.length);
