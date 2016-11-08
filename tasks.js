@@ -54,7 +54,7 @@ var tasks = {
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
       target = target.concat(towerCritical);
-      target = target.concat(spawnTar);   
+      target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
       target = target.concat(centralStorage);
@@ -81,12 +81,14 @@ var tasks = {
      }
     },
     haulFromCentralCotainers: function(creep) {
+      var target = [];
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
-      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
-
-      //targets = _.sortBy(targets, s => -s.energy);
-         if(creep.withdraw(centralContainer, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-           creep.moveTo(centralContainer);
+      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }})[0];
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
+      target = target.concat(centralStorage);
+      target = target.concat(centralContainer);
+         if(creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+           creep.moveTo(target[0]);
          }
     },
     findContainerDedicatedBiggest: function(creep) {
