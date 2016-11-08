@@ -56,6 +56,7 @@ var tasks = {
       target = target.concat(tower);
       target = target.concat(spawnTar);
       target = target.concat(extensions);
+      target = target.concat(centralStorage);
       target = target.concat(centralContainer);
       var code =creep.transfer(target[1], RESOURCE_ENERGY);
       if(code== ERR_NOT_IN_RANGE) {
