@@ -93,10 +93,10 @@ var mainSpawn = {
   if (containers>=1) {
     if(haulers < 2) {
         var energyAvav = spawn.room.energyCapacityAvailable;
-        var modulesOfEach = Math.min(6,Math.floor(energyAvav/100));
+        var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
         var modules=[];
         for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-        for (var m=0;m<modulesOfEach-3;m++) {modules.push(MOVE);}
+        for (var m=0;m<modulesOfEach-4;m++) {modules.push(MOVE);}
         var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         console.log('Spawning new hauler: ' + newName);
     } else  if(builders < buildersNeeded) {
