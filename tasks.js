@@ -26,14 +26,19 @@ var tasks = {
     deliverSourceToMain: function(creep) {
       try {
       var target=[];
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_SPAWN)
+                    }})[0];
+
       var tower=creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity)
                     }});
-      var spawn = creep.room.find(FIND_MY_STRUCTURES, {
+      var spawnTar = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)
-                    }})[0];
+                    }});
       var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
@@ -49,7 +54,7 @@ var tasks = {
 
       extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
       target.concat(tower);
-      target.concat(spawn);
+      target.concat(spawnTar);
       target.concat(extensions);
       target.concat(centralContainer);
 
