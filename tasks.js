@@ -104,7 +104,7 @@ var tasks = {
       var targets = creep.room.find(FIND_STRUCTURES, {
          filter: struct => ((struct.hits<struct.hitsMax*0.50 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<creep.room.memory.wallHitsmin && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
         });
-        targets.sort((a,b) => a.hits - b.hits);
+        targets.sort((a,b) => creep.pos.getRangeTo(a) - creep.pos.getRangeTo(b));
 
         if (targets.length) {
           var idReturn = targets[0].id;
