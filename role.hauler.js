@@ -17,6 +17,7 @@ var roleHauler = {
 	    } else {
         var dropped = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY);
         if (dropped.length>0) {
+          creep.say('fond d');
           if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
             creep.moveTo(dropped);
           }
