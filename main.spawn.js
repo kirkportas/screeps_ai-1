@@ -126,7 +126,7 @@ var mainSpawn = {
     }
   }
 
-  var creep = spawn.findClosestByRange(FIND_CREEPS,1);
+  var creep = spawn.pos.findClosestByRange(FIND_CREEPS,1);
   if (creep && creep.ticksToLive<1000) {
     spawn.renewCreep(creep);
   }
