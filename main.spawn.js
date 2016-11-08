@@ -26,6 +26,7 @@ var mainSpawn = {
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
     //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
     var centralContainer = tasks.getCentralStorage();
+    console.log('cont: ',centralContainer);
     var energyNeeded = 0;
     var repairNeeded = 0;
     var constructionSites = spawn.room.find(FIND_CONSTRUCTION_SITES);
