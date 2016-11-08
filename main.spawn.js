@@ -116,7 +116,7 @@ var mainSpawn = {
     } else if(scoutsN < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S61'});
       console.log('Spawning new scout: ' + newName);
-    } else if(scoutsS < 3) {
+    } else if(scoutsS < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S63'});
       console.log('Spawning new scout: ' + newName);
     }
