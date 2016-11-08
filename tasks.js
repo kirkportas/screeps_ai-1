@@ -32,11 +32,11 @@ var tasks = {
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)
+                    }})[0];
+      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
                     }});
-                    var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,5, {
-                                    filter: (structure) => {
-                                      return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
-                                  }});
       var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE)
