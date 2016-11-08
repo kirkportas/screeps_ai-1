@@ -121,7 +121,7 @@ var mainSpawn = {
       var newName = spawn.createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S63'});
       console.log('Spawning new scout: ' + newName);
     } else if(warriors < 1) {
-      var newName = spawn.createCreep([MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'));
+      var newName = spawn.createCreep([MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
       console.log('Spawning new scout: ' + newName);
     }
   }
