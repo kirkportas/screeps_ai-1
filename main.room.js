@@ -57,7 +57,7 @@ var mainRoom = {
         });
     }
     room.memory.wallHitsMax=40000;
-    room.memory.wallHitsmin=19000;
+    room.memory.wallHitsmin=21000;
     if (room.memory.timeToRecheck===null) room.memory.timeToRecheck=0;
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
@@ -67,7 +67,7 @@ var mainRoom = {
       if (containers.length>=1) buildExtension.run(room)
       if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       room.memory.wallHitsMax=40000;
-      room.memory.wallHitsmin=19000;
+      room.memory.wallHitsmin=21000;
 
       room.memory.timeToRecheck=100;
       }
