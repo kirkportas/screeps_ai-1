@@ -20,8 +20,8 @@ var roleHauler = {
         //var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
         if (dropped.length>0) {
           creep.say(dropped.length);
-          if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(dropped);
+          if(creep.pickup(dropped[0]) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(dropped[0]);
           }
         } else {
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
