@@ -9,6 +9,9 @@ var roleWarrior = {
         if (creep.rangedAttack(closestHostile)==ERR_NOT_IN_RANGE) {
           creep.moveTo(closestHostile);
         }
+      } else {
+        var flag = Game.flags['Flag1'];
+        creep.moveTo(flag.pos);
       }
 
     }
