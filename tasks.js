@@ -24,41 +24,36 @@ var tasks = {
         }
     },
     deliverSourceToMain: function(creep) {
-      var target=null;
-      var tower=creep.room.find(FIND_MY_STRUCTURES, {
+      var target=[];
+      var tower=creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity)
                     }});
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_SPAWN)
-                    }})[0];
-      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,10, {
+                        return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)
+                    }});
+      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
                     }});
-      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {
+      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_STORAGE)
+                    }});
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER)
-                    }})[0];
+                    }});
 
-      if (tower.length>0) {
-         target=tower[0];
-       } else if (spawn.energy < spawn.energyCapacity) {
-        target=spawn;
-      } else if (extensions.length>0) {
-        extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
-        target=extensions[0];
-      } else if (centralContainer!=null) {
-        target = centralContainer;
-      } else {
-        target=spawn;
-      }
-      var returnCode = creep.transfer(target, RESOURCE_ENERGY);
-      if(returnCode== ERR_NOT_IN_RANGE) {
-          creep.moveTo(target);
-      } else if (returnCode == ERR_FULL) {
-        creep.drop(RESOURCE_ENERGY);
+      extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
+      target.concat(tower);
+      target.concat(spawn);
+      target.concat(extensions);
+      target.concat(centralContainer);
+
+      if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+          creep.moveTo(target[0]);
       }
     },
 
