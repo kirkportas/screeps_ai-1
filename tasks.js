@@ -46,29 +46,22 @@ var tasks = {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
                     }});
+      extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
       var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE)
                     }});
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_CONTAINER)
-                    }});
-
-      extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
+                      filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
       target = target.concat(towerCritical);
-      target = target.concat(spawnTar);
+      target = target.concat(spawnTar);   
       target = target.concat(extensions);
       target = target.concat(tower);
-
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
-      var code =creep.transfer(target[0], RESOURCE_ENERGY);
-      if(code== ERR_NOT_IN_RANGE) {
+      if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
           creep.moveTo(target[0]);
       }
-      console.log(target.length,'  ',target[0],'  ',code);
-    //} catch(err) {console.console.error('err');}
     },
 
     haulFromDedicatedCotainers: function(creep) {
