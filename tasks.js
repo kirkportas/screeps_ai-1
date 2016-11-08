@@ -31,7 +31,7 @@ var tasks = {
                         return (structure.structureType == STRUCTURE_SPAWN)
                     }})[0];
 
-      var tower=creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+      var tower=creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity)
                     }});
