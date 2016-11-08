@@ -15,10 +15,18 @@ var roleHauler = {
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
 	    } else {
-        if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
-          creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
-        }
-          tasks.withdrawFromId(creep,creep.memory.targetContainer.id);
+        var dropped = creep.pos.find(FIND_DROPPED_ENERGY);
+        if (dropped.length>0) {
+          if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(dropped);
+          }
+
+        } else {
+          if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
+            creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
+          }
+            tasks.withdrawFromId(creep,creep.memory.targetContainer.id);
+          }
 	    }
 	}
 };
