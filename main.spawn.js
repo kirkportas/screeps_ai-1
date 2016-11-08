@@ -126,30 +126,10 @@ var mainSpawn = {
     }
   }
 
-
-
-     var energy = spawn.room.energyAvailable;
-
-     /*
-    if (energy>=200) {
-        if(harvesters < 3) {
-            var preferedSource = spawn.room.memory.allSources[0].id;
-            console.log(preferedSource);
-            var newName = spawn.createCreep([WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
-        } else if(haulers < 1 && containers>=1) {
-            var newName = spawn.createCreep([WORK,CARRY,MOVE], findNextName('hauler'), {role: 'hauler'});
-        } else if(harvestersBig < 0 && energy>=300) {
-            var newName = spawn.createCreep([WORK,WORK,WORK,WORK,CARRY,MOVE], findNextName('harvesterBig'), {role: 'harvesterBig'});
-            console.log('Spawning new big harvester: ' + newName);
-        } else if(upgraders < 1) {
-            var newName = spawn.createCreep([WORK,CARRY,MOVE], findNextName('upgrader'), {role: 'upgrader'});
-            console.log('Spawning new upgrader: ' + newName);
-        } else if(builders < 3) {
-            var newName = spawn.createCreep([WORK,CARRY,MOVE], findNextName('builder'), {role: 'builder'});
-            console.log('Spawning new builder: ' + newName);
-        }
-    }
-    */
+  var creep = spawn.findClosestByRange(FIND_CREEPS,1);
+  if (creep && creep.ticksToLive<1000) {
+    spawn.renewCreep(creep);
+  }
 
      }
 
