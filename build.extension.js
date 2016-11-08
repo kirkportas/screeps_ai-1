@@ -30,7 +30,7 @@ var buildExtension = {
         if (i>=14 && i<=29) {
           var j=i-14;
           x=-3+(2*j)%8;
-          y=-3+2*Math.floor(j/8);
+          y=-3+2*Math.floor(j/4);
         }
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
         if (!buildExtension.place(x,y)) break;
