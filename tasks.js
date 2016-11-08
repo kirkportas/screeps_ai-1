@@ -25,7 +25,6 @@ var tasks = {
     },
     deliverSourceToMain: function(creep) {
       //try {
-      var target=[];
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_SPAWN)
@@ -53,15 +52,19 @@ var tasks = {
                     }});
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
+      var target = []
       target = target.concat(towerCritical);
       target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
-      if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
-          creep.moveTo(target[0]);
-      }
+      for(var resourceType in creep.carry) {
+	        if (creep.transfer(storage, resourceType) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target[0]);
+          }
+        }
+
     },
 
     haulFromDedicatedCotainers: function(creep) {
