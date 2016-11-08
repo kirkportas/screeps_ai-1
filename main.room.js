@@ -67,7 +67,7 @@ var mainRoom = {
       if (containers.length>=1) buildExtension.run(room)
       if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       room.memory.wallHitsMax=40000;
-      room.memory.wallHitsmin=20000;
+      room.memory.wallHitsmin=19000;
 
       room.memory.timeToRecheck=100;
       }
