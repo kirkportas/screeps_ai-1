@@ -26,7 +26,7 @@ module.exports.loop = function () {
 
     var spawn = room.find(FIND_MY_SPAWNS)[0];
     if (spawn!=undefined) {
-      timeLast=cpu.getUsed(); mainSpawn.run(); timeSpawn += cpu.getUsed()-timeLast;
+      timeLast=cpu.getUsed(); mainSpawn.run(spawn); timeSpawn += cpu.getUsed()-timeLast;
     }
 
   }
