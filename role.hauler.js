@@ -15,27 +15,20 @@ var roleHauler = {
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
 	    } else {
-        /*
-        var droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY,{filter: (dropped) => {return (dropped.amount>=200)}});
-        var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
-        if (droppedEnergy) {
+
+        var dropped = creep.pos.findInRange(FIND_DROPPED_ENERGY,5,{filter: (dropped) => {return (dropped.amount>=100)}});
+        //var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+        if (dropped) {
           creep.say('fond e');
-          if(creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(droppedEnergy);
+          if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(dropped);
           }
-        } else if (droppedRes) {
-            creep.say('fond r');
-            if(creep.pickup(droppedRes) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(droppedRes);
-            }
-
-
-        } else { */
+        } else {
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
             creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
           }
             tasks.withdrawFromId(creep,creep.memory.targetContainer.id);
-          //}
+          }
 	    }
 	}
 };
