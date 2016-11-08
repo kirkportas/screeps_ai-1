@@ -57,7 +57,7 @@ var mainRoom = {
         });
     }
 
-
+    buildExtension.run(room) //TODO: FJERN
     if (room.memory.timeToRecheck===null) room.memory.timeToRecheck=0;
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
