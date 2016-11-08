@@ -1,3 +1,4 @@
+var tasks = require('tasks');
 var mainSpawn = {
 
     run: function(spawn) {
@@ -23,7 +24,8 @@ var mainSpawn = {
     var warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
-    var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
+    //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
+    var centralContainer = tasks.getCentralStorage();
     var energyNeeded = 0;
     var repairNeeded = 0;
     var constructionSites = spawn.room.find(FIND_CONSTRUCTION_SITES);

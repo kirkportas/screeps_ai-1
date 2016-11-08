@@ -91,6 +91,19 @@ var tasks = {
            creep.moveTo(target[0]);
          }
     },
+    getCentralStorage: function() {
+      var target = [];
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
+      target = target.concat(centralStorage);
+      target = target.concat(centralContainer);
+      if (target.length) {
+        return target[0;]
+      } else {
+        return false;
+      }
+    },
     findContainerDedicatedBiggest: function(creep) {
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
