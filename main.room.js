@@ -57,7 +57,7 @@ var mainRoom = {
         });
     }
     room.memory.wallHitsMax=40000;
-    room.memory.wallHitsmin=20000;
+    room.memory.wallHitsmin=19000;
     if (room.memory.timeToRecheck===null) room.memory.timeToRecheck=0;
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
