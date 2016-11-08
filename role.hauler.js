@@ -15,7 +15,7 @@ var roleHauler = {
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMain(creep);
 	    } else {
-        var dropped = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY);
+        var dropped = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY,{filter: (dropped) => {return (dropped.amount>=200)}});
         if (dropped) {
           creep.say('fond d');
           if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
