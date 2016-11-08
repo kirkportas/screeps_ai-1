@@ -6,6 +6,9 @@ var mainTower = {
 
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
       var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
+      var hostiles = tower.pos.find(FIND_HOSTILE_CREEPS);
+      hostiles.sort((a,b) => tower.pos.getRangeTo(b) - tower.pos.getRangeTo(a));
+
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
 
       if(closestHostile) {
