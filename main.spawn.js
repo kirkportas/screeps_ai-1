@@ -122,7 +122,7 @@ var mainSpawn = {
       console.log('Spawning new scout: ' + newName);
     } else if(warriors < 1) {
       var newName = spawn.createCreep([MOVE,MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
-      console.log('Spawning new scout: ' + newName);
+      console.log('Spawning new warrior: ' + newName);
     }
   }
 
