@@ -130,6 +130,11 @@ var mainSpawn = {
   if (creep && creep.ticksToLive<1000) {
     spawn.renewCreep(creep);
   }
+  var hostile = spawn.pos.findClosestByRange(FIND_HOSTILE_CREEPS,20);
+  if (hostile) {
+    console.log('WARNING!!');
+  }
+
 
      }
 
