@@ -18,7 +18,7 @@ var roleHauler = {
 
         var dropped = creep.pos.findInRange(FIND_DROPPED_ENERGY,5,{filter: (dropped) => {return (dropped.amount>=100)}});
         //var droppedRes = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
-        if (dropped) {
+        if (dropped.length) {
           creep.say('fond e');
           if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
             creep.moveTo(dropped);
