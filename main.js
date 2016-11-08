@@ -17,7 +17,9 @@ module.exports.loop = function () {
     var spawn = room.find(FIND_MY_SPAWNS)[0];
     timeLast=cpu.getUsed(); mainRoom.run(room); var timeMain= cpu.getUsed()-timeLast;
     timeLast=cpu.getUsed(); mainTower.run(room); var timeTower= cpu.getUsed()-timeLast;
-    timeLast=cpu.getUsed(); mainSpawn.run(); var timeSpawn = cpu.getUsed()-timeLast;
+    if (spawn.length) {
+      timeLast=cpu.getUsed(); mainSpawn.run(); var timeSpawn = cpu.getUsed()-timeLast;
+    }
 
   }
 /*
