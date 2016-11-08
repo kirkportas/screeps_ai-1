@@ -17,7 +17,7 @@ var mainRoom = {
                       structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
       });
 
-      if (room.memory.allSources===undefined || room.memory.allSources.length===0) {
+      if (room.memory.allSources.length===undefined || room.memory.allSources.length===0) {
         console.log('init room');
         room.memory.allSources=[];
 
@@ -57,7 +57,7 @@ var mainRoom = {
         });
     }
 
-    buildRoads.run(room);
+
     if (room.memory.timeToRecheck===null) room.memory.timeToRecheck=0;
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {

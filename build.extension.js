@@ -13,19 +13,27 @@ var buildExtension = {
 
     run: function() {
 
-      for (var i=0;i<20;i++) {
+      for (var i=0;i<29;i++) {
+        var x=0;
+        var y=0;
+
         if (i>=0 && i<=3) {
           var j=i;
-          var x=-1+(2*j)%4;
-          var y=-1+2*Math.floor(j/2);
-          buildExtension.place(x,y);
+          x=-1+(2*j)%4;
+          y=-1+2*Math.floor(j/2);
         }
         if (i>=4 && i<=13) {
           var j=i-4;
-          var x=-2+(2*j)%6;
-          var y=-2+2*Math.floor(j/4);
-          buildExtension.place(x,y);
+          x=-2+(2*j)%6;
+          y=-2+2*Math.floor(j/4);
         }
+        if (i>=14 && i<=29) {
+          var j=i-14;
+          x=-3+(2*j)%8;
+          y=-3+2*Math.floor(j/6);
+        }
+        if (x==0 && y>=0) continue; //Reserverer til containers/towers
+        if (!buildExtension.place(x,y)) break;
 
 
       }
