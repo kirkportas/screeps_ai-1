@@ -60,13 +60,14 @@ var tasks = {
       target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
+
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
-      var code =creep.transfer(target[1], RESOURCE_ENERGY);
+      var code =creep.transfer(target[0], RESOURCE_ENERGY);
       if(code== ERR_NOT_IN_RANGE) {
-          creep.moveTo(target[1]);
+          creep.moveTo(target[0]);
       }
-      console.log(target.length,'  ',target[1],'  ',code);
+      console.log(target.length,'  ',target[0],'  ',code);
     //} catch(err) {console.console.error('err');}
     },
 
