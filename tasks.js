@@ -57,7 +57,7 @@ var tasks = {
       target.concat(spawnTar);
       target.concat(extensions);
       target.concat(centralContainer);
-
+      console.log(target.length)
       if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
           creep.moveTo(target[0]);
       }
