@@ -24,6 +24,7 @@ var tasks = {
         }
     },
     deliverSourceToMain: function(creep) {
+      try {
       var target=[];
       var tower=creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
@@ -55,6 +56,7 @@ var tasks = {
       if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
           creep.moveTo(target[0]);
       }
+    }
     },
 
     haulFromDedicatedCotainers: function(creep) {
