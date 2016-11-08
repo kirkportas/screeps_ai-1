@@ -60,7 +60,7 @@ var tasks = {
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
       for(var resourceType in creep.carry) {
-	        if (creep.transfer(storage, resourceType) == ERR_NOT_IN_RANGE) {
+	        if (creep.transfer(target, resourceType) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target[0]);
           }
         }
