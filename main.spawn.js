@@ -127,7 +127,7 @@ var mainSpawn = {
   }
 
   var creep = spawn.pos.findClosestByRange(FIND_CREEPS,1);
-  if (creep && creep.ticksToLive<1000) {
+  if (creep && creep.ticksToLive<1000 && !(creep.memory.role=='builder' && buildersNeeded==0)) {
     spawn.renewCreep(creep);
   }
   var hostileSpawn = spawn.pos.findClosestByRange(FIND_HOSTILE_CREEPS,10); //
