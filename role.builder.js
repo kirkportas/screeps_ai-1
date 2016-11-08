@@ -34,7 +34,6 @@ var roleBuilder = {
                   creep.moveTo(targetsAll[0]);
               }
             } else {
-                creep.say('idle');
                 creep.memory.targetFix= tasks.findStructureToRepairIdle(creep);
                 creep.memory.repairToFull=true;
               }
@@ -42,12 +41,10 @@ var roleBuilder = {
               var struct=Game.getObjectById(creep.memory.targetFix);
               if((creep.memory.repairToFull && struct.hits<struct.hitsMax) || (struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<creep.room.memory.wallHitsMax && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART))) {
                 //console.log(Game.getObjectById(creep.memory.targetFix).hits,'  ',Game.getObjectById(creep.memory.targetFix).hitsMax*0.75);
-                creep.say('t');
                   if(creep.repair(Game.getObjectById(creep.memory.targetFix)) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(Game.getObjectById(creep.memory.targetFix));
                   }
                 } else {
-                  creep.say('reset');
                   creep.memory.targetFix=null;
                   creep.memory.repairToFull=false;
                 }
