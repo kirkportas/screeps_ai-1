@@ -13,19 +13,19 @@ var roleHauler = {
 	    }
 
 	    if(creep.memory.delivering) {
-        creep.say('1');
+        //creep.say('1');
         tasks.deliverSourceToMain(creep);
 	    } else {
 
 
         var dropped = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
-        if (dropped!=null && creep.pos.getRangeTo(dropped)<5) {
+        if (dropped!=null && creep.pos.getRangeTo(dropped)<2) {
           creep.say('d: '+creep.pos.getRangeTo(dropped));
           if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
             creep.moveTo(dropped);
           }
         } else {
-          creep.say('2');
+          //creep.say('2');
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
             creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
           }
