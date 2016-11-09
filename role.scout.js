@@ -16,12 +16,16 @@ var roleScout = {
 
       if(!creep.memory.delivering) {
         if(creep.room.name != creep.memory.targetRoom) {
+          var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
+          var exit = creep.pos.findClosestByRange(exitDir);
+          creep.moveTo(exit);
+          /*
           var value = creep.moveTo(Game.getObjectById(creep.memory.pref));
           if (value == ERR_INVALID_TARGET || value== ERR_NO_PATH) {
             var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
             var exit = creep.pos.findClosestByRange(exitDir);
             creep.moveTo(exit);
-          }
+          } */
 
         } else {
           if (creep.memory.target===null || creep.memory.target===undefined) {
