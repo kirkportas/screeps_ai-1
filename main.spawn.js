@@ -142,7 +142,7 @@ var mainSpawn = {
     spawn.renewCreep(creep);
   }
   var hostileSpawn = spawn.pos.findClosestByRange(FIND_HOSTILE_CREEPS,10); //
-  console.log(hostileSpawn);
+  console.log(spawn.pos.getRangeTo(hostileSpawn));
   var hostileConstroller = spawn.room.controller.pos.findClosestByRange(FIND_HOSTILE_CREEPS,12);
   if (hostileSpawn) {
     var value = spawn.room.controller.activateSafeMode();
