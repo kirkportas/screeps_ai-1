@@ -45,6 +45,7 @@ var mainSpawn = {
     });
     console.log('energy waiting: ',energyInContainers);
     var haulersNeeded=2;
+    if (energyInContainers>3000) haulersNeeded++;
 
     var energyPerBuilder=6000;
     var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
