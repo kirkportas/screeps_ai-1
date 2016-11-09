@@ -143,7 +143,7 @@ var mainSpawn = {
   }
   var hostileSpawn = spawn.pos.findClosestByRange(FIND_HOSTILE_CREEPS,10); //
   var hostileConstroller = spawn.room.controller.pos.findClosestByRange(FIND_HOSTILE_CREEPS,12);
-  if (hostileSpawn||hostileConstroller) {
+  if (hostileSpawn) {
     var value = spawn.room.controller.activateSafeMode();
     console.log('WARNING - ENEMY IN BASE - safemode activated: '+value);
     Game.notify('WARNING - ENEMY IN BASE - safemode activated: '+value);
