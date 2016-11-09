@@ -50,7 +50,7 @@ var buildExtension = {
         }
 
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
-        if (!buildExtension.canPlace(x,y)) break;
+        if (!buildExtension.canPlace(x,y)) {console.log('can not place here');break;}
         if (!buildExtension.place(x,y)) break;
       }
 
