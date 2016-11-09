@@ -16,7 +16,6 @@ var mainSpawn = {
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
-    var harvestersBig = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvesterBig'&& creep.ticksToLive>50).length;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
     var scoutsN = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S61' && creep.ticksToLive>50).length;
@@ -117,7 +116,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = spawn.createCreep(modules, findNextName('builder'), {role: 'builder'});
       console.log('Spawning new builder: ' + newName);
-    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>10000) && upgraders<6)) {
+    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>10000) && upgraders<5)) {
       var energyAvav = spawn.room.energyCapacityAvailable;
       var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
       var modules=[];
