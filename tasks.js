@@ -158,16 +158,18 @@ var tasks = {
       }
     },
 
-    haulFromContainerAny: function(creep) {
 
-      var targets = creep.room.find(FIND_STRUCTURES, {
-                 filter: (structure) => {
-                     return (
-                         structure.structureType == STRUCTURE_CONTAINER
-                             ) && (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 50);
-                 }
-         });
-        targets =  _.sortBy(targets, s => creep.pos.getRangeTo(s))
+    haulFromContainerAny: function(creep) {
+      var target = [];
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
+      var anyContainer=creep.room.find(FIND_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
+
+      target = target.concat(centralStorage);
+      target = target.concat(centralContainer);
+      target = target.concat(anyContainer);
+
          if(targets.length > 0) {
              if(creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                creep.moveTo(targets[0]);
