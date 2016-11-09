@@ -41,9 +41,9 @@ var roleScout = {
           creep.moveTo(exit);
         } else {
           var containers = Game.rooms[creep.memory.startRoom].find(FIND_MY_STRUCTURES);
-          var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,5, {
+          var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,8, {
                           filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_CONTAINER)
+                            return (structure.structureType == STRUCTURE_STORAGE)
                         }})[0];
           if(creep.transfer(centralContainer, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
               creep.moveTo(centralContainer);
