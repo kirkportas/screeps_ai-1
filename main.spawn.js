@@ -41,8 +41,9 @@ var mainSpawn = {
     });
     var energyInContainers=0;
     _.forEach(containers, function(struc){
-      //energyInContainers+=
+      energyInContainers+=struc.store[RESOURCE_ENERGY];
     });
+    console.log('energy waiting: ',energyInContainers);
     var haulersNeeded=2;
 
     var energyPerBuilder=6000;
