@@ -7,7 +7,7 @@ var roleUpgrader = {
         if(creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
 	    }
-	    if(!creep.memory.upgrading && creep.carry.energy >= creep.carryCapacity*0.8) {
+	    if(!creep.memory.upgrading && creep.carry.energy >= creep.carryCapacity*0.8) { //80% i tilfelle de finner mistet
 	        creep.memory.upgrading = true;
 	    }
 
