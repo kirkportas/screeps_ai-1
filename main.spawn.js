@@ -64,7 +64,7 @@ var mainSpawn = {
     for (var i=0;i<sources.length;i++) {
       var source=sources[i];
       var sourceObj = Game.getObjectById(source.id);
-      if (sourceObj.ticksToRegeneration>=0) {
+      if (sourceObj.ticksToRegeneration==1) {
         //Game.notify('sourceRegen; '+sourceObj.ticksToRegeneration+' ; '+sourceObj.energy,0);
       }
       //console.log(sourceObj.ticksToRegeneration,'ticks. Left: ',sourceObj.energy);
