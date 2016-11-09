@@ -23,7 +23,7 @@ var mainSpawn = {
     var scoutsS = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S63' && creep.ticksToLive>50).length;
     var warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
 
-    var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }}).length;
+    var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
     var centralContainer = tasks.getCentralStorage(spawn);
     var energyNeeded = 0;
@@ -95,7 +95,7 @@ var mainSpawn = {
 
     }
 
-  if (containers>=1) {
+  if (containers.length>=1) {
     if(haulers < haulersNeeded) {
         var energyAvav = spawn.room.energyCapacityAvailable;
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
