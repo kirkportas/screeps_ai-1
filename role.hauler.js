@@ -17,11 +17,11 @@ var roleHauler = {
 	    } else {
 
 
-        var dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES,5);
-        if (dropped.length>0) {
+        var dropped = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+        if (creep.pos.getRangeTo(dropped)<5) {
           creep.say('found dropped');
-          if(creep.pickup(dropped[0]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(dropped[0]);
+          if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(dropped);
           }
         } else {
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
