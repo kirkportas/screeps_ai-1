@@ -39,6 +39,11 @@ var mainSpawn = {
         repairNeeded+= (spawn.room.memory.wallHitsMax-struc.hits)
       }
     });
+    var energyInContainers=0;
+    _.forEach(containers, function(struc){
+      //energyInContainers+=
+    });
+    var haulersNeeded=2;
 
     var energyPerBuilder=6000;
     var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
