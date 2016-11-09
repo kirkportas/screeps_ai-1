@@ -17,16 +17,13 @@ var roleHauler = {
 	    } else {
 
 
-        var dropped = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
-        if (dropped!=null && (creep.pos.getRangeTo(dropped)<5 || (creep.pos.getRangeTo(dropped)<10 && creep.memory.pickup))) {
-          Game.flags['Flag1'].setPosition( dropped.pos );
-          creep.memory.pickup = true;
+        var dropped = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES,1);
+        if (dropped) {
           creep.say('d: '+creep.pos.getRangeTo(dropped));
           if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
             creep.moveTo(dropped);
           }
         } else {
-          creep.memory.pickup = false;
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
             creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
           }
