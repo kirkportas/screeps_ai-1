@@ -13,12 +13,11 @@ var roleHauler = {
 	    }
 
 	    if(creep.memory.delivering) {
-        //creep.say('1');
         tasks.deliverSourceToMain(creep);
 	    } else {
 
 
-        var dropped = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+        var dropped = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
         if (dropped!=null && (creep.pos.getRangeTo(dropped)<5 || (creep.pos.getRangeTo(dropped)<10 && creep.memory.pickup))) {
           creep.memory.pickup = true;
           creep.say('d: '+creep.pos.getRangeTo(dropped));
