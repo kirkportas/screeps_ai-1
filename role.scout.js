@@ -27,7 +27,7 @@ var roleScout = {
           if (creep.memory.target===null || creep.memory.target===undefined) {
             creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom]);
           }
-          tasks.harvestPrefered(creep.memory.pref);
+          tasks.harvestPrefered(creep);
           //tasks.harvestBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom],creep.memory.target);
         }
       } else {
