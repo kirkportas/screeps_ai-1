@@ -8,9 +8,16 @@ var buildExtension = {
         Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x,Game.spawns['Spawn1'].pos.y+y+1,STRUCTURE_ROAD);
         Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x,Game.spawns['Spawn1'].pos.y+y-1,STRUCTURE_ROAD);
       }
-
       return true;
     },
+    canPlace: function(x,y) {
+      var pos = Game.spawns['Spawn1'].pos;
+      return ((Game.map.getTerrainAt(pos.x+x,pos.y+y,Game.spawns['Spawn1'].room.name)=='plain')
+      && (Game.map.getTerrainAt(pos.x+x+1,pos.y+y,Game.spawns['Spawn1'].room.name)=='plain')
+      && (Game.map.getTerrainAt(pos.x+x-1,pos.y+y,Game.spawns['Spawn1'].room.name)=='plain')
+      && (Game.map.getTerrainAt(pos.x+x,pos.y+y+1,Game.spawns['Spawn1'].room.name)=='plain')
+      && (Game.map.getTerrainAt(pos.x+x,pos.y+y-1,Game.spawns['Spawn1'].room.name)=='plain'));
+    }
 
     run: function() {
 
@@ -41,8 +48,9 @@ var buildExtension = {
           x=-4+(2*j)%10;
           y=-4+2*Math.floor(j/5);
         }
-        
+
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
+        if (!buildExtension.canPlace(x,y)) break;
         if (!buildExtension.place(x,y)) break;
       }
 
