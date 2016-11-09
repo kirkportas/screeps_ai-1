@@ -26,7 +26,7 @@ var roleHauler = {
             creep.moveTo(dropped);
           }
         } else {
-          //creep.say('2');
+          creep.memory.pickup = false;
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
             creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
           }
