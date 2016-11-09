@@ -11,7 +11,6 @@ var mainTower = {
                   var attacks = creep.getActiveBodyparts(ATTACK);
                   var ranged = creep.getActiveBodyparts(RANGED_ATTACK);
                   var move = creep.getActiveBodyparts(MOVE);
-                  console.log(hits);
                   return true;
               }
       });
@@ -19,7 +18,9 @@ var mainTower = {
 
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
 
-      if(closestHostile) {
+      if(allHostiles.length) {
+        tower.attack(allHostiles[0]);
+      } else if(closestHostile) {
         tower.attack(closestHostile);
       } else if (damagedCreeps) {
         tower.heal(damagedCreeps);
