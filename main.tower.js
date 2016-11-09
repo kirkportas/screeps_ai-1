@@ -8,6 +8,9 @@ var mainTower = {
       var allHostiles = tower.room.find(FIND_HOSTILE_CREEPS,{
               filter: (creep) => {
                   var hits = creep.hits;
+                  var attacks = creep.getActiveBodyparts(ATTACK);
+                  var ranged = creep.getActiveBodyparts(RANGED_ATTACK);
+                  var move = creep.getActiveBodyparts(MOVE);
                   console.log(hits);
                   return true;
               }
