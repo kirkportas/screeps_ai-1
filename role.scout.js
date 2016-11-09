@@ -19,7 +19,7 @@ var roleScout = {
           //var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
           //var exit = creep.pos.findClosestByRange(exitDir);
           //creep.moveTo(exit);
-          
+          creep.say(creep.moveTo(Game.getObjectById(creep.memory.pref)));
         } else {
           if (creep.memory.target===null || creep.memory.target===undefined) {
             creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom]);
