@@ -17,7 +17,7 @@ var buildExtension = {
       && (Game.map.getTerrainAt(pos.x+x-1,pos.y+y,Game.spawns['Spawn1'].room.name)=='plain')
       && (Game.map.getTerrainAt(pos.x+x,pos.y+y+1,Game.spawns['Spawn1'].room.name)=='plain')
       && (Game.map.getTerrainAt(pos.x+x,pos.y+y-1,Game.spawns['Spawn1'].room.name)=='plain'));
-    }
+    },
 
     run: function() {
 
