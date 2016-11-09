@@ -21,7 +21,7 @@ var mainTower = {
       if(allHostiles.length) {
         tower.attack(allHostiles[0]);
       } else if(closestHostile) {
-        tower.attack(closestHostile);
+        //tower.attack(closestHostile);
       } else if (damagedCreeps) {
         tower.heal(damagedCreeps);
       } else if (closestDamagedStructure) {
