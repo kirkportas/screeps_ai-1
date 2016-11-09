@@ -15,7 +15,7 @@ var mainTower = {
                   return (heals>0 || ranges>0 || (attacks>0 && moves>0));
               }
       });
-      allHostiles=_.sortBy(allHostiles, creep => creep.hits);
+      allHostiles=_.sortBy(allHostiles, creep => -creep.hits);
       var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
 
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
