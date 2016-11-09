@@ -5,6 +5,13 @@ var mainTower = {
     _.forEach(towers, function(tower){
 
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+      var allHostiles = tower.room.find(FIND_HOSTILE_CREEPS,{
+              filter: (creep) => {
+                  var hits = creep.hits;
+                  console.log(hits);
+                  return true;
+              }
+      });
       var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
 
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
