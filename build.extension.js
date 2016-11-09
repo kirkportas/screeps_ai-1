@@ -11,6 +11,7 @@ var buildExtension = {
       return true;
     },
     canPlace: function(x,y) {
+      console.log((Game.map.getTerrainAt(pos.x+x,pos.y+y,Game.spawns['Spawn1'].room.name));
       var pos = Game.spawns['Spawn1'].pos;
       return ((Game.map.getTerrainAt(pos.x+x,pos.y+y,Game.spawns['Spawn1'].room.name)=='plain')
       && (Game.map.getTerrainAt(pos.x+x+1,pos.y+y,Game.spawns['Spawn1'].room.name)=='plain')
