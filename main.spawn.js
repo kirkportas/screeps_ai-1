@@ -91,7 +91,7 @@ var mainSpawn = {
     }
 
   if (containers>=1) {
-    if(haulers < 3) {
+    if(haulers < 2) {
         var energyAvav = spawn.room.energyCapacityAvailable;
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
         var modules=[];
@@ -117,7 +117,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
-    } else if(scoutsN < 1) {
+    } else if(scoutsN < 0) {
       var newName = spawn.createCreep([MOVE,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S61'});
       console.log('Spawning new scout: ' + newName);
     } else if(scoutsS < 0) {
