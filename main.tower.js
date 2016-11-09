@@ -9,9 +9,10 @@ var mainTower = {
               filter: (creep) => {
                   var hits = creep.hits;
                   var attacks = creep.getActiveBodyparts(ATTACK);
-                  var ranged = creep.getActiveBodyparts(RANGED_ATTACK);
-                  var move = creep.getActiveBodyparts(MOVE);
-                  return true;
+                  var ranges = creep.getActiveBodyparts(RANGED_ATTACK);
+                  var moves = creep.getActiveBodyparts(MOVE);
+                  var heals = creep.getActiveBodyparts(HEAL);
+                  return (heals>0 || ranges>0 || (attacks>0 && moves>0));
               }
       });
       var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
