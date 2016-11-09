@@ -141,7 +141,7 @@ var mainSpawn = {
   var creep = spawn.pos.findInRange(FIND_CREEPS,1);
   if (creep.length && creep[0].memory.role=='builder' && buildersNeeded==0) {
     spawn.recycleCreep(creep[0]);
-  } else if (creep.length && creep[0].ticksToLive<1200) {
+  } else if (creep.length && creep[0].ticksToLive<500) {
     spawn.renewCreep(creep[0]);
   }
   var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
