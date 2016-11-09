@@ -19,7 +19,7 @@ var roleHarvester = {
         if(creep.memory.delivering && creep.carry.energy == 0) {
               creep.memory.delivering = false;
         }
-        if(!creep.memory.delivering && creep.carry.energy >= creep.carryCapacity) { //TODO: creep.carryCapacity
+        if(!creep.memory.delivering && creep.carry.energy >= Math.floor(creep.carryCapacity / (2*creep.getActiveBodyparts(WORK)) )*(2*creep.getActiveBodyparts(WORK)) ) { //TODO: creep.carryCapacity
             creep.memory.delivering = true;
         }
 
