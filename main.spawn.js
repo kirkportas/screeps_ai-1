@@ -135,16 +135,15 @@ var mainSpawn = {
     }
   }
 
-  var creep = spawn.pos.findClosestByRange(FIND_CREEPS,1);
-  if (creep && creep.memory.role=='builder' && buildersNeeded==0) {
+  var creep = spawn.pos.findInRange(FIND_CREEPS,1);
+  if (creep.length && creep.memory.role=='builder' && buildersNeeded==0) {
     spawn.recycleCreep(creep);
-  } else if (creep && creep.ticksToLive<1000) {
+  } else if (creep.length && creep.ticksToLive<1000) {
     spawn.renewCreep(creep);
   }
-  var hostileSpawn = spawn.pos.findClosestByRange(FIND_HOSTILE_CREEPS,10); //
-  console.log(spawn.pos.getRangeTo(hostileSpawn));
-  var hostileConstroller = spawn.room.controller.pos.findClosestByRange(FIND_HOSTILE_CREEPS,12);
-  if (hostileSpawn) {
+  var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
+  var hostileConstroller = spawn.room.controller.pos.findInRange(FIND_HOSTILE_CREEPS,12);
+  if (hostileSpawn.length||hostileConstroller.length) {
     var value = spawn.room.controller.activateSafeMode();
     console.log('WARNING - ENEMY IN BASE - safemode activated: '+value);
     Game.notify('WARNING - ENEMY IN BASE - safemode activated: '+value);
