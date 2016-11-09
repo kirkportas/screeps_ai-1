@@ -116,10 +116,10 @@ var mainSpawn = {
       console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>10000) && upgraders<6)) {
       var energyAvav = spawn.room.energyCapacityAvailable;
-      var modulesOfEach = Math.min(4,Math.floor(energyAvav/350));
+      var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
       var modules=[];
-      for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);modules.push(WORK);}
-      for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);modules.push(CARRY);}
+      for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
+      for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
