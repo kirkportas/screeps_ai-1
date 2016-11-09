@@ -14,6 +14,9 @@ var buildExtension = {
 
     run: function() {
 
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+4,STRUCTURE_TOWER);
+      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+6,STRUCTURE_ROAD);
+
       for (var i=0;i<29;i++) {
         var x=0;
         var y=0;
@@ -35,8 +38,6 @@ var buildExtension = {
         }
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
         if (!buildExtension.place(x,y)) break;
-
-
       }
 
 
