@@ -19,19 +19,6 @@ var mainTower = {
 
     });
 
-    var tower = Game.getObjectById('fae2cfd64a4dd0ef19707798');
-    if(tower) {
-        /*
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
-        */
-
-
-    }
   }
 };
 module.exports = mainTower;

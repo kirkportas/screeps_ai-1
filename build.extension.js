@@ -41,6 +41,7 @@ var buildExtension = {
           x=-4+(2*j)%10;
           y=-4+2*Math.floor(j/5);
         }
+        
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
         if (!buildExtension.place(x,y)) break;
       }
