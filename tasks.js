@@ -212,6 +212,16 @@ var tasks = {
           creep.moveTo(object);
       }
     },
+    pickupEnergy: function(creep) {
+      var dropped = creep.pos.findInRange(FIND_DROPPED_ENERGY,1);
+      if (dropped.length) {
+        if(creep.pickup(dropped[0]) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(dropped[0]);
+        }
+        return true;
+      }
+      return false;
+    },
 
 
 
