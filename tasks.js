@@ -35,7 +35,7 @@ var tasks = {
                     }});
       var tower=creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity)
+                        return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.9)
                     }});
       var spawnTar = creep.room.find(FIND_MY_STRUCTURES, {
                       filter: (structure) => {
