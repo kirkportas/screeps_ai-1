@@ -170,7 +170,7 @@ var tasks = {
       target = target.concat(centralContainer);
       target = target.concat(anyContainer);
 
-         if(targets.length > 0) {
+         if(target.length > 0) {
              if(creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                creep.moveTo(target[0]);
              }
