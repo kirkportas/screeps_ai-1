@@ -54,7 +54,6 @@ var mainSpawn = {
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
         }
     }
 
@@ -69,7 +68,6 @@ var mainSpawn = {
       //console.log(sourceObj.ticksToRegeneration,'ticks. Left: ',sourceObj.energy);
       for (var ii=0;ii<source.miners.length;ii++) {
         if (Game.getObjectById(source.miners[ii]) == null) {
-        console.log('dedicated miner died. Remove');
         source.miners.splice(ii, 1);
       }
     }
