@@ -56,6 +56,34 @@ var tasks = {
       }
     },
 
+    deliverSourceToMainLinkFirst: function(creep) {
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)}});
+      var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
+      var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
+      var spawnTar = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)}});
+      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)}});
+      extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
+
+       var target = []
+       target = target.concat(centralLink);
+      target = target.concat(towerCritical);
+      target = target.concat(spawnTar);
+      target = target.concat(extensions);
+      target = target.concat(tower);
+
+
+      if (target[0].structureType==STRUCTURE_STORAGE) {
+        for(var resourceType in creep.carry) {
+            if (creep.transfer(target[0], resourceType) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(target[0]);
+            }
+          }
+      } else if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+          creep.moveTo(target[0]);
+      }
+    },
+
     haulFromDedicatedCotainers: function(creep) {
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];

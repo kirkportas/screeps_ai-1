@@ -13,7 +13,7 @@ var roleSpawnhauler = {
 	    }
 
 	    if(creep.memory.delivering) {
-        tasks.deliverSourceToMain(creep);
+        tasks.deliverSourceToMainLinkFirst(creep);
 	    } else {
 
 
