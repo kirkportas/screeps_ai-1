@@ -52,7 +52,7 @@ var tasks = {
                     }});
       var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_LINK)
+                        return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)
                     }});
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
