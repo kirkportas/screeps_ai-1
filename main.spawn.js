@@ -43,7 +43,6 @@ var mainSpawn = {
     _.forEach(containers, function(struc){
       energyInContainers+=struc.store[RESOURCE_ENERGY];
     });
-    console.log('energy waiting: ',energyInContainers);
     var haulersNeeded=2;
     if (energyInContainers>3000) haulersNeeded++;
 
