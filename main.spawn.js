@@ -29,7 +29,7 @@ var mainSpawn = {
       memory1 = {role: type, homeRoom: spawn.room.name }
       memory1.spawnerAction='NONE';
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
-      var name = spawn.createCreep(modules, findNextName(type),memory1);
+      var name = spawn.createCreep(body, findNextName(type),memory1);
       console.log('Spawning new '+type+': '+ name);
       return name;
 
