@@ -50,6 +50,10 @@ var tasks = {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE)
                     }});
+      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_LINK)
+                    }});
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
       var target = []
@@ -57,6 +61,7 @@ var tasks = {
       target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
+      target = target.concat(centralLink);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
       /*
