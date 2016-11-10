@@ -129,8 +129,6 @@ var mainSpawn = {
         for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
         for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       }
-
-
       var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
     } else if(scoutsN < 0) {
