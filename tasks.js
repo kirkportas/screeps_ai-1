@@ -228,6 +228,10 @@ var tasks = {
       return false;
     },
 
+    pushFromLink: function(creep, linkController,linkCentral) {
+      linkCentral.transfer(linkController);
+    },
+
 
 
     harvestPrefered: function(creep) {
