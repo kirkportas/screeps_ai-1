@@ -25,7 +25,7 @@ var mainSpawn = {
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
       return modules;
     }
-    global.createCreepAdvanced = function(type,body,memory=undefined) {
+    global.createCreep = function(type,body,memory=undefined) {
 
       for (var attrname in obj2) { obj1[attrname] = obj2[attrname]; }
     };
@@ -157,7 +157,6 @@ var mainSpawn = {
         //for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
         //for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       }
-      createCreepAdvanced('upgrader',modules);
       var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
     } else if(scoutsN < 0) {
