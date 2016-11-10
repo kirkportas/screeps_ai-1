@@ -241,15 +241,9 @@ var tasks = {
       var source = Game.getObjectById(creep.memory.pref)
       if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
           creep.moveTo(source);
-      } else if (creep.harvest(source)== -7) {
-        var route = Game.map.findRoute(creep.room, Game.flags['Flag1'].room);
-        if(route.length > 0) {
-          console.log('Now heading to room '+route[0].room);
-          var exit = creep.pos.findClosestByRange(route[0].exit);
-          creep.moveTo(exit);
-        }
       }
     },
+    
     buildTarget: function(creep,target) {
           if(target!=null) {
               if(creep.build(target) == ERR_NOT_IN_RANGE) {

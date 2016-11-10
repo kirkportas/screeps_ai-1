@@ -23,6 +23,7 @@ var mainSpawn = {
     var warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
+    var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
     //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
     var centralContainer = tasks.getCentralStorage(spawn);
     var energyNeeded = 0;
@@ -116,11 +117,19 @@ var mainSpawn = {
       console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4)) {
       var energyAvav = spawn.room.energyCapacityAvailable;
-      var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
       var modules=[];
-      for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
-      for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-      for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
+      if (links>=2) {
+        for (var m=0;m<2;m++) {modules.push(WORK);}
+        for (var m=0;m<2;m++) {modules.push(CARRY);}
+        for (var m=0;m<2;m++) {modules.push(MOVE);}
+      } else {
+        var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
+        for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
+        for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
+        for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
+      }
+
+
       var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
     } else if(scoutsN < 0) {
