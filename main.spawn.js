@@ -30,6 +30,7 @@ var mainSpawn = {
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
       var name = spawn.createCreep(modules, findNextName(type),memory1);
       console.log('Spawning new '+type+': '+ name);
+      return name;
 
     }
 
@@ -104,8 +105,8 @@ var mainSpawn = {
         if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
           if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
-            var name = spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
-            console.log(name);
+            //var name = spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+            var name = createCreepAdvanced(spawn,'upgrader',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
           }
         }
@@ -113,7 +114,8 @@ var mainSpawn = {
         if (source.miners.length<source.slots && source.safe) {
           if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
-            var name = spawn.createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+            //var name = spawn.createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
+            var name = createCreepAdvanced(spawn,'upgrader',[WORK,WORK,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
           }
         }
