@@ -37,7 +37,7 @@ var mainSpawn = {
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
-    var spawnHaulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'spawnHauler' && creep.ticksToLive>50).length;
+    var spawnHaulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'spawnHauler' && creep.ticksToLive>10).length;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
     var scoutsN = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S61' && creep.ticksToLive>50).length;
