@@ -129,10 +129,11 @@ var mainSpawn = {
         var energyAvav = spawn.room.energyCapacityAvailable;
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
         var modules=[];
-        for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-        for (var m=0;m<Math.ceil(modulesOfEach/2);m++) {modules.push(MOVE);}
-        var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
-        console.log('Spawning new hauler: ' + newName);
+        //for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
+        //for (var m=0;m<Math.ceil(modulesOfEach/2);m++) {modules.push(MOVE);}
+        createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}))
+        //var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
+        //console.log('Spawning new hauler: ' + newName);
     } else if(spawnHaulers < spawnHaulersNeeded) {
         var newName = spawn.createCreep(createBody({move:1, carry:2}), findNextName('spawnHauler'), {role: 'spawnHauler'});
         console.log('Spawning new spawnHauler: ' + newName);
@@ -150,18 +151,10 @@ var mainSpawn = {
       var modules=[];
       if (links.length>=2) {
         energyAvav-=200;
-        //modules=createBody(2,Math.min(8,Math.floor(energyAvav/100)),2,0,0,0,0,0);
         modules=createBody({move:2, carry:2,work:Math.min(8,Math.floor(energyAvav/100))});
-        //for (var m=0;m<Math.min(8,Math.floor(energyAvav/100));m++) {modules.push(WORK);}
-        //for (var m=0;m<2;m++) {modules.push(CARRY);}
-        //for (var m=0;m<2;m++) {modules.push(MOVE);}
       } else {
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
-         //modules=createBody(modulesOfEach,modulesOfEach,modulesOfEach,0,0,0,0,0)
          modules=createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach});
-        //for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
-        //for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-        //for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       }
       createCreepAdvanced(spawn,'upgrader',modules);
       //var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
