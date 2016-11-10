@@ -229,7 +229,7 @@ var tasks = {
     },
 
     pushFromLink: function(creep, linkController,linkCentral) {
-      linkCentral.transfer(linkController);
+      linkCentral.transferEnergy(linkController);
     },
 
 
