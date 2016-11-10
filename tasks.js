@@ -234,10 +234,11 @@ var tasks = {
     },
 
     pushFromLink: function(creep, linkController,linkCentral) {
-      linkCentral.transferEnergy(linkController);
+
         if(creep.withdraw(linkController, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
           creep.moveTo(linkController);
         }
+        linkCentral.transferEnergy(linkController);
     },
 
 
