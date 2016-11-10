@@ -1,30 +1,30 @@
 var buildExtension = {
-    place: function(x,y) {
-      var returncode = Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x,Game.spawns['Spawn1'].pos.y+y,STRUCTURE_EXTENSION);
+    place: function(posSpawn,x,y) {
+      var returncode = Game.spawns['Spawn1'].room.createConstructionSite(posSpawn.x+x,posSpawn.y+y,STRUCTURE_EXTENSION);
       if (returncode==ERR_FULL || returncode==ERR_RCL_NOT_ENOUGH) return false;
       if (returncode==0) {
-        Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x+1,Game.spawns['Spawn1'].pos.y+y,STRUCTURE_ROAD);
-        Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x-1,Game.spawns['Spawn1'].pos.y+y,STRUCTURE_ROAD);
-        Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x,Game.spawns['Spawn1'].pos.y+y+1,STRUCTURE_ROAD);
-        Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x+x,Game.spawns['Spawn1'].pos.y+y-1,STRUCTURE_ROAD);
+        room.createConstructionSite(posSpawn.x+x+1,posSpawn.y+y,STRUCTURE_ROAD);
+        room.createConstructionSite(posSpawn.x+x-1,posSpawn.y+y,STRUCTURE_ROAD);
+        room.createConstructionSite(posSpawn.x+x,posSpawn.y+y+1,STRUCTURE_ROAD);
+        room.createConstructionSite(posSpawn.x+x,posSpawn.y+y-1,STRUCTURE_ROAD);
       }
       return true;
     },
-    canPlace: function(x,y) {
+    canPlace: function(posSpawn,x,y) {
 
-      var pos = Game.spawns['Spawn1'].pos;
       //console.log((Game.map.getTerrainAt(pos.x+x,pos.y+y,Game.spawns['Spawn1'].room.name)));
-      return ((Game.map.getTerrainAt(pos.x+x,pos.y+y,Game.spawns['Spawn1'].room.name)!='wall')
-      && (Game.map.getTerrainAt(pos.x+x+1,pos.y+y,Game.spawns['Spawn1'].room.name)!='wall')
-      && (Game.map.getTerrainAt(pos.x+x-1,pos.y+y,Game.spawns['Spawn1'].room.name)!='wall')
-      && (Game.map.getTerrainAt(pos.x+x,pos.y+y+1,Game.spawns['Spawn1'].room.name)!='wall')
-      && (Game.map.getTerrainAt(pos.x+x,pos.y+y-1,Game.spawns['Spawn1'].room.name)!='wall'));
+      return ((Game.map.getTerrainAt(posSpawn.x+x,posSpawn.y+y,room.name)!='wall')
+      && (Game.map.getTerrainAt(posSpawn.x+x+1,posSpawn.y+y,room.name)!='wall')
+      && (Game.map.getTerrainAt(posSpawn.x+x-1,posSpawn.y+y,room.name)!='wall')
+      && (Game.map.getTerrainAt(posSpawn.x+x,posSpawn.y+y+1,room.name)!='wall')
+      && (Game.map.getTerrainAt(posSpawn.x+x,posSpawn.y+y-1,room.name)!='wall'));
     },
 
     run: function() {
+      var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
 
-      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+4,STRUCTURE_TOWER);
-      Game.spawns['Spawn1'].room.createConstructionSite(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+6,STRUCTURE_TOWER);
+      room.createConstructionSite(posSpawn.x, posSpawn.y+4,STRUCTURE_TOWER);
+      room.createConstructionSite(posSpawn.x, posSpawn.y+6,STRUCTURE_TOWER);
 
       for (var i=0;i<100;i++) {
         var x=0;
