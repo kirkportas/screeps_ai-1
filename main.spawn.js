@@ -126,7 +126,7 @@ var mainSpawn = {
         var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         console.log('Spawning new hauler: ' + newName);
     } else if(spawnHaulers < spawnHaulersNeeded) {
-        var newName = spawn.createCreep(createBody(1,2,0,0,0,0,0,0), findNextName('spawnHauler'), {role: 'spawnHauler'});
+        var newName = spawn.createCreep(createBody(1,0,2,0,0,0,0,0), findNextName('spawnHauler'), {role: 'spawnHauler'});
         console.log('Spawning new spawnHauler: ' + newName);
     } else  if(builders < buildersNeeded) {
       var energyAvav = spawn.room.energyCapacityAvailable;
