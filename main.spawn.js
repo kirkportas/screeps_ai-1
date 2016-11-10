@@ -67,7 +67,7 @@ var mainSpawn = {
     }
 
     var energyPerBuilder=6000;
-    var buildersNeeded = Math.min(1,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + Math.floor(repairNeeded/(energyPerBuilder*20)) )));
+    var buildersNeeded = Math.min(1,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
     console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
 
 
@@ -137,7 +137,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = spawn.createCreep(modules, findNextName('builder'), {role: 'builder'});
       console.log('Spawning new builder: ' + newName);
-    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<3)) {
+    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<5)) {
       var energyAvav = spawn.room.energyCapacityAvailable;
       var modules=[];
       if (links.length>=2) {
