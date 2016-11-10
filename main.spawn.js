@@ -118,7 +118,7 @@ var mainSpawn = {
     } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4)) {
       var energyAvav = spawn.room.energyCapacityAvailable;
       var modules=[];
-      if (links>=2) {
+      if (links.length>=2) {
         energyAvav-=200;
         for (var m=0;m<Math.min(8,Math.floor(energyAvav/100));m++) {modules.push(WORK);}
         for (var m=0;m<2;m++) {modules.push(CARRY);}
