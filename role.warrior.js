@@ -10,7 +10,6 @@ var roleWarrior = {
         var flag = Game.flags['Flag1'];
         creep.moveTo(flag.pos);
       }
-
     }
 };
 

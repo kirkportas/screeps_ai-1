@@ -1,8 +1,8 @@
 var buildRoads = {
     run: function(room) {
-        var posSpawn = Game.spawns['Spawn1'].pos;
+        var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
         var posRes = posSpawn.findClosestByRange(FIND_SOURCES);
-        var posCtr = Game.spawns['Spawn1'].room.controller;
+        var posCtr = room.controller;
 
 
         // FJERNER ALLE VEIER
@@ -15,14 +15,14 @@ var buildRoads = {
 
 
         //BYGG VEI TIL sources
-        var sources = Game.spawns['Spawn1'].room.memory.allSources;
+        var sources = room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
           var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true, ignoreRoads: true});
           if (!path.incomplete) {
               for (i = 0; i < path.length; i++) {
                   let pos = path[i];
-                  Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                  room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
               }
           }
         }
@@ -32,28 +32,28 @@ var buildRoads = {
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
                 let pos = path[i];
-                Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
 
         //BYgg vei nord til E65S61
-        var exitDir = Game.map.findExit(Game.spawns['Spawn1'].room.name, 'E65S61');
+        var exitDir = Game.map.findExit(room.name, 'E65S61');
         var exit = posSpawn.findClosestByRange(exitDir);
         var path = posSpawn.findPathTo(exit,{range:1, ignoreCreeps: true});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
                 let pos = path[i];
-                Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
         //BYgg vei sør til E65S63
-        var exitDir = Game.map.findExit(Game.spawns['Spawn1'].room.name, 'E65S63');
+        var exitDir = Game.map.findExit(room.name, 'E65S63');
         var exit = posSpawn.findClosestByRange(exitDir);
         var path = posSpawn.findPathTo(exit,{range:1, ignoreCreeps: true});
         if (!path.incomplete) {
             for (i = 0; i < path.length; i++) {
                 let pos = path[i];
-                Game.spawns['Spawn1'].room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
 

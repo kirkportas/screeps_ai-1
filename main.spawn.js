@@ -13,6 +13,20 @@ var mainSpawn = {
         }
         return finaleName;
     }
+    gloval.createBody = function(move,work,carry,attack,rangedAttack,heal,claim,tough) {
+      var modules=[];
+      for (var m=0;m<move;m++) {modules.push(MOVE);}
+      for (var m=0;m<work;m++) {modules.push(WORK);}
+      for (var m=0;m<carry;m++) {modules.push(CARRY);}
+      for (var m=0;m<carry;m++) {modules.push(ATTACK);}
+      for (var m=0;m<carry;m++) {modules.push(RANGED_ATTACK);}
+      for (var m=0;m<carry;m++) {modules.push(HEAL);}
+      for (var m=0;m<carry;m++) {modules.push(CLAIM);}
+      for (var m=0;m<carry;m++) {modules.push(TOUGH);}
+      return modules;
+
+
+    }
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
@@ -119,14 +133,16 @@ var mainSpawn = {
       var modules=[];
       if (links.length>=2) {
         energyAvav-=200;
-        for (var m=0;m<Math.min(8,Math.floor(energyAvav/100));m++) {modules.push(WORK);}
-        for (var m=0;m<2;m++) {modules.push(CARRY);}
-        for (var m=0;m<2;m++) {modules.push(MOVE);}
+        modules=createBody(2,Math.min(8,Math.floor(energyAvav/100)),2,0,0,0,0,0)
+        //for (var m=0;m<Math.min(8,Math.floor(energyAvav/100));m++) {modules.push(WORK);}
+        //for (var m=0;m<2;m++) {modules.push(CARRY);}
+        //for (var m=0;m<2;m++) {modules.push(MOVE);}
       } else {
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
-        for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
-        for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-        for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
+         modules=createBody(modulesOfEach,modulesOfEach,modulesOfEach,0,0,0,0,0)
+        //for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
+        //for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
+        //for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       }
       var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       console.log('Spawning new upgrader: ' + newName);
