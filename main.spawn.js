@@ -120,7 +120,7 @@ var mainSpawn = {
       var modules=[];
       if (links>=2) {
         energyAvav-=200;
-        for (var m=0;m<Math.min(8,Math.floor(energyAvav/100);m++)) {modules.push(WORK);}
+        for (var m=0;m<Math.min(8,Math.floor(energyAvav/100));m++) {modules.push(WORK);}
         for (var m=0;m<2;m++) {modules.push(CARRY);}
         for (var m=0;m<2;m++) {modules.push(MOVE);}
       } else {
