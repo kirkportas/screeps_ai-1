@@ -18,6 +18,13 @@ var roleUpgrader = {
       }
       //HENTEMODUS
       if(!creep.memory.upgrading) {
+        var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+        var linkCentral=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
+        var linkController=creep.room.controller.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
+        if (linkCentral&&linkController) {
+          creep.say('found both');
+        }
+
           if (!tasks.pickupEnergy(creep)) {
             tasks.haulFromCentralCotainers(creep);
           }
