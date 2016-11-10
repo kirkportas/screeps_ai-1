@@ -20,7 +20,7 @@ var buildExtension = {
       && (Game.map.getTerrainAt(posSpawn.x+x,posSpawn.y+y-1,room.name)!='wall'));
     },
 
-    run: function() {
+    run: function(room) {
       var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
 
       room.createConstructionSite(posSpawn.x, posSpawn.y+4,STRUCTURE_TOWER);
