@@ -46,6 +46,10 @@ var tasks = {
                         return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
                     }});
       extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
+      var centralStoragePri=spawn.pos.findInRange(FIND_STRUCTURES,8, {
+                      filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_STORAGE) && (structure.store[RESOURCES_ALL] < 10000)
+                    }});
       var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {
                       filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE)
@@ -61,6 +65,7 @@ var tasks = {
       target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
+      target = target.concat(centralStoragePri);
       target = target.concat(centralLink);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
@@ -243,7 +248,7 @@ var tasks = {
           creep.moveTo(source);
       }
     },
-    
+
     buildTarget: function(creep,target) {
           if(target!=null) {
               if(creep.build(target) == ERR_NOT_IN_RANGE) {
