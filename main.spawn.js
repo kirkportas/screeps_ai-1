@@ -119,7 +119,8 @@ var mainSpawn = {
       var energyAvav = spawn.room.energyCapacityAvailable;
       var modules=[];
       if (links>=2) {
-        for (var m=0;m<2;m++) {modules.push(WORK);}
+        energyAvav-=200;
+        for (var m=0;m<Math.floor(energyAvav/100);m++) {modules.push(WORK);}
         for (var m=0;m<2;m++) {modules.push(CARRY);}
         for (var m=0;m<2;m++) {modules.push(MOVE);}
       } else {
