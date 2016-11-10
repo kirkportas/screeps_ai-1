@@ -49,7 +49,7 @@ module.exports.loop = function () {
         //try {
           if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
-          if(creep.memory.role == 'spawnHauler') {roleHauler.run(creep);}
+          if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
           if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
           if(creep.memory.role == 'scout') {roleScout.run(creep);}
