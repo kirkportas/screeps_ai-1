@@ -30,6 +30,7 @@ var mainSpawn = {
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
+    var spawnHaulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'spawnHauler' && creep.ticksToLive>50).length;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
     var scoutsN = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S61' && creep.ticksToLive>50).length;
@@ -124,7 +125,7 @@ var mainSpawn = {
         for (var m=0;m<Math.ceil(modulesOfEach/2);m++) {modules.push(MOVE);}
         var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         console.log('Spawning new hauler: ' + newName);
-    } else if(spawnHauler < spawnHaulersNeeded) {
+    } else if(spawnHaulers < spawnHaulersNeeded) {
         var newName = spawn.createCreep(createBody(1,2,0,0,0,0,0,0), findNextName('spawnHauler'), {role: 'spawnHauler'});
         console.log('Spawning new spawnHauler: ' + newName);
     } else  if(builders < buildersNeeded) {
