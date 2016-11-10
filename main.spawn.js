@@ -25,10 +25,9 @@ var mainSpawn = {
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
       return modules;
     }
-    global.createCreepAdvanced = function(spawn,type,body,memory2={})
-    {
+    global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
       memory1 = {role: type, homeRoom: spawn.room.name }
-      for (var attrname in obj2) { obj1[attrname] = obj2[attrname];
+      for (var attrname in obj2) { obj1[attrname] = obj2[attrname]; }
       var name = spawn.createCreep(modules, findNextName(type),memory1);
       console.log('Spawning new '+type+': '+ name);
 
