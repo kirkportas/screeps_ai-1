@@ -13,6 +13,18 @@ var mainSpawn = {
         }
         return finaleName;
     }
+    global.createBody = function(arg) {
+      var modules=[];
+      for (var m=0;m<arg.move;m++) {modules.push(MOVE);}
+      for (var m=0;m<arg.work;m++) {modules.push(WORK);}
+      for (var m=0;m<arg.carry;m++) {modules.push(CARRY);}
+      for (var m=0;m<arg.attack;m++) {modules.push(ATTACK);}
+      for (var m=0;m<arg.rangedAttack;m++) {modules.push(RANGED_ATTACK);}
+      for (var m=0;m<arg.heal;m++) {modules.push(HEAL);}
+      for (var m=0;m<arg.claim;m++) {modules.push(CLAIM);}
+      for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
+      return modules;
+    }
     global.createBody = function(move,work,carry,attack,rangedAttack,heal,claim,tough) {
       var modules=[];
       for (var m=0;m<move;m++) {modules.push(MOVE);}
@@ -24,8 +36,6 @@ var mainSpawn = {
       for (var m=0;m<claim;m++) {modules.push(CLAIM);}
       for (var m=0;m<tough;m++) {modules.push(TOUGH);}
       return modules;
-
-
     }
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
@@ -126,7 +136,7 @@ var mainSpawn = {
         var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         console.log('Spawning new hauler: ' + newName);
     } else if(spawnHaulers < spawnHaulersNeeded) {
-        var newName = spawn.createCreep(createBody(1,0,2,0,0,0,0,0), findNextName('spawnHauler'), {role: 'spawnHauler'});
+        var newName = spawn.createCreep(createBody({move:1, carry:2}), findNextName('spawnHauler'), {role: 'spawnHauler'});
         console.log('Spawning new spawnHauler: ' + newName);
     } else  if(builders < buildersNeeded) {
       var energyAvav = spawn.room.energyCapacityAvailable;
@@ -142,13 +152,15 @@ var mainSpawn = {
       var modules=[];
       if (links.length>=2) {
         energyAvav-=200;
-        modules=createBody(2,Math.min(8,Math.floor(energyAvav/100)),2,0,0,0,0,0);
+        //modules=createBody(2,Math.min(8,Math.floor(energyAvav/100)),2,0,0,0,0,0);
+        modules=creaBody({move:2, carry:2,work:Math.min(8,Math.floor(energyAvav/100))});
         //for (var m=0;m<Math.min(8,Math.floor(energyAvav/100));m++) {modules.push(WORK);}
         //for (var m=0;m<2;m++) {modules.push(CARRY);}
         //for (var m=0;m<2;m++) {modules.push(MOVE);}
       } else {
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
-         modules=createBody(modulesOfEach,modulesOfEach,modulesOfEach,0,0,0,0,0)
+         //modules=createBody(modulesOfEach,modulesOfEach,modulesOfEach,0,0,0,0,0)
+         modules=createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach});
         //for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
         //for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
         //for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
