@@ -18,11 +18,11 @@ var mainSpawn = {
       for (var m=0;m<move;m++) {modules.push(MOVE);}
       for (var m=0;m<work;m++) {modules.push(WORK);}
       for (var m=0;m<carry;m++) {modules.push(CARRY);}
-      for (var m=0;m<carry;m++) {modules.push(ATTACK);}
-      for (var m=0;m<carry;m++) {modules.push(RANGED_ATTACK);}
-      for (var m=0;m<carry;m++) {modules.push(HEAL);}
-      for (var m=0;m<carry;m++) {modules.push(CLAIM);}
-      for (var m=0;m<carry;m++) {modules.push(TOUGH);}
+      for (var m=0;m<attack;m++) {modules.push(ATTACK);}
+      for (var m=0;m<rangedAttack;m++) {modules.push(RANGED_ATTACK);}
+      for (var m=0;m<heal;m++) {modules.push(HEAL);}
+      for (var m=0;m<claim;m++) {modules.push(CLAIM);}
+      for (var m=0;m<tough;m++) {modules.push(TOUGH);}
       return modules;
 
 
