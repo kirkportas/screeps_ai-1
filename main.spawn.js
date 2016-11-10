@@ -116,7 +116,7 @@ var mainSpawn = {
           if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
             //var name = spawn.createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
-            var name = createCreepAdvanced(spawn,'upgrader',[WORK,WORK,CARRY,MOVE],{pref:preferedSource});
+            var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
           }
         }
