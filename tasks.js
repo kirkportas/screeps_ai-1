@@ -47,7 +47,6 @@ var tasks = {
 
       if (target[0].structureType==STRUCTURE_STORAGE) {
         for(var resourceType in creep.carry) {
-          creep.say('hi');
             if (creep.transfer(target[0], resourceType) == ERR_NOT_IN_RANGE) {
               creep.moveTo(target[0]);
             }
