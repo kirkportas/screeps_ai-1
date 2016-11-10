@@ -18,7 +18,7 @@ var roleUpgrader = {
       }
       //HENTEMODUS
       if(!creep.memory.upgrading) {
-          if (!tasks.pickupEnergy(Creep)) {
+          if (!tasks.pickupEnergy(creep)) {
             tasks.haulFromCentralCotainers(creep);
           }
 
