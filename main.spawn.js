@@ -24,7 +24,7 @@ var mainSpawn = {
       for (var m=0;m<arg.claim;m++) {modules.push(CLAIM);}
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
       return modules;
-    }
+    } /*
     global.createBody = function(move,work,carry,attack,rangedAttack,heal,claim,tough) {
       var modules=[];
       for (var m=0;m<move;m++) {modules.push(MOVE);}
@@ -36,7 +36,7 @@ var mainSpawn = {
       for (var m=0;m<claim;m++) {modules.push(CLAIM);}
       for (var m=0;m<tough;m++) {modules.push(TOUGH);}
       return modules;
-    }
+    } */
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
