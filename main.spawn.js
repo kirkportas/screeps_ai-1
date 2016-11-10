@@ -115,7 +115,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       var newName = spawn.createCreep(modules, findNextName('builder'), {role: 'builder'});
       console.log('Spawning new builder: ' + newName);
-    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>2000) && upgraders<2)) {
+    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<2)) {
       var energyAvav = spawn.room.energyCapacityAvailable;
       var modules=[];
       if (links.length>=2) {
