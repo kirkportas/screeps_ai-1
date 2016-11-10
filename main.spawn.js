@@ -27,12 +27,11 @@ var mainSpawn = {
     }
     global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
       memory1 = {role: type, homeRoom: spawn.room.name }
-      memory1.spawnerAction='NONE';
+      memory1.spawnerAction='RENEW';
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
       var name = spawn.createCreep(body, findNextName(type),memory1);
       console.log('Spawning new '+type+': '+ name);
       return name;
-
     }
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
