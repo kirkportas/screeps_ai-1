@@ -24,7 +24,6 @@ var tasks = {
         }
     },
     deliverSourceToMain: function(creep) {
-      //try {
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
       var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
@@ -36,7 +35,7 @@ var tasks = {
       var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)}});
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
 
-	  var target = []
+	     var target = []
       target = target.concat(towerCritical);
       target = target.concat(spawnTar);
       target = target.concat(extensions);
@@ -45,12 +44,8 @@ var tasks = {
       target = target.concat(centralLink);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
-      /*
-      for(var resourceType in creep.carry) {
-	        if (creep.transfer(storage, resourceType) == ERR_NOT_IN_RANGE) {}
-        }
-        */
-      if (target.structureType==STRUCTURE_STORAGE) {
+
+      if (target[0].structureType==STRUCTURE_STORAGE) {
         for(var resourceType in creep.carry) {
           creep.say('hi');
             if (creep.transfer(target[0], resourceType) == ERR_NOT_IN_RANGE) {
