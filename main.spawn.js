@@ -25,9 +25,12 @@ var mainSpawn = {
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
       return modules;
     }
-    global.createCreepAdvanced = function(type,body,memory=undefined) {
+    global.createCreepAdvanced = function(type,body,memory=undefined)
+    {
+      var name = spawn.createCreep(modules, findNextName(type), {role: type});
+      console.log('Spawning new '+type+': '+ name);
 
-      for (var attrname in obj2) { obj1[attrname] = obj2[attrname]; }
+      //for (var attrname in obj2) { obj1[attrname] = obj2[attrname]; }
     };
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
@@ -158,8 +161,8 @@ var mainSpawn = {
         //for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       }
       createCreepAdvanced('upgrader',modules);
-      var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
-      console.log('Spawning new upgrader: ' + newName);
+      //var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
+      //console.log('Spawning new upgrader: ' + newName);
     } else if(scoutsN < 0) {
       var newName = spawn.createCreep([MOVE,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S61'});
       console.log('Spawning new scout: ' + newName);
