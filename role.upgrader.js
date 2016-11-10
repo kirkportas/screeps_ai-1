@@ -20,7 +20,7 @@ var roleUpgrader = {
       if(!creep.memory.upgrading) {
         if (!tasks.pickupEnergy(creep)) {
           var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
-          var linkCentral=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
+          var linkCentral=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
           var linkController=creep.room.controller.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
           if (linkCentral&&linkController) {
             creep.say('found both');
