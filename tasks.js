@@ -25,42 +25,18 @@ var tasks = {
     },
     deliverSourceToMain: function(creep) {
       //try {
-      var spawn = creep.room.find(FIND_MY_STRUCTURES, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_SPAWN)
-                    }})[0];
-      var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)
-                    }});
-      var tower=creep.room.find(FIND_MY_STRUCTURES, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)
-                    }});
-      var spawnTar = creep.room.find(FIND_MY_STRUCTURES, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)
-                    }});
-      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)
-                    }});
+      var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+      var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
+      var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
+      var spawnTar = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)}});
+      var extensions=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)}});
       extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
-      var centralStoragePri=spawn.pos.findInRange(FIND_STRUCTURES,8, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE) && (structure.store[RESOURCES_ALL] < 10000)
-                    }});
-      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE)
-                    }});
-      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {
-                      filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)
-                    }});
-      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {
-                      filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
-      var target = []
+      var centralStoragePri=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) && (structure.store[RESOURCES_ALL] < 10000)}});
+      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE)}});
+      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)}});
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
+
+	  var target = []
       target = target.concat(towerCritical);
       target = target.concat(spawnTar);
       target = target.concat(extensions);
