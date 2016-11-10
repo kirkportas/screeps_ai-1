@@ -135,8 +135,9 @@ var mainSpawn = {
         //var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         //console.log('Spawning new hauler: ' + newName);
     } else if(spawnHaulers < spawnHaulersNeeded) {
-        var newName = spawn.createCreep(createBody({move:1, carry:2}), findNextName('spawnHauler'), {role: 'spawnHauler'});
-        console.log('Spawning new spawnHauler: ' + newName);
+        createCreepAdvanced(spawn,'hauler',createBody({move:1, carry:2}));
+        //var newName = spawn.createCreep(createBody({move:1, carry:2}), findNextName('spawnHauler'), {role: 'spawnHauler'});
+        //console.log('Spawning new spawnHauler: ' + newName);
     } else  if(builders < buildersNeeded) {
       var energyAvav = spawn.room.energyCapacityAvailable;
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
@@ -144,7 +145,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
-      createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}))
+      createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
       //var newName = spawn.createCreep(modules, findNextName('builder'), {role: 'builder'});
       //console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<5)) {
