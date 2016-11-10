@@ -32,7 +32,7 @@ var mainSpawn = {
       var name = spawn.createCreep(modules, findNextName(type),memory1);
       console.log('Spawning new '+type+': '+ name);
 
-    };
+    }
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
