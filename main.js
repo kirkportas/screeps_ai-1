@@ -4,6 +4,7 @@ var mainTower = require('main.tower');
 
 var roleHarvester = require('role.harvester');
 var roleHauler = require('role.hauler');
+var roleSpawnhauler = require('role.hauler');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
