@@ -1,6 +1,6 @@
 var buildExtension = {
-    place: function(posSpawn,x,y) {
-      var returncode = Game.spawns['Spawn1'].room.createConstructionSite(posSpawn.x+x,posSpawn.y+y,STRUCTURE_EXTENSION);
+    place: function(room,posSpawn,x,y) {
+      var returncode = room.createConstructionSite(posSpawn.x+x,posSpawn.y+y,STRUCTURE_EXTENSION);
       if (returncode==ERR_FULL || returncode==ERR_RCL_NOT_ENOUGH) return false;
       if (returncode==0) {
         room.createConstructionSite(posSpawn.x+x+1,posSpawn.y+y,STRUCTURE_ROAD);
@@ -10,7 +10,7 @@ var buildExtension = {
       }
       return true;
     },
-    canPlace: function(posSpawn,x,y) {
+    canPlace: function(room,posSpawn,x,y) {
 
       //console.log((Game.map.getTerrainAt(pos.x+x,pos.y+y,Game.spawns['Spawn1'].room.name)));
       return ((Game.map.getTerrainAt(posSpawn.x+x,posSpawn.y+y,room.name)!='wall')
@@ -52,8 +52,8 @@ var buildExtension = {
         }
 
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
-        if (!buildExtension.canPlace(posSpawn,x,y)) continue; //Skips if 1/5 tile is wall or swamp
-        if (!buildExtension.place(posSpawn,x,y)) break;
+        if (!buildExtension.canPlace(room,posSpawn,x,y)) continue; //Skips if 1/5 tile is wall or swamp
+        if (!buildExtension.place(room,posSpawn,x,y)) break;
       }
     }
 
