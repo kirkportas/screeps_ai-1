@@ -134,7 +134,7 @@ var mainSpawn = {
         //var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
         //console.log('Spawning new hauler: ' + newName);
     } else if(spawnHaulers < spawnHaulersNeeded) {
-        createCreepAdvanced(spawn,'hauler',createBody({move:1, carry:2}));
+        createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
         //var newName = spawn.createCreep(createBody({move:1, carry:2}), findNextName('spawnHauler'), {role: 'spawnHauler'});
         //console.log('Spawning new spawnHauler: ' + newName);
     } else  if(builders < buildersNeeded) {
