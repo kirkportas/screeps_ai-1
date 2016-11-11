@@ -33,7 +33,7 @@ module.exports.loop = function () {
       timeLast=cpu.getUsed(); mainRoom.run(room); timeRoom += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainTower.run(room); timeTower += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainSpawn.run(spawn); timeSpawn += cpu.getUsed()-timeLast;
-      timeLast=cpu.getUsed(); mainScout.run(spawn); timeScout += cpu.getUsed()-timeLast;
+      timeLast=cpu.getUsed(); mainScout.run(room); timeScout += cpu.getUsed()-timeLast;
     }
 
   }
