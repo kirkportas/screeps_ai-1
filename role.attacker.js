@@ -8,14 +8,19 @@ var roleAttacker = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
-        if (creep.moveTo(Game.rooms[creep.memory.targetRoom].controller) == ERR_NO_PATH) {
-          var target = creep.pos.findClosestByRange(FIND_STRUCTURES);
-          var res = creep.moveTo(target);
-          creep.say(res);
+        var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
+        var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES);
+        if (targetHostile) {
+          if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(targetHostile);
+          }
+        } else if (targetStructure) {
+          if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(targetStructure);
+          }
         }
-
       }
     }
-  }
+  };
 
   module.exports = roleAttacker;
