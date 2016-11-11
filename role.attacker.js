@@ -14,22 +14,15 @@ var roleAttacker = {
         var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
 
         if (targetHostile) {
-          creep.say('1');
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetHostile)
           }
         } else if (targetStructure) {
-          creep.say('2');
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetStructure)
           }
         } else if (targetConstructionsites) {
-
-          var res = creep.attack(targetConstructionsites);
-          creep.say(res);
-          if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(targetConstructionsites)
-          }
+          creep.moveTo(targetConstructionsites);
         }
       }
     }
