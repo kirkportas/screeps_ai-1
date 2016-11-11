@@ -36,7 +36,7 @@ var mainSpawn = {
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
-    var spawnHaulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'spawnHauler' && creep.ticksToLive>10).length;
+    var spawnHaulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'spawnHauler').length;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
     var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
@@ -162,7 +162,7 @@ var mainSpawn = {
       //console.log('Spawning new upgrader: ' + newName);
     } else if(scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S62'});
-    } else if(attacker < 0) {
+    } else if(attacker < 1) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E64S62'});
     } else if(warriors < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
