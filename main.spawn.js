@@ -172,11 +172,11 @@ var mainSpawn = {
     }
   }
 
-  var creep = spawn.pos.findInRange(FIND_CREEPS,1);
-  if (creep.length && creep[0].memory.role=='builder' && buildersNeeded==0) {
-    spawn.recycleCreep(creep[0]);
-  } else if (creep.length && creep[0].ticksToLive<500) {
-    spawn.renewCreep(creep[0]);
+  var creep = spawn.pos.findClosestByRange(FIND_CREEPS);
+  if ((creep && creep.memory.role=='builder' && buildersNeeded==0) ||creep.memory.spawnerAction=='KILL') {
+    spawn.recycleCreep(creep);
+  } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
+    spawn.renewCreep(creep);
   }
   var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
   var hostileConstroller = spawn.room.controller.pos.findInRange(FIND_HOSTILE_CREEPS,12);
