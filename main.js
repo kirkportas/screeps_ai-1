@@ -12,6 +12,7 @@ var roleScout = require('role.scout');
 var roleWarrior = require('role.warrior');
 var roleWarrior = require('role.attacker');
 var roleClaimer = require('role.claimer');
+var roleRemotebuilder = require('role.remoteBuilder');
 
 module.exports.loop = function () {
 
@@ -55,6 +56,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
           if(creep.memory.role == 'attacker') {roleWarrior.run(creep);}
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
+          if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
     var timeAI = cpu.getUsed()-timeLast;

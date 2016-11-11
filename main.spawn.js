@@ -43,6 +43,7 @@ var mainSpawn = {
     var warriors = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'warrior').length;
     var attacker = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'attacker').length;
     var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
+    var remoteBuilders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilders').length;
 
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
@@ -171,6 +172,8 @@ var mainSpawn = {
     } else if(warriors < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
       console.log('Spawning new warrior: ' + newName);
+    }  else if(remoteBuilders < 0) {
+      createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5),{targetRoom:'E65S61'});
     }
   }
 
