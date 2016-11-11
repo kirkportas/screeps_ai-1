@@ -31,6 +31,7 @@ var roleAttacker = {
             };
           }
         }
+        /*
         if (targetConstructionsites&&needTarget) {
           creep.say('3');
           if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
@@ -38,7 +39,7 @@ var roleAttacker = {
               needTarget=false;
             };
           }
-        }
+        } */
       }
     }
   };
