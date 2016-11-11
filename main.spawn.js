@@ -172,7 +172,7 @@ var mainSpawn = {
     } else if(warriors < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
       console.log('Spawning new warrior: ' + newName);
-    }  else if(remoteBuilders < 0) {
+    }  else if(remoteBuilders < 1) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E65S61'});
     }
   }
