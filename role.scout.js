@@ -8,7 +8,8 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
-        creep.moveTo(Game.rooms[creep.memory.targetRoom].controller);
+        var res = creep.moveTo(Game.rooms[creep.memory.targetRoom].controller);
+        creep.say(res);
       }
     }
   }
