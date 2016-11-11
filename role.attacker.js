@@ -8,22 +8,23 @@ var roleAttacker = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
-  
+
         var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
         var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES);
         var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
 
-        creep.say(targetConstructionsites);
-        if (targetHostile&&needTarget) {
+        if (targetHostile) {
+          creep.say('1');
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetHostile)
           }
-        }
-        if (targetStructure) {
+        } else if (targetStructure) {
+          creep.say('2');
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetStructure)
           }
         } else if (targetConstructionsites) {
+          creep.say('3');
           if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetConstructionsites)
           }
