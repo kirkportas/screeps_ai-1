@@ -35,7 +35,7 @@ var buildRoads = {
                 room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
-
+        /*
         //BYgg vei nord til E65S61
         var exitDir = Game.map.findExit(room.name, 'E65S61');
         var exit = posSpawn.findClosestByRange(exitDir);
@@ -56,6 +56,7 @@ var buildRoads = {
                 room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
+        */
 
 
     }
