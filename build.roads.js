@@ -42,6 +42,15 @@ var buildRoads = {
           if (scout.hasOwnProperty(key)) {
             if (scout[key].danger==0) {
               console.log('found a safe room');
+              var sources = scout[key].sources;
+              for (var key in sources) {
+                if (sources.hasOwnProperty(key)) {
+                  var source = sources[key];
+                  var pos = source.pos;
+                  console.log(pos);
+                }
+              }
+
             }
 
 
