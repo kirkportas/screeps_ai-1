@@ -13,8 +13,8 @@ var roleAttacker = {
         var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES);
         var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
 
+        creep.say(targetStructure.length);
         if (targetHostile&&needTarget) {
-          creep.say('1');
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             if (creep.moveTo(targetHostile) != ERR_NO_PATH) {
               needTarget=false;
@@ -22,24 +22,21 @@ var roleAttacker = {
           }
         }
         if (targetStructure&&needTarget) {
-          //creep.say('2');
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
             var res = creep.moveTo(targetStructure);
-            creep.say(res);
             if (res != ERR_NO_PATH) {
               needTarget=false;
             };
           }
         }
-        /*
+
         if (targetConstructionsites&&needTarget) {
-          creep.say('3');
           if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
             if (creep.moveTo(targetConstructionsites) != ERR_NO_PATH) {
               needTarget=false;
             };
           }
-        } */
+        }
       }
     }
   };
