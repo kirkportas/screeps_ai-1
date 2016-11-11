@@ -12,7 +12,7 @@ var mainScout = {
         if (exits[7] != undefined) rooms.push(exits[7]);
         //room.memory.scout;;
         for (var i=0;i<rooms.length;i++) {
-          room.memory.scout['test'].val;
+          room.memory.scout['test']={};
           room.memory.scout['test']=({roomname:rooms[i],timeSinceLastScout:0, danger:0,sources:[]});
           //room.memory.scout.push({roomname:rooms[i],timeSinceLastScout:0, danger:0,sources:[]});
         }
