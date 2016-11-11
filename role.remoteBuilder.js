@@ -18,6 +18,7 @@ var roleRemotebuilder = {
       } else {
         if(creep.memory.building) {
           var targetsAll = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+          creep.say(targetsAll);
           if (targetsAll) {
               if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
                   creep.moveTo(targetsAll;
