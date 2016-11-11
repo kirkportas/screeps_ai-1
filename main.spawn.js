@@ -159,7 +159,7 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'upgrader',modules);
       //var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       //console.log('Spawning new upgrader: ' + newName);
-    } else if(scouts < 1) {
+    } else if(scouts < 0) {
       var newName = spawn.createCreep([MOVE], findNextName('scout'), {role: 'scout', targetRoom:'E64S62'});
       console.log('Spawning new scout: ' + newName);
     } else if(warriors < 0) {
