@@ -16,7 +16,6 @@ var roleAttacker = {
                 }
         });
         var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
-        creep.say(targetStructure);
 
         if (targetHostile) {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
