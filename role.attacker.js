@@ -1,5 +1,5 @@
 var tasks = require('tasks');
-var roleScout = {
+var roleAttacker = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -18,4 +18,4 @@ var roleScout = {
     }
   }
 
-  module.exports = roleScout;
+  module.exports = roleAttacker;
