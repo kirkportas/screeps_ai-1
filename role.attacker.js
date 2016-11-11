@@ -24,7 +24,9 @@ var roleAttacker = {
             creep.moveTo(targetStructure)
           }
         } else if (targetConstructionsites) {
-          creep.say('3');
+
+          var res = creep.attack(targetConstructionsites);
+          creep.say(res);
           if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetConstructionsites)
           }
