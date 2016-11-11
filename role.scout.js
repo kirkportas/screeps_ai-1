@@ -8,11 +8,13 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
-        Memory.test2=Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom];
-        //if (creep.memory.homeRoom.memory.scout[creep.memory.targetRoom]) {
+        if (Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
           console.log('exists');
 
-        //}
+
+
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
+        }
 
         if (creep.moveTo(Game.rooms[creep.memory.targetRoom].controller) == ERR_NO_PATH) {
           var target = creep.pos.findClosestByRange(FIND_STRUCTURES);
