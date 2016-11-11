@@ -6,9 +6,9 @@ var mainScout = {
         //console.log('setting basic scout info');
         var exits =Game.map.describeExits(room.name);
         console.log(exits[1].name);
-        if (exits[3] != undefined) console.log(exits[3].name);
-        console.log(exits[5].name);
-        console.log(exits[7].name);
+        //if (exits[3] != undefined) console.log(exits[3].name);
+        //console.log(exits[5].name);
+        //console.log(exits[7].name);
         room.memory.scout=exits;
 
       }
