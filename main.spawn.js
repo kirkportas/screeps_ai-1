@@ -144,7 +144,7 @@ var mainSpawn = {
       for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
-      createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
+      createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
       //var newName = spawn.createCreep(modules, findNextName('builder'), {role: 'builder'});
       //console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<5)) {
