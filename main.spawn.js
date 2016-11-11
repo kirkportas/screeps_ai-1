@@ -162,7 +162,7 @@ var mainSpawn = {
       //console.log('Spawning new upgrader: ' + newName);
     } else if(scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E65S61'});
-    } else if(attacker < 1) {
+    } else if(attacker < 10) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
     } else if(warriors < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
