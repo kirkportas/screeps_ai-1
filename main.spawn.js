@@ -41,7 +41,7 @@ var mainSpawn = {
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
     var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
     var warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
-    var attacker = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
+    var attacker = _.filter(Game.creeps, (creep) => creep.memory.role == 'attacker').length;
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
