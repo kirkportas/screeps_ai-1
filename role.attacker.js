@@ -16,25 +16,18 @@ var roleAttacker = {
         creep.say(targetConstructionsites);
         if (targetHostile&&needTarget) {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
-            if (creep.moveTo(targetHostile) != ERR_NO_PATH) {
-              needTarget=false;
-            };
+            creep.moveTo(targetHostile)
           }
         }
-        if (targetStructure&&needTarget) {
+        if (targetStructure) {
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
-            var res = creep.moveTo(targetStructure);
-            if (res != ERR_NO_PATH) {
-              needTarget=false;
-            };
+            creep.moveTo(targetConstructionsites)
           }
         }
 
-        if (targetConstructionsites&&needTarget) {
+        if (targetConstructionsites) {
           if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
-            if (creep.moveTo(targetConstructionsites) != ERR_NO_PATH) {
-              needTarget=false;
-            };
+            creep.moveTo(targetConstructionsites)
           }
         }
       }
