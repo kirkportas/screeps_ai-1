@@ -39,8 +39,7 @@ var mainSpawn = {
     var spawnHaulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'spawnHauler' && creep.ticksToLive>10).length;
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
-    var scoutsN = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S61' && creep.ticksToLive>50).length;
-    var scoutsS = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&& creep.memory.targetRoom == 'E65S63' && creep.ticksToLive>50).length;
+    var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
     var warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'warrior').length;
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
@@ -160,11 +159,8 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'upgrader',modules);
       //var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       //console.log('Spawning new upgrader: ' + newName);
-    } else if(scoutsN < 0) {
-      var newName = spawn.createCreep([MOVE,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S61'});
-      console.log('Spawning new scout: ' + newName);
-    } else if(scoutsS < 0) {
-      var newName = spawn.createCreep([MOVE,MOVE,MOVE,CARRY,CARRY,WORK], findNextName('scout'), {role: 'scout', delivered: 0, startRoom: spawn.room.name,targetRoom:'E65S63', pref:'57ef9eb986f108ae6e60fccf'});
+    } else if(scouts < 1) {
+      var newName = spawn.createCreep([MOVE], findNextName('scout'), {role: 'scout', targetRoom:'E64S62'});
       console.log('Spawning new scout: ' + newName);
     } else if(warriors < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
