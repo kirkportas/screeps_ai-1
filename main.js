@@ -9,6 +9,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
 var roleWarrior = require('role.warrior');
+var roleWarrior = require('role.attacker');
 
 module.exports.loop = function () {
 
@@ -56,6 +57,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
           if(creep.memory.role == 'scout') {roleScout.run(creep);}
           if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
+          if(creep.memory.role == 'attacker') {roleWarrior.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
     var timeAI = cpu.getUsed()-timeLast;

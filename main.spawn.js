@@ -163,7 +163,7 @@ var mainSpawn = {
     } else if(scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S62'}});
     } else if(attacker < 0) {
-      createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E64S62'}});
+      createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E64S62'});
     } else if(warriors < 0) {
       var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
       console.log('Spawning new warrior: ' + newName);
