@@ -23,11 +23,12 @@ module.exports.loop = function () {
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
 
-    timeLast=cpu.getUsed(); mainRoom.run(room); timeRoom += cpu.getUsed()-timeLast;
-    timeLast=cpu.getUsed(); mainTower.run(room); timeTower += cpu.getUsed()-timeLast;
+
 
     var spawn = room.find(FIND_MY_SPAWNS)[0];
     if (spawn!=undefined) {
+      timeLast=cpu.getUsed(); mainRoom.run(room); timeRoom += cpu.getUsed()-timeLast;
+      timeLast=cpu.getUsed(); mainTower.run(room); timeTower += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainSpawn.run(spawn); timeSpawn += cpu.getUsed()-timeLast;
     }
 
