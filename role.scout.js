@@ -8,6 +8,7 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
+        Memory.test2=creep.memory.homeRoom;
         //if (creep.memory.homeRoom.memory.scout[creep.memory.targetRoom]) {
           console.log('exists');
 
