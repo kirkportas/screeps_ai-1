@@ -20,7 +20,7 @@ var mainScout = {
         var test = room.memory.scout;
         for (var key in test) {
           if (test.hasOwnProperty(key)) {
-            console.log(key + " -> " + p[key]);
+            console.log(key + " -> " + test[key]);
           }
         }
 
