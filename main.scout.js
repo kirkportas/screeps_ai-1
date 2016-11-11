@@ -17,6 +17,10 @@ var mainScout = {
           //room.memory.scout.push({roomname:rooms[i],timeSinceLastScout:0, danger:0,sources:[]});
         }
 
+        var test = room.memory.scout;
+        for (var i=0; i<test.length; i++) {
+          console.log(test[i]);
+        }
 
       }
 
