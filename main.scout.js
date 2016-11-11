@@ -13,9 +13,10 @@ var mainScout = {
         room.memory.scout={}
         for (var i=0;i<rooms.length;i++) {
           //room.memory.scout.rooms.test=1;
-          room.memory.scout[rooms[i]]={timeSinceLastScout:-1, danger:-1,sources:[]};
+          room.memory.scout[rooms[i]]={timeSinceLastScout:-1, danger:-1,sources:{}};
           //room.memory.scout.push({roomname:rooms[i],timeSinceLastScout:0, danger:0,sources:[]});
         }
+
         /* HOW TO USE
         var test = room.memory.scout;
         for (var key in test) {
