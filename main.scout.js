@@ -12,9 +12,7 @@ var mainScout = {
         if (exits[7] != undefined) rooms.push(exits[7]);
         room.memory.scout={}
         for (var i=0;i<rooms.length;i++) {
-          //room.memory.scout.rooms.test=1;
           room.memory.scout[rooms[i]]={timeSinceLastScout:-1, danger:-1,sources:{}};
-          //room.memory.scout.push({roomname:rooms[i],timeSinceLastScout:0, danger:0,sources:[]});
         }
 
         /* HOW TO USE
@@ -27,11 +25,16 @@ var mainScout = {
         */
 
       }
+      for (var key in room.memory.scout) {
+        if (room.memory.scout.hasOwnProperty(key)) {
+          room.memory.scout[key].timeSinceLastScout++;
 
+          console.log(key + " -> " + test[key]);
+        }
+      }
 
 
 
      }
-
 };
 module.exports = mainScout;
