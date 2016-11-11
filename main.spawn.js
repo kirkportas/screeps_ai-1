@@ -162,9 +162,9 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'upgrader',modules);
       //var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
       //console.log('Spawning new upgrader: ' + newName);
-    } else if(scouts < 0) {
+    } else if(scouts < 1) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E65S61'});
-    } else if(claimers < 0) {
+    } else if(claimers < 1) {
       createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:'E65S61'});
     } else if(attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
