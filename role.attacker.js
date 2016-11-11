@@ -21,7 +21,7 @@ var roleAttacker = {
         }
         if (targetStructure) {
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(targetConstructionsites)
+            creep.moveTo(targetStructure)
           }
         } else if (targetConstructionsites) {
           if(creep.attack(targetConstructionsites) == ERR_NOT_IN_RANGE) {
