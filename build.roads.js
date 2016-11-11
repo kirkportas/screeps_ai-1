@@ -46,7 +46,10 @@ var buildRoads = {
               for (var key in sources) {
                 if (sources.hasOwnProperty(key)) {
                   var source = sources[key];
-                  var pos = source.pos;
+                  var posX = source.pos.x;
+                  var posY = source.pos.y;
+                  var posRoom = source.pos.room;
+                  var targetPos = RoomPosition(posX,posY,posRoom);
                   console.log(pos);
                   var path = posSpawn.findPathTo(pos,{range:1, ignoreCreeps: true});
                   if (!path.incomplete) {
