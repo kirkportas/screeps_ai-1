@@ -11,7 +11,7 @@ var roleAttacker = {
         var needTarget=true;
         var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
         var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES);
-        var targetConstructionsites = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+        var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
 
         if (targetHostile&&needTarget) {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
