@@ -19,7 +19,7 @@ var roleScout = {
           }
 
 
-          if (creep.room.find(FIND_HOSTILE_CREEPS)||creep.room.find(FIND_HOSTILE_STRUCTURES)) {
+          if (creep.room.find(FIND_HOSTILE_CREEPS).length||creep.room.find(FIND_HOSTILE_STRUCTURES).length) {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
           } else {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
