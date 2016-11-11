@@ -1,6 +1,7 @@
 var mainSpawn = require('main.spawn');
 var mainRoom = require('main.room');
 var mainTower = require('main.tower');
+var mainScout = require('main.scout');
 
 var roleHarvester = require('role.harvester');
 var roleHauler = require('role.hauler');
@@ -19,6 +20,7 @@ module.exports.loop = function () {
   var timeSpawn=0;
   var timeRoom=0;
   var timeTower=0;
+  var timeScout=0;
 
 
   for(var iRoom in Game.rooms) {
@@ -31,18 +33,11 @@ module.exports.loop = function () {
       timeLast=cpu.getUsed(); mainRoom.run(room); timeRoom += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainTower.run(room); timeTower += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainSpawn.run(spawn); timeSpawn += cpu.getUsed()-timeLast;
+      timeLast=cpu.getUsed(); mainScout.run(spawn); timeScout += cpu.getUsed()-timeLast;
     }
 
   }
-/*
-  for(var iRoom in Game.rooms) {
-    var room = Game.rooms[iRoom]
-    var spawn = room.find(FIND_MY_SPAWNS)[0];
-    mainRoom.run(room);
-    mainTower.run(room);
-    mainSpawn.run();
 
-  } */
 
   var timeHarvester=0;
 
