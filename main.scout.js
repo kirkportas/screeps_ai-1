@@ -29,7 +29,7 @@ var mainScout = {
         if (room.memory.scout.hasOwnProperty(key)) {
           room.memory.scout[key].timeSinceLastScout++;
 
-          //console.log(key + " -> " + test[key]);
+          ///console.log(key + " -> " + test[key]);
         }
       }
 
