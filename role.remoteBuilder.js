@@ -21,7 +21,7 @@ var roleRemotebuilder = {
           creep.say(targetsAll);
           if (targetsAll) {
               if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(targetsAll;
+                  creep.moveTo(targetsAll);
               }
             }
         } else {
