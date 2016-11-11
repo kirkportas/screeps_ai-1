@@ -10,7 +10,11 @@ var roleAttacker = {
       } else {
 
         var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
-        var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES);
+        var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES,{
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_CONTROLLER)
+                }
+        });
         var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
 
         if (targetHostile) {
