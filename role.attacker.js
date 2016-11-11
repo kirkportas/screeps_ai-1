@@ -22,7 +22,9 @@ var roleAttacker = {
         }
         if (targetStructure&&needTarget) {
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
-            if (creep.moveTo(targetStructure) != ERR_NO_PATH) {
+            var res = creep.moveTo(targetStructure);
+            creep.say(res);
+            if (res != ERR_NO_PATH) {
               needTarget=false;
             };
           }
