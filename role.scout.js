@@ -8,6 +8,11 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
+        if (room.memory.scout[creep.memory.targetRoom]) {
+          console.log('exists');
+
+        }
+
         if (creep.moveTo(Game.rooms[creep.memory.targetRoom].controller) == ERR_NO_PATH) {
           var target = creep.pos.findClosestByRange(FIND_STRUCTURES);
           var res = creep.moveTo(target);
