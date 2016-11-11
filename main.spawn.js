@@ -34,14 +34,14 @@ var mainSpawn = {
       return name;
     }
 
-    var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
-    var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
-    var spawnHaulers = _.filter(Game.creeps, (creep)  => creep.memory.homeRoom == room.name && creep.memory.role == 'spawnHauler').length;
-    var upgraders = _.filter(Game.creeps, (creep)     => creep.memory.homeRoom == room.name && creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
-    var builders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == room.name && creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
-    var scouts = _.filter(Game.creeps, (creep)        => creep.memory.homeRoom == room.name && creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
-    var warriors = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == room.name && creep.memory.role == 'warrior').length;
-    var attacker = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == room.name && creep.memory.role == 'attacker').length;
+    var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
+    var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
+    var spawnHaulers = _.filter(Game.creeps, (creep)  => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'spawnHauler').length;
+    var upgraders = _.filter(Game.creeps, (creep)     => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
+    var builders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
+    var scouts = _.filter(Game.creeps, (creep)        => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
+    var warriors = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'warrior').length;
+    var attacker = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'attacker').length;
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
