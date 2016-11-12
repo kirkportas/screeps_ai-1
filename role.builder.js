@@ -25,9 +25,9 @@ var roleBuilder = {
                           structure.structureType == STRUCTURE_CONTAINER ||
                           structure.structureType == STRUCTURE_EXTENSION )  } });
           var targetsAll = creep.room.find(FIND_CONSTRUCTION_SITES);
-            if(targetsPri.length) {
-                if(creep.build(targetsPri[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetsPri[0]);
+            if(targetsPri) {
+                if(creep.build(targetsPri) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targetsPri);
                 }
             } else if (targetsAll.length) {
               if(creep.build(targetsAll[0]) == ERR_NOT_IN_RANGE) {
