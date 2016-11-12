@@ -45,7 +45,7 @@ var mainSpawn = {
     var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
     var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
 
-
+    var energyAvav = spawn.room.energyCapacityAvailable;
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
     //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
@@ -119,7 +119,7 @@ console.log(energyAvav)
       }
     }
       //spawns harvesters per source
-      var energyAvav = spawn.room.energyCapacityAvailable;
+
       if (energyAvav>=750) {
         //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
         if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
