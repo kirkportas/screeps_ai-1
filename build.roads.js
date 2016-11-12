@@ -43,29 +43,32 @@ var buildRoads = {
             if (scout[key1].danger==0) {
               console.log('found a safe room');
               var sources = scout[key1].sources;
-              for (var key2 in sources) {
-                if (sources.hasOwnProperty(key2)) {
-                  var source = sources[key2];
-                  var posX = source.pos.x;
-                  var posY = source.pos.y;
-                  var posRoom = key1;
-                  console.log(key1);
-                  var targetPos = new RoomPosition(posX,posY,posRoom);
-                  console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
-                  //var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
-                  var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true});
-                  //Memory.test=path;
-                    if (path) {
-                    for (i = 0; i < path.path.length; i++) {
-                        let pos = path.path[i];
-                        Memory.test=pos;
-                        if (Game.rooms[pos.roomName]!=undefined) {
-                          Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
-                        }
+              shouldBuildRoadsToSpawns=true;
+              if (shouldBuildRoadsToSpawns) {
+                for (var key2 in sources) {
+                  if (sources.hasOwnProperty(key2)) {
+                    var source = sources[key2];
+                    var posX = source.pos.x;
+                    var posY = source.pos.y;
+                    var posRoom = key1;
+                    console.log(key1);
+                    var targetPos = new RoomPosition(posX,posY,posRoom);
+                    console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
+                    //var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
+                    var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true});
+                    //Memory.test=path;
+                      if (path) {
+                      for (i = 0; i < path.path.length; i++) {
+                          let pos = path.path[i];
+                          Memory.test=pos;
+                          if (Game.rooms[pos.roomName]!=undefined) {
+                            Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                          }
+                      }
                     }
                   }
                 }
-              }
+            }
 
             }
 
