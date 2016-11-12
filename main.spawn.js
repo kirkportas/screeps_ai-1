@@ -129,7 +129,7 @@ var mainSpawn = {
       if (energyAvav>=750) {
         //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
         if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
-          if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE] == OK)) {
+          if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
             var preferedSource = source.id;
             var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
@@ -137,7 +137,7 @@ var mainSpawn = {
         }
       } else {
         if (source.miners.length<source.slots && source.safe) {
-          if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
+          if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
             var preferedSource = source.id;
             var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
