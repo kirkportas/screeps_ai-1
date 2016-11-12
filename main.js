@@ -9,8 +9,8 @@ var roleSpawnhauler = require('role.spawnhauler');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
-var roleWarrior = require('role.warrior');
-var roleWarrior = require('role.warrior');
+var roleDefender = require('role.defender');
+var roleAttacker= require('role.attacker');
 var roleClaimer = require('role.claimer');
 var roleRemotebuilder = require('role.remoteBuilder');
 
@@ -54,7 +54,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
           if(creep.memory.role == 'scout') {roleScout.run(creep);}
           if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
-          if(creep.memory.role == 'attacker') {roleWarrior.run(creep);}
+          if(creep.memory.role == 'defender') {roleDefender.run(creep);}
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
       //} catch(err) { Game.notify(err)}
