@@ -10,7 +10,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
 var roleWarrior = require('role.warrior');
-var roleWarrior = require('role.attacker');
+var roleWarrior = require('role.warrior');
 var roleClaimer = require('role.claimer');
 var roleRemotebuilder = require('role.remoteBuilder');
 
