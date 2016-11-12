@@ -164,8 +164,8 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
     } else if(warriors < 0) {
       createCreepAdvanced(spawn,'warrior',createBody({move:2,rangedAttack:4}));
-    }  else if(remoteBuilders < 0) {
-      createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E65S61'});
+    }  else if(spawn.room.name=='E65S62' remoteBuilders < 2) {
+      createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E65S63'});
     }
   }
 
