@@ -38,18 +38,18 @@ var buildRoads = {
 
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
-        for (var key in scout) {
-          if (scout.hasOwnProperty(key)) {
-            if (scout[key].danger==0) {
+        for (var key1 in scout) {
+          if (scout.hasOwnProperty(key1)) {
+            if (scout[key1].danger==0) {
               console.log('found a safe room');
-              var sources = scout[key].sources;
-              for (var key in sources) {
-                if (sources.hasOwnProperty(key)) {
-                  var source = sources[key];
+              var sources = scout[key1].sources;
+              for (var key2 in sources) {
+                if (sources.hasOwnProperty(key2)) {
+                  var source = sources[key2];
                   var posX = source.pos.x;
                   var posY = source.pos.y;
-                  var posRoom = key;
-                  console.log(key);
+                  var posRoom = key2;
+                  console.log(key2);
                   var targetPos = new RoomPosition(posX,posY,posRoom);
                   console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
                   var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
