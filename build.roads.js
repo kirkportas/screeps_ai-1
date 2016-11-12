@@ -54,10 +54,11 @@ var buildRoads = {
                   console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
                   //var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
                   var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true});
+                  Memory.test=path;
                     if (!path.incomplete) {
                     for (i = 0; i < path.length; i++) {
                         let pos = path[i];
-                        Memory.test=pos;
+                        //Memory.test=pos;
                         //pos.roomName.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
                     }
                   }
