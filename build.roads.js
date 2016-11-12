@@ -19,12 +19,12 @@ var buildRoads = {
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
           var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true, ignoreRoads: true});
-          if (!path.incomplete) {
+          //if (!path.incomplete) {
               for (i = 0; i < path.length; i++) {
                   let pos = path[i];
                   room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
               }
-          }
+          //}
         }
 
         //BYGG VEI TIL KONTROLLER

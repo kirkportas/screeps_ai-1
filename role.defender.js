@@ -1,6 +1,6 @@
 var tasks = require('tasks');
 
-var roleWarrior = {
+var roleDefender = {
 
     run: function(creep) {
       creep.say('t')
@@ -15,4 +15,4 @@ var roleWarrior = {
     }
 };
 
-module.exports = roleWarrior;
+module.exports = roleDefender;
