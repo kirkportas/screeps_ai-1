@@ -9,8 +9,7 @@ var roleScout = {
         creep.moveTo(exit);
       } else {
         if (Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
-          console.log('exists');
-
+  
           var sources= creep.room.find(FIND_SOURCES);
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
           for (var i = 0; i < sources.length; i++) {
