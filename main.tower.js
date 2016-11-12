@@ -26,7 +26,7 @@ var mainTower = {
         tower.attack(closestHostile);
       } else if (damagedCreeps) {
         tower.heal(damagedCreeps);
-      } else if (closestDamagedStructure && tower.energy>=800) {
+      } else if (closestDamagedStructure && tower.energy>=400) {
         tower.repair(closestDamagedStructure);
       }
 
