@@ -70,11 +70,11 @@ var mainSpawn = {
 
 
     //var haulersNeeded=2;
-
+console.log(energyAvav)
     if (energyAvav<450) {
       haulersNeeded=4;
     } else if (energyAvav<600) {
-      console.log('t')
+
       haulersNeeded=3;
     } else {
       haulersNeeded=2;
