@@ -43,7 +43,7 @@ var mainSpawn = {
     var warriors = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'warrior').length;
     var attacker = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'attacker').length;
     var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
-    var remoteBuilders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
+    var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
 
 
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
@@ -67,8 +67,9 @@ var mainSpawn = {
     _.forEach(containers, function(struc){
       energyInContainers+=struc.store[RESOURCE_ENERGY];
     });
-    var haulersNeeded=2;
 
+
+    var haulersNeeded=2;
     if (energyInContainers>3000) haulersNeeded++;
 
     var spawnHaulersNeeded=0;
@@ -79,6 +80,12 @@ var mainSpawn = {
     var energyPerBuilder=6000;
     var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
     //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
+
+    var upgradersNeeded = 1;
+    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
+    upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-10000)/10000));
+    console.log('upgraders needed':upgradersNeeded)
+    //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
 
     for(var name in Memory.creeps) {
@@ -130,19 +137,13 @@ var mainSpawn = {
   if (containers.length>=1) {
     if(haulers < haulersNeeded) {
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
-        var modules=[];
         createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
     } else if(spawnHaulers < spawnHaulersNeeded) {
         createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
     } else  if(builders < buildersNeeded) {
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
-      var modules=[];
-      for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
-      for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-      for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
-    } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4)) {
-      var modules=[];
+    } else if(upgraders < 1 upgradersNeeded)) {
       if (links.length>=2) {
         createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
       } else {
