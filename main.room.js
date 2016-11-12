@@ -71,8 +71,8 @@ var mainRoom = {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
       } else {
-        room.memory.wallHitsMax=20000;
-        room.memory.wallHitsmin=10000;
+        room.memory.wallHitsMax=200;
+        room.memory.wallHitsmin=100;
       }
 
       room.memory.timeToRecheck=100;
