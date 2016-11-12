@@ -70,6 +70,9 @@ var mainRoom = {
       if (room.name=='E65S62') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
+      } if (room.name=='E65S61') {
+        room.memory.wallHitsMax=40000;
+        room.memory.wallHitsmin=21000;
       } else {
         room.memory.wallHitsMax=20000;
         room.memory.wallHitsmin=10000;
