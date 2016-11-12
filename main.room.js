@@ -62,7 +62,7 @@ var mainRoom = {
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
       console.log('checking room');
-
+      //
       buildContainers.run(room);
       if (containers.length>=1) buildExtension.run(room)
       if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
