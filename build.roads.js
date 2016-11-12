@@ -55,7 +55,7 @@ var buildRoads = {
                     if (!path.incomplete) {
                     for (i = 0; i < path.length; i++) {
                         let pos = path[i];
-                        pos.room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                        room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
                     }
                   }
                 }
