@@ -69,12 +69,11 @@ var mainSpawn = {
     });
 
 
-    //var haulersNeeded=2;
+    var haulersNeeded=2;
 
     if (energyAvav<450) {
       haulersNeeded=4;
     } else if (energyAvav<600) {
-
       haulersNeeded=3;
     } else {
       haulersNeeded=2;
