@@ -43,7 +43,7 @@ var buildRoads = {
             if (scout[key1].danger==0) {
               console.log('found a safe room');
               var sources = scout[key1].sources;
-              if (!Game.rooms[pos.roomName].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
+              if (!Game.rooms[key1].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
               if (shouldBuildRoadsToSpawns) {
                 for (var key2 in sources) {
                   if (sources.hasOwnProperty(key2)) {
