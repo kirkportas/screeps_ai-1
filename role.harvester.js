@@ -5,8 +5,7 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
         // -- INIT --
-        var sources = Game.spawns['Spawn1'].room.memory.allSources;
-        Memory.test=Game.spawns['Spawn1'].room.memory.allSources;
+        var sources = creep.room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
           var source=sources[i];
           if (source.id === creep.memory.pref && (source.miners.includes(creep.id)==false) && (creep.id != null)) {
