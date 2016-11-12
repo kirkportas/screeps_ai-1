@@ -68,6 +68,7 @@ var mainSpawn = {
       energyInContainers+=struc.store[RESOURCE_ENERGY];
     });
     var haulersNeeded=2;
+
     if (energyInContainers>3000) haulersNeeded++;
 
     var spawnHaulersNeeded=0;
@@ -125,44 +126,29 @@ var mainSpawn = {
       }
 
     }
-
+    var energyAvav = spawn.room.energyCapacityAvailable;
   if (containers.length>=1) {
     if(haulers < haulersNeeded) {
-        var energyAvav = spawn.room.energyCapacityAvailable;
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
         var modules=[];
-        //for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
-        //for (var m=0;m<Math.ceil(modulesOfEach/2);m++) {modules.push(MOVE);}
         createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
-        //var newName = spawn.createCreep(modules, findNextName('hauler'), {role: 'hauler'});
-        //console.log('Spawning new hauler: ' + newName);
     } else if(spawnHaulers < spawnHaulersNeeded) {
         createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
-        //var newName = spawn.createCreep(createBody({move:1, carry:2}), findNextName('spawnHauler'), {role: 'spawnHauler'});
-        //console.log('Spawning new spawnHauler: ' + newName);
     } else  if(builders < buildersNeeded) {
-      var energyAvav = spawn.room.energyCapacityAvailable;
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
       var modules=[];
       for (var m=0;m<modulesOfEach;m++) {modules.push(WORK);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(CARRY);}
       for (var m=0;m<modulesOfEach;m++) {modules.push(MOVE);}
       createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
-      //var newName = spawn.createCreep(modules, findNextName('builder'), {role: 'builder'});
-      //console.log('Spawning new builder: ' + newName);
     } else if(upgraders < 1 || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4)) {
-      var energyAvav = spawn.room.energyCapacityAvailable;
       var modules=[];
       if (links.length>=2) {
-        energyAvav-=200;
-        modules=createBody({move:2, carry:2,work:Math.min(8,Math.floor(energyAvav/100))});
+        createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
       } else {
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
-         modules=createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach});
+          createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
       }
-      createCreepAdvanced(spawn,'upgrader',modules);
-      //var newName = spawn.createCreep(modules, findNextName('upgrader'), {role: 'upgrader'});
-      //console.log('Spawning new upgrader: ' + newName);
     } else if(scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E65S61'});
     } else if(claimers < 0) {
@@ -170,8 +156,7 @@ var mainSpawn = {
     } else if(attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
     } else if(warriors < 0) {
-      var newName = spawn.createCreep([MOVE,MOVE,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK], findNextName('warrior'), {role: 'warrior'});
-      console.log('Spawning new warrior: ' + newName);
+      createCreepAdvanced(spawn,'warrior',createBody({move:2,rangedAttack:4}));
     }  else if(remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E65S61'});
     }
