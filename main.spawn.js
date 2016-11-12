@@ -158,8 +158,8 @@ var mainSpawn = {
       }
     } else if(scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E65S61'});
-    } else if(claimers < 0) {
-      createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:'E65S61'});
+    } else if(claimers < 1) {
+      createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
     } else if(attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
     } else if(warriors < 0) {
