@@ -143,7 +143,7 @@ var mainSpawn = {
     } else  if(builders < buildersNeeded) {
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
       createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
-    } else if(upgraders < 1 upgradersNeeded)) {
+    } else if(upgraders < upgradersNeeded)) {
       if (links.length>=2) {
         createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
       } else {
