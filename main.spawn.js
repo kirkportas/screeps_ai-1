@@ -125,6 +125,7 @@ var mainSpawn = {
     }
       //spawns harvesters per source
 
+      console.log(energyAvav);
       if (energyAvav>=750) {
         //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
         if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
