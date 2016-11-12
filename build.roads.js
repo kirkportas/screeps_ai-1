@@ -50,14 +50,14 @@ var buildRoads = {
                   var posY = source.pos.y;
                   var posRoom = room.name;
                   var targetPos = new RoomPosition(posX,posY,posRoom);
-                  console.log(posX,' ',posY,' ',posRoom,' ','targetPos');
-                  //var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
-                   /* if (!path.incomplete) {
+                  console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
+                  var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
+                    if (!path.incomplete) {
                     for (i = 0; i < path.length; i++) {
                         let pos = path[i];
                         pos.room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
                     }
-                  } */
+                  }
                 }
               }
 
