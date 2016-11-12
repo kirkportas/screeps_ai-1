@@ -72,9 +72,9 @@ var mainSpawn = {
     //var haulersNeeded=2;
 
     if (energyAvav<=300) {
-      haulersNeeded=4;
+      haulersNeeded=5;
     } else if (energyAvav<=450) {
-      haulersNeeded=3;
+      haulersNeeded=4;
     } else {
       haulersNeeded=2;
     }
