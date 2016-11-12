@@ -16,6 +16,7 @@ var roleBuilder = {
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
           creep.memory.targetFix= tasks.findStructureToRepair(creep);
         } */
+        creep.memory.targetFix=null;
 
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
           var targetsPri = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: (structure) => { return (
