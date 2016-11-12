@@ -58,8 +58,8 @@ var buildRoads = {
                     if (path) {
                     for (i = 0; i < path.path.length; i++) {
                         let pos = path.path[i];
-                        //Memory.test=pos;
-                        pos.roomName.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                        Memory.test=pos;
+                        //pos.roomName.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
                     }
                   }
                 }
