@@ -49,6 +49,7 @@ var buildRoads = {
                   var posX = source.pos.x;
                   var posY = source.pos.y;
                   var posRoom = key;
+                  console.log(key);
                   var targetPos = new RoomPosition(posX,posY,posRoom);
                   console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
                   var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
@@ -56,7 +57,7 @@ var buildRoads = {
                     if (!path.incomplete) {
                     for (i = 0; i < path.length; i++) {
                         let pos = path[i];
-                        room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                        //room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
                     }
                   }
                 }
