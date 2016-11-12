@@ -17,6 +17,7 @@ var buildRoads = {
         //BYGG VEI TIL sources
         var sources = room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
+          console.log('en path')
           var source=sources[i];
           var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true, ignoreRoads: true});
           //if (!path.incomplete) {
