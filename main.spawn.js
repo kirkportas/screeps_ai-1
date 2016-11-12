@@ -89,6 +89,11 @@ var mainSpawn = {
     var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
     //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
 
+    if (spawn.room.name=='E65S62') {
+      buildersNeeded=Math.min(buildersNeeded,2);
+      haulersNeeded=Math.min(haulersNeeded,2);
+    }
+
     var upgradersNeeded = 1;
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
     upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-10000)/10000));
