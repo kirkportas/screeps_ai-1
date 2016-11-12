@@ -35,7 +35,7 @@ var buildRoads = {
                 room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             }
         }
-        /*
+
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
         for (var key in scout) {
@@ -52,12 +52,12 @@ var buildRoads = {
                   var targetPos = RoomPosition(posX,posY,posRoom);
                   console.log(pos);
                   var path = posSpawn.findPathTo(pos,{range:1, ignoreCreeps: true});
-                  if (!path.incomplete) {
+                   /* if (!path.incomplete) {
                     for (i = 0; i < path.length; i++) {
                         let pos = path[i];
                         pos.room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
                     }
-                  }
+                  } */
                 }
               }
 
@@ -67,7 +67,7 @@ var buildRoads = {
             ///console.log(key + " -> " + test[key]);
           }
         }
-        */
+
         /*
         //BYgg vei nord til E65S61
         var exitDir = Game.map.findExit(room.name, 'E65S61');
