@@ -84,7 +84,7 @@ var mainSpawn = {
     var upgradersNeeded = 1;
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
     upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-10000)/10000));
-    console.log('upgraders needed':upgradersNeeded)
+    console.log('upgraders needed',upgradersNeeded)
     //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
 
