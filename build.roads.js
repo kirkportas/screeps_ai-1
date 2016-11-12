@@ -49,7 +49,7 @@ var buildRoads = {
                   var posX = source.pos.x;
                   var posY = source.pos.y;
                   var posRoom = room.name;
-                  //var targetPos = new RoomPosition(posX,posY,posRoom);
+                  var targetPos = new RoomPosition(posX,posY,posRoom);
                   console.log(posX,' ',posY,' ',posRoom,' ','targetPos');
                   //var path = posSpawn.findPathTo(posRoom,{range:1, ignoreCreeps: true});
                    /* if (!path.incomplete) {
