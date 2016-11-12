@@ -12,10 +12,10 @@ var roleBuilder = {
 	    }
 
 	    if(creep.memory.building) {
-        /*
+        
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
           creep.memory.targetFix= tasks.findStructureToRepair(creep);
-        } */
+        }
         creep.memory.targetFix=null;
 
         if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
