@@ -69,8 +69,17 @@ var mainSpawn = {
     });
 
 
-    var haulersNeeded=2;
+    //var haulersNeeded=2;
+
+    if (energyAvav<=300) {
+      haulersNeeded=4;
+    } else if (energyAvav<=450) {
+      haulersNeeded=3;
+    } else {
+      haulersNeeded=2;
+    }
     if (energyInContainers>3000) haulersNeeded++;
+
 
     var spawnHaulersNeeded=0;
     if (links.length>=2) {
@@ -110,13 +119,11 @@ var mainSpawn = {
     }
       //spawns harvesters per source
       var energyAvav = spawn.room.energyCapacityAvailable;
-      //console.log(energyAvav);
       if (energyAvav>=750) {
         //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
         if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
           if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
-            //var name = spawn.createCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
             var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
           }
@@ -125,7 +132,6 @@ var mainSpawn = {
         if (source.miners.length<source.slots && source.safe) {
           if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE] == OK)) {
             var preferedSource = source.id;
-            //var name = spawn.createCreep([WORK,WORK,CARRY,MOVE], findNextName('harvester'), {role: 'harvester', pref:preferedSource});
             var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource});
             if(_.isString(name)) {break;}
           }
@@ -133,7 +139,6 @@ var mainSpawn = {
       }
 
     }
-    var energyAvav = spawn.room.energyCapacityAvailable;
   if (containers.length>=1) {
     if(haulers < haulersNeeded) {
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
