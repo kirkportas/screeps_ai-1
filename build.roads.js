@@ -13,7 +13,7 @@ var buildRoads = {
           // Favor roads over plain tiles
           costs.set(structure.pos.x, structure.pos.y, 1);
         } else if (structure.structureType == STRUCTURE_WALL) {
-          console.log('fond wall')
+          //console.log('fond wall')
           // Can't walk through non-walkable buildings
           costs.set(structure.pos.x, structure.pos.y, 255);
         }
