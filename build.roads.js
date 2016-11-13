@@ -21,8 +21,8 @@ var buildRoads = {
           var source=sources[i];
           var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true, ignoreRoads: true});
           //if (!path.incomplete) {
-              for (i = 0; i < path.length; i++) {
-                  let pos = path[i];
+              for (ii = 0; ii < path.length; ii++) {
+                  let pos = path[ii];
                   room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
               }
           //}
