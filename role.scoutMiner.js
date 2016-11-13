@@ -1,6 +1,6 @@
 var tasks = require('tasks');
 
-var roleScout = {
+var roleScoutMiner = {
 
     run: function(creep) {
       if(creep.memory.delivering && creep.carry.energy == 0) {
@@ -57,4 +57,4 @@ var roleScout = {
     }
 };
 
-module.exports = roleScout;
+module.exports = roleScoutMiner;
