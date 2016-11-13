@@ -12,10 +12,7 @@ var buildRoads = {
         if (structure.structureType === STRUCTURE_ROAD) {
           // Favor roads over plain tiles
           costs.set(structure.pos.x, structure.pos.y, 1);
-        } else if (structure.structureType !== STRUCTURE_CONTAINER &&
-                  structure.structureType !== STRUCTURE_WALL &&
-                   (structure.structureType !== STRUCTURE_RAMPART ||
-                    !structure.my)) {
+        } else if (structure.structureType == STRUCTURE_WALL) {
           // Can't walk through non-walkable buildings
           costs.set(structure.pos.x, structure.pos.y, 0xff);
         }
