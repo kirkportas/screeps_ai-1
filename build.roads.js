@@ -6,7 +6,6 @@ var buildRoads = {
       // supports searches which span multiple rooms you should be careful!
       if (!room) return;
       let costs = new PathFinder.CostMatrix;
-      console.log(room.name);
 
       room.find(FIND_STRUCTURES).forEach(function(structure) {
         if (structure.structureType === STRUCTURE_ROAD) {
@@ -44,7 +43,6 @@ var buildRoads = {
         //BYGG VEI TIL sources
         var sources = room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
-          console.log('en path')
           var source=sources[i];
           var path = posSpawn.findPathTo(Game.getObjectById(source.id),{range:1, ignoreCreeps: true, ignoreRoads: true});
           //if (!path.incomplete) {
@@ -69,7 +67,6 @@ var buildRoads = {
         for (var key1 in scout) {
           if (scout.hasOwnProperty(key1)) {
             if (scout[key1].danger==0) {
-              console.log('found a safe room');
               var sources = scout[key1].sources;
               if ((Game.rooms[key1]!=undefined) && !Game.rooms[key1].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
               if (shouldBuildRoadsToSpawns) {
