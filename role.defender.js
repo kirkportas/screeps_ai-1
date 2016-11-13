@@ -27,7 +27,7 @@ var roleDefender = {
           if (creep.rangedAttack(targetsLowestHits[0]) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetsLowestHits[0]);
           }
-        }else  if (targetClosest) {
+        } else if (targetClosest) {
         if (creep.rangedAttack(targetClosest) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetClosest);
         }
