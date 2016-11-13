@@ -217,7 +217,7 @@ var mainSpawn = {
 
 */
 
-  var creep = spawn.pos.findClosestByRange(FIND_MY_REEPS);
+  var creep = spawn.pos.findClosestByRange(FIND_MY_CREEPS);
   if ((creep && creep.memory.role=='builder' && buildersNeeded==0) ||creep.memory.spawnerAction=='KILL') {
     spawn.recycleCreep(creep);
   } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
