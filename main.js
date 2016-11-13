@@ -56,6 +56,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'scout') {roleScout.run(creep);}
           if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
           if(creep.memory.role == 'defender') {roleDefender.run(creep);}
+          if(creep.memory.role == 'attacker') {roleAttacker.run(creep);}
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
