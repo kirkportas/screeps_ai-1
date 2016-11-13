@@ -104,6 +104,12 @@ var mainSpawn = {
     console.log('builders needed',buildersNeeded)
     //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
+    var defendersNeeded = 0;
+    var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS).length;
+    if (hostiles>1) {
+      defendersNeeded=(hostiles-1);
+    }
+
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -153,7 +159,8 @@ var mainSpawn = {
         createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
     } else if(spawnHaulers < spawnHaulersNeeded) {
         createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
-    } else if(spawn.room.name=='E65S62' && defenders < 0) {
+    } else if(defenders < defendersNeeded) {
+      var modulesOfEach = Math.min(4,Math.floor(energyNow/200));
       createCreepAdvanced(spawn,'defender',createBody({move:1,rangedAttack:1}));
     } else if(builders < buildersNeeded) {
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
