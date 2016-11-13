@@ -12,7 +12,8 @@ var roleDefender = {
         } */
 
         var targetClosest = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
-        var targetsLowestHits = (creep.room.find(FIND_HOSTILE_CREEPS));
+        var targetsLowestHits = creep.pos.findInRange(FIND_HOSTILE_CREEPS,3);
+        targetsLowestHits=_.sortBy(targetsLowestHits, creep => creep.hits);
         //MASS ATTACK CALC
         var targets1 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,1).length);
         var targets2 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,2).length)-targets1;
@@ -22,7 +23,11 @@ var roleDefender = {
 
         if (possibleDmg>10) {
           creep.rangedMassAttack();
-        } else  if (targetClosest) {
+        } else if (targetsLowestHits.length) {
+          if (creep.rangedAttack(targetsLowestHits[0]) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(targetsLowestHits[0]);
+          }
+        }else  if (targetClosest) {
         if (creep.rangedAttack(targetClosest) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetClosest);
         }
