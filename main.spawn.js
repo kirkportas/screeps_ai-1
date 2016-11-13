@@ -45,7 +45,7 @@ var mainSpawn = {
     var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
     var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
 
-    var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom='E65S63').length;
+    var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E65S63').length;
 
 
     var energyNow = spawn.room.energyAvailable;
