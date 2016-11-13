@@ -26,7 +26,7 @@ var mainSpawn = {
       return modules;
     }
     global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
-      memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction='RENEW'}
+      memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction:'RENEW'}
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
       if (spawn.canCreateCreep(body)) {
         var name = spawn.createCreep(body, findNextName(type),memory1);
