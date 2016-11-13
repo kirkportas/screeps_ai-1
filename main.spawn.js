@@ -42,7 +42,6 @@ var mainSpawn = {
             if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue;
             for (var sourceId in sources) {
               if (sources.hasOwnProperty(sourceId)) {
-                console.log(sourceId);
                 var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
                 if (harvesters<2) createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
                 break;
