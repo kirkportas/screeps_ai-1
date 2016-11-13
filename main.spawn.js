@@ -45,6 +45,9 @@ var mainSpawn = {
     var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
     var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
 
+    var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom='E65S63').length;
+
+
     var energyNow = spawn.room.energyAvailable;
     var energyAvav = spawn.room.energyCapacityAvailable;
     console.log(energyNow,'-',energyAvav);
@@ -182,6 +185,8 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E64S62'});
     } else if(spawn.room.name=='E65S61' && remoteBuilders < 2) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
+    } else if (spawn.room.name=='E65S62' && offSiteMiners11<2) {
+      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:2,carry:2,work:2}),{targetRoom:'E65S63'});
     }
   }
 
