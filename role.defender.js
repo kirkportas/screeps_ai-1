@@ -18,7 +18,7 @@ var roleDefender = {
         var targets1 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,1).length);
         var targets2 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,2).length)-targets1;
         var targets3 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,3).length)-targets2-targets1;
-        var possibleDmg= targets1*10+targets2*4+targets1*1;
+        var possibleDmg= targets1*10+targets2*4+targets3*1;
         console.log('pos dmg',possibleDmg,' tot targets: ',targets1,' ',targets2,' ',targets3);
 
         if (possibleDmg>10) {
