@@ -33,7 +33,10 @@ var roleDefender = {
           creep.moveTo(targetClosest);
         }
       } else if (creep.memory.spawnerAction.localeCompare('KILL')) {
-          creep.moveTo(creep.room.spawn);
+          var spawn=creep.room.find(FIND_MY_SPAWNS)[0];
+          if (spawn) {
+            creep.moveTo(spawn);
+          }
         } else if (flag!=undefined && flag.pos.roomName==creep.memory.homeRoom) {
           creep.moveTo(flag.pos);
         } else {
