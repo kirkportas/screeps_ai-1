@@ -23,7 +23,7 @@ var roleRemotebuilder = {
                   creep.moveTo(targetsAll);
               }
             } else {
-              tasks.deliverSourceToMain(creep);
+              //tasks.deliverSourceToMain(creep);
             }
         } else {
           if (creep.memory.target===null || creep.memory.target===undefined) {
