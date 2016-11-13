@@ -21,7 +21,7 @@ var tasks = {
         });
 
         Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myConstructionSites=myConstructionSites.length;
-        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].damagedBuildings=damagedBuildings;
+        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myDamagedStructures=damagedBuildings;
 
         if (creep.room.find(FIND_HOSTILE_CREEPS).length||creep.room.find(FIND_HOSTILE_STRUCTURES).length) {
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
