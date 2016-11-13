@@ -55,9 +55,7 @@ var buildRoads = {
                     var posRoom = key1;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
                     console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
-                    //var path = posSpawn.findPathTo(targetPos,{range:1, ignoreCreeps: true});
                     var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true, ignoreDestructibleStructures:false});
-                    //Memory.test=path;
                       if (path) {
                       for (i = 0; i < path.path.length; i++) {
                           let pos = path.path[i];
@@ -69,6 +67,10 @@ var buildRoads = {
                     }
                   }
                 }
+            } else {   //SHOULD BUILD ROAD TO OWN ROOM
+              var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true, ignoreDestructibleStructures:false});
+
+
             }
 
             }
