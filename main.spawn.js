@@ -116,6 +116,9 @@ var mainSpawn = {
     if (hostiles>1) {
       defendersNeeded=(hostiles-1);
     }
+    if (spawn.room.name=='E65S62') {
+      defendersNeeded=4;
+    }
 
 
     for(var name in Memory.creeps) {
