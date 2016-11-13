@@ -172,7 +172,7 @@ var mainSpawn = {
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
           createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
       }
-    } else if(spawn.room.name=='E65S62' && scouts < 1) {
+    } else if(spawn.room.name=='E65S62' && scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S62'});
     } else if(spawn.room.name=='E65S62' && claimers < 1) {
       createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
