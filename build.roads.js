@@ -32,7 +32,7 @@ var buildRoads = {
 
 
         // FJERNER ALLE VEIER
-        if (true) {
+        if (false) {
           var allRoads = room.find(FIND_CONSTRUCTION_SITES, {filter: { structureType: STRUCTURE_ROAD }});
           allRoads.forEach(road => road.remove());
       }
