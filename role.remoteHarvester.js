@@ -12,7 +12,7 @@ var roleRemoteHarvester = {
       //var startRoom='E65S62';
       //var targetRoom='E65S61';
 
-      creep.memory.pref='57ef9eb986f108ae6e60fcd6';
+      //creep.memory.pref='57ef9eb986f108ae6e60fcd6';
 
       if(!creep.memory.delivering) {
         creep.say('1');
@@ -32,8 +32,8 @@ var roleRemoteHarvester = {
           if (creep.memory.target===null || creep.memory.target===undefined) {
             creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom]);
           }
-          //tasks.harvestPrefered(creep);
-          tasks.harvestBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom],creep.memory.target);
+          tasks.harvestPrefered(creep);
+          //tasks.harvestBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom],creep.memory.target);
         }
       } else {
         creep.say('2');

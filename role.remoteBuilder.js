@@ -23,7 +23,7 @@ var roleRemotebuilder = {
                   creep.moveTo(targetsAll);
               }
             } else {
-              //tasks.deliverSourceToMain(creep);
+              //tasks.deliverSourceToMain(creep); //KRÆSJER SIDEN SPAWN IKKE FINNES NØDV
             }
         } else {
           if (creep.memory.target===null || creep.memory.target===undefined) {
