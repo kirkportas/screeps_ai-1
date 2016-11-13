@@ -33,6 +33,23 @@ var mainSpawn = {
       console.log('Spawning new '+type+': '+ name);
       return name;
     }
+    global.spawnRemoteHarvesters = function(spawn) {
+      var scout=room.memory.scout;
+      for (var k1 in scout) {
+        if (scout.hasOwnProperty(k1)) {
+          if (scout[k1].danger==0) {
+            var sources = scout[k1].sources;
+            if ((Game.rooms[k1]==undefined) || Game.rooms[k1].find(FIND_MY_SPAWNS)[0]) continue;
+            for (var key2 in sources) {
+              if (sources.hasOwnProperty(key2)) {
+                console.log(key2);
+              }
+          }
+        }
+      }
+    }
+    return false;
+  }
 
     var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
@@ -181,6 +198,8 @@ var mainSpawn = {
         var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
           createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
       }
+    } else if (spawnRemoteHarvesters(spawn)) {
+      //ingenting
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
     } else if(spawn.room.name=='E65S62' && claimers < 1) {
