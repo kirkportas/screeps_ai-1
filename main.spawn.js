@@ -38,7 +38,7 @@ var mainSpawn = {
     var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
     var spawnHaulers = _.filter(Game.creeps, (creep)  => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'spawnHauler').length;
     var upgraders = _.filter(Game.creeps, (creep)     => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
-    var builders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'builder'&& creep.ticksToLive>50).length;
+    var builders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'builder'&& creep.ticksToLive>10).length;
     var scouts = _.filter(Game.creeps, (creep)        => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
     var defenders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'defender').length;
     var attacker = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'attacker').length;
