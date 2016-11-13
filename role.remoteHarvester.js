@@ -43,8 +43,14 @@ var roleRemoteHarvester = {
                           filter: (structure) => {
                             return (structure.structureType == STRUCTURE_STORAGE)
                         }})[0];
-          if(creep.transfer(centralContainer, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
-              creep.moveTo(centralContainer);
+          if (centralContainer.length) {
+          if(creep.transfer(centralContainer[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+              creep.moveTo(centralContainer[0]);
+            }
+          } else if (containers.length) {
+            if(creep.transfer(containers[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+                creep.moveTo(containers[0]);
+              }
           }
         }
 
