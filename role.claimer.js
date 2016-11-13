@@ -13,7 +13,7 @@ var roleClaimer = {
           creep.moveTo(creep.room.controller);
         }  */
         if (creep.reserveController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-          console.log(creep.moveTo(Game.rooms[targetRoom].controller));
+          console.log(creep.moveTo(Game.rooms[creep.memory.targetRoom].controller));
         }
 
       }
