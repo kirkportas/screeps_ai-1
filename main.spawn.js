@@ -181,7 +181,7 @@ var mainSpawn = {
       }
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
-    } else if(spawn.room.name=='E65S62' && claimers < 1) {
+    } else if(spawn.room.name=='E65S62' && claimers < 0) {
       createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
     } else if(attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
