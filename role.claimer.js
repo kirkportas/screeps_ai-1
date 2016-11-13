@@ -11,10 +11,11 @@ var roleClaimer = {
         var controllerId = Game.rooms[creep.memory.targetRoom].controller.id;
         console.log(controllerId);
         var controller = Game.getObjectById(controllerId);
-
+        creep.moveTo(controller);
+        /*
         if (creep.reserveController(controller) == ERR_NOT_IN_RANGE) {
           creep.moveTo(controller);
-        }
+        } */
 
       }
     }
