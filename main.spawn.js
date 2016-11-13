@@ -99,8 +99,7 @@ var mainSpawn = {
     //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
 
     if (spawn.room.name=='E65S62') {
-      //buildersNeeded=1;
-      haulersNeeded=Math.min(haulersNeeded,2);
+      
     }
 
     var upgradersNeeded = 0;
