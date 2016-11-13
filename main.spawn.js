@@ -34,7 +34,7 @@ var mainSpawn = {
       return name;
     }
     global.spawnRemoteHarvesters = function(spawn) {
-      var scout=room.memory.scout;
+      var scout=spawn.room.memory.scout;
       for (var k1 in scout) {
         if (scout.hasOwnProperty(k1)) {
           if (scout[k1].danger==0) {
