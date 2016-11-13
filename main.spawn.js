@@ -196,7 +196,7 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E65S63', pref: '57ef9eb986f108ae6e60fcd6'});
     } else if (spawn.room.name=='E65S62' && offSiteMiners21<2) {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S62', pref: '57ef9ea486f108ae6e60fa57'});
-    } else if (spawn.room.name=='E65S62' && offSiteMiners22<2) {
+    } else if (spawn.room.name=='E65S62' && offSiteMiners22<0) {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S62', pref: '57ef9ea486f108ae6e60fa55'});
     } else if (spawn.room.name=='E65S61' && offSiteMiners31<0) {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa51'});
