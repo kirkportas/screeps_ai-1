@@ -36,7 +36,7 @@ var roleDefender = {
           if (spawn) {
             creep.moveTo(spawn);
           }
-        } else if (flag!=undefined && flag.pos.roomName==creep.memory.homeRoom) {
+        } else if (flag!=undefined /*&& flag.pos.roomName==creep.memory.homeRoom*/) {
           creep.moveTo(flag.pos);
         } else {
           creep.moveTo(creep.room.controller);
