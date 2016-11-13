@@ -45,7 +45,11 @@ var mainSpawn = {
     var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
     var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
 
-    var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E65S63').length;
+    var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E65S63' && '57ef9eb986f108ae6e60fcd6').length;
+    var offSiteMiners21 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa57').length;
+    var offSiteMiners22 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa55').length;
+    var offSiteMiners31 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa51').length;
+    var offSiteMiners32 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa53').length;
 
 
     var energyNow = spawn.room.energyAvailable;
@@ -187,8 +191,25 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
     } else if (spawn.room.name=='E65S62' && offSiteMiners11<2) {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:2,carry:2,work:2}),{targetRoom:'E65S63', pref: '57ef9eb986f108ae6e60fcd6'});
+    } else if (spawn.room.name=='E65S62' && offSiteMiners21<2) {
+      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S62', pref: '57ef9ea486f108ae6e60fa57'});
+    } else if (spawn.room.name=='E65S62' && offSiteMiners22<2) {
+      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S62', pref: '57ef9ea486f108ae6e60fa55'});
+    } else if (spawn.room.name=='E65S61' && offSiteMiners31<2) {
+      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa51'});
+    } else if (spawn.room.name=='E65S61' && offSiteMiners32<2) {
+      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa53'});
     }
   }
+
+  /*
+  var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E65S63' && '57ef9eb986f108ae6e60fcd6').length;
+  var offSiteMiners21 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa57').length;
+  var offSiteMiners22 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa55').length;
+  var offSiteMiners31 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa51').length;
+  var offSiteMiners32 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa53').length;
+
+*/
 
   var creep = spawn.pos.findClosestByRange(FIND_CREEPS);
   if ((creep && creep.memory.role=='builder' && buildersNeeded==0) ||creep.memory.spawnerAction=='KILL') {
