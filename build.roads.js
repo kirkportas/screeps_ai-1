@@ -1,8 +1,40 @@
 var buildRoads = {
+
+    getCallback: function(roomName) {
+      let room = Game.rooms[roomName];
+      // In this example `room` will always exist, but since PathFinder
+      // supports searches which span multiple rooms you should be careful!
+      if (!room) return;
+      let costs = new PathFinder.CostMatrix;
+
+      room.find(FIND_STRUCTURES).forEach(function(structure) {
+        if (structure.structureType === STRUCTURE_ROAD) {
+          // Favor roads over plain tiles
+          costs.set(structure.pos.x, structure.pos.y, 1);
+        } else if (structure.structureType !== STRUCTURE_CONTAINER &&
+                   (structure.structureType !== STRUCTURE_RAMPART ||
+                    !structure.my)) {
+          // Can't walk through non-walkable buildings
+          costs.set(structure.pos.x, structure.pos.y, 0xff);
+        }
+      });
+
+      // Avoid creeps in the room
+      room.find(FIND_CREEPS).forEach(function(creep) {
+        costs.set(creep.pos.x, creep.pos.y, 0xff);
+      });
+
+      return costs;
+    },
+
     run: function(room) {
         var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
         var posRes = posSpawn.findClosestByRange(FIND_SOURCES);
         var posCtr = room.controller;
+
+
+
+
 
 
         // FJERNER ALLE VEIER
@@ -55,7 +87,7 @@ var buildRoads = {
                     var posRoom = key1;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
                     console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
-                    var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true, ignoreDestructibleStructures:false});
+                    var path = new PathFinder.search(posSpawn,{pos:targetPos,range:1},{roomCallback:buildRoads.getCallback(roomName)} );
                       if (path) {
                       for (i = 0; i < path.path.length; i++) {
                           let pos = path.path[i];
