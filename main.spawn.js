@@ -100,7 +100,7 @@ var mainSpawn = {
 
     if (spawn.room.name=='E65S62') {
       //buildersNeeded=1;
-      haulersNeeded=Math.min(haulersNeeded,1);
+      haulersNeeded=Math.min(haulersNeeded,2);
     }
 
     var upgradersNeeded = 0;
