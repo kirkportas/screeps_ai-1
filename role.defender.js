@@ -32,7 +32,7 @@ var roleDefender = {
         if (creep.rangedAttack(targetClosest) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetClosest);
         }
-      } else if (flag!=undefined) {
+      } else if (flag!=undefined && flag.pos.room.name==creep.memory.homeRoom) {
         creep.moveTo(flag.pos);
       } else {
         creep.moveTo(creep.room.controller);
