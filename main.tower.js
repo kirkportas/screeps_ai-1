@@ -18,7 +18,8 @@ var mainTower = {
       });
       allHostiles=_.sortBy(allHostiles, creep => creep.hits);
       closeHostiles=_.sortBy(closeHostiles, creep => creep.hits);
-      var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/1 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
+      var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/1 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
+      closestDamagedStructure=_.sortBy(closestDamagedStructure, s => s.hits);
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
 
       if(closeHostiles.length) {
