@@ -21,7 +21,6 @@ var roleDefender = {
         var targets3 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,3).length)-targets2-targets1;
         var possibleDmg= targets1*10+targets2*4+targets3*1;
         console.log('pos dmg',possibleDmg,' tot targets: ',targets1,' ',targets2,' ',targets3);
-        creep.say(creep.memory.spawnerAction);
         if (possibleDmg>10) {
           creep.rangedMassAttack();
         } else if (targetsLowestHits.length) {
