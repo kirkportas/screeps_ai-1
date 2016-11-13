@@ -197,7 +197,6 @@ var mainSpawn = {
     }
   if (containers.length>=1) {
     if(haulers < haulersNeeded) {
-        console.log('test')
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
         createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
     } else if(spawnHaulers < spawnHaulersNeeded) {
