@@ -39,7 +39,7 @@ var roleRemoteHarvester = {
 
         } else {
           var containers = Game.rooms[creep.memory.homeRoom].find(FIND_MY_STRUCTURES);
-          var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,8, {
+          var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {
                           filter: (structure) => {
                             return (structure.structureType == STRUCTURE_STORAGE)
                         }})[0];
