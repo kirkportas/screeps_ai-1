@@ -6,6 +6,7 @@ var buildRoads = {
       // supports searches which span multiple rooms you should be careful!
       if (!room) return;
       let costs = new PathFinder.CostMatrix;
+      console.log(room.name);
 
       room.find(FIND_STRUCTURES).forEach(function(structure) {
         if (structure.structureType === STRUCTURE_ROAD) {
