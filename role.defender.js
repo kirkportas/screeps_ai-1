@@ -30,7 +30,7 @@ var roleDefender = {
         if (creep.rangedAttack(targetClosest) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetClosest);
         }
-      } else if (creep.memory.spawnerAction.localeCompare('KILL')) {
+      } else if (creep.memory.spawnerAction=='kill') {
         creep.say('ya')
           var spawn=creep.room.find(FIND_MY_SPAWNS)[0];
           if (spawn) {
