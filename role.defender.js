@@ -20,7 +20,6 @@ var roleDefender = {
         var targets2 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,2).length)-targets1;
         var targets3 = (creep.pos.findInRange(FIND_HOSTILE_CREEPS,3).length)-targets2-targets1;
         var possibleDmg= targets1*10+targets2*4+targets3*1;
-        console.log('pos dmg',possibleDmg,' tot targets: ',targets1,' ',targets2,' ',targets3);
         if (possibleDmg>10) {
           creep.rangedMassAttack();
         } else if (targetsLowestHits.length) {
@@ -32,6 +31,7 @@ var roleDefender = {
           creep.moveTo(targetClosest);
         }
       } else if (creep.memory.spawnerAction.localeCompare('KILL')) {
+        creep.say('ya')
           var spawn=creep.room.find(FIND_MY_SPAWNS)[0];
           if (spawn) {
             creep.moveTo(spawn);
