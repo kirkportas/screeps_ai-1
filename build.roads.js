@@ -77,7 +77,6 @@ var buildRoads = {
               console.log('found a safe room');
               var sources = scout[key1].sources;
               if ((Game.rooms[key1]!=undefined) && !Game.rooms[key1].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
-              console.log(shouldBuildRoadsToSpawns);
               if (shouldBuildRoadsToSpawns) {
                 for (var key2 in sources) {
                   if (sources.hasOwnProperty(key2)) {
@@ -86,14 +85,12 @@ var buildRoads = {
                     var posY = source.pos.y;
                     var posRoom = key1;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
-                    console.log(posX,' ',posY,' ',posRoom,' ',targetPos);
                     var path = new PathFinder.search(posSpawn,{pos:targetPos,range:1},{roomCallback: function(roomName) {buildRoads.getCallback(roomName)}} );
                       if (path) {
                       for (i = 0; i < path.path.length; i++) {
                           let pos = path.path[i];
                           if (Game.rooms[pos.roomName]!=undefined) {
                             var test = Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
-                            console.log(test);
                           } else {console.log('undefined');}
                       }
                     }
