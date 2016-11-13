@@ -39,18 +39,33 @@ var mainSpawn = {
     global.spawnRemoteHarvesters = function(spawn) {
       var scout=spawn.room.memory.scout;
       for (var roomName in scout) {
-          if (scout[roomName].danger==0) {
-            var sources = scout[roomName].sources;
-            if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue;
-            for (var sourceId in sources) {
-                var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
-                if (harvesters<2) createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
-                return true;
-          }
+        if (scout[roomName].danger==0) {
+          var sources = scout[roomName].sources;
+          if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+          for (var sourceId in sources) {
+            var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
+            if (harvesters<2) createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
+            return true;
         }
+      }
     }
     return false;
   }
+  global.spawnRemoteBuilders = function(spawn) {
+    var scout=spawn.room.memory.scout;
+    for (var roomName in scout) {
+      if (scout[roomName].danger==0) {
+        var constructionSites = scout[roomName].myConstructionSites;
+        var damagedBuildings = scout[roomName].myDamagedStructures;
+        if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+        var builders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
+        var buildersNeeded= Math.min(2,Math.floor((constructionSites+damagedBuildings)/25));
+        if (buildersNeeded<1) createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName});
+        return true;
+    }
+  }
+  return false;
+}
 
     var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
