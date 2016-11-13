@@ -40,9 +40,9 @@ var mainSpawn = {
           if (scout[k1].danger==0) {
             var sources = scout[k1].sources;
             if ((Game.rooms[k1]==undefined) || Game.rooms[k1].find(FIND_MY_SPAWNS)[0]) continue;
-            for (var key2 in sources) {
-              if (sources.hasOwnProperty(key2)) {
-                console.log(key2);
+            for (var sourceId in sources) {
+              if (sources.hasOwnProperty(sourceId)) {
+                console.log(sourceId);
               }
           }
         }
