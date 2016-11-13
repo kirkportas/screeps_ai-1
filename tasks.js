@@ -11,7 +11,17 @@ var tasks = {
         }
 
         var myConstructionSites = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
+        var allStructures = creep.room.find(FIND_STRUCTURES);
+        var damagedBuildings = 0;
+
+        _.forEach(allStructures, function(struc){
+          if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5) {
+            damagedBuildings++;
+          }
+        });
+
         Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myConstructionSites=myConstructionSites.length;
+        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myDamagedStructures=myDamagedStructures.length;
 
         if (creep.room.find(FIND_HOSTILE_CREEPS).length||creep.room.find(FIND_HOSTILE_STRUCTURES).length) {
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
