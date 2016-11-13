@@ -160,7 +160,7 @@ var mainSpawn = {
     } else if(spawnHaulers < spawnHaulersNeeded) {
         createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
     } else if(defenders < defendersNeeded) {
-      var modulesOfEach = Math.min(4,Math.floor(energyNow/200));
+      var modulesOfEach = Math.max(2,Math.min(4,Math.floor(energyNow/200)));
       createCreepAdvanced(spawn,'defender',createBody({move:1,rangedAttack:1}));
     } else if(builders < buildersNeeded) {
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
