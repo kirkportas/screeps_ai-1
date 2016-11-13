@@ -103,7 +103,7 @@ var mainSpawn = {
       haulersNeeded=Math.min(haulersNeeded,1);
     }
 
-    var upgradersNeeded = 1;
+    var upgradersNeeded = 0;
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
     if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=1;
