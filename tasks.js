@@ -140,8 +140,8 @@ var tasks = {
 
         if (targetCrit) {
           return targetCrit.id;
-        } else if (targetAll) {
-          return targetAll;
+        } else if (targetsAll) {
+          return targetsAll;
         } else return null;
     },
     findStructureToRepairIdle: function(creep) {
