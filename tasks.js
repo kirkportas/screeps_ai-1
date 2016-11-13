@@ -1,5 +1,26 @@
 var tasks = {
 
+    scoutRoom: function(creep) {
+      if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
+        if (Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout<5) return;
+
+        var sources= creep.room.find(FIND_SOURCES);
+        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
+        for (var i = 0; i < sources.length; i++) {
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]={pos: sources[i].pos}
+        }
+
+        if (creep.room.find(FIND_HOSTILE_CREEPS).length||creep.room.find(FIND_HOSTILE_STRUCTURES).length) {
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
+        } else {
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
+        }
+        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
+
+
+      }
+    },
+
     deliverSource: function(creep) {
       var targets = creep.room.find(FIND_STRUCTURES, {
               filter: (structure) => {

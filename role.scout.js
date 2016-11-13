@@ -8,25 +8,6 @@ var roleScout = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
-        if (Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
-  
-          var sources= creep.room.find(FIND_SOURCES);
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
-          for (var i = 0; i < sources.length; i++) {
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]={pos: sources[i].pos}
-            //room.memory.scout[rooms[i]]={timeSinceLastScout:-1, danger:-1,sources:[]};
-          }
-
-
-          if (creep.room.find(FIND_HOSTILE_CREEPS).length||creep.room.find(FIND_HOSTILE_STRUCTURES).length) {
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
-          } else {
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
-          }
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
-
-
-        }
 
         if (creep.moveTo(Game.rooms[creep.memory.targetRoom].controller) == ERR_NO_PATH) {
           var target = creep.pos.findClosestByRange(FIND_STRUCTURES);

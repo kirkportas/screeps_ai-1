@@ -3,6 +3,8 @@ var mainRoom = require('main.room');
 var mainTower = require('main.tower');
 var mainScout = require('main.scout');
 
+var tasks = require('tasks');
+
 var roleHarvester = require('role.harvester');
 var roleHauler = require('role.hauler');
 var roleSpawnhauler = require('role.spawnhauler');
@@ -47,7 +49,8 @@ module.exports.loop = function () {
   timeLast=cpu.getUsed();
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        //try {
+        try {
+          tasks.scoutRoom(creep);
           if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
           if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
@@ -60,7 +63,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
-      //} catch(err) { Game.notify(err)}
+      } catch(err) { Game.notify(err);console.log(err);}
     }
     var timeAI = cpu.getUsed()-timeLast;
 
