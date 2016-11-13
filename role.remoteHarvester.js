@@ -15,7 +15,6 @@ var roleRemoteHarvester = {
       //creep.memory.pref='57ef9eb986f108ae6e60fcd6';
 
       if(!creep.memory.delivering) {
-        creep.say('1');
         if(creep.room.name != creep.memory.targetRoom) {
           var res = creep.moveTo(Game.getObjectById(creep.memory.pref));
           if (res == ERR_INVALID_TARGET||res==ERR_NO_PATH) {
@@ -28,7 +27,6 @@ var roleRemoteHarvester = {
         }
       } else {
         var homeSpawn=Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
-        creep.say('2');
         if(creep.room.name != creep.memory.homeRoom) {
           var res = creep.moveTo(homeSpawn) ;
           if (res == ERR_INVALID_TARGET||res==ERR_NO_PATH) {
