@@ -11,6 +11,7 @@ var roleDefender = {
           creep.rangedAttack(targets[0]);
         } */
 
+        var flag = Game.flags['Flag1'];
         var targetClosest = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
         var targetsLowestHits = creep.pos.findInRange(FIND_HOSTILE_CREEPS,3);
         targetsLowestHits=_.sortBy(targetsLowestHits, creep => creep.hits);
@@ -31,9 +32,10 @@ var roleDefender = {
         if (creep.rangedAttack(targetClosest) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetClosest);
         }
-      } else {
-        var flag = Game.flags['Flag1'];
+      } else if (flag!=undefined) {
         creep.moveTo(flag.pos);
+      } else {
+        creep.moveTo(creep.room.controller);
       }
     }
 };
