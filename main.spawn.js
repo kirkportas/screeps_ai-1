@@ -35,14 +35,16 @@ var mainSpawn = {
     }
     global.spawnRemoteHarvesters = function(spawn) {
       var scout=spawn.room.memory.scout;
-      for (var k1 in scout) {
-        if (scout.hasOwnProperty(k1)) {
-          if (scout[k1].danger==0) {
-            var sources = scout[k1].sources;
-            if ((Game.rooms[k1]==undefined) || Game.rooms[k1].find(FIND_MY_SPAWNS)[0]) continue;
+      for (var roomName in scout) {
+        if (scout.hasOwnProperty(roomName)) {
+          if (scout[roomName].danger==0) {
+            var sources = scout[roomName].sources;
+            if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue;
             for (var sourceId in sources) {
               if (sources.hasOwnProperty(sourceId)) {
                 console.log(sourceId);
+                var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
+                createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
               }
           }
         }
