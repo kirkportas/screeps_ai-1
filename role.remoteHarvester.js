@@ -36,12 +36,12 @@ var roleRemoteHarvester = {
         }
       } else {
         creep.say('2');
-        if(creep.room.name != creep.memory.startRoom) {
-          var exitDir = Game.map.findExit(creep.room, creep.memory.startRoom);
+        if(creep.room.name != creep.memory.homeRoom) {
+          var exitDir = Game.map.findExit(creep.room, creep.memory.homeRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
           creep.moveTo(exit);
         } else {
-          var containers = Game.rooms[creep.memory.startRoom].find(FIND_MY_STRUCTURES);
+          var containers = Game.rooms[creep.memory.homeRoom].find(FIND_MY_STRUCTURES);
           var centralContainer=Game.spawns['Spawn1'].pos.findInRange(FIND_STRUCTURES,8, {
                           filter: (structure) => {
                             return (structure.structureType == STRUCTURE_STORAGE)
