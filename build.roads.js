@@ -81,7 +81,7 @@ var buildRoads = {
                     var posY = source.pos.y;
                     var posRoom = key1;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
-                    var path = new PathFinder.search(posSpawn,{pos:targetPos,range:1},{plainCost: 2,swampCost: 10,roomCallback: function(roomName) {buildRoads.getCallback(roomName)}} );
+                    var path = new PathFinder.search(posSpawn,{pos:targetPos,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {buildRoads.getCallback(roomName)}} );
                       if (path) {
                       for (i = 0; i < path.path.length; i++) {
                           let pos = path.path[i];
