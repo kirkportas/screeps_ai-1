@@ -26,12 +26,15 @@ var mainSpawn = {
       return modules;
     }
     global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
-      memory1 = {role: type, homeRoom: spawn.room.name }
-      memory1.spawnerAction='RENEW';
+      memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction='RENEW'}
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
-      var name = spawn.createCreep(body, findNextName(type),memory1);
-      console.log('Spawning new '+type+': '+ name);
-      return name;
+      if (spawn.canCreateCreep(body)) {
+        var name = spawn.createCreep(body, findNextName(type),memory1);
+        console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name);
+        return name;
+      }
+      return null;
+
     }
     global.spawnRemoteHarvesters = function(spawn) {
       var scout=spawn.room.memory.scout;
@@ -212,9 +215,10 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E64S62'});
     } else if(spawn.room.name=='E65S61' && remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
+    }
 
 
-
+      /*
     } else if (spawn.room.name=='E65S62' && spawn.room.memory.scout['E65S63'].danger==0 && offSiteMiners11<2) {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E65S63', pref: '57ef9eb986f108ae6e60fcd6'});
     } else if (spawn.room.name=='E65S62' && spawn.room.memory.scout['E64S62'].danger==0 && offSiteMiners21<2) {
@@ -225,7 +229,7 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa51'});
     } else if (spawn.room.name=='E65S61' && spawn.room.memory.scout['E64S61'].danger==0 && offSiteMiners32<2) {
       createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa53'});
-    }
+    } */
   }
 
   /*
