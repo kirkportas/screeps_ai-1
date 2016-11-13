@@ -180,6 +180,8 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'attacker',createBody({move:1,attack:1}),{targetRoom:'E65S61'});
     } else if(spawn.room.name=='E65S62' && remoteBuilders < 3) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E64S62'});
+    } else if(spawn.room.name=='E65S61' && remoteBuilders < 2) {
+      createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
     }
   }
 
