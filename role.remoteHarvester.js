@@ -5,13 +5,14 @@ var roleRemoteHarvester = {
     run: function(creep) {
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
-            creep.memory.target=null;
       }
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
           creep.memory.delivering = true;
       }
       //var startRoom='E65S62';
       //var targetRoom='E65S61';
+
+      creep.memory.pref='57ef9eb986f108ae6e60fcd6';
 
       if(!creep.memory.delivering) {
         creep.say('1');
