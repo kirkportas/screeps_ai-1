@@ -8,6 +8,9 @@ var roleClaimer = {
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
       } else {
+        var controllerId = Game.rooms[creep.memory.targetRoom].controller.id;
+        console.log(controllerId);
+        Game.getObjectById(controllerId);
         /*
         if (creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {
           creep.moveTo(creep.room.controller);
