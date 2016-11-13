@@ -135,7 +135,7 @@ var tasks = {
     },
     findStructureToRepair: function(creep) {
       //if((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL) || (struct.hits<struct.hitsMax*0.01 && struct.structureType==STRUCTURE_WALL))
-      var targets = creep.room.find(FIND_STRUCTURES, {
+      var targets = creep.pos.findClosestByRange(FIND_STRUCTURES, {
          filter: struct => ((struct.hits<struct.hitsMax*0.50 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<creep.room.memory.wallHitsmin && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
         });
         targets.sort((a,b) => creep.pos.getRangeTo(a) - creep.pos.getRangeTo(b));
