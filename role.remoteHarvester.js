@@ -38,18 +38,15 @@ var roleRemoteHarvester = {
           }
 
         } else {
-          var containers = Game.rooms[creep.memory.homeRoom].find(FIND_MY_STRUCTURES);
-          var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {
-                          filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_STORAGE)
-                        }})[0];
-          if (centralContainer) {
-          if(creep.transfer(centralContainer, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
-              creep.moveTo(centralContainer);
+          var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER)}})[0];
+          var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
+          if (centralStorage) {
+          if(creep.transfer(centralStorage, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+              creep.moveTo(centralStorage);
             }
-          } else if (containers.length) {
-            if(creep.transfer(containers[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
-                creep.moveTo(containers[0]);
+          } else if (centralContainer) {
+            if(creep.transfer(centralContainer, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+                creep.moveTo(centralContainer);
               }
           }
         }
