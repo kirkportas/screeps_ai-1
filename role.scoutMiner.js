@@ -5,7 +5,6 @@ var roleScoutMiner = {
     run: function(creep) {
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
-            creep.memory.delivered+=creep.carryCapacity;
             creep.memory.target=null;
       }
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
@@ -15,6 +14,7 @@ var roleScoutMiner = {
       //var targetRoom='E65S61';
 
       if(!creep.memory.delivering) {
+        creep.say('1');
         if(creep.room.name != creep.memory.targetRoom) {
           var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
@@ -35,6 +35,7 @@ var roleScoutMiner = {
           tasks.harvestBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom],creep.memory.target);
         }
       } else {
+        creep.say('2');
         if(creep.room.name != creep.memory.startRoom) {
           var exitDir = Game.map.findExit(creep.room, creep.memory.startRoom);
           var exit = creep.pos.findClosestByRange(exitDir);
