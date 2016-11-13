@@ -117,7 +117,7 @@ var mainSpawn = {
       defendersNeeded=(hostiles-1);
     }
     if (spawn.room.name=='E65S62') {
-      defendersNeeded=Math.max(2,defendersNeeded);
+      defendersNeeded=Math.max(4,defendersNeeded);
     }
 
 
