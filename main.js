@@ -58,7 +58,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'defender') {roleDefender.run(creep);}
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
-          if(creep.memory.role == 'remoteHarvester') {roleHarvester.run(creep);}
+          if(creep.memory.role == 'remoteHarvester') {roleRemoteharvester.run(creep);}
       //} catch(err) { Game.notify(err)}
     }
     var timeAI = cpu.getUsed()-timeLast;
