@@ -77,7 +77,6 @@ module.exports.loop = function () {
     for (var role in timeData) {
       var avg,tot=0,n=0;
       for (let i=0;i<timeData[role].length;i++) {
-        console.log(timeData[role][i]);
         tot+=timeData[role][i];
         n++;
       }
