@@ -47,8 +47,10 @@ var mainSpawn = {
             console.log(sourceId);
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
               console.log(harvestersRemote);
-            if (harvestersRemote<2) createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
-            return true;
+            if (harvestersRemote<2) {
+              createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
+              return true;
+            }
         }
       }
     }
