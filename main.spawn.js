@@ -64,7 +64,7 @@ var mainSpawn = {
         console.log(spawn.room.name,'  ',roomName,'  ',remoteBuilders,'  ',remoteNeeded)
         if (remoteBuilders<remoteNeeded) {
           console.log('send')
-          //createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
+          createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
           return true;
         }
     }
