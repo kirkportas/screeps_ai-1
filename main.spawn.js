@@ -283,12 +283,16 @@ global.sendScouts = function(spawn) {
 
 */
 
-  var creep = spawn.pos.findClosestByRange(FIND_MY_CREEPS);
-  if ((creep && creep.memory.role=='builder' && buildersNeeded==0) ||creep.memory.spawnerAction=='KILL') {
-    spawn.recycleCreep(creep);
-  } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
-    spawn.renewCreep(creep);
-  }
+  var creeps = spawn.pos.findInRange(FIND_MY_CREEPS,1);
+  _.forEach(creeps, function(creep){
+    if ((creep.memory.spawnerAction=='KILL') {
+      spawn.recycleCreep(creep);
+      break;
+    } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
+      spawn.renewCreep(creep);
+      break;
+    }
+  });
   var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
   var hostileConstroller = spawn.room.controller.pos.findInRange(FIND_HOSTILE_CREEPS,10);
   if (spawn.room.name=='E65S62' && (hostileSpawn.length||hostileConstroller.length)) {
