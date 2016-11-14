@@ -71,6 +71,31 @@ var mainSpawn = {
   }
   return false;
 }
+global.spawnClaimers = function(spawn) {
+  var scout=spawn.room.memory.scout;
+  for (var roomName in scout) {
+    if (scout[roomName].danger==0) {
+      var reservation = scout[roomName].reservation;
+      if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+      if (reservation<3000 && reservation>=0) {
+        let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
+        let claimersNeeded= 2;
+        if (claimers<claimersNeeded) {
+          createCreepAdvanced(spawn,'remoteBuilder',createBody({move:1,claim:1}),{targetRoom:roomName});
+          return true;
+        }
+      }
+
+      let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
+      let remoteNeeded= Math.min(2,Math.ceil((constructionSites+damagedBuildings)/25));
+      if (remoteBuilders<remoteNeeded) {
+        createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:2,work:2}),{targetRoom:roomName});
+        return true;
+      }
+  }
+}
+return false;
+}
 global.sendScouts = function(spawn) {
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
