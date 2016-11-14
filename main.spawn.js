@@ -71,7 +71,6 @@ var mainSpawn = {
   return false;
 }
 global.sendScouts = function(spawn) {
-  return false; //TODO: fjern
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
     if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
@@ -283,7 +282,7 @@ global.sendScouts = function(spawn) {
   var offSiteMiners32 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa53').length;
 
 */
-/*
+
   var creeps = spawn.pos.findInRange(FIND_MY_CREEPS,1);
   _.forEach(creeps, function(creep){
     if (creep.memory.spawnerAction=='KILL') {
@@ -292,7 +291,7 @@ global.sendScouts = function(spawn) {
       spawn.renewCreep(creep);
     }
   });
-  */
+
 
   var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
   var hostileConstroller = spawn.room.controller.pos.findInRange(FIND_HOSTILE_CREEPS,10);
