@@ -71,7 +71,7 @@ var mainSpawn = {
   return false;
 }
 global.sendScouts = function(spawn) {
-  return false;
+  return false; //TODO: fjern
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
     if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
