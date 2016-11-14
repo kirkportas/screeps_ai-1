@@ -81,7 +81,7 @@ global.spawnClaimers = function(spawn) {
         let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
         let claimersNeeded= 2;
         if (claimers<claimersNeeded) {
-          createCreepAdvanced(spawn,'remoteBuilder',createBody({move:1,claim:1}),{targetRoom:roomName});
+          createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:roomName});
           return true;
         }
       }
