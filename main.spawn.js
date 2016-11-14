@@ -106,7 +106,7 @@ global.sendScouts = function(spawn) {
   for (var roomName in scout) {
     if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
     if (scout[roomName].danger==1) {
-      console.log(((Game.times-scout[roomName].lastAttackerSent))
+      console.log(((Game.times-scout[roomName].lastAttackerSent)))
       if (!scout[roomName].lastAttackerSent || ((Game.times-scout[roomName].lastAttackerSent)>500)) {
         if (createCreepAdvanced(spawn,'attacker',createBody({move:3,attack:3}),{targetRoom:roomName})) {
           console.log('sending a attacker to ',roomName);
