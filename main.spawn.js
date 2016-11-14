@@ -85,17 +85,11 @@ global.spawnClaimers = function(spawn) {
           return true;
         }
       }
-
-      let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-      let remoteNeeded= Math.min(2,Math.ceil((constructionSites+damagedBuildings)/25));
-      if (remoteBuilders<remoteNeeded) {
-        createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:2,work:2}),{targetRoom:roomName});
-        return true;
-      }
   }
 }
 return false;
 }
+
 global.sendScouts = function(spawn) {
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
