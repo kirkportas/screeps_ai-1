@@ -2,7 +2,8 @@ var tasks = {
 
     scoutRoom: function(creep) {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
-        if (Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout<5) return;
+        let timeSinceLastScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout;
+        if (timeSinceLastScout<5 && timeSinceLastScout!=-1) return;
 
         var sources= creep.room.find(FIND_SOURCES);
         Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
