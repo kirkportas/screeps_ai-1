@@ -52,7 +52,7 @@ module.exports.loop = function () {
         var creep = Game.creeps[name];
         try {
           //var cpuTime=cpu.getUsed();
-          //tasks.scoutRoom(creep);
+          //tasks.scoutRoom(creep); ///TODO: legg tilbake
           if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
           if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
