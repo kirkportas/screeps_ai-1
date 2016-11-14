@@ -88,7 +88,7 @@ var buildRoads = {
                     }
                   }
                 }
-            } else {   //SHOULD BUILD ROAD TO OWN ROOM
+            } else if (Game.rooms[key1]){   //SHOULD BUILD ROAD TO OWN ROOM
               var target = Game.rooms[key1].find(FIND_MY_SPAWNS)[0];
               if (target) {
                 var path = new PathFinder.search(posSpawn,{pos:target.pos,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
