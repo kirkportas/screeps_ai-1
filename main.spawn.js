@@ -266,6 +266,7 @@ global.sendScouts = function(spawn) {
     } else if (spawnRemoteHarvesters(spawn)) {
     } else if (spawnRemoteBuilders(spawn)) {
     } else if (sendScouts(spawn)) {
+    } else if (spawnClaimers(spawn)) {
 
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
