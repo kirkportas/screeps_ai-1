@@ -3,56 +3,66 @@ var tasks = {
     scoutRoom: function(creep) {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
         let timeSinceLastScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout;
-        if (timeSinceLastScout<5 && timeSinceLastScout!=-1) return;
-
-        var sources= creep.room.find(FIND_SOURCES);
-        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
-        for (var i = 0; i < sources.length; i++) {
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]={pos: sources[i].pos}
-        }
-
-        var myConstructionSites = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
-        var allStructures = creep.room.find(FIND_STRUCTURES);
-        var damagedBuildings = 0;
-
-        _.forEach(allStructures, function(struc){
-          if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5) {
-            damagedBuildings++;
+        let timeSinceLastFullScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout;
+        if (timeSinceLastScout>=5 || timeSinceLastScout==-1) {
+          var sources= creep.room.find(FIND_SOURCES);
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
+          for (var i = 0; i < sources.length; i++) {
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]={pos: sources[i].pos}
           }
-        });
 
-        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myConstructionSites=myConstructionSites.length;
-        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myDamagedStructures=damagedBuildings;
+          var myConstructionSites = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
+          var allStructures = creep.room.find(FIND_STRUCTURES);
+          var damagedBuildings = 0;
 
-        var hostiles=creep.room.find(FIND_HOSTILE_CREEPS);
-        var npcInvadersWeak=0;
-        var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES);
-        _.forEach(hostiles, function(creep){
-          if (creep.owner.username=='Invader' && creep.body.length<=16) npcInvadersWeak++;
-        });
+          _.forEach(allStructures, function(struc){
+            if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5) {
+              damagedBuildings++;
+            }
+          });
 
-        if (hostileStruc.length) {
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
-        } else if (hostiles.lenght-npcInvadersWeak>0){
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
-        } else if (npcInvadersWeak>=1) {
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=1;
-        } else {
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
-        }
-        Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myConstructionSites=myConstructionSites.length;
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myDamagedStructures=damagedBuildings;
 
-        var controller = creep.room.controller;
-        var reservation = controller.reservation;
-        if (reservation) {
-          if (reservation.username=='vestad') {
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=reservation.ticksToEnd;
+          var hostiles=creep.room.find(FIND_HOSTILE_CREEPS);
+          var npcInvadersWeak=0;
+          var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES);
+          _.forEach(hostiles, function(creep){
+            if (creep.owner.username=='Invader' && creep.body.length<=16) npcInvadersWeak++;
+          });
+
+          if (hostileStruc.length) {
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
+          } else if (hostiles.lenght-npcInvadersWeak>0){
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
+          } else if (npcInvadersWeak>=1) {
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=1;
           } else {
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=-1;
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
           }
-        } else {
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=0;
+
+
+          var controller = creep.room.controller;
+          var reservation = controller.reservation;
+          if (reservation) {
+            if (reservation.username=='vestad') {
+              Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=reservation.ticksToEnd;
+            } else {
+              Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=-1;
+            }
+          } else {
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=0;
+          }
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
+
         }
+        if (!timeSinceLastFullScout || timeSinceLastFullScout>=300 || timeSinceLastFullScout==-1) {
+
+          //CODE
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout=0;
+
+        }
+
 
 
       }
