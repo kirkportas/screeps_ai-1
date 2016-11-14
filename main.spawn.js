@@ -197,9 +197,12 @@ global.sendScouts = function(spawn) {
     //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
     var defendersNeeded = 0;
-    var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS).length;
-    if (hostiles>1) {
-      defendersNeeded=(hostiles);
+    var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
+    _.forEach(hostiles, function(creep){
+      console.log(creep.body.length)
+    }
+    if (hostiles.length>1) {
+      defendersNeeded=(hostiles.length);
     }
     if (spawn.room.name=='E65S62') {
       //defendersNeeded=Math.max(4,defendersNeeded);
