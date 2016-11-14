@@ -75,13 +75,17 @@ module.exports.loop = function () {
 
     Memory.test3=timeData;
     for (var role in timeData) {
-      var avg;
-      for (let i=0;role.length;i++) avg+=role[i];
-      console.log(role,',avg: ',avg)
+      var avg,tot,n=0;
+      for (let i=0;role.length;i++) {
+        tot+=role[i];
+        n++;
+      }
+      avg=tot/n;
+      console.log(role,',avg: ',avg,'. tot: ',tot)
     }
 
 
 
-    console.log('CPU('+cpu.getUsed().toFixed(2)+'): room: '+timeRoom.toFixed(2)+', tower: '+timeTower.toFixed(2)+', spawn: '+timeSpawn.toFixed(2)+', AI: '+timeAI.toFixed(2)+' (har: '+timeHarvester.toFixed(2)+').');
+    //console.log('CPU('+cpu.getUsed().toFixed(2)+'): room: '+timeRoom.toFixed(2)+', tower: '+timeTower.toFixed(2)+', spawn: '+timeSpawn.toFixed(2)+', AI: '+timeAI.toFixed(2)+' (har: '+timeHarvester.toFixed(2)+').');
 
 }
