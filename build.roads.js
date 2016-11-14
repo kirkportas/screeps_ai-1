@@ -78,7 +78,7 @@ var buildRoads = {
                     var posRoom = key1;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
                     var path = new PathFinder.search(posSpawn,{pos:targetPos,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
-                      if (path) {
+                    if (path) {
                       for (i = 0; i < path.path.length; i++) {
                           let pos = path.path[i];
                           if (Game.rooms[pos.roomName]!=undefined) {
@@ -89,7 +89,19 @@ var buildRoads = {
                   }
                 }
             } else {   //SHOULD BUILD ROAD TO OWN ROOM
-              var path = new PathFinder.search(posSpawn,targetPos,{range:1, ignoreCreeps: true, ignoreDestructibleStructures:false});
+              var target = Game.rooms[key1].find(FIND_MY_SPAWNS)[0];
+              if (target) {
+                var path = new PathFinder.search(posSpawn,{pos:targetPos,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
+                if (path) {
+                for (i = 0; i < path.path.length; i++) {
+                    let pos = path.path[i];
+                    if (Game.rooms[pos.roomName]!=undefined) {
+                      Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+                    } else {console.log('undefined');}
+                }
+              }
+              }
+
 
 
             }
