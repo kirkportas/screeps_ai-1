@@ -28,6 +28,8 @@ module.exports.loop = function () {
   var timeTower=0;
   var timeScout=0;
 
+  var cpuLog=false
+
 
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
@@ -44,14 +46,14 @@ module.exports.loop = function () {
 
   }
 
-  if (!Memory.timeData) {Memory.timeData={}}
+  if (cpuLog && !Memory.timeData) {Memory.timeData={}}
   var timeHarvester=0;
 
   timeLast=cpu.getUsed();
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         try {
-          var cpuTime=cpu.getUsed();
+          if (cpuLog) {var cpuTime=cpu.getUsed();}
           tasks.scoutRoom(creep);
           if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
@@ -66,24 +68,26 @@ module.exports.loop = function () {
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
           if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
-          if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
-          Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
-          //creep.say(cpu.getUsed()-cpuTime);
+          if (cpuLog) {
+            if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
+            Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
+          }
       } catch(err) { Game.notify(err);console.log(err);}
     }
     var timeAI = cpu.getUsed()-timeLast;
 
-    timeData=Memory.timeData;
-    for (var role in timeData) {
-      var avg,tot=0,n=0;
-      for (let i=0;i<timeData[role].length;i++) {
-        tot+=timeData[role][i];
-        n++;
+    if (cpuLog) {
+      timeData=Memory.timeData;
+      for (var role in timeData) {
+        var avg,tot=0,n=0;
+        for (let i=0;i<timeData[role].length;i++) {
+          tot+=timeData[role][i];
+          n++;
+        }
+        avg=tot/n;
+        console.log(role,',avg: ',avg,'. tot: ',tot)
       }
-      avg=tot/n;
-      console.log(role,',avg: ',avg,'. tot: ',tot)
-    }
-
+  }
 
 
     //console.log('CPU('+cpu.getUsed().toFixed(2)+'): room: '+timeRoom.toFixed(2)+', tower: '+timeTower.toFixed(2)+', spawn: '+timeSpawn.toFixed(2)+', AI: '+timeAI.toFixed(2)+' (har: '+timeHarvester.toFixed(2)+').');
