@@ -26,13 +26,11 @@ var mainScout = {
 
       }
       for (var key in room.memory.scout) {
-        if (room.memory.scout.hasOwnProperty(key)) {
-          if (room.memory.scout[key].timeSinceLastScout!=-1) {
-            room.memory.scout[key].timeSinceLastScout++;
-          }
-
-
-          ///console.log(key + " -> " + test[key]);
+        if (room.memory.scout[key].timeSinceLastScout!=-1) {
+          room.memory.scout[key].timeSinceLastScout++;
+        }
+        if (!timeSinceLastFullScout || room.memory.scout[key].timeSinceLastFullScout!=-1) { //TODO: fjerne timeSinceLastFullScout 
+          room.memory.scout[key].timeSinceLastFullScout++;
         }
       }
 
