@@ -42,6 +42,7 @@ var mainSpawn = {
           var sources = scout[roomName].sources;
           if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           for (var sourceId in sources) {
+            Memry.test4=sources[sourceId];
             console.log(sources[sourceId])
             if (!sources[sourceId].pathLen) continue;
             console.log('2')
