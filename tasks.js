@@ -57,6 +57,15 @@ var tasks = {
 
         }
         if (!timeSinceLastFullScout || timeSinceLastFullScout>=300 || timeSinceLastFullScout==-1) {
+          var scout =Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom];
+          var spawn= Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
+          if (spawn) {
+            for (var source in scout.sources) {
+              var path = new PathFinder.search(spawn.pos,{pos:Game.getObjectById(scout.sources[source]).pos,range:1},{plainCost: 1,swampCost: 1});
+              if (path) {
+              }
+            }
+          }
 
           //CODE
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout=0;
