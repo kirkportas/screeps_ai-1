@@ -70,6 +70,7 @@ module.exports.loop = function () {
           //creep.say(cpu.getUsed()-cpuTime);
       } catch(err) { Game.notify(err);console.log(err);}
     }
+    Memory.test3=timeData;
     var timeAI = cpu.getUsed()-timeLast;
 
     console.log('CPU('+cpu.getUsed().toFixed(2)+'): room: '+timeRoom.toFixed(2)+', tower: '+timeTower.toFixed(2)+', spawn: '+timeSpawn.toFixed(2)+', AI: '+timeAI.toFixed(2)+' (har: '+timeHarvester.toFixed(2)+').');
