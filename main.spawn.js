@@ -73,7 +73,7 @@ var mainSpawn = {
 global.sendScouts = function(spawn) {
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
-    if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+    if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
     console.log(scout[roomName].timeSinceLastScout)
     if (scout[roomName].timeSinceLastScout>1000) {
       console.log('1')
