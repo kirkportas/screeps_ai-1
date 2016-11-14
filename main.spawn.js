@@ -41,6 +41,7 @@ var mainSpawn = {
       for (var roomName in scout) {
         if (scout[roomName].danger==0) {
           var sources = scout[roomName].sources;
+          console.log(sources);
           if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           for (var sourceId in sources) {
             console.log(sourceId);
