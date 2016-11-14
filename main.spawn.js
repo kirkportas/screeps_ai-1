@@ -270,7 +270,7 @@ global.sendScouts = function(spawn) {
 
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
-    } else /*if(spawn.room.name=='E65S62' && claimers < 1) {
+    } /*else if(spawn.room.name=='E65S62' && claimers < 1) {
       createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
     } */ else if(spawn.room.name == 'E65S61' && attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:4}),{targetRoom:'E64S61'});
