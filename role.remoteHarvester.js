@@ -9,21 +9,19 @@ var roleRemoteHarvester = {
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
           creep.memory.delivering = true;
       }
-      //var startRoom='E65S62';
-      //var targetRoom='E65S61';
-
-      //creep.memory.pref='57ef9eb986f108ae6e60fcd6';
 
       if(!creep.memory.delivering) {
-        if(creep.room.name != creep.memory.targetRoom) {
-          var res = creep.moveTo(Game.getObjectById(creep.memory.pref));
-          if (res == ERR_INVALID_TARGET||res==ERR_NO_PATH) {
-            var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
-            var exit = creep.pos.findClosestByRange(exitDir);
-            creep.moveTo(exit);
+        if (!tasks.pickupEnergy(creep)) {
+          if(creep.room.name != creep.memory.targetRoom) {
+            var res = creep.moveTo(Game.getObjectById(creep.memory.pref));
+            if (res == ERR_INVALID_TARGET||res==ERR_NO_PATH) {
+              var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
+              var exit = creep.pos.findClosestByRange(exitDir);
+              creep.moveTo(exit);
+            }
+          } else {
+            tasks.harvestPrefered(creep);
           }
-        } else {
-          tasks.harvestPrefered(creep);
         }
       } else {
         var homeSpawn=Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
