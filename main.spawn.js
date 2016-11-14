@@ -287,16 +287,14 @@ global.sendScouts = function(spawn) {
   _.forEach(creeps, function(creep){
     if (creep.memory.spawnerAction=='KILL') {
       spawn.recycleCreep(creep);
-      break;
     } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
       spawn.renewCreep(creep);
-      break;
     }
   });
+
   var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
   var hostileConstroller = spawn.room.controller.pos.findInRange(FIND_HOSTILE_CREEPS,10);
   if (spawn.room.name=='E65S62' && (hostileSpawn.length||hostileConstroller.length)) {
-    //Game.spawns['Spawn2'].room.controller.dea
     var value = spawn.room.controller.activateSafeMode();
     console.log('WARNING - ENEMY IN BASE - safemode activated: '+value);
     Game.notify('WARNING - ENEMY IN BASE - safemode activated: '+value);
