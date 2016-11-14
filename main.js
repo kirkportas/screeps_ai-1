@@ -50,7 +50,7 @@ module.exports.loop = function () {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         try {
-          var cpuTime=cpu.getUsed();
+          //var cpuTime=cpu.getUsed();
           tasks.scoutRoom(creep);
           if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
@@ -64,7 +64,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
-          creep.say(cpu.getUsed()-cpuTime);
+          //creep.say(cpu.getUsed()-cpuTime);
       } catch(err) { Game.notify(err);console.log(err);}
     }
     var timeAI = cpu.getUsed()-timeLast;
