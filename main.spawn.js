@@ -40,7 +40,7 @@ var mainSpawn = {
       for (var roomName in scout) {
         if (scout[roomName].danger==0) {
           var sources = scout[roomName].sources;
-          if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+          if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           for (var sourceId in sources) {
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
             if (harvestersRemote<2) {
@@ -59,7 +59,7 @@ var mainSpawn = {
       if (scout[roomName].danger==0) {
         var constructionSites = scout[roomName].myConstructionSites;
         var damagedBuildings = scout[roomName].myDamagedStructures;
-        if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+        if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
         let remoteNeeded= Math.min(2,Math.ceil((constructionSites+damagedBuildings)/25));
         //console.log(spawn.room.name,'  ',roomName,'  ',remoteBuilders,'  ',remoteNeeded)
