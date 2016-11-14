@@ -16,6 +16,7 @@ var roleAttacker= require('role.attacker');
 var roleClaimer = require('role.claimer');
 var roleRemotebuilder = require('role.remoteBuilder');
 var roleRemoteHarvester = require('role.remoteHarvester');
+var roleSuicide = require('role.suicide');
 
 module.exports.loop = function () {
 
@@ -64,6 +65,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
+          if(creep.memory.role == 'suicide') {roleRemoteHarvester.run(creep);}
           //creep.say(cpu.getUsed()-cpuTime);
       } catch(err) { Game.notify(err);console.log(err);}
     }
