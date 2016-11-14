@@ -74,16 +74,26 @@ global.sendScouts = function(spawn) {
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
     if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
-    if (scout[roomName].timeSinceLastScout>1500 || scout[roomName].timeSinceLastScout==-1) {
-      if (!scout[roomName].lastScoutSent || ((Game.times-scout[roomName].lastScoutSent)>500)) {
-        if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
-          console.log('sending a scout to ',roomName);
-          scout[roomName].lastScoutSent=Game.time;
+    if (scout[roomName].danger==10) {
+      if (!scout[roomName].lastAttackerSent || ((Game.times-scout[roomName].lastAttackerSent)>500)) {
+        if (createCreepAdvanced(spawn,'attacker',createBody({move:3,attack:3}),{targetRoom:roomName})) {
+          console.log('sending a attacker to ',roomName);
+          scout[roomName].lastAttackerSent=Game.time;
           return true;
         }
-
+      }
+    } else {
+      if (scout[roomName].timeSinceLastScout>1500 || scout[roomName].timeSinceLastScout==-1) {
+        if (!scout[roomName].lastScoutSent || ((Game.times-scout[roomName].lastScoutSent)>500)) {
+          if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
+            console.log('sending a scout to ',roomName);
+            scout[roomName].lastScoutSent=Game.time;
+            return true;
+          }
+        }
       }
     }
+
   }
   return false;
 }
