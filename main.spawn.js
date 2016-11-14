@@ -73,6 +73,24 @@ var mainSpawn = {
   }
   return false;
 }
+global.sendScouts = function(spawn) {
+  return false;
+  var scout=spawn.room.memory.scout;
+  for (var roomName in scout) {
+    if (scout[roomName].danger==0) {
+      var constructionSites = scout[roomName].myConstructionSites;
+      var damagedBuildings = scout[roomName].myDamagedStructures;
+      if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+      let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
+      let buildersNeeded= Math.min(2,Math.floor((constructionSites+damagedBuildings)/25));
+      if (buildersNeeded<1) {
+        createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
+        return true;
+      }
+  }
+}
+return false;
+}
 
     var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
     var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
@@ -225,6 +243,8 @@ var mainSpawn = {
     } else if (spawnRemoteHarvesters(spawn)) {
       //ingenting
     } else if (spawnRemoteBuilders(spawn)) {
+
+    } else if (sendScouts(spawn)) {
 
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
