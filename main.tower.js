@@ -13,7 +13,7 @@ var mainTower = {
                   var ranges = creep.getActiveBodyparts(RANGED_ATTACK);
                   var moves = creep.getActiveBodyparts(MOVE);
                   var heals = creep.getActiveBodyparts(HEAL);
-                  return (heals>0 || ranges>0 || (attacks>0 && moves>0));
+                  return true
               }
       });
       allHostiles=_.sortBy(allHostiles, creep => creep.hits);
