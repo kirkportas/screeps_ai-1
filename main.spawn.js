@@ -50,9 +50,8 @@ var mainSpawn = {
             var obtainable = 5;
             if (sources[sourceId].reservation>1500) {obtainable=10}
             var sourcePerTick=(carrycap/((pathLen*2)+25+2));
-            console.log((pathLen*2)+25+2);
             var needed=Math.floor(obtainable/sourcePerTick);
-            console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
+            //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<needed) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:size,carry:size,work:size}),{targetRoom:roomName, pref: sourceId});
               return true;
