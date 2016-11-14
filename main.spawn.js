@@ -84,7 +84,7 @@ global.spawnClaimers = function(spawn) {
   for (var roomName in scout) {
     if (scout[roomName].danger==0) {
       var sources = scout[roomName].sources;
-      Memory.test4=scout[roomName];
+      Memory.test4=scout[roomName].sources;
       var reservation = scout[roomName].reservation;
       if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
       if (reservation<3000 && reservation>=0) {
