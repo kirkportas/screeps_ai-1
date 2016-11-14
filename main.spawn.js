@@ -242,8 +242,9 @@ return false;
       }
     } else if (spawnRemoteHarvesters(spawn)) {
       //ingenting
+      console.log('harv blocking')
     } else if (spawnRemoteBuilders(spawn)) {
-
+      console.log('builders blocking')
     } else if (sendScouts(spawn)) {
 
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
