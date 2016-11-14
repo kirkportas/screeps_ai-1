@@ -31,10 +31,9 @@ var mainSpawn = {
       if (spawn.canCreateCreep(body) == OK) {
         var name = spawn.createCreep(body, findNextName(type),memory1);
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
-        return name;
+        return true;
       } console.log('waiting to spawn, ',type,'error: ',spawn.canCreateCreep(body))
-      return null;
-
+      return false;
     }
     global.spawnRemoteHarvesters = function(spawn) {
       var scout=spawn.room.memory.scout;
@@ -74,19 +73,17 @@ global.sendScouts = function(spawn) {
   return false;
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
-    if (scout[roomName].danger==0) {
-      var constructionSites = scout[roomName].myConstructionSites;
-      var damagedBuildings = scout[roomName].myDamagedStructures;
-      if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
-      let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-      let buildersNeeded= Math.min(2,Math.floor((constructionSites+damagedBuildings)/25));
-      if (buildersNeeded<1) {
-        createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
-        return true;
+    if (scout[roomName].danger==0 && scout[roomName].timeSinceLastScout>1000) {
+      if (!scout[roomName].lastScoutSent || ((Game.times-cout[roomName].lastScoutSent)>1000)) {
+        if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName<<})) {
+          console.log('sending a scout to ',roomname);
+          scout[roomName].lastScoutSent=Game.time;
+        }
+
       }
+    }
   }
-}
-return false;
+  return false;
 }
 
     var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
@@ -202,16 +199,14 @@ return false;
         if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
           if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
             var preferedSource = source.id;
-            var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource});
-            if(_.isString(name)) {break;}
+            if (createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})) break;;
           }
         }
       } else {
         if (source.miners.length<source.slots && source.safe) {
           if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
             var preferedSource = source.id;
-            var name = createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource});
-            if(_.isString(name)) {break;}
+            if (createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})) break;
           }
         }
       }
