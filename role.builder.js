@@ -24,14 +24,14 @@ var roleBuilder = {
                           structure.structureType == STRUCTURE_LINK ||
                           structure.structureType == STRUCTURE_CONTAINER ||
                           structure.structureType == STRUCTURE_EXTENSION )  } });
-          var targetsAll = creep.room.find(FIND_CONSTRUCTION_SITES);
+          var targetsAll = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
             if(targetsPri) {
                 if(creep.build(targetsPri) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targetsPri);
                 }
-            } else if (targetsAll.length) {
-              if(creep.build(targetsAll[0]) == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(targetsAll[0]);
+            } else if (targetsAll) {
+              if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
+                  creep.moveTo(targetsAll);
               }
             } else {
                 creep.memory.targetFix= tasks.findStructureToRepairIdle(creep);
