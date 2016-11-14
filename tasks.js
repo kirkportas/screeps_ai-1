@@ -63,6 +63,7 @@ var tasks = {
             for (var source in scout.sources) {
               var path = new PathFinder.search(spawn.pos,{pos:Game.getObjectById(scout.sources[source]).pos,range:1},{plainCost: 1,swampCost: 1});
               if (path) {
+                Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].pathLen=path.path.length;
               }
             }
           }
