@@ -286,7 +286,7 @@ global.sendScouts = function(spawn) {
       createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
     } */ else if(spawn.room.name == 'E65S61' && attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:4}),{targetRoom:'E64S61'});
-    } else if(spawn.room.name=='E65S62' && remoteBuilders < 3) {
+    } else if(spawn.room.name=='E65S62' && remoteBuilders < 10) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:4,work:4}),{targetRoom:'E64S62'});
     } else if(spawn.room.name=='E65S61' && remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
