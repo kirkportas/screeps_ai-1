@@ -49,12 +49,14 @@ var roleRemoteHarvester = {
             } else {
               creep.moveTo(centralStorage);
             }
+          }
+          if (centralContainer) {
             if(creep.transfer(centralContainer, RESOURCE_ENERGY)== OK) {
                 creep.memory.harvested+=(resBefore);
               } else {
                 creep.moveTo(centralContainer);
               }
-
+            }
         }
 
 
