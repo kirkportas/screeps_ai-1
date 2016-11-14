@@ -46,11 +46,14 @@ var tasks = {
         var reservartion = controller.reservation;
         if (reservation) {
           if (reservartion.username=='vestad') {
+            console.log('1')
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=reservartion.tickToEnd;
           } else {
+            console.log('2')
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=-1;
           }
         } else {
+          console.log('3')
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=0;
         }
 
