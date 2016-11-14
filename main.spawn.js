@@ -41,12 +41,9 @@ var mainSpawn = {
       for (var roomName in scout) {
         if (scout[roomName].danger==0) {
           var sources = scout[roomName].sources;
-          console.log(sources);
           if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           for (var sourceId in sources) {
-            console.log(sourceId);
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
-              console.log(harvestersRemote);
             if (harvestersRemote<2) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:roomName, pref: sourceId});
               return true;
@@ -242,9 +239,7 @@ return false;
       }
     } else if (spawnRemoteHarvesters(spawn)) {
       //ingenting
-      console.log('harv blocking')
     } else if (spawnRemoteBuilders(spawn)) {
-      console.log('builders blocking')
     } else if (sendScouts(spawn)) {
 
     } else if(spawn.room.name=='E65S61' && scouts < 0) {
