@@ -45,7 +45,8 @@ var roleRemotebuilder = {
                 }
               } else {
                 var struct=Game.getObjectById(creep.memory.targetFix);
-                if (struct==null) creep.say('kill me')
+                if (struct==null) {
+                  creep.memory.targetFix=null;//got desotryed?                  creep.say('kill me')
                 if((creep.memory.repairToFull && struct.hits<struct.hitsMax) || (struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<creep.room.memory.wallHitsMax && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART))) {
                   //console.log(Game.getObjectById(creep.memory.targetFix).hits,'  ',Game.getObjectById(creep.memory.targetFix).hitsMax*0.75);
                     if(creep.repair(Game.getObjectById(creep.memory.targetFix)) == ERR_NOT_IN_RANGE) {
