@@ -30,9 +30,10 @@ var mainSpawn = {
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
       if (spawn.canCreateCreep(body) == OK) {
         var name = spawn.createCreep(body, findNextName(type),memory1);
-        console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name);
+        console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
         return name;
       }
+      console.log('waiting to spawn, 'type)
       return null;
 
     }
