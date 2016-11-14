@@ -61,9 +61,8 @@ var mainSpawn = {
         if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
         let remoteNeeded= Math.min(2,Math.floor((constructionSites+damagedBuildings)/25));
-        console.log(spawn.room.name,'  ',roomName,'  ',remoteBuilders,'  ',remoteNeeded)
+        //console.log(spawn.room.name,'  ',roomName,'  ',remoteBuilders,'  ',remoteNeeded)
         if (remoteBuilders<remoteNeeded) {
-          console.log('send')
           createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
           return true;
         }
@@ -76,11 +75,12 @@ global.sendScouts = function(spawn) {
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
     if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
-    if (scout[roomName].danger==0 && scout[roomName].timeSinceLastScout>1000) {
+    if (scout[roomName].timeSinceLastScout>1000) {
       if (!scout[roomName].lastScoutSent || ((Game.times-cout[roomName].lastScoutSent)>1000)) {
         if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
           console.log('sending a scout to ',roomname);
           scout[roomName].lastScoutSent=Game.time;
+          return true;
         }
 
       }
