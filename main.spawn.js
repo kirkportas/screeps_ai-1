@@ -79,7 +79,7 @@ global.sendScouts = function(spawn) {
       console.log('1')
       if (!scout[roomName].lastScoutSent || ((Game.times-cout[roomName].lastScoutSent)>1000)) {
         if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
-          console.log('sending a scout to ',roomname);
+          console.log('sending a scout to ',roomName);
           scout[roomName].lastScoutSent=Game.time;
           return true;
         }
