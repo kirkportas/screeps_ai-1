@@ -44,7 +44,7 @@ module.exports.loop = function () {
 
   }
 
-  var timeData= {}
+  var timeData= []
   var timeHarvester=0;
 
   timeLast=cpu.getUsed();
