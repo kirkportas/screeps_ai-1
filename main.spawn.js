@@ -33,7 +33,7 @@ var mainSpawn = {
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
         return name;
       }
-      console.log('waiting to spawn, 'type)
+      console.log('waiting to spawn, ',type)
       return null;
 
     }
