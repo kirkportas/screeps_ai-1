@@ -32,8 +32,7 @@ var mainSpawn = {
         var name = spawn.createCreep(body, findNextName(type),memory1);
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
         return name;
-      }
-      console.log('waiting to spawn, ',type)
+      } console.log('waiting to spawn, ',type,'error: ',spawn.canCreateCreep(body))
       return null;
 
     }
