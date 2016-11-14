@@ -32,7 +32,7 @@ var mainSpawn = {
         var name = spawn.createCreep(body, findNextName(type),memory1);
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
         return true;
-      } console.log('waiting to spawn, ',type,'error: ',spawn.canCreateCreep(body))
+      } //console.log('waiting to spawn, ',type,'error: ',spawn.canCreateCreep(body))
       return false;
     }
     global.spawnRemoteHarvesters = function(spawn) {
