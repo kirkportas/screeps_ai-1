@@ -42,7 +42,7 @@ var roleRemoteHarvester = {
         } else {
           var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER)}})[0];
           var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
-          var resBefore=creep.carry;
+          var resBefore=creep.carry[RESOURCE_ENERGY];
           if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
               creep.memory.harvested+=(resBefore);
