@@ -44,7 +44,7 @@ module.exports.loop = function () {
 
   }
 
-  var timeData= {}
+  if (!Memory.timeData) {Memory.timeData={}}
   var timeHarvester=0;
 
   timeLast=cpu.getUsed();
