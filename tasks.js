@@ -31,14 +31,14 @@ var tasks = {
           if (creep.owner.username=='Invader' && creep.body.length<=16) npcInvadersWeak++;
         });
 
-        if (hostilesStruc.length) {
+        if (hostileStruc.length) {
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
         } else if (hostiles.lenght-npcInvadersWeak>0){
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
         } else if (npcInvadersWeak>=1) {
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=1;
         } else {
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;  
+          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
         }
         Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
 
