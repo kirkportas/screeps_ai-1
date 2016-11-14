@@ -200,7 +200,7 @@ global.sendScouts = function(spawn) {
     var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
     _.forEach(hostiles, function(creep){
       console.log(creep.body.length)
-    }
+    })
     if (hostiles.length>1) {
       defendersNeeded=(hostiles.length);
     }
