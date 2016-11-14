@@ -216,10 +216,10 @@ global.sendScouts = function(spawn) {
     }
   if (containers.length>=1) {
     if(haulers < haulersNeeded) {
-        var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
-        createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
+      var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
+      createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
     } else if(spawnHaulers < spawnHaulersNeeded) {
-        createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
+      createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
     } else if(defenders < defendersNeeded) {
       var modulesOfEach = Math.max(2,Math.min(4,Math.floor(energyNow/200)));
       createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach}));
@@ -227,7 +227,6 @@ global.sendScouts = function(spawn) {
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
       createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
     } else if(upgraders < upgradersNeeded) {
-      console.log('upgraders: ',upgraders,' of ',upgradersNeeded)
       if (links.length>=2) {
         createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
       } else {
@@ -235,7 +234,6 @@ global.sendScouts = function(spawn) {
           createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
       }
     } else if (spawnRemoteHarvesters(spawn)) {
-      //ingenting
     } else if (spawnRemoteBuilders(spawn)) {
     } else if (sendScouts(spawn)) {
 
