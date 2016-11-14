@@ -44,16 +44,17 @@ var roleRemoteHarvester = {
           var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
           var resBefore=creep.carry;
           if (centralStorage) {
-          if(creep.transfer(centralStorage, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+          if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
+              creep.memory.harvested+=(resBefore);
+            } else {
               creep.moveTo(centralStorage);
             }
-          } else if (centralContainer) {
-            if(creep.transfer(centralContainer, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+            if(creep.transfer(centralContainer, RESOURCE_ENERGY)== OK) {
+                creep.memory.harvested+=(resBefore);
+              } else {
                 creep.moveTo(centralContainer);
               }
-          }
-          resAfter=creep.carry;
-          creep.memory.harvested+=(resAfter-resBefore);
+
         }
 
 
