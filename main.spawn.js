@@ -42,9 +42,17 @@ var mainSpawn = {
           var sources = scout[roomName].sources;
           if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           for (var sourceId in sources) {
+            if (!sources[sourceId].pathLen) continue;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
-            if (harvestersRemote<2) {
-              var size = Math.floor((spawn.room.energyCapacityAvailable*0.75)/200);
+            var size = Math.floor((spawn.room.energyCapacityAvailable*0.75)/200);
+            var carrycap= (size*50)
+            var pathLen=sources[sourceId].pathLen;
+            var obtainable = 5;
+            if (sources[sourceId].reservation>1500) {obtainable=10}
+            var sourcePerTick=((pathLen*2+25+2)/carrycap);
+            var needed=Math.floor(obtainable/sourcePerTick);
+            console.log(spawn.room+' '+roomName+' '+harvestersRemote+' '+needed);
+            if (harvestersRemote<needed) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:size,carry:size,work:size}),{targetRoom:roomName, pref: sourceId});
               return true;
             }
