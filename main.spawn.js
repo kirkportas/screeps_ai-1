@@ -285,7 +285,7 @@ global.sendScouts = function(spawn) {
 
   var creeps = spawn.pos.findInRange(FIND_MY_CREEPS,1);
   _.forEach(creeps, function(creep){
-    if ((creep.memory.spawnerAction=='KILL') {
+    if (creep.memory.spawnerAction=='KILL') {
       spawn.recycleCreep(creep);
       break;
     } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
