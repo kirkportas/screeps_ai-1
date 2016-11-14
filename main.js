@@ -75,8 +75,10 @@ module.exports.loop = function () {
 
     Memory.test3=timeData;
     for (var role in timeData) {
+      console.log(role);
       var avg,tot,n=0;
       for (let i=0;role.length;i++) {
+        console.log(role[i]);
         tot+=role[i];
         n++;
       }
