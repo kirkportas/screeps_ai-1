@@ -60,7 +60,7 @@ var mainSpawn = {
         var damagedBuildings = scout[roomName].myDamagedStructures;
         if ((Game.rooms[roomName]==undefined) || Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-        let remoteNeeded= Math.min(2,Math.floor((constructionSites+damagedBuildings)/25));
+        let remoteNeeded= Math.min(2,Math.ceil((constructionSites+damagedBuildings)/25));
         //console.log(spawn.room.name,'  ',roomName,'  ',remoteBuilders,'  ',remoteNeeded)
         if (remoteBuilders<remoteNeeded) {
           createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
@@ -243,7 +243,7 @@ global.sendScouts = function(spawn) {
       createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
     } else if(spawn.room.name == 'E65S61' && attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:4}),{targetRoom:'E64S61'});
-    } else if(spawn.room.name=='E65S62' && remoteBuilders < 1) {
+    } else if(spawn.room.name=='E65S62' && remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:5,carry:5,work:5}),{targetRoom:'E64S62'});
     } else if(spawn.room.name=='E65S61' && remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
