@@ -18,12 +18,13 @@ var mainSpawn = {
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
       for (var m=0;m<arg.work;m++) {modules.push(WORK);}
       for (var m=0;m<arg.carry;m++) {modules.push(CARRY);}
+      for (var m=0;m<arg.move-1;m++) {modules.push(MOVE);}
       for (var m=0;m<arg.attack;m++) {modules.push(ATTACK);}
       for (var m=0;m<arg.rangedAttack;m++) {modules.push(RANGED_ATTACK);}
       for (var m=0;m<arg.heal;m++) {modules.push(HEAL);}
       for (var m=0;m<arg.claim;m++) {modules.push(CLAIM);}
 
-      for (var m=0;m<arg.move;m++) {modules.push(MOVE);}
+      if (arg.move>0) {modules.push(MOVE);}
       return modules;
     }
     global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
