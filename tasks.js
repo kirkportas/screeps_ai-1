@@ -43,7 +43,7 @@ var tasks = {
         Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
 
         var controller = creep.room.controller;
-        var reservartion = controller.reservation;
+        var reservation = controller.reservation;
         if (reservation) {
           if (reservartion.username=='vestad') {
             console.log('1')
