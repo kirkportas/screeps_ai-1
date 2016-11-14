@@ -83,13 +83,10 @@ global.spawnClaimers = function(spawn) {
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
     if (scout[roomName].danger==0) {
-      var sources = scout[roomName].sources;
-      Memory.test4=scout[roomName].sources;
       var reservation = scout[roomName].reservation;
       if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
       if (reservation<3000 && reservation>=0) {
-        console.log(Object.keys(scout[roomName].sources).length);
-        if (scout[roomName].sources.length>=2) {  // do I WANT to claim this room?
+        if (Object.keys(scout[roomName].sources).length.length>=2) {  // do I WANT to claim this room?
           let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
           let claimersNeeded= 2;
           if (claimers<claimersNeeded) {
