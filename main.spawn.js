@@ -49,7 +49,7 @@ var mainSpawn = {
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
             if (sources[sourceId].reservation>1500) {obtainable=10}
-            var sourcePerTick=((pathLen*2+25+2)/carrycap);
+            var sourcePerTick=(((pathLen*2)+25+2)/carrycap);
             console.log(carrycap);
             var needed=Math.floor(obtainable/sourcePerTick);
             console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
