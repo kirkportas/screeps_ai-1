@@ -67,7 +67,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
           if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
           if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
-          Memory.timeData.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
+          Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
           //creep.say(cpu.getUsed()-cpuTime);
       } catch(err) { Game.notify(err);console.log(err);}
     }
