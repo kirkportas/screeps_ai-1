@@ -58,7 +58,7 @@ var roleRemotebuilder = {
 
         } else {
           if (creep.memory.target===null || creep.memory.target===undefined) {
-            creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom]);
+            creep.memory.target = tasks.findClosestInRoom(creep,Game.rooms[creep.memory.targetRoom]);
           }
           //tasks.harvestPrefered(creep);
           tasks.harvestBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom],creep.memory.target);

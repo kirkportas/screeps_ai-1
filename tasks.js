@@ -244,6 +244,10 @@ var tasks = {
       sources=_.sortBy(sources, s => -s.energy)
       if (sources.length) {return sources[0].id;} else {return null;}
     },
+    findClosestInRoom: function(creep,room) {
+      var sources = creep.pos.findClosestByRange(FIND_SOURCES);
+      if (sources) {return sources.id;} else {return null;}
+    },
 
     harvestBiggestInRoom: function(creep,room,target) {
       var object = Game.getObjectById(target);
