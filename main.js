@@ -65,7 +65,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
           if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
-          if(creep.memory.role == 'suicide') {roleRemoteHarvester.run(creep);}
+          if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
           //creep.say(cpu.getUsed()-cpuTime);
       } catch(err) { Game.notify(err);console.log(err);}
     }
