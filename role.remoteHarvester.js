@@ -22,7 +22,7 @@ var roleRemoteHarvester = {
           } else {
             tasks.harvestPrefered(creep);
           }
-        }
+        } else if (creep.carry.energy == creep.carryCapacity*0.8) {creep.memory.delivering = true;}
       } else {
         var homeSpawn=Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
         if(creep.room.name != creep.memory.homeRoom) {
