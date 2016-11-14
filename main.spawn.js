@@ -320,7 +320,7 @@ global.sendScouts = function(spawn) {
   _.forEach(creeps, function(creep){
     if (creep.memory.spawnerAction=='KILL') {
       spawn.recycleCreep(creep);
-    } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW') {
+    } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW' && creep.memory.role!='remoteHarvester') {
       spawn.renewCreep(creep);
     }
   });
