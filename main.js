@@ -73,7 +73,7 @@ module.exports.loop = function () {
     }
     var timeAI = cpu.getUsed()-timeLast;
 
-    timeData=Memory.test3;
+    timeData=Memory.timeData;
     for (var role in timeData) {
       var avg,tot=0,n=0;
       for (let i=0;i<timeData[role].length;i++) {
