@@ -327,7 +327,8 @@ var tasks = {
 
     harvestPrefered: function(creep) {
       var source = Game.getObjectById(creep.memory.pref)
-      if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+      var result = creep.harvest(source)
+      if( result == ERR_NOT_IN_RANGE || result == ERR_NOT_ENOUGH_RESOURCES ) {
           creep.moveTo(source);
       }
     },
