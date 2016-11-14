@@ -10,6 +10,12 @@ var roleRemoteHarvester = {
           creep.memory.delivering = true;
       }
 
+      if (!creep.memory.harvested) creep.memory.harvested=0;
+      if (creep.ticksToLive==1) {
+        console.log('Remote Harvester died: '+creep.memory.pref+': '+creep.memory.harvested+'-'+creep.getActiveBodyparts(CARRY)*200);
+        Game.notify('Remote Harvester died: '+creep.memory.pref+': '+creep.memory.harvested+'-'+creep.getActiveBodyparts(CARRY)*200,120);
+      }
+
       if(!creep.memory.delivering) {
         if (!tasks.pickupEnergy(creep)) {
           if(creep.room.name != creep.memory.targetRoom) {
@@ -36,6 +42,7 @@ var roleRemoteHarvester = {
         } else {
           var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER)}})[0];
           var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
+          var resBefore=creep.carry;
           if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
               creep.moveTo(centralStorage);
@@ -45,6 +52,8 @@ var roleRemoteHarvester = {
                 creep.moveTo(centralContainer);
               }
           }
+          resAfter=creep.carry;
+          creep.memory.harvested+=(resAfter-resBefore);
         }
 
 
