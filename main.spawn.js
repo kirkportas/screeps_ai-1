@@ -198,12 +198,11 @@ global.sendScouts = function(spawn) {
 
     var defendersNeeded = 0;
     var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
+    var hostilesBodyparts=0;
     _.forEach(hostiles, function(creep){
-      console.log(creep.body.length)
+      hostilesBodyparts+=creep.body.length
     })
-    if (hostiles.length>1) {
-      defendersNeeded=(hostiles.length);
-    }
+    defendersNeeded=Math.floor(hostilesBodyparts/25);
     if (spawn.room.name=='E65S62') {
       //defendersNeeded=Math.max(4,defendersNeeded);
     }
