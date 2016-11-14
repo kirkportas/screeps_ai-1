@@ -50,6 +50,11 @@ var buildExtension = {
           x=-4+(2*j)%10;
           y=-4+2*Math.floor(j/5);
         }
+        if (i>=55 && i<=90) {
+          var j=i-55;
+          x=-5+(2*j)%12;
+          y=-5+2*Math.floor(j/6);
+        }
 
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
         if (!buildExtension.canPlace(room,posSpawn,x,y)) continue; //Skips if 1/5 tile is wall or swamp
