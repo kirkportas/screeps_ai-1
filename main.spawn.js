@@ -71,6 +71,7 @@ var mainSpawn = {
   return false;
 }
 global.sendScouts = function(spawn) {
+  console.log('1')
   return false;
   var scout=spawn.room.memory.scout;
   for (var roomName in scout) {
