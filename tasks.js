@@ -6,9 +6,14 @@ var tasks = {
         let timeSinceLastFullScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout;
         if (timeSinceLastScout>=5 || timeSinceLastScout==-1) {
           var sources= creep.room.find(FIND_SOURCES);
-          Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
+          if (!Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources) {
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources={}
+          }
           for (var i = 0; i < sources.length; i++) {
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]={pos: sources[i].pos}
+            if (!Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]) {
+              Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id]={}
+            }
+            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[sources[i].id].pos=sources[i].pos
           }
 
           var myConstructionSites = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
