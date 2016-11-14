@@ -63,6 +63,7 @@ var mainSpawn = {
         let remoteNeeded= Math.min(2,Math.floor((constructionSites+damagedBuildings)/25));
         console.log(spawn.room.name,'  ',roomName,'  ',remoteBuilders,'  ',remoteNeeded)
         if (remoteBuilders<remoteNeeded) {
+          console.log('send')
           //createCreepAdvanced(spawn,'remoteBuilder',createBody({move:6,carry:3,work:3}),{targetRoom:roomName});
           return true;
         }
