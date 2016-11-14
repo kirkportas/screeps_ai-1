@@ -79,7 +79,7 @@ module.exports.loop = function () {
       var avg,tot,n=0;
       console.log(timeData[role].length)
       for (let i=0;i<timeData[role].length;i++) {
-        console.log(timeData[role].[i]);
+        console.log(timeData[role][i]);
         tot+=role[i];
         n++;
       }
