@@ -23,7 +23,7 @@ var roleAttacker = {
           }
         } else if (targetConstructionsites) {
           creep.moveTo(targetConstructionsites);
-        } else if (creep.memory.fleeAfter) {
+        } else if (creep.memory.fleeAfter=='true') {
           creep.memory.role='suicide'
         } else {
           creep.moveTo(creep.room.controller);
