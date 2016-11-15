@@ -50,7 +50,7 @@ var mainSpawn = {
             var carrycap= (size*50)
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
-            if (sources[sourceId].reservation>1500) {obtainable=10}
+            if (sources[sourceId].reservation>1000) {obtainable=10}
             var sourcePerTick=(carrycap/((pathLen*2)+25+2)*0.9); //Empirisk verdi for å justere feil
             var needed=Math.round(obtainable/sourcePerTick);
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
@@ -91,6 +91,7 @@ global.spawnClaimers = function(spawn) {
         if (Object.keys(scout[roomName].sources).length>=2) {  // do I WANT to claim this room?
           let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
           let claimersNeeded= 2;
+          if (reservation<1000) claimersNeeded++;
           if (claimers<claimersNeeded) {
             createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:roomName});
             return true;
