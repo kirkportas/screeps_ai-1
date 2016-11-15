@@ -1,5 +1,5 @@
 var roomLinks = {
-  run: function(creep) {
+  run: function(room) {
     console.log('yaaay');
   }
 };
