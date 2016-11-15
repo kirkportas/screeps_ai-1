@@ -19,7 +19,12 @@ var roomLinks = {
         }
       }
     });
+    if (linkCentral&&linkUpgrader) {
+      if (linkCentral.energy>600&&linkUpgrader<200) {
+        linkCentral.transferEnergy(linkUpgrader);
+      }
 
+    }
     //console.log(linksSpawner+' '+linkCentral+' '+linkUpgrader)
   }
 };
