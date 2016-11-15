@@ -211,7 +211,7 @@ var tasks = {
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
       var targets = creep.room.find(FIND_STRUCTURES, {filter: (structure) => { return ( structure.structureType == STRUCTURE_CONTAINER
-                             ) && (structure.structureType == STRUCTURE_CONTAINER); } });
+      ) && (structure.energy>0); } });
 
       var index = targets.indexOf(centralContainer);
       if(index != -1) targets.splice( index, 1 );
