@@ -7,7 +7,7 @@ var mainRoom = {
 
     run: function(room) {
 
-      //roomLinks.run(room);
+      roomLinks.run(room);
 
       var extensions = room.find(FIND_MY_STRUCTURES, {filter: { structureType: STRUCTURE_EXTENSION }});
       var containers = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
