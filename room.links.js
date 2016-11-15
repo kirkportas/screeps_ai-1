@@ -11,8 +11,10 @@ var roomLinks = {
 
     _.forEach(linksSource, function(sourceLink){
       var energy=sourceLink.energy;
-      if (energy>400) {
-        if (linkUpgrader) {
+      if (energy>200) {
+        if (linkUpgrader && linkUpgrader.energy<600) {
+          sourceLink.transferEnergy(linkUpgrader);
+        } else if (linkCentral && linkCentral.energy<200) {
           sourceLink.transferEnergy(linkUpgrader);
         }
       }
