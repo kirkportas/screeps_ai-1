@@ -185,6 +185,7 @@ var tasks = {
       var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>600) }});
       var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
+      target = target.concat(centralLink);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
          if(creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
