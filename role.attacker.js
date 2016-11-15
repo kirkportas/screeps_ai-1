@@ -39,7 +39,7 @@ var roleAttacker = {
           }
         } else if (targetConstructionsites) {
           creep.moveTo(targetConstructionsites);
-        } else if (creep.memory.fleeAfter=='true') {
+        } else if (creep.memory.fleeAfter==true) {
           creep.say('1')
           creep.memory.role='suicide'
         } else {
