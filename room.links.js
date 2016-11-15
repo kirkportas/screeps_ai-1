@@ -13,7 +13,7 @@ var roomLinks = {
       var energy=sourceLink.energy;
       if (energy>400) {
         if (linkUpgrader) {
-          
+          sourceLink.transferEnergy(linkUpgrader);
         }
 
       }
