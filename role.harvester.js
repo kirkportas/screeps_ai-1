@@ -30,7 +30,7 @@ var roleHarvester = {
         }
       } else {
         var sourceObj=Game.getObjectById(creep.memory.pref);
-        var link = sourceObj.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.store[RESOURCE_ENERGY]<structure.capacity )  } });
+        var link = sourceObj.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy<structure.energyCapacity )  } });
         var containers = sourceObj.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
         var containersUnfinished = sourceObj.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
         if (link.length>0) {
