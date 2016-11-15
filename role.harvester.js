@@ -31,7 +31,7 @@ var roleHarvester = {
       } else {
         var sourceObj=Game.getObjectById(creep.memory.pref);
         var link = sourceObj.pos.findInRange(FIND_MY_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)  } });
-        console.log(link);
+        console.log(link.length);
         Memory.test=link;
         var containers = sourceObj.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } });
         var containersUnfinished = sourceObj.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
