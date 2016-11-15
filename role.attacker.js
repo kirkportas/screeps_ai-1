@@ -9,7 +9,7 @@ var roleAttacker = {
         creep.moveTo(exit);
       } else {
 
-        var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5 { filter: function(object) { return object.hits < object.hitsMax; }});
+        var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(object) { return object.hits < object.hitsMax; }});
         findCloseFriends=_.sortBy(findCloseFriends, creep => (creep.hits/creep.hitsMax));
         var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
         var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType != STRUCTURE_CONTROLLER && structure.structureType != STRUCTURE_ROAD)}});
