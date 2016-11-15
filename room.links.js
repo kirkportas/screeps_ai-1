@@ -18,7 +18,7 @@ var roomLinks = {
 
       }
 
-    }
+    });
 
     //console.log(linksSpawner+' '+linkCentral+' '+linkUpgrader)
   }
