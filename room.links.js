@@ -15,9 +15,7 @@ var roomLinks = {
         if (linkUpgrader) {
           sourceLink.transferEnergy(linkUpgrader);
         }
-
       }
-
     });
 
     //console.log(linksSpawner+' '+linkCentral+' '+linkUpgrader)
