@@ -37,7 +37,7 @@ var roleHarvester = {
         var containersUnfinished = sourceObj.pos.findInRange(FIND_CONSTRUCTION_SITES,5,{filter: (structure) => {return ( structure.structureType == STRUCTURE_CONTAINER )  }});
         if (link.length) {
           tasks.deliverSourceDedicated(creep,link[0]);//
-        } if (containers.length>0) {
+        } else if (containers.length>0) {
           tasks.deliverSourceDedicated(creep,containers[0]);//
         } else {
           if (containersUnfinished.length>0 && !(tasks.checkSourceNeeded(creep))) {
