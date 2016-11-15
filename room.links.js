@@ -19,6 +19,7 @@ var roomLinks = {
         }
       }
     });
+    console.log(linkCentral+'  '+linkUpgrader)
     if (linkCentral&&linkUpgrader) {
       if (linkCentral.energy>=400&&linkUpgrader<=200) {
         linkCentral.transferEnergy(linkUpgrader);
