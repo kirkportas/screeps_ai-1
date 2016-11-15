@@ -27,7 +27,9 @@ var roleHauler = {
           if (creep.memory.targetContainer===null || creep.memory.targetContainer===undefined) {
             creep.memory.targetContainer= tasks.findContainerDedicatedBiggest(creep);
           }
-            tasks.withdrawFromId(creep,creep.memory.targetContainer.id);
+          if (creep.memory.targetContainer) {
+            tasks.withdrawFromId(creep,creep.memory.targetContainer.id); //cant read id
+          }
           }
 	    }
 	}
