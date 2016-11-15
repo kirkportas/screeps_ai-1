@@ -19,10 +19,12 @@ var roleAttacker = {
           if (findCloseFriends.length) {
             if(creep.heal(findCloseFriends[0]) == ERR_NOT_IN_RANGE) {
               creep.moveTo(findCloseFriends[0]);
+            } else if (targetStructure) {
+              creep.moveTo(targetStructure)
             }
           }
 
-        } else if if (targetHostile) {
+        } else if (targetHostile) {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetHostile)
           }
