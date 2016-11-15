@@ -3,3 +3,4 @@ var roomLinks = {
     console.log('yaaay')
   };
 }
+module.exports = roomLinks;
