@@ -156,7 +156,7 @@ var tasks = {
       target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
-      target.push(spawn);
+      //target.push(spawn);
 
 
       if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
