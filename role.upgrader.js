@@ -23,7 +23,9 @@ var roleUpgrader = {
           var linkCentral=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
           var linkController=creep.room.controller.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
           if (linkCentral&&linkController) {
-            tasks.pushFromLink(creep,linkController,linkCentral);
+            if(creep.withdraw(linkController, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(linkController);
+            }
           } else {
             tasks.haulFromCentralCotainers(creep);
           }
