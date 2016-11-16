@@ -132,7 +132,7 @@ global.sendScouts = function(spawn) {
   }
   return false;
 }
-    var count = creepcalc.roomCreepcalc(spawn.room);
+    var count = roomCreepcalc.creepCount(spawn.room);
 
     var energyNow = spawn.room.energyAvailable;
     var energyAvav = spawn.room.energyCapacityAvailable;
