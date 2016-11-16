@@ -31,11 +31,16 @@ var mainSpawn = {
     global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
       memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction:'RENEW'}
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
-      if (spawn.canCreateCreep(body) == OK) {
+      var res = spawn.canCreateCreep(body);
+      if (res == OK) {
         var name = spawn.createCreep(body, findNextName(type),memory1);
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
         return true;
-      } //console.log('waiting to spawn, ',type,'error: ',spawn.canCreateCreep(body))
+      } else if (res==ERR_NOT_ENOUGH_ENERGY) {
+        console.log('Need more energy at ',spawn.name)
+      } else {
+        console.log('error ',res,' at ',spawn.name)
+      }
       return false;
     }
     global.spawnHarvesters = function(spawn) {
