@@ -218,7 +218,7 @@ var mainSpawn = {
       haulersNeeded=2;
     }
     if (energyInContainers>3000) haulersNeeded++;
-    if links.length>2 haulersNeeded--;
+    if (links.length>2) haulersNeeded--;
 
 
     var spawnHaulersNeeded=0;
