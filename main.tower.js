@@ -9,7 +9,7 @@ var mainTower = {
 
     var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     _.forEach(towers, function(tower){
-      if(!Memory.towers[id]) {Memory.towers[id]={}}
+      //if(!Memory.towers[id]) {Memory.towers[id]={}}
 
 
       var closeHostiles = tower.pos.findInRange(FIND_HOSTILE_CREEPS,10);
