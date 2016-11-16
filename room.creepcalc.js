@@ -12,6 +12,9 @@ var roomCreepcalc = {
     count.claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == room.name && creep.memory.role == 'claimer').length;
     count.remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == room.name && creep.memory.role == 'remoteBuilder').length;
     return count;
+  },
+  creepsNeeded function(room) {
+    
   }
 };
 module.exports = roomCreepcalc;
