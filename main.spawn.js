@@ -258,43 +258,45 @@ var mainSpawn = {
             delete Memory.creeps[name];
         }
     }
+    
+if (!spawn.spawning) {
+  if (renewAndKill(spawn)) {
+  } else if (spawnHarvesters(spawn)) {
+  } else if (containers.length>=1) {
+      if(count.haulers < haulersNeeded) {
+        var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
+        createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
+      } else if(count.spawnHaulers < spawnHaulersNeeded) {
+        createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
+      } else if(count.defenders < defendersNeeded) {
+        var modulesOfEach = Math.max(2,Math.min(4,Math.floor(energyNow/200)));
+        createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach}));
+      } else if(count.builders < buildersNeeded) {
+        var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
+        createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
+      } else if(count.upgraders < upgradersNeeded) {
+        if (links.length>=2) {
+          createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
+        } else {
+          var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
+            createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
+        }
+      } else if (spawnRemoteHarvesters(spawn)) {
+      } else if (spawnRemoteBuilders(spawn)) {
+      } else if (sendScouts(spawn)) {
+      } else if (spawnClaimers(spawn)) {
 
-if (renewAndKill(spawn)) {
-} else if (spawnHarvesters(spawn)) {
-} else if (containers.length>=1) {
-    if(count.haulers < haulersNeeded) {
-      var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
-      createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
-    } else if(count.spawnHaulers < spawnHaulersNeeded) {
-      createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
-    } else if(count.defenders < defendersNeeded) {
-      var modulesOfEach = Math.max(2,Math.min(4,Math.floor(energyNow/200)));
-      createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach}));
-    } else if(count.builders < buildersNeeded) {
-      var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
-      createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
-    } else if(count.upgraders < upgradersNeeded) {
-      if (links.length>=2) {
-        createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
-      } else {
-        var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
-          createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
+      } else if(spawn.room.name=='E65S61' && count.scouts < 0) {
+        createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
+      } /*else if(spawn.room.name=='E65S62' && claimers < 1) {
+        createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
+      } */ else if(count.attacker < 0) {
+        createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:2}),{targetRoom:'E62S61'});
+      } else if(spawn.room.name=='E65S62' && count.remoteBuilders < 0) {
+        createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:4,work:4}),{targetRoom:'E64S62'});
+      } else if(spawn.room.name=='E65S61' && count.remoteBuilders < 0) {
+        createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
       }
-    } else if (spawnRemoteHarvesters(spawn)) {
-    } else if (spawnRemoteBuilders(spawn)) {
-    } else if (sendScouts(spawn)) {
-    } else if (spawnClaimers(spawn)) {
-
-    } else if(spawn.room.name=='E65S61' && count.scouts < 0) {
-      createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
-    } /*else if(spawn.room.name=='E65S62' && claimers < 1) {
-      createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
-    } */ else if(count.attacker < 0) {
-      createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:2}),{targetRoom:'E62S61'});
-    } else if(spawn.room.name=='E65S62' && count.remoteBuilders < 0) {
-      createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:4,work:4}),{targetRoom:'E64S62'});
-    } else if(spawn.room.name=='E65S61' && count.remoteBuilders < 0) {
-      createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
     }
   }
 
