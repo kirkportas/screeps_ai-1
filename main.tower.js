@@ -1,8 +1,17 @@
 var mainTower = {
   run: function(room) {
+
+    for(var id in Memory.towers) { //TODO:trenger ikke kjøre 1 gang per rom
+        if(!Game.getObjectById(id)) {
+            delete Memory.towers[id];
+        }
+    }
+
     var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     _.forEach(towers, function(tower){
-      
+      if(!Memory.towers[id]) {Memory.towers[id]={}}
+
+
       var closeHostiles = tower.pos.findInRange(FIND_HOSTILE_CREEPS,10);
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
       var allHostiles = tower.room.find(FIND_HOSTILE_CREEPS,{
