@@ -268,7 +268,7 @@ var spawnSpawncreeps = {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
     }
 
-  },
+  }
 
 };
 module.exports = spawnSpawncreeps;
