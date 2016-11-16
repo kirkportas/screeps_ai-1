@@ -218,6 +218,7 @@ var mainSpawn = {
       haulersNeeded=2;
     }
     if (energyInContainers>3000) haulersNeeded++;
+    if links.length>2 haulersNeeded--;
 
 
     var spawnHaulersNeeded=0;
@@ -258,7 +259,7 @@ var mainSpawn = {
             delete Memory.creeps[name];
         }
     }
-    
+
 if (!spawn.spawning) {
   if (renewAndKill(spawn)) {
   } else if (spawnHarvesters(spawn)) {
