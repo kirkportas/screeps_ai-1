@@ -4,7 +4,7 @@ var mainTower = {
 
     var closestDamagedStructure = room.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
     closestDamagedStructure=_.sortBy(closestDamagedStructure, s => s.hits);
-    var allHostiles = tower.room.find(FIND_HOSTILE_CREEPS,{
+    var allHostiles = room.find(FIND_HOSTILE_CREEPS,{
       filter: (creep) => {
         var hits = creep.hits;
         var attacks = creep.getActiveBodyparts(ATTACK);
