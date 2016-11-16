@@ -15,12 +15,13 @@ var mainTower = {
       }
     });
     allHostiles=_.sortBy(allHostiles, creep => creep.hits);
-    closeHostiles=_.sortBy(closeHostiles, creep => creep.hits);
+
 
 
     var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     _.forEach(towers, function(tower){
       var closeHostiles = tower.pos.findInRange(FIND_HOSTILE_CREEPS,10);
+      closeHostiles=_.sortBy(closeHostiles, creep => creep.hits);
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
       if(closeHostiles.length) {
