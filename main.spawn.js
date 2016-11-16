@@ -1,4 +1,5 @@
 var tasks = require('tasks');
+var roomCreepcalc = require('room.creepcalc');
 var mainSpawn = {
 
     run: function(spawn) {
@@ -131,24 +132,7 @@ global.sendScouts = function(spawn) {
   }
   return false;
 }
-
-    var harvesters = _.filter(Game.creeps, (creep)    => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>50).length;
-    var haulers = _.filter(Game.creeps, (creep)       => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'hauler' && creep.ticksToLive>50).length;
-    var spawnHaulers = _.filter(Game.creeps, (creep)  => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'spawnHauler').length;
-    var upgraders = _.filter(Game.creeps, (creep)     => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'upgrader'&& creep.ticksToLive>50).length;
-    var builders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'builder'&& creep.ticksToLive>10).length;
-    var scouts = _.filter(Game.creeps, (creep)        => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'scout'&&  creep.ticksToLive>50).length;
-    var defenders = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'defender').length;
-    var attacker = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'attacker').length;
-    var claimers = _.filter(Game.creeps, (creep)      => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'claimer').length;
-    var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteBuilder').length;
-
-    var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E65S63' && '57ef9eb986f108ae6e60fcd6').length;
-    var offSiteMiners21 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa57').length;
-    var offSiteMiners22 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa55').length;
-    var offSiteMiners31 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa51').length;
-    var offSiteMiners32 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa53').length;
-
+    var count = creepcalc.creepCount(spawn.room);
 
     var energyNow = spawn.room.energyAvailable;
     var energyAvav = spawn.room.energyCapacityAvailable;
@@ -261,18 +245,18 @@ global.sendScouts = function(spawn) {
 
     }
   if (containers.length>=1) {
-    if(haulers < haulersNeeded) {
+    if(count.haulers < haulersNeeded) {
       var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
       createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
-    } else if(spawnHaulers < spawnHaulersNeeded) {
+    } else if(count.spawnHaulers < spawnHaulersNeeded) {
       createCreepAdvanced(spawn,'spawnHauler',createBody({move:1, carry:2}));
-    } else if(defenders < defendersNeeded) {
+    } else if(count.defenders < defendersNeeded) {
       var modulesOfEach = Math.max(2,Math.min(4,Math.floor(energyNow/200)));
       createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach}));
-    } else if(builders < buildersNeeded) {
+    } else if(count.builders < buildersNeeded) {
       var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
       createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
-    } else if(upgraders < upgradersNeeded) {
+    } else if(count.upgraders < upgradersNeeded) {
       if (links.length>=2) {
         createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
       } else {
@@ -284,15 +268,15 @@ global.sendScouts = function(spawn) {
     } else if (sendScouts(spawn)) {
     } else if (spawnClaimers(spawn)) {
 
-    } else if(spawn.room.name=='E65S61' && scouts < 0) {
+    } else if(spawn.room.name=='E65S61' && count.scouts < 0) {
       createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
     } /*else if(spawn.room.name=='E65S62' && claimers < 1) {
       createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61'});
-    } */ else if(attacker < 0) {
+    } */ else if(count.attacker < 0) {
       createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:2}),{targetRoom:'E62S61'});
-    } else if(spawn.room.name=='E65S62' && remoteBuilders < 0) {
+    } else if(spawn.room.name=='E65S62' && count.remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:4,work:4}),{targetRoom:'E64S62'});
-    } else if(spawn.room.name=='E65S61' && remoteBuilders < 0) {
+    } else if(spawn.room.name=='E65S61' && count.remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
     }
 
