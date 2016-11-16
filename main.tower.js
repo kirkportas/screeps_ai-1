@@ -1,36 +1,25 @@
 var mainTower = {
   run: function(room) {
 
-    for(var id in Memory.towers) { //TODO:trenger ikke kjøre 1 gang per rom
-        if(!Game.getObjectById(id)) {
-            delete Memory.towers[id];
-        }
-    }
-
     var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     _.forEach(towers, function(tower){
-
-      //if(!Memory.towers[id]) {Memory.towers[id]={}}
-
-
       var closeHostiles = tower.pos.findInRange(FIND_HOSTILE_CREEPS,10);
       var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
       var allHostiles = tower.room.find(FIND_HOSTILE_CREEPS,{
-              filter: (creep) => {
-                  var hits = creep.hits;
-                  var attacks = creep.getActiveBodyparts(ATTACK);
-                  var ranges = creep.getActiveBodyparts(RANGED_ATTACK);
-                  var moves = creep.getActiveBodyparts(MOVE);
-                  var heals = creep.getActiveBodyparts(HEAL);
-                  return true
-              }
+        filter: (creep) => {
+          var hits = creep.hits;
+          var attacks = creep.getActiveBodyparts(ATTACK);
+          var ranges = creep.getActiveBodyparts(RANGED_ATTACK);
+          var moves = creep.getActiveBodyparts(MOVE);
+          var heals = creep.getActiveBodyparts(HEAL);
+          return true
+        }
       });
       allHostiles=_.sortBy(allHostiles, creep => creep.hits);
       closeHostiles=_.sortBy(closeHostiles, creep => creep.hits);
       var closestDamagedStructure = tower.room.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
       closestDamagedStructure=_.sortBy(closestDamagedStructure, s => s.hits);
       var damagedCreeps = tower.pos.findClosestByRange(FIND_CREEPS, {filter: (creep) => creep.hits < creep.hitsMax});
-
       if(closeHostiles.length) {
         tower.attack(closeHostiles[0]);
       } else if(allHostiles.length) {
@@ -41,6 +30,8 @@ var mainTower = {
         tower.heal(damagedCreeps);
       } else if (closestDamagedStructure && tower.energy>=400) {
         tower.repair(closestDamagedStructure[0]);
+      } else {
+        room.memory.towerSleep=9;
       }
 
     });
