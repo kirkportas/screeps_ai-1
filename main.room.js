@@ -9,9 +9,7 @@ var mainRoom = {
 
       roomLinks.run(room);
 
-      var extensions = room.find(FIND_MY_STRUCTURES, {filter: { structureType: STRUCTURE_EXTENSION }});
-      var containers = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
-      var roads = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_ROAD }});
+
 
       var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
       //var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
@@ -66,6 +64,8 @@ var mainRoom = {
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
       console.log('checking room');
+      var extensions = room.find(FIND_MY_STRUCTURES, {filter: { structureType: STRUCTURE_EXTENSION }});
+      var containers = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
       //
       buildContainers.run(room);
       if (containers.length>=1) buildExtension.run(room)
