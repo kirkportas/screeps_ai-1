@@ -1,5 +1,7 @@
 var spawnSpawncreeps = {
 
+
+  run: function(spawn) {
     global.findNextName = function(type) {
         var finaleName
         for (var i=1;true;i++) {
@@ -129,7 +131,6 @@ var spawnSpawncreeps = {
   return false;
   }
 
-  run: function(spawn) {
     var count = roomCreepcalc.creepCount(spawn.room);
     var energyNow = spawn.room.energyAvailable;
     var energyAvav = spawn.room.energyCapacityAvailable;
