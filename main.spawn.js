@@ -38,6 +38,42 @@ var mainSpawn = {
       } //console.log('waiting to spawn, ',type,'error: ',spawn.canCreateCreep(body))
       return false;
     }
+    global.spawnHarvesters = function(spawn) {
+      //cleanup dedicated miners && watch
+      var sources = spawn.room.memory.allSources;
+      for (var i=0;i<sources.length;i++) {
+        var source=sources[i];
+        var sourceObj = Game.getObjectById(source.id);
+        //console.log(sourceObj.ticksToRegeneration,'ticks. Left: ',sourceObj.energy);
+        for (var ii=0;ii<source.miners.length;ii++) {
+          if (Game.getObjectById(source.miners[ii]) == null) {
+          source.miners.splice(ii, 1);
+        }
+      }
+        //spawns harvesters per source
+
+        if (energyAvav>=750) {
+          //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
+          if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
+            if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
+              var preferedSource = source.id;
+              if (createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})) return true;;
+            }
+          }
+        } else {
+          if (source.miners.length<source.slots && source.safe) {
+            if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
+              var preferedSource = source.id;
+              if (createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})) return true;
+            }
+          }
+        }
+
+      }
+
+      return false;
+    }
+
     global.spawnRemoteHarvesters = function(spawn) {
       var scout=spawn.room.memory.scout;
       for (var roomName in scout) {
@@ -83,55 +119,68 @@ var mainSpawn = {
   }
   return false;
 }
-global.spawnClaimers = function(spawn) {
-  var scout=spawn.room.memory.scout;
-  for (var roomName in scout) {
-    if (scout[roomName].danger==0) {
-      var reservation = scout[roomName].reservation;
-      if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
-      if (reservation<3000 && reservation>=0) {
-        if (Object.keys(scout[roomName].sources).length>=1) {  // do I WANT to claim this room?
-          let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
-          let claimersNeeded= 2;
-          if (claimers<claimersNeeded) {
-            createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:roomName});
-            return true;
+  global.spawnClaimers = function(spawn) {
+    var scout=spawn.room.memory.scout;
+    for (var roomName in scout) {
+      if (scout[roomName].danger==0) {
+        var reservation = scout[roomName].reservation;
+        if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+        if (reservation<3000 && reservation>=0) {
+          if (Object.keys(scout[roomName].sources).length>=1) {  // do I WANT to claim this room?
+            let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
+            let claimersNeeded= 2;
+            if (claimers<claimersNeeded) {
+              createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:roomName});
+              return true;
+            }
           }
         }
-      }
-  }
-}
-return false;
-}
-
-global.sendScouts = function(spawn) {
-  var scout=spawn.room.memory.scout;
-  for (var roomName in scout) {
-    if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
-    if (scout[roomName].danger==1) {
-      if (!scout[roomName].lastAttackerSent || ((Game.time-scout[roomName].lastAttackerSent)>500)) {
-        var size = Math.floor((energyAvav/180)*0.80)
-        if (createCreepAdvanced(spawn,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
-          console.log('sending a attacker to ',roomName);
-          scout[roomName].lastAttackerSent=Game.time;
-          return true;
-        }
-      }
-    } else {
-      if (scout[roomName].timeSinceLastScout>1500 || scout[roomName].timeSinceLastScout==-1) {
-        if (!scout[roomName].lastScoutSent || ((Game.times-scout[roomName].lastScoutSent)>500)) {
-          if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
-            console.log('sending a scout to ',roomName);
-            scout[roomName].lastScoutSent=Game.time;
-            return true;
-          }
-        }
-      }
     }
-
   }
   return false;
-}
+  }
+
+  global.sendScouts = function(spawn) {
+    var scout=spawn.room.memory.scout;
+    for (var roomName in scout) {
+      if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+      if (scout[roomName].danger==1) {
+        if (!scout[roomName].lastAttackerSent || ((Game.time-scout[roomName].lastAttackerSent)>500)) {
+          var size = Math.floor((energyAvav/180)*0.80)
+          if (createCreepAdvanced(spawn,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
+            console.log('sending a attacker to ',roomName);
+            scout[roomName].lastAttackerSent=Game.time;
+            return true;
+          }
+        }
+      } else {
+        if (scout[roomName].timeSinceLastScout>1500 || scout[roomName].timeSinceLastScout==-1) {
+          if (!scout[roomName].lastScoutSent || ((Game.times-scout[roomName].lastScoutSent)>500)) {
+            if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
+              console.log('sending a scout to ',roomName);
+              scout[roomName].lastScoutSent=Game.time;
+              return true;
+            }
+          }
+        }
+      }
+
+    }
+    return false;
+  }
+  global.renewAndKill = function(spawn) {
+    var creeps = spawn.pos.findInRange(FIND_MY_CREEPS,1);
+    _.forEach(creeps, function(creep){
+      if (creep.memory.spawnerAction=='KILL') {
+        spawn.recycleCreep(creep);
+        return true;
+      } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW' && creep.memory.role!='remoteHarvester') {
+        spawn.renewCreep(creep);
+        return true;
+      }
+    });
+    return false;
+  }
     var count = roomCreepcalc.creepCount(spawn.room);
 
     var energyNow = spawn.room.energyAvailable;
@@ -210,41 +259,9 @@ global.sendScouts = function(spawn) {
         }
     }
 
-    //cleanup dedicated miners && watch
-    var sources = spawn.room.memory.allSources;
-    for (var i=0;i<sources.length;i++) {
-      var source=sources[i];
-      var sourceObj = Game.getObjectById(source.id);
-      if (sourceObj.ticksToRegeneration==1) {
-        //Game.notify('sourceRegen;'+sourceObj.ticksToRegeneration+';'+sourceObj.energy,60);
-      }
-      //console.log(sourceObj.ticksToRegeneration,'ticks. Left: ',sourceObj.energy);
-      for (var ii=0;ii<source.miners.length;ii++) {
-        if (Game.getObjectById(source.miners[ii]) == null) {
-        source.miners.splice(ii, 1);
-      }
-    }
-      //spawns harvesters per source
-
-      if (energyAvav>=750) {
-        //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
-        if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
-          if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
-            var preferedSource = source.id;
-            if (createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})) break;;
-          }
-        }
-      } else {
-        if (source.miners.length<source.slots && source.safe) {
-          if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
-            var preferedSource = source.id;
-            if (createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})) break;
-          }
-        }
-      }
-
-    }
-  if (containers.length>=1) {
+if (renewAndKill(spawn)) {
+} else if (spawnHarvesters(spawn)) {
+} else if (containers.length>=1) {
     if(count.haulers < haulersNeeded) {
       var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
       createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
@@ -279,39 +296,7 @@ global.sendScouts = function(spawn) {
     } else if(spawn.room.name=='E65S61' && count.remoteBuilders < 0) {
       createCreepAdvanced(spawn,'remoteBuilder',createBody({move:2,carry:2,work:2}),{targetRoom:'E64S61'});
     }
-
-
-      /*
-    } else if (spawn.room.name=='E65S62' && spawn.room.memory.scout['E65S63'].danger==0 && offSiteMiners11<2) {
-      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E65S63', pref: '57ef9eb986f108ae6e60fcd6'});
-    } else if (spawn.room.name=='E65S62' && spawn.room.memory.scout['E64S62'].danger==0 && offSiteMiners21<2) {
-      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S62', pref: '57ef9ea486f108ae6e60fa57'});
-    } else if (spawn.room.name=='E65S62' && spawn.room.memory.scout['E64S62'].danger==0 && offSiteMiners22<0) {
-      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S62', pref: '57ef9ea486f108ae6e60fa55'});
-    } else if (spawn.room.name=='E65S61' && spawn.room.memory.scout['E64S61'].danger==0 && offSiteMiners31<2) {
-      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa51'});
-    } else if (spawn.room.name=='E65S61' && spawn.room.memory.scout['E64S61'].danger==0 && offSiteMiners32<2) {
-      createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:3,work:3}),{targetRoom:'E64S61', pref: '57ef9ea486f108ae6e60fa53'});
-    } */
   }
-
-  /*
-  var offSiteMiners11 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E65S63' && '57ef9eb986f108ae6e60fcd6').length;
-  var offSiteMiners21 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa57').length;
-  var offSiteMiners22 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S62' && '57ef9ea486f108ae6e60fa55').length;
-  var offSiteMiners31 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa51').length;
-  var offSiteMiners32 = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'remoteHarvester' && creep.memory.targetRoom=='E64S61' && '57ef9ea486f108ae6e60fa53').length;
-
-*/
-
-  var creeps = spawn.pos.findInRange(FIND_MY_CREEPS,1);
-  _.forEach(creeps, function(creep){
-    if (creep.memory.spawnerAction=='KILL') {
-      spawn.recycleCreep(creep);
-    } else if (creep && creep.ticksToLive<500 && creep.memory.spawnerAction=='RENEW' && creep.memory.role!='remoteHarvester') {
-      spawn.renewCreep(creep);
-    }
-  });
 
 
   var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,10); //
