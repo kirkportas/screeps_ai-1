@@ -12,6 +12,7 @@ var roleAttacker = {
         var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(object) { return object.hits < object.hitsMax; }});
         findCloseFriends=_.sortBy(findCloseFriends, creep => (creep.hits/creep.hitsMax));
         var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
+        var targetHostileSec = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         var targetStructurePri = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType != STRUCTURE_CONTROLLER && structure.structureType != STRUCTURE_WALL &&structure.structureType != STRUCTURE_RAMPART && structure.structureType != STRUCTURE_ROAD)}});
         var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType != STRUCTURE_CONTROLLER && structure.structureType != STRUCTURE_ROAD)}});
         var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
@@ -26,6 +27,10 @@ var roleAttacker = {
           }
 
         } else if (targetHostile) {
+          if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(targetHostile)
+          }
+        } else if (targetHostileSec) {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetHostile)
           }
