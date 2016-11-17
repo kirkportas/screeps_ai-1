@@ -31,16 +31,17 @@ var tasks = {
 
           var hostiles=creep.room.find(FIND_HOSTILE_CREEPS);
           var npcInvadersWeak=0;
+          var dangerousHostiles=0;
           var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES);
           _.forEach(hostiles, function(creep){
-            if (creep.owner.username=='Invader' && creep.body.length<=16) npcInvadersWeak++;
+            if (creep.owner.username=='Invader' && creep.body.length<=16) {npcInvadersWeak++;} else {
+              if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) dangerousHostiles++;
+            }
           });
 
-          if (hostileStruc.length) {
+          if (hostileStruc.length || dangerousHostiles>2) {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
-          } else if (hostiles.lenght-npcInvadersWeak>0){
-            Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
-          } else if (npcInvadersWeak>=1) {
+          } else if (npcInvadersWeak>=1 || dangerousHostiles<=2){
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=1;
           } else {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
