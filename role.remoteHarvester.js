@@ -26,7 +26,11 @@ var roleRemoteHarvester = {
               creep.moveTo(exit);
             }
           } else {
-            tasks.harvestPrefered(creep);
+            if (creep.pos.findInRange(FIND_HOSTILE_CREEPS,12)) {
+              creep.memory.delivering = true;
+            } else {
+              tasks.harvestPrefered(creep);
+            }
           }
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
