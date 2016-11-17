@@ -30,11 +30,11 @@ var roleAttacker = {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetHostile)
           }
-        } else if (targetStructure) {
-          if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(targetStructure)
-          }
         } else if (targetStructurePri) {
+          if(creep.attack(targetStructurePri) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(targetStructurePri)
+          }
+        } else if (targetStructure) {
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetStructure)
           }
