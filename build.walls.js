@@ -2,7 +2,7 @@ var buildWalls = {
 
     run: function(room) {
 
-      var wallW = room.find(FIND_EXIT_RIGHT, {filter: (w) => {return (w.x==0)}});
+      var wallW = room.find(FIND_EXIT_RIGHT);
       console.log(wallW.length)
     }
 };
