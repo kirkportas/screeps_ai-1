@@ -30,10 +30,6 @@ var roleAttacker = {
           if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetHostile)
           }
-        } else if (targetHostileSec) {
-          if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(targetHostile)
-          }
         } else if (targetStructure) {
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetStructure)
@@ -44,6 +40,10 @@ var roleAttacker = {
           }
         } else if (targetConstructionsites) {
           creep.moveTo(targetConstructionsites);
+        } else if (targetHostileSec) {
+          if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(targetHostile)
+          }
         } else if (creep.memory.fleeAfter==true) {
           creep.say('1')
           creep.memory.role='suicide'
