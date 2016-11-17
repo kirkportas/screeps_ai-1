@@ -3,7 +3,8 @@ var tasks = require('tasks');
 var roleRemoteHarvester = {
 
     run: function(creep) {
-      if(creep.memory.delivering && creep.carry.energy == 0) {
+      var hostiles = creep.pos.findInRange(FIND_HOSTILE_CREEPS,8);
+      if(creep.memory.delivering && creep.carry.energy == 0 && !hostiles) {
             creep.memory.delivering = false;
       }
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
@@ -26,7 +27,6 @@ var roleRemoteHarvester = {
               creep.moveTo(exit);
             }
           } else {
-            var hostiles = creep.pos.findInRange(FIND_HOSTILE_CREEPS,12);
             if (hostiles.length) {
               creep.say('flee');
               creep.memory.delivering = true;
