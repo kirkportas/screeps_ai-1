@@ -1,7 +1,7 @@
 var buildExtension = require('build.extension');
 var buildContainers = require('build.containers');
 var buildRoads = require('build.roads');
-var buildRoads = require('build.walls');
+var buildWalls = require('build.walls');
 var roomLinks = require('room.links');
 
 var mainRoom = {
