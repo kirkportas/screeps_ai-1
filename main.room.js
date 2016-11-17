@@ -68,19 +68,26 @@ var mainRoom = {
       var extensions = room.find(FIND_MY_STRUCTURES, {filter: { structureType: STRUCTURE_EXTENSION }});
       var containers = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
       //
-      buildContainers.run(room);
-      if (containers.length>=1) buildExtension.run(room)
-      if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
+
 
       if (room.name=='E65S62') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
+        room.memory.roomdesign=1;
       } else if (room.name=='E65S61') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
+        room.memory.roomdesign=1;
       } else {
         room.memory.wallHitsMax=20000;
         room.memory.wallHitsmin=10000;
+        room.memory.roomdesign=2;
+      }
+
+      if (room.memory.roomdesign==1) {
+        buildContainers.run(room);
+        if (containers.length>=1) buildExtension.run(room)
+        if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       }
 
       room.memory.timeToRecheck=100;
