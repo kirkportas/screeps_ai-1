@@ -43,7 +43,7 @@ module.exports.loop = function () {
     }
 
   }
-  //createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({move:4,attack:4}),{targetRoom:'E63S61'});
+  createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({move:2,attack:2}),{targetRoom:'E63S61'});
   //createCreepAdvanced(Game.spawns['Spawn1'],'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61',takeover: true});
 
   if (cpuLog && !Memory.timeData) {Memory.timeData={}}
