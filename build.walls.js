@@ -4,7 +4,7 @@ var buildWalls = {
 
       var wallW = room.find(FIND_EXIT_BOTTOM);
       for (let i=0;i<wallW.length-1;i++) {
-        if (wallW[i].x!=wallW[i+1].x-1) console.log('new seg');
+        if (wallW[i].x+1!=wallW[i+1].x) console.log('new seg');
       }
     }
 };
