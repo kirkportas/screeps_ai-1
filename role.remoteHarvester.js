@@ -4,7 +4,7 @@ var roleRemoteHarvester = {
 
     run: function(creep) {
       var hostiles = creep.pos.findInRange(FIND_HOSTILE_CREEPS,8);
-      if(creep.memory.delivering && creep.carry.energy == 0) {
+      if(creep.memory.delivering && creep.carry.energy == 0 && !hostiles.lenght) {
             creep.memory.delivering = false;
       }
       if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
