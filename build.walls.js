@@ -2,7 +2,7 @@ var buildWalls = {
 
   buildWall: function(x1,x2) {
     console.log('seg')
-  }
+  },
 
     run: function(room) {
 
