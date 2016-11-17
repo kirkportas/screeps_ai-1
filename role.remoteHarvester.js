@@ -26,7 +26,7 @@ var roleRemoteHarvester = {
               creep.moveTo(exit);
             }
           } else {
-            if (creep.pos.findInRange(FIND_HOSTILE_CREEPS,12)) {
+            if (creep.pos.findInRange(FIND_HOSTILE_CREEPS,12).length) {
               creep.memory.delivering = true;
             } else {
               tasks.harvestPrefered(creep);
