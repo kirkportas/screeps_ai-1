@@ -41,7 +41,7 @@ var tasks = {
 
           if (hostileStruc.length || dangerousHostiles>2) {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=10;
-          } else if (npcInvadersWeak>=1 || dangerousHostiles<=2){
+          } else if (npcInvadersWeak>=1 || dangerousHostiles>0){
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=1;
           } else {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
