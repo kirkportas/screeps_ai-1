@@ -150,7 +150,7 @@ var mainSpawn = {
     for (var roomName in scout) {
       if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
       if (scout[roomName].danger==1) {
-        if (!scout[roomName].lastAttackerSent || ((Game.time-scout[roomName].lastAttackerSent)>500)) {
+        if (!scout[roomName].lastAttackerSent || ((Game.time-scout[roomName].lastAttackerSent)>100)) {
           var size = Math.floor((energyAvav/180)*0.80)
           if (createCreepAdvanced(spawn,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
             console.log('sending a attacker to ',roomName);
