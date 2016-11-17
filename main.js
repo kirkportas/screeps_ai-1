@@ -30,6 +30,7 @@ module.exports.loop = function () {
 
   var cpuLog=false
 
+  createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({move:4,attack:4}),{targetRoom:'E63S61'});
 
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
