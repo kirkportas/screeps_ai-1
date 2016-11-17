@@ -48,7 +48,6 @@ var roleAttacker = {
           creep.say('1')
           creep.memory.role='suicide'
         } else {
-          creep.say(creep.memory.fleeAfter)
           creep.moveTo(creep.room.controller);
         }
       }
