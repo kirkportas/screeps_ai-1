@@ -60,7 +60,7 @@ var mainRoom = {
             return (a.len-a.safe*100) - (b.len-b.safe*10);
         });
     }
-    //buildWalls.run(room);
+    buildWalls.run(room);
     if (room.memory.timeToRecheck===null) room.memory.timeToRecheck=0;
     room.memory.timeToRecheck-=1;
     if (room.memory.timeToRecheck<=0) {
