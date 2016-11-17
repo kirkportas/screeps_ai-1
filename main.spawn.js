@@ -133,9 +133,10 @@ var mainSpawn = {
         if (reservation<3000 && reservation>=0) {
           if (Object.keys(scout[roomName].sources).length>=1) {  // do I WANT to claim this room?
             let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
-            let claimersNeeded= 2;
+            let size= Math.min(2,Math.floor(energyAvav/650));
+            let claimersNeeded= Math.floor(2/size);
             if (claimers<claimersNeeded) {
-              createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{targetRoom:roomName});
+              createCreepAdvanced(spawn,'claimer',createBody({move:size,claim:size}),{targetRoom:roomName});
               return true;
             }
           }
