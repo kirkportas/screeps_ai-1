@@ -28,7 +28,7 @@ module.exports.loop = function () {
   var timeTower=0;
   var timeScout=0;
 
-  var cpuLog=false
+  var cpuLog=true
 
 
 
@@ -70,6 +70,7 @@ module.exports.loop = function () {
           if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
           if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
           if (cpuLog) {
+            creep.say(cpu.getUsed()-cpuTime);
             if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
             Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
           }
