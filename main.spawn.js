@@ -239,7 +239,7 @@ var mainSpawn = {
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
     if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=1;
-    upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-10000)/10000));
+    upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-10000)/8000));
     //console.log('builders needed',buildersNeeded)
     //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
@@ -278,7 +278,7 @@ if (!spawn.spawning) {
         createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
       } else if(count.upgraders < upgradersNeeded) {
         if (links.length>=2) {
-          createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(8,Math.floor((energyAvav-200)/100))}));
+          createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(10,Math.floor((energyAvav-200)/100))}));
         } else {
           var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
             createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
