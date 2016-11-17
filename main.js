@@ -43,7 +43,7 @@ module.exports.loop = function () {
     }
 
   }
-  createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({move:4,attack:4}),{targetRoom:'E63S61'});
+  //createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({move:4,attack:4}),{targetRoom:'E63S61'});
 
   if (cpuLog && !Memory.timeData) {Memory.timeData={}}
   var timeHarvester=0;
