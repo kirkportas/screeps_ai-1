@@ -26,7 +26,9 @@ var roleRemoteHarvester = {
               creep.moveTo(exit);
             }
           } else {
-            if (creep.pos.findInRange(FIND_HOSTILE_CREEPS,12).length) {
+            var hostiles = creep.pos.findInRange(FIND_HOSTILE_CREEPS,12);
+            if (hostiles.length) {
+              creep.say('flee');
               creep.memory.delivering = true;
             } else {
               tasks.harvestPrefered(creep);
