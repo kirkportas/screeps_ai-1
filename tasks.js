@@ -155,7 +155,7 @@ var tasks = {
        target = target.concat(centralLink);
 
       target = target.concat(spawnTar);
-      if (extensions) target.push(extensions);
+      if (extensions) target=target.push(extensions);
       target = target.concat(tower);
       target = target.concat(centralStorage);
 
