@@ -28,9 +28,7 @@ module.exports.loop = function () {
   var timeTower=0;
   var timeScout=0;
 
-  var cpuLog=false
-
-
+  var cpuLog=true
 
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
@@ -45,6 +43,7 @@ module.exports.loop = function () {
   }
   //createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({move:2,attack:2}),{targetRoom:'E63S61'});
   //createCreepAdvanced(Game.spawns['Spawn1'],'claimer',createBody({move:2,claim:2}),{targetRoom:'E64S61',takeover: true});
+  //createCreepAdvanced(Game.spawns['Spawn1'],,'remoteBuilder',createBody({move:4,carry:4,work:4}),{targetRoom:'E64S62'});
 
   if (cpuLog && !Memory.timeData) {Memory.timeData={}}
   var timeHarvester=0;
