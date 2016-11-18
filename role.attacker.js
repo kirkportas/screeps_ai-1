@@ -5,7 +5,7 @@ var roleAttacker = {
     run: function(creep) {
       if (creep.memory.flag && creep.room.name!=Game.flags[creep.memory.flag].roomName) {
         creep.moveTo(Game.flags[creep.memory.flag]);
-      } else if(creep.room.name != creep.memory.targetRoom) {
+      } else if(!creep.memory.flag && creep.room.name != creep.memory.targetRoom) {
         var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
         var exit = creep.pos.findClosestByRange(exitDir);
         creep.moveTo(exit);
