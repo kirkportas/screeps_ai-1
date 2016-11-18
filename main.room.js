@@ -10,8 +10,6 @@ var mainRoom = {
 
       roomLinks.run(room);
 
-
-
       var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
       //var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
       var sources = room.find(FIND_SOURCES);
@@ -74,10 +72,12 @@ var mainRoom = {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
         room.memory.roomdesign=1;
+        room.memory.expand=true;
       } else if (room.name=='E65S61') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
         room.memory.roomdesign=1;
+        room.memory.expand=true;
       } else {
         room.memory.wallHitsMax=20000;
         room.memory.wallHitsmin=10000;
