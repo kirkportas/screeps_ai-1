@@ -12,15 +12,9 @@ var roleRemotebuilder = {
 	    }
 
       if(creep.room.name != creep.memory.targetRoom) {
-        var route = Game.map.findRoute(creep.room.name, creep.memory.targetRoom);
-        if(route.length > 0) {
-            console.log('Now heading to room '+route[0].room);
-            var exit = creep.pos.findClosestByRange(route[0].exit);
-            creep.moveTo(exit);
-        }
-        //var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom,{maxRooms:1});
-        //var exit = creep.pos.findClosestByRange(exitDir);
-        //creep.moveTo(exit);
+        var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom,{maxRooms:1});
+        var exit = creep.pos.findClosestByRange(exitDir);
+        creep.moveTo(exit);
       } else {
         if(creep.memory.building) {
 
