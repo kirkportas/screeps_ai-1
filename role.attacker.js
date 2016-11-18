@@ -33,7 +33,6 @@ var roleAttacker = {
             creep.moveTo(targetHostile)
           }
         } else if (targetStructurePri) {
-          creep.say(targetStructurePri)
           if(creep.attack(targetStructurePri) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targetStructurePri,{avoid:creep.room.find(FIND_EXIT)})
           }
