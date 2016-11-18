@@ -28,6 +28,7 @@ var roleRemotebuilder = {
           if (creep.memory.targetFix===null || creep.memory.targetFix===undefined) {
             var targetsPri = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: (structure) => { return (
                             structure.structureType == STRUCTURE_TOWER ||
+                            structure.structureType == STRUCTURE_SPAWN ||
                             structure.structureType == STRUCTURE_STORAGE ||
                             structure.structureType == STRUCTURE_LINK ||
                             structure.structureType == STRUCTURE_CONTAINER /* ||
