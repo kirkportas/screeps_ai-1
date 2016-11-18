@@ -254,7 +254,7 @@ var mainSpawn = {
     if (spawn.room.name=='E65S62') {
       //defendersNeeded=Math.max(4,defendersNeeded);
     }
-
+    var expand=spawn.room.memory.expand;
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -284,10 +284,10 @@ if (!spawn.spawning) {
           var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
             createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
         }
-      } else if (spawnRemoteHarvesters(spawn)) {
-      } else if (spawnRemoteBuilders(spawn)) {
-      } else if (sendScouts(spawn)) {
-      } else if (spawnClaimers(spawn)) {
+      } else if (expand && spawnRemoteHarvesters(spawn)) {
+      } else if (expand && spawnRemoteBuilders(spawn)) {
+      } else if (expand && sendScouts(spawn)) {
+      } else if (expand && spawnClaimers(spawn)) {
 
       } else if(spawn.room.name=='E65S61' && count.scouts < 0) {
         createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
