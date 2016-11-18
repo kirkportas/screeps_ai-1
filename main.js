@@ -30,7 +30,7 @@ module.exports.loop = function () {
 
   var cpuLog=false
 
-  PathFinder.use(true);
+  //PathFinder.use(true);
 
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
