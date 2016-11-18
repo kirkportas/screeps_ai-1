@@ -14,7 +14,7 @@ var roleRemotebuilder = {
       if(creep.room.name != creep.memory.targetRoom) {
         var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
         var exit = creep.pos.findClosestByRange(exitDir;
-        creep.moveTo(exit,{maxRooms:1}));
+        creep.moveTo(exit,{maxRooms:1});
       } else {
         if(creep.memory.building) {
 
