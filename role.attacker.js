@@ -33,7 +33,7 @@ var roleAttacker = {
         } else if (targetStructurePri) {
           creep.say('ya')
           if(creep.attack(targetStructurePri) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(targetStructurePri)
+            creep.moveTo(targetStructurePri,{maxRooms:2})
           }
         } else if (targetStructure) {
           if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
