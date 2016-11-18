@@ -15,6 +15,7 @@ var roleClaimer = {
         }
       } else {
         if (creep.memory.takeover) {
+          creep.say('takeover')
           if (creep.claimController(Game.rooms[creep.memory.targetRoom].controller) == ERR_NOT_IN_RANGE) {
             creep.moveTo(Game.rooms[creep.memory.targetRoom].controller);
           }
