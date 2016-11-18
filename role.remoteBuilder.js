@@ -9,6 +9,7 @@ var roleRemotebuilder = {
 	    }
 	    if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
 	        creep.memory.building = true;
+          creep.memory.target= null;
 	    }
 
       if(creep.room.name != creep.memory.targetRoom) {
