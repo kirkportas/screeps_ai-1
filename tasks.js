@@ -2,8 +2,8 @@ var tasks = {
     enterRoom: function(creep) {
       if (creep.pos.x==0) {creep.move(RIGHT);
       } else if (creep.pos.x==49) {creep.move(LEFT);
-    } else if (creep.pos.y==0) {creep.move(UP);
-  } else if (creep.pos.y==49) {creep.move(DOWN);}
+    } else if (creep.pos.y==0) {creep.move(TOP);
+  } else if (creep.pos.y==49) {creep.move(BOTTOM);}
 
     },
     scoutRoom: function(creep) {
