@@ -45,7 +45,7 @@ var mainRoom = {
 
                  let items = room.lookAt(sources[i].pos.x+x1,sources[i].pos.y+y1);
                    for (let i=0;i<items.length;i++) {
-                       if (items[i].terrain=='plain') {slots++;}
+                       if (items[i].terrain!='wall') {slots++;}
                    }
                 }
             }
