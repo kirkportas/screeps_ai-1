@@ -1,5 +1,8 @@
 var tasks = {
+    enterRoom: function(creep) {
+      if (creep.pos.x==0) {creep.move(RIGHT);}
 
+    },
     scoutRoom: function(creep) {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
         let timeSinceLastScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout;

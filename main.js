@@ -55,6 +55,7 @@ module.exports.loop = function () {
         var creep = Game.creeps[name];
         //try {
           if (cpuLog) {var cpuTime=cpu.getUsed();}
+          tasks.enterRoom(creep);
           tasks.scoutRoom(creep);
           if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
           if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
