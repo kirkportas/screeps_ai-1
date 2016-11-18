@@ -31,7 +31,7 @@ var roleRemotebuilder = {
                             structure.structureType == STRUCTURE_SPAWN ||
                             structure.structureType == STRUCTURE_STORAGE ||
                             structure.structureType == STRUCTURE_LINK ||
-                            //structure.structureType == STRUCTURE_CONTAINER  || */
+                            structure.structureType == STRUCTURE_CONTAINER  || 
                             structure.structureType == STRUCTURE_EXTENSION  )  } });
             var targetsAll = creep.room.find(FIND_CONSTRUCTION_SITES);
               if(targetsPri) {
