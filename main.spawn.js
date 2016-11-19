@@ -57,9 +57,9 @@ var mainSpawn = {
       }
         //spawns harvesters per source
 
-        if (energyAvav>=750) {
+        if (energyAvav>=750 && count.harvesters>0) {
           //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
-          if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe && count.harvesters>0)) {
+          if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
             if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
               var preferedSource = source.id;
               createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
