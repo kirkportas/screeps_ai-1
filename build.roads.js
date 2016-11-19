@@ -16,7 +16,7 @@ var buildRoads = {
       return costs;
     },
     buildRoad: function(pos1,pos2) {
-      var path = pos1.findPathTo(pos2,{range:1, ignoreCreeps: true, ignoreRoads: true});
+      var path = pos1.findPathTo(pos2,{plainCost: 1,swampCost: 1,range:1, ignoreCreeps: true, ignoreRoads: true});
           for (i = 0; i < path.length; i++) {
               let pos = path[i];
               Game.rooms[pos1.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
