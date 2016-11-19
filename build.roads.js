@@ -41,7 +41,8 @@ var buildRoads = {
         for (i = 0; i < path.path.length; i++) {
             let pos = path.path[i];
             Game.rooms[pos1.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
-            Game.rooms[pos1.roomName].createConstructionSite(pos.x-1,pos.y-1,STRUCTURE_ROAD);
+            Game.rooms[pos1.roomName].createConstructionSite(pos.x-1,pos.y,STRUCTURE_ROAD);
+            Game.rooms[pos1.roomName].createConstructionSite(pos.x,pos.y-1,STRUCTURE_ROAD);
         }
     },
 
