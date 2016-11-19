@@ -38,7 +38,7 @@ var buildRoads = {
         //BYGG VEI TIL sources
         var sources = room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
-          BuildRoads.buildRoad(posSpawn,(Game.getObjectById(sources[i]).pos));
+          buildRoads.buildRoad(posSpawn,(Game.getObjectById(sources[i]).pos));
         }
 
         //BYGG VEI TIL KONTROLLER
