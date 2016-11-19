@@ -1,6 +1,7 @@
 var buildRoads = {
 
     getCallback: function(roomName) {
+      console.log(roomName)
       let room = Game.rooms[roomName];
       if (!room) return;
       let costs = new PathFinder.CostMatrix;
