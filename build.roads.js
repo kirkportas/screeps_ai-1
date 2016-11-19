@@ -61,7 +61,7 @@ var buildRoads = {
         //BYGG VEI TIL sources
         var sources = room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
-          buildRoads.buildRoad(posSpawn,Game.getObjectById(sources[i].id).pos);
+          buildRoads.buildDoubleRoad(posSpawn,Game.getObjectById(sources[i].id).pos);
         }
 
         buildRoads.buildDoubleRoad(posSpawn,posCtr);
