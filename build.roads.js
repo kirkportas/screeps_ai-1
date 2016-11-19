@@ -31,7 +31,7 @@ var buildRoads = {
     run: function(room) {
         var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
         var posRes = posSpawn.findClosestByRange(FIND_SOURCES);
-        var posCtr = room.controller;
+        var posCtr = room.controller.pos;
 
         // FJERNER ALLE VEIER
         if (false) {
