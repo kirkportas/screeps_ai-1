@@ -19,7 +19,7 @@ var buildRoads = {
       var path = pos1.findPathTo(pos2,{range:1, ignoreCreeps: true, ignoreRoads: true});
           for (i = 0; i < path.length; i++) {
               let pos = path[i];
-              room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+              pos1.room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
           }
     },
 
