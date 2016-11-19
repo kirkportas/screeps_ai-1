@@ -36,6 +36,14 @@ var buildRoads = {
             Game.rooms[pos1.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
         }
     },
+    buildDoubleRoad: function(pos1,pos2) {
+      var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallbackDoubleroad(roomName)}} );
+        for (i = 0; i < path.path.length; i++) {
+            let pos = path.path[i];
+            Game.rooms[pos1.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
+            Game.rooms[pos1.roomName].createConstructionSite(pos.x-1,pos.y-1,STRUCTURE_ROAD);
+        }
+    },
 
     run: function(room) {
         var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
