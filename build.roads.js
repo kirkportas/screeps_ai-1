@@ -17,8 +17,8 @@ var buildRoads = {
       return costs;
     },
     buildRoad: function(pos1,pos2) {
-      //var path = pos1.findPathTo(pos2,{plainCost: 1,swampCost: 1,range:1, ignoreCreeps: true, ignoreRoads: true});
-      var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
+      var path = pos1.findPathTo(pos2,{plainCost: 1,swampCost: 1,range:1, ignoreCreeps: true, ignoreRoads: true});
+      //var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
       if (path) {
 
           for (i = 0; i < path.length; i++) {
@@ -46,7 +46,7 @@ var buildRoads = {
           buildRoads.buildRoad(posSpawn,Game.getObjectById(sources[i].id).pos);
         }
 
-        buildRoads.buildRoad(posSpawn,posCtr.pos);
+        buildRoads.buildRoad(posSpawn,posCtr);
 
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
