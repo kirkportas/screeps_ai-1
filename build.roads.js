@@ -41,14 +41,7 @@ var buildRoads = {
           buildRoads.buildRoad(posSpawn,Game.getObjectById(sources[i].id).pos);
         }
 
-        //BYGG VEI TIL KONTROLLER
-        var path = posSpawn.findPathTo(posCtr,{range:1, ignoreCreeps: true});
-        if (!path.incomplete) {
-            for (i = 0; i < path.length; i++) {
-                let pos = path[i];
-                room.createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
-            }
-        }
+        buildRoads.buildRoad(posSpawn,posCtr);
 
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
