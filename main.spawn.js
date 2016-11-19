@@ -67,6 +67,7 @@ var mainSpawn = {
             return true;;
           }
         } else {
+          console.log('spawning simple')
           if (source.miners.length<source.slots && source.safe) {
             if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
               var preferedSource = source.id;
