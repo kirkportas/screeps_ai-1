@@ -1,7 +1,6 @@
 var buildRoads = {
 
     getCallback: function(roomName) {
-      console.log(roomName)
       let room = Game.rooms[roomName];
       if (!room) return;
       let costs = new PathFinder.CostMatrix;
@@ -13,11 +12,24 @@ var buildRoads = {
           costs.set(structure.pos.x, structure.pos.y, 255);
         }
       });
+      return costs;
+    },
+    getCallbackDoubleroad: function(roomName) {
+      let room = Game.rooms[roomName];
+      if (!room) return;
+      let costs = new PathFinder.CostMatrix;
 
+      room.find(FIND_STRUCTURES).forEach(function(structure) {
+        if (structure.structureType === STRUCTURE_ROAD) {
+          costs.set(structure.pos.x, structure.pos.y, 1);
+        } else if (structure.structureType == STRUCTURE_WALL) {
+          costs.set(structure.pos.x, structure.pos.y, 255);
+          costs.set(structure.pos.x+1, structure.pos.y+1, 10);
+        }
+      });
       return costs;
     },
     buildRoad: function(pos1,pos2) {
-      //var path = pos1.findPoathTo(pos2,{plainCost: 1,swampCost: 1,range:1, ignoreCreeps: true, ignoreRoads: true});
       var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
         for (i = 0; i < path.path.length; i++) {
             let pos = path.path[i];
