@@ -63,7 +63,7 @@ var buildRoads = {
           buildRoads.buildRoad(posSpawn,Game.getObjectById(sources[i].id).pos);
         }
 
-        buildRoads.buildRoad(posSpawn,posCtr);
+        buildRoads.buildDoubleRoad(posSpawn,posCtr);
 
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
