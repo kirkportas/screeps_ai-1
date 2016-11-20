@@ -46,7 +46,8 @@ var roleAttacker = {
 
     },
     heal: function(creep) {
-      var target = creep.pos.findClosestByRange(FIND_MY_CREEPS, {filter: function(object) {return object.hits < object.hitsMax;}});
+      var target = creep.pos.findClosestByRange(FIND_MY_CREEPS, {filter: function(object) {return object.hits < object.hitsMax}});
+      var leader = creep.pos.findClosestByRange(FIND_MY_CREEPS, {filter: function(object) {return creep.getActiveBodyparts(ATTACK)>0}});
       if(target) {
           creep.moveTo(target);
           if(creep.pos.isNearTo(target)) {
