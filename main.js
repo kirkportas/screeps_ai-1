@@ -43,7 +43,7 @@ module.exports.loop = function () {
     }
 
   }
-  createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({tough:8,move:8,heal:6}),{targetRoom:'E68S62',flag:'attack'});
+  createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({tough:8,move:8,heal:4}),{targetRoom:'E68S62',flag:'attack'});
   createCreepAdvanced(Game.spawns['Spawn2'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack'});
   //createCreepAdvanced(Game.spawns['Spawn2'],'claimer',createBody({move:2,claim:2}),{targetRoom:'E68S62',takeover: true});
   //createCreepAdvanced(Game.spawns['Spawn1'],'remoteBuilder',createBody({move:8,carry:4,work:4}),{targetRoom:'E68S62'});
