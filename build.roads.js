@@ -24,8 +24,8 @@ var buildRoads = {
           costs.set(structure.pos.x, structure.pos.y, 1);
         } else if (structure.structureType == STRUCTURE_WALL) {
           costs.set(structure.pos.x, structure.pos.y, 255);
-          costs.set(structure.pos.x+1, structure.pos.y, 10);
-          costs.set(structure.pos.x, structure.pos.y+1, 10);
+          costs.set(structure.pos.x+1, structure.pos.y, 255);
+          costs.set(structure.pos.x, structure.pos.y+1, 255);
         }
       });
       return costs;
