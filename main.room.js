@@ -95,7 +95,7 @@ var mainRoom = {
         if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       }
       if (room.memory.roomdesign==2) {
-        //if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
+        if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       }
 
       room.memory.timeToRecheck=100;
