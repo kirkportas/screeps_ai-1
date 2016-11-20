@@ -238,6 +238,10 @@ var mainSpawn = {
     var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
     var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
     //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
+    if (centralContainer) {
+      if (centralContainer.store[RESOURCE_ENERGY]<1000) buildersNeeded=0;
+    }
+
 
     var upgradersNeeded = 0;
     if (centralContainer) {
