@@ -35,7 +35,7 @@ var roleAttacker = {
           //Siege wall!!
           creep.say('siege')
           var targetStructure = creep.pos.findClosestByRange(FIND_STRUCTURES,{filter: (structure) => {return (structure.hits<1000000 &&(structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART))}});
-          if (targetStructure) {
+          if (true) {
             if(creep.attack(Game.getObjectById('580d02c6f12579083240b5ca')) == ERR_NOT_IN_RANGE) {
               creep.moveTo(Game.getObjectById('580d02c6f12579083240b5ca'))
             } else return false;
