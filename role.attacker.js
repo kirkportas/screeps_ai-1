@@ -38,7 +38,7 @@ var roleAttacker = {
           if (true) {
             if(creep.attack(Game.getObjectById('580d02c272e6899d665b58c6')) == ERR_NOT_IN_RANGE) {
               creep.moveTo(Game.getObjectById('580d02c272e6899d665b58c6'))
-            } else return false;
+            }
           }
         }
       }
