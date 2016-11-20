@@ -14,6 +14,7 @@ var roleAttacker = {
           //Attack base, tower first
           var targetTower = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER)}});
           var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType != STRUCTURE_CONTROLLER && structure.structureType != STRUCTURE_STORAGE && structure.structureType != STRUCTURE_CONTAINER && structure.structureType != STRUCTURE_ROAD&& structure.structureType != STRUCTURE_RAMPART&& structure.structureType != STRUCTURE_WALL)}});
+          var targetStructureAll = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType != STRUCTURE_CONTROLLER &&structure.structureType != STRUCTURE_ROAD&& structure.structureType != STRUCTURE_WALL)}});
           var targetConstructionsites = creep.pos.findClosestByPath(FIND_HOSTILE_CONSTRUCTION_SITES);
           var targetCreeps = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
           if (targetTower) {
@@ -29,6 +30,10 @@ var roleAttacker = {
           } else if (targetCreeps) {
             if(creep.attack(targetCreeps) == ERR_NOT_IN_RANGE) {
               creep.moveTo(targetCreeps)
+            }
+          } else if (targetStructureAll) {
+            if(creep.attack(targetStructureAll) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(targetStructureAll)
             }
           } else return false;
         } else {
