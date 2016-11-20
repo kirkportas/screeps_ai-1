@@ -109,6 +109,12 @@ var mainSpawn = {
     }
     return false;
   }
+  global.spawnArmy = function(spawn) {
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:4}),{flag:'attack',manual:'1'});
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack',manual:'2'});
+  }
+
+
   global.spawnRemoteBuilders = function(spawn) {
     var scout=spawn.room.memory.scout;
     for (var roomName in scout) {
