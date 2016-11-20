@@ -82,7 +82,7 @@ var mainRoom = {
         room.memory.wallHitsMax=40000;
         room.memory.wallHitsmin=20000;
         room.memory.roomdesign=2;
-        room.memory.expand=true;
+        room.memory.expand=false;
       } else {
         room.memory.wallHitsMax=20000;
         room.memory.wallHitsmin=10000;
