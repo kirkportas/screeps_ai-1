@@ -113,8 +113,8 @@ var mainSpawn = {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) {
       if (createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:4}),{flag:'attack',manual:'1'})) return true;
     }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
-      if (createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack',manual:'2'})) return true
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<1) {
+      if (createCreepAdvanced(spawn,'attacker',createBody({tough:4,move:8,attack:4}),{flag:'attack',manual:'2'})) return true
     }
     return false;
   }
