@@ -110,8 +110,13 @@ var mainSpawn = {
     return false;
   }
   global.spawnArmy = function(spawn) {
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:4}),{flag:'attack',manual:'1'});
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack',manual:'2'});
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) {
+      if (createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:4}),{flag:'attack',manual:'1'})) return true;
+    }
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
+      if (createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack',manual:'2'})) return true
+    }
+    return false;
   }
 
 
@@ -298,6 +303,7 @@ if (!spawn.spawning) {
           var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
             createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
         }
+      } else if (expand && spawnArmy(spawn)) {
       } else if (expand && spawnRemoteHarvesters(spawn)) {
       } else if (expand && spawnRemoteBuilders(spawn)) {
       } else if (expand && sendScouts(spawn)) {
