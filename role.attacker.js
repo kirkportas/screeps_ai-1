@@ -31,13 +31,12 @@ var roleAttacker = {
 
     },
     heal: function(creep) {
-      var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(object) { return object.hits < object.hitsMax; }});
+      var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(c) { return c.hits < c.hitsMax; }});
       findCloseFriends=_.sortBy(findCloseFriends, creep => (creep.hits/creep.hitsMax));
       if (findCloseFriends.length) {
+        creep.say(findCloseFriends);
         if(creep.heal(findCloseFriends[0]) == ERR_NOT_IN_RANGE) {
           creep.moveTo(findCloseFriends[0]);
-        } else if (targetStructure) {
-          creep.moveTo(targetStructure)
         }
         return true;
       }
