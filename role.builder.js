@@ -1,7 +1,10 @@
 var tasks = require('tasks');
 var roleBuilder = {
 
-    /** @param {Creep} creep **/
+    buildWalls: function (creep) {
+
+    },
+
     run: function(creep) {
 
 	    if(creep.memory.building && creep.carry.energy == 0) {
