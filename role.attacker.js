@@ -34,10 +34,10 @@ var roleAttacker = {
         } else {
           //Siege wall!!
           creep.say('siege')
-          var targetStructure = creep.pos.findClosestByRange(FIND_STRUCTURES,{filter: (structure) => {return (structure.hits<1000000 &&(structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART))}});
-          if (true) {
-            if(creep.attack(Game.getObjectById('58304e3539b6acdb4031fc3c')) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(Game.getObjectById('58304e3539b6acdb4031fc3c'))
+          var targetStructure = creep.pos.findClosestByRange(FIND_STRUCTURES,{filter: (structure) => {return (structure.hits<100000 &&(structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART))}});
+          if (targetStructure) {
+            if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(targetStructure)
             }
           }
         }
