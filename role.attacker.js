@@ -53,8 +53,9 @@ var roleAttacker = {
         creep.moveTo(exit);
       } else {
 
-        if (creep.getActiveBodyparts(HEAL)>0 && roleAttacker.heal(creep)) {
-        } else if (creep.getActiveBodyparts(ATTACK)>0 && roleAttacker.attack(creep)) {
+        creep.say('1')
+        if (creep.getActiveBodyparts(HEAL)>0 && roleAttacker.heal(creep)) { creep.say('2')
+      } else if (creep.getActiveBodyparts(ATTACK)>0 && roleAttacker.attack(creep)) { creep.say('3')
         } else if (creep.memory.fleeAfter==true) {
           creep.say('suicide')
           creep.memory.role='suicide'
