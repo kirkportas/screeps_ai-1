@@ -36,8 +36,8 @@ var roleAttacker = {
           creep.say('siege')
           var targetStructure = creep.pos.findClosestByRange(FIND_STRUCTURES,{filter: (structure) => {return (structure.hits<1000000 &&(structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART))}});
           if (true) {
-            if(creep.attack(Game.getObjectById('580d02c6f12579083240b5ca')) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(Game.getObjectById('580d02c6f12579083240b5ca'))
+            if(creep.attack(Game.getObjectById('580d02c272e6899d665b58c6')) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(Game.getObjectById('580d02c272e6899d665b58c6'))
             } else return false;
           }
         }
