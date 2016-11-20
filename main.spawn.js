@@ -306,8 +306,8 @@ if (!spawn.spawning) {
             createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
         }
       } else if (expand && spawnArmy(spawn)) {
-      } else if (expand && spawnRemoteHarvesters(spawn)) {
       } else if (expand && spawnRemoteBuilders(spawn)) {
+      } else if (expand && spawnRemoteHarvesters(spawn)) {
       } else if (expand && sendScouts(spawn)) {
       } else if (expand && spawnClaimers(spawn)) {
 
