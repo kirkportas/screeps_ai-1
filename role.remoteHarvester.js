@@ -4,10 +4,17 @@ var roleRemoteHarvester = {
 
     run: function(creep) {
       var hostiles = creep.pos.findInRange(FIND_HOSTILE_CREEPS,8);
-      if(creep.memory.delivering && creep.carry.energy == 0 && !hostiles.lenght) {
+      if (creep.hits<creep.hitsMax || hostiles.lenght) {
+          creep.memory.fleeTime=30;
+      }
+      if (creep.memory.fleeTime) {
+        creep.memory.fleeTime--;
+      }
+
+      if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
       }
-      if(!creep.memory.delivering && (creep.carry.energy == creep.carryCapacity || creep.hits<creep.hitsMax)) {
+      if(!creep.memory.delivering && (creep.carry.energy == creep.carryCapacity || creep.memory.fleeTime>0)) {
           creep.memory.delivering = true;
       }
 
