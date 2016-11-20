@@ -26,7 +26,8 @@ var roleAttacker = {
         if(creep.attack(targetHostileSec) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetHostileSec)
         }
-      }
+      } else return false;
+      return true;
 
     },
     heal: function(creep) {
