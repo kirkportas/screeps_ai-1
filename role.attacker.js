@@ -57,6 +57,8 @@ var roleAttacker = {
               creep.rangedHeal(target);
           }
           return true;
+      } else if (leader) {
+        creep.moveTo(leader);
       } else {return false;}
       /*
       var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(c) { return c.hits < c.hitsMax; }});
