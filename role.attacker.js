@@ -60,6 +60,7 @@ var roleAttacker = {
           return true;
       } else if (leader) {
         creep.moveTo(leader);
+        return true;
       } else {return false;}
       /*
       var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(c) { return c.hits < c.hitsMax; }});
