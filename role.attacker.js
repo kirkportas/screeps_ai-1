@@ -31,6 +31,18 @@ var roleAttacker = {
 
     },
     heal: function(creep) {
+      var target = creep.pos.findClosestByRange(FIND_MY_CREEPS, {filter: function(object) {return object.hits < object.hitsMax;}});
+      if(target) {
+          creep.moveTo(target);
+          if(creep.pos.isNearTo(target)) {
+              creep.heal(target);
+          }
+          else {
+              creep.rangedHeal(target);
+          }
+          return true;
+      } else {return false;}
+      /*
       var findCloseFriends = creep.pos.findInRange(FIND_MY_CREEPS,5,{ filter: function(c) { return c.hits < c.hitsMax; }});
       findCloseFriends=_.sortBy(findCloseFriends, creep => (creep.hits/creep.hitsMax));
       if (findCloseFriends.length) {
@@ -42,6 +54,7 @@ var roleAttacker = {
       } else {
         return false;
       }
+      */
     },
 
     run: function(creep) {
