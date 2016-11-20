@@ -7,7 +7,7 @@ var roleRemoteHarvester = {
       if(creep.memory.delivering && creep.carry.energy == 0 && !hostiles.lenght) {
             creep.memory.delivering = false;
       }
-      if(!creep.memory.delivering && creep.carry.energy == creep.carryCapacity) {
+      if(!creep.memory.delivering && (creep.carry.energy == creep.carryCapacity || creep.hits<creep.hitsMax)) {
           creep.memory.delivering = true;
       }
 
