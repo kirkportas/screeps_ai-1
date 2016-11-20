@@ -39,8 +39,9 @@ var roleAttacker = {
           creep.moveTo(findCloseFriends[0]);
         }
         return true;
+      } else {
+        return false;
       }
-      return false;
     },
 
     run: function(creep) {
