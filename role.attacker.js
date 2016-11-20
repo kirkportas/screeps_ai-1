@@ -37,7 +37,7 @@ var roleAttacker = {
           var targetStructure = creep.pos.findClosestByRange(FIND_STRUCTURES,{filter: (structure) => {return (structure.hits<1000000 &&(structure.structureType == STRUCTURE_WALL || structure.structureType == STRUCTURE_RAMPART))}});
           if (true) {
             if(creep.attack(Game.getObjectById('580d02c272e6899d665b58c6')) == ERR_NOT_IN_RANGE) {
-              //creep.moveTo(Game.getObjectById('580d02c272e6899d665b58c6'))
+              creep.moveTo(Game.getObjectById('580d02c272e6899d665b58c6'))
             } else return false;
           }
         }
