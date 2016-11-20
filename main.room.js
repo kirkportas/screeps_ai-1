@@ -89,12 +89,12 @@ var mainRoom = {
         room.memory.roomdesign=2;
       }
 
-      if (room.memory.roomdesign==1) {
+      if (room.memory.roomdesign==12) {
         buildContainers.run(room);
         if (containers.length>=1) buildExtension.run(room)
         if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       }
-      if (room.memory.roomdesign==2) {
+      if (room.memory.roomdesign==22) {
         if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       }
 
