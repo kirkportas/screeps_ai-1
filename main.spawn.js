@@ -204,7 +204,7 @@ var mainSpawn = {
 
     var energyNow = spawn.room.energyAvailable;
     var energyAvav = spawn.room.energyCapacityAvailable;
-    //console.log(energyNow,'-',energyAvav);
+    console.log(energyNow,'-',energyAvav);
     var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
     var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
     //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
