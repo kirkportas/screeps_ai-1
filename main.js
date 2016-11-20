@@ -46,8 +46,8 @@ module.exports.loop = function () {
 
   if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<3) createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({tough:8,move:8,heal:4}),{targetRoom:'E68S62',flag:'attack',manual:'1'});
   if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<3) createCreepAdvanced(Game.spawns['Spawn2'],'attacker',createBody({tough:8,move:8,heal:4}),{targetRoom:'E68S62',flag:'attack',manual:'1'});
-  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<1) createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack',manual:'2'});
-  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<1) createCreepAdvanced(Game.spawns['Spawn2'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack',manual:'2'});
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<3) createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack',manual:'2'});
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<3) createCreepAdvanced(Game.spawns['Spawn2'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack',manual:'2'});
   //createCreepAdvanced(Game.spawns['Spawn2'],'claimer',createBody({move:2,claim:2}),{targetRoom:'E68S62',takeover: true});
   //createCreepAdvanced(Game.spawns['Spawn1'],'remoteBuilder',createBody({move:8,carry:4,work:4}),{targetRoom:'E68S62'});
   //createCreepAdvanced(Game.spawns['Spawn2'],'remoteBuilder',createBody({move:8,carry:4,work:4}),{targetRoom:'E68S62'});
