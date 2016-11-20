@@ -39,7 +39,7 @@ var roleAttacker = {
             if(creep.attack(targetStructure) == ERR_NOT_IN_RANGE) {
               creep.moveTo(targetStructure)
             }
-          }
+          } else return false;
         }
       }
       return true;
