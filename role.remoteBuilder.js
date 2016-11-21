@@ -38,9 +38,9 @@ var roleRemotebuilder = {
                   if(creep.build(targetsPri) == ERR_NOT_IN_RANGE) {
                       creep.moveTo(targetsPri);
                   }
-              } else if (targetsAll.length) {
-                if(creep.build(targetsAll[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetsAll[0]);
+              } else if (targetsAll) {
+                if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targetsAll);
                 }
               } else {
                   creep.memory.targetFix= tasks.findStructureToRepairIdle(creep);
