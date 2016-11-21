@@ -20,6 +20,16 @@ var buildRoads = {
       if (!room) return;
       let costs = new PathFinder.CostMatrix;
 
+      for (var y=0;y<50;y++) {
+        for (var x=0;x<50;x++) {
+          if (Game.map.getTerrainAt(x,y,roomName)=='wall') {
+            costs.set(x,y,255);
+            costs.set(x+1,y,20);
+            costs.set(x,y+1,20);
+          }
+        }
+      }
+
       room.find(FIND_STRUCTURES).forEach(function(structure) {
         if (structure.structureType == STRUCTURE_WALL) {
           costs.set(structure.pos.x, structure.pos.y, 255);
@@ -27,16 +37,6 @@ var buildRoads = {
           //costs.set(structure.pos.x, structure.pos.y+1, costs.get(structure.pos.x, structure.pos.y+1)+64);
         }
       });
-
-      for (var y=0;y<50;y++) {
-        for (var x=0;x<50;x++) {
-          if (Game.map.getTerrainAt(x,y,roomName)=='wall') {
-            costs.set(x,y,255);
-            costs.set(x+1,y,255);
-            costs.set(x,y+1,255);
-          }
-        }
-      }
 
 
       return costs;
