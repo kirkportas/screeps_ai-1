@@ -27,7 +27,7 @@ var buildRoads = {
 
       for (var y=0;y<50;y++) {
         for (var x=0;x<50;x++) {
-          if (room.getTerrainAt(x,y,roomName)=='wall') {
+          if (Game.map.getTerrainAt(x,y,roomName)=='wall') {
             costs.set(x,y,255);
             costs.set(x+1,y,255);
             costs.set(x,y+1,255);
