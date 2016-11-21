@@ -205,6 +205,7 @@ var mainSpawn = {
   }
     var count = roomCreepcalc.creepCount(spawn.room);
 
+    var expand=spawn.room.memory.expand;
     var energyNow = spawn.room.energyAvailable;
     var energyAvav = spawn.room.energyCapacityAvailable;
     //console.log(energyNow,'-',energyAvav);
@@ -244,7 +245,7 @@ var mainSpawn = {
 
 
     var spawnHaulersNeeded=0;
-    if (links.length>=2) {
+    if (links.length>=2 || expand) {
       spawnHaulersNeeded=1;
     }
 
@@ -276,7 +277,7 @@ var mainSpawn = {
     if (spawn.room.name=='E65S62') {
       //defendersNeeded=Math.max(4,defendersNeeded);
     }
-    var expand=spawn.room.memory.expand;
+
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
