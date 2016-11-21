@@ -31,7 +31,7 @@ var tasks = {
               damagedBuildings++;
             }
           });
-
+          console.log(damagedBuildings)
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myConstructionSites=myConstructionSites.length;
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].myDamagedStructures=damagedBuildings;
 
