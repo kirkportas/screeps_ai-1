@@ -95,7 +95,7 @@ var buildRoads = {
                     var posY = source.pos.y;
                     var posRoom = key1;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
-                    buildRoads.buildRoad(posSpawn,source.pos);
+                    buildRoads.buildRoad(posSpawn,targetPos);
                 }
             } else if (Game.rooms[key1]){   //SHOULD BUILD ROAD TO OWN ROOM
               var target = Game.rooms[key1].find(FIND_MY_SPAWNS)[0];
