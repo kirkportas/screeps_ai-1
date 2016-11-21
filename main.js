@@ -96,7 +96,7 @@ module.exports.loop = function () {
       }
   }
 
-    if (cpu.bucket<9500) console.log('Bucket: ',cpu.bucket);
+    if (cpu.bucket<19500) console.log('Bucket: ',cpu.bucket);
     console.log('CPU('+cpu.getUsed().toFixed(2)+'): room: '+timeRoom.toFixed(2)+', tower: '+timeTower.toFixed(2)+', spawn: '+timeSpawn.toFixed(2)+', AI: '+timeAI.toFixed(2)+' (har: '+timeHarvester.toFixed(2)+').');
 
 }
