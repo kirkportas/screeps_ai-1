@@ -9,6 +9,9 @@ var buildRoads = {
         if (structure.structureType == STRUCTURE_WALL) {
           costs.set(structure.pos.x, structure.pos.y, 255);
         }
+        if (structure.structureType == STRUCTURE_RAMPART) {
+          costs.set(structure.pos.x, structure.pos.y, 1);
+        }
       });
       return costs;
     },
