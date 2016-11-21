@@ -20,8 +20,8 @@ var buildRoads = {
       room.find(FIND_STRUCTURES).forEach(function(structure) {
         if (structure.structureType == STRUCTURE_WALL) {
           costs.set(structure.pos.x, structure.pos.y, 255);
-          costs.set(structure.pos.x+1, structure.pos.y, Math.max(5,costs.get(structure.pos.x+1, structure.pos.y)));
-          costs.set(structure.pos.x, structure.pos.y+1, Math.max(5,costs.get(structure.pos.x, structure.pos.y+1)));
+          costs.set(structure.pos.x+1, structure.pos.y, Math.max(25,costs.get(structure.pos.x+1, structure.pos.y)));
+          costs.set(structure.pos.x, structure.pos.y+1, Math.max(25,costs.get(structure.pos.x, structure.pos.y+1)));
         }
       });
       return costs;
