@@ -101,7 +101,7 @@ var mainSpawn = {
             var needed=Math.round(obtainable/sourcePerTick);
             if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
-            if (harvestersRemote+remoteBuilders<needed) {
+            if (harvestersRemote+remoteBuilders*2<needed) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:size,carry:size,work:size}),{targetRoom:roomName, pref: sourceId, spawnerAction: "none"});
               return true;
             }
