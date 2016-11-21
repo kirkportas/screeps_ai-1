@@ -24,6 +24,16 @@ var buildRoads = {
           costs.set(structure.pos.x, structure.pos.y+1, costs.get(structure.pos.x, structure.pos.y+1)+64);
         }
       });
+
+      for (var y=0,y<50,y++) {
+        for (var x=0,x<50,x++) {
+          if (room.getTerrainAt(x,y,roomName)=='wall') {
+            costs.set(x,y,255);
+          }
+        }
+      }
+
+
       return costs;
     },
     buildRoad: function(pos1,pos2) {
