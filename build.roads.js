@@ -56,7 +56,7 @@ var buildRoads = {
             let pos = path.path[i];
             if (Game.rooms[pos.roomName]!=undefined) {
               Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
-              if (i == path.path.length -1) {
+              if (i == path.path.length -1 && i>2) {
                 Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_CONTAINER);
               }
             } else console.log('undefined room ',pos.roomName);
