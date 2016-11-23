@@ -28,8 +28,10 @@ var roleBuilder = {
     return true;
   },
   buildTarget: function(creep) {
-    creep.say('4')
+    //creep.say('4')
     var target = Game.getObjectById(creep.memory.targetBuild);
+    var r = creep.build(target);
+    creep.say(r)
     if(creep.build(target) == ERR_NOT_IN_RANGE) {
         creep.moveTo(target);
     }
