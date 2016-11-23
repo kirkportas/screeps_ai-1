@@ -24,12 +24,14 @@ var roleBuilder = {
     if(creep.repair(target) == ERR_NOT_IN_RANGE) {
         creep.moveTo(target);
     }
+    return true;
   },
   buildTarget: function(creep) {
     var target = Game.getObjectById(creep.memory.targetBuild);
     if(creep.build(target) == ERR_NOT_IN_RANGE) {
         creep.moveTo(target);
     }
+    return true;
   },
 
   run: function(creep) {
