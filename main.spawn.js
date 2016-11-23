@@ -93,7 +93,7 @@ var mainSpawn = {
             if (!sources[sourceId].pathLen) continue;
             let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
-            var size = Math.floor((spawn.room.energyCapacityAvailable)/200);
+            var size = Math.min(16,Math.floor((spawn.room.energyCapacityAvailable)/200));
             var carrycap= (size*50)
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
