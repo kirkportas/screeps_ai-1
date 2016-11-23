@@ -3,6 +3,7 @@ var roleBuilder = {
 
   findBuild: function(creep) {
     var targetsAll = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+    return false;
     creep.say('r')
   },
   findRepair: function(creep) {
