@@ -7,6 +7,16 @@ var roleBuilder = {
   },
   findRepair: function(creep) {
     creep.say('r')
+
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+       filter: struct => (struct.hits<struct.hitsMax*0.5 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)
+      });
+      if (target) {
+        creep.memory.targetFix=target.id;
+        return true;
+      } else {
+        return false;
+      }
   },
   repairTarget: function(creep) {
     var target = Game.getObjectById(creep.memory.targetFix);
