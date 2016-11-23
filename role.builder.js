@@ -35,9 +35,9 @@ var roleBuilder = {
     if (creep.memory.building) {
       if (creep.memory.targetFix) { roleBuilder.repairTarget(creep)
       } else if (creep.memory.targetBuild) { roleBuilder.buildTarget(creep)
-      } else if (findBuild()) {
+      } else if (roleBuilder.findBuild()) {
 
-      } else if (findRepair()) {
+      } else if (roleBuilder.findRepair()) {
 
       }
 
