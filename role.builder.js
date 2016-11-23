@@ -24,7 +24,7 @@ var roleBuilder = {
       });
       if (target) {
         creep.memory.targetFix=target.id;
-        repairTarget(creep);
+        roleBuilder.repairTarget(creep);
         return true;
       }
       return false;
@@ -35,7 +35,7 @@ var roleBuilder = {
       });
       if (target) {
         creep.memory.targetFix=target.id;
-        repairTarget(creep);
+        roleBuilder.repairTarget(creep);
         return true;
       }
       return false;
@@ -46,7 +46,7 @@ var roleBuilder = {
       });
       if (target) {
         creep.memory.targetFix=target.id;
-        repairTarget(creep);
+        roleBuilder.repairTarget(creep);
         return true;
       }
       return false;
