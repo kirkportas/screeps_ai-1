@@ -57,7 +57,7 @@ module.exports.loop = function () {
   timeLast=cpu.getUsed();
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        //try {
+        try {
           if (cpuLog) {var cpuTime=cpu.getUsed();}
           tasks.enterRoom(creep);
           tasks.scoutRoom(creep);
