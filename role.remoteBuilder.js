@@ -64,11 +64,10 @@ var roleRemotebuilder = {
               }
 
         } else {
-          if (creep.memory.target===null || creep.memory.target===undefined) {
-            creep.memory.target = tasks.findBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom]);
+          var source = creep.pos.findClosestByPath(FIND_SOURCES);
+          if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(source);
           }
-          //tasks.harvestPrefered(creep);
-          tasks.harvestBiggestInRoom(creep,Game.rooms[creep.memory.targetRoom],creep.memory.target);
         }
 
       }
