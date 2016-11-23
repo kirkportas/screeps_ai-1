@@ -26,7 +26,7 @@ var buildExtension = {
       room.createConstructionSite(posSpawn.x, posSpawn.y+4,STRUCTURE_TOWER);
       room.createConstructionSite(posSpawn.x, posSpawn.y+6,STRUCTURE_TOWER);
 
-      for (var i=0;i<100;i++) {
+      for (var i=0;i<139;i++) {
         var x=0;
         var y=0;
 
@@ -54,6 +54,11 @@ var buildExtension = {
           var j=i-55;
           x=-5+(2*j)%12;
           y=-5+2*Math.floor(j/6);
+        }
+        if (i>=91 && i<=139) {
+          var j=i-91;
+          x=-7+(2*j)%14;
+          y=-7+2*Math.floor(j/7);
         }
 
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
