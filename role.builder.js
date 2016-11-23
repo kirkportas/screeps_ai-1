@@ -6,7 +6,7 @@ var roleBuilder = {
     if (target) {
       creep.memory.targetBuild=target.id;
       return true;
-    } else {
+    }
     return false;
   },
 
@@ -15,7 +15,7 @@ var roleBuilder = {
     if (target) {
       creep.memory.targetBuild=target.id;
       return true;
-    } else {
+    } 
     return false;
   },
   findRepair: function(creep) {
