@@ -2,7 +2,6 @@ var tasks = require('tasks');
 var roleBuilder = {
 
   findBuild: function(creep) {
-    creep.say('1')
     var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
     if (target) {
       creep.memory.targetBuild=target.id;
@@ -13,8 +12,6 @@ var roleBuilder = {
     return false;
   },
   findRepair: function(creep) {
-    creep.say('2')
-
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => (struct.hits<struct.hitsMax*0.5 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)
       });
@@ -26,7 +23,6 @@ var roleBuilder = {
       }
   },
   repairTarget: function(creep) {
-    creep.say('3')
     var target = Game.getObjectById(creep.memory.targetFix);
     if(creep.repair(target) == ERR_NOT_IN_RANGE) {
         creep.moveTo(target);
@@ -34,7 +30,6 @@ var roleBuilder = {
     return true;
   },
   buildTarget: function(creep) {
-    //creep.say('4')
     var target = Game.getObjectById(creep.memory.targetBuild);
     var r = creep.build(target);
     creep.say(creep.memory.targetBuild) //
