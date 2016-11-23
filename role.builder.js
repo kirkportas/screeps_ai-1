@@ -9,13 +9,15 @@ var roleBuilder = {
     creep.say('r')
   },
   repairTarget: function(creep) {
-    if(creep.repair(Game.getObjectById(creep.memory.targetFix)) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(Game.getObjectById(creep.memory.targetFix));
+    var target = Game.getObjectById(creep.memory.targetFix);
+    if(creep.repair(target) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(target);
     }
   },
   buildTarget: function(creep) {
-    if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(targetsAll);
+    var target = Game.getObjectById(creep.memory.targetBuild);
+    if(creep.build(target) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(target);
     }
   },
 
