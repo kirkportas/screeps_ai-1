@@ -57,8 +57,8 @@ var buildExtension = {
         }
         if (i>=91 && i<=139) {
           var j=i-91;
-          x=-7+(2*j)%14;
-          y=-7+2*Math.floor(j/7);
+          x=-6+(2*j)%14;
+          y=-6+2*Math.floor(j/7);
         }
 
         if (x==0 && y>=0) continue; //Reserverer til containers/towers
