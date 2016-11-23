@@ -1,26 +1,52 @@
 var tasks = require('tasks');
 var roleBuilder = {
 
+  findBuildCritical: function(creep) {
+    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: struct => (struct.structureType==STRUCTURE_WALL || struct.structureType==STRUCTURE_RAMPART)});
+    if (target) {
+      creep.memory.targetBuild=target.id;
+      return true;
+    } else {
+    return false;
+  },
+
   findBuild: function(creep) {
     var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
     if (target) {
       creep.memory.targetBuild=target.id;
       return true;
     } else {
-      return false;
-    }
     return false;
   },
   findRepair: function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-       filter: struct => (struct.hits<struct.hitsMax*0.5 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)
+       filter: struct => ((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<creep.room.memory.wallHitsMax*0.75 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
       });
       if (target) {
         creep.memory.targetFix=target.id;
         return true;
-      } else {
-        return false;
       }
+      return false;
+  },
+  findRepairIdle: function(creep) {
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+       filter: struct => ((struct.hits<struct.hitsMax && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<creep.room.memory.wallHitsMax && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
+      });
+      if (target) {
+        creep.memory.targetFix=target.id;
+        return true;
+      }
+      return false;
+  },
+  findRepairCritical: function(creep) {
+    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+       filter: struct => ((struct.hits<struct.hitsMax*0.50 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<creep.room.memory.wallHitsMin && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
+      });
+      if (target) {
+        creep.memory.targetFix=target.id;
+        return true;
+      }
+      return false;
   },
   repairTarget: function(creep) {
     var target = Game.getObjectById(creep.memory.targetFix);
@@ -54,9 +80,11 @@ var roleBuilder = {
     if (creep.memory.building) {
       if (creep.memory.targetFix!==null) { roleBuilder.repairTarget(creep) //
       } else if (creep.memory.targetBuild!==null && creep.memory.targetBuild!==undefined) { roleBuilder.buildTarget(creep)
-      } else if (roleBuilder.findBuild(creep)) {
-
+      } else if (roleBuilder.findBuildCritical(creep)) {
+      } else if (roleBuilder.findRepairCritical(creep)) {
       } else if (roleBuilder.findRepair(creep)) {
+      } else if (roleBuilder.findBuild(creep)) {
+      } else if (roleBuilder.findRepairIdle(creep)) {
 
       }
 
