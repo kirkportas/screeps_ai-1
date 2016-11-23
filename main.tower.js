@@ -2,7 +2,7 @@ var mainTower = {
   run: function(room) {
 
 
-    var closestDamagedStructure = room.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/2 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
+    var closestDamagedStructure = room.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/8 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
     closestDamagedStructure=_.sortBy(closestDamagedStructure, s => s.hits);
     var allHostiles = room.find(FIND_HOSTILE_CREEPS,{
       filter: (creep) => {
