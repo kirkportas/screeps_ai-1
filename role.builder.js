@@ -43,8 +43,6 @@ var roleBuilder = {
       tasks.haulFromContainerAny(creep);
     }
   }
-
-	}
 };
 
 module.exports = roleBuilder;
