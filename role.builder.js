@@ -3,7 +3,13 @@ var roleBuilder = {
 
   findBuild: function(creep) {
     creep.say('1')
-    var targetsAll = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+    if (target) {
+      creep.memory.targetBuild=target.id;
+      return true;
+    } else {
+      return false;
+    }
     return false;
   },
   findRepair: function(creep) {
