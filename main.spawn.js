@@ -32,6 +32,7 @@ var mainSpawn = {
       memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction:'RENEW'}
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
       var res = spawn.canCreateCreep(body);
+      console.log(body);
       if (res == OK) {
         var name = spawn.createCreep(body, findNextName(type),memory1);
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
