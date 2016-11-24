@@ -35,8 +35,14 @@ var roleRemoteHarvester = {
             }
           } else {
             if (hostiles.length) {
-              creep.say('flee');
-              creep.memory.delivering = true;
+              _.forEach(hostiles, function(creep){
+                  if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) {
+                    creep.memory.delivering = true;
+                    creep.say('flee');
+                  }
+              });
+
+
             } else {
               tasks.harvestPrefered(creep);
             }
