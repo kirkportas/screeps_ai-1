@@ -20,7 +20,7 @@ var roleBuilder = {
   },
   findRepair: function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-       filter: struct => ((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<creep.room.memory.wallHitsMax*0.75 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
+       filter: struct => ((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<creep.room.memory.wallHitsMax*0.50 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
       });
       if (target) {
         creep.memory.targetFix=target.id;
