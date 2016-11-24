@@ -2,7 +2,7 @@ var tasks = require('tasks');
 var roleBuilder = {
 
   findBuildCritical: function(creep) {
-    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: struct => (struct.structureType==STRUCTURE_WALL || struct.structureType==STRUCTURE_RAMPART)});
+    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: struct => (struct.structureType==STRUCTURE_WALL || struct.structureType==STRUCTURE_RAMPART|| struct.structureType==STRUCTURE_LINK)});
     if (target) {
       creep.memory.targetBuild=target.id;
       return true;
@@ -82,11 +82,11 @@ var roleBuilder = {
     if (creep.memory.building) {
       if (creep.memory.targetFix!==null) { roleBuilder.repairTarget(creep) //
       } else if (creep.memory.targetBuild!==null && creep.memory.targetBuild!==undefined) { roleBuilder.buildTarget(creep)
-} else if (roleBuilder.findBuild(creep)) {
+
       } else if (roleBuilder.findBuildCritical(creep)) {
       } else if (roleBuilder.findRepairCritical(creep)) {
       } else if (roleBuilder.findRepair(creep)) {
-
+        } else if (roleBuilder.findBuild(creep)) {
       } else if (roleBuilder.findRepairIdle(creep)) {
 
       }
