@@ -31,7 +31,7 @@ var roleRemoteHarvester = {
               var source = Game.getObjectById(creep.memory.pref)
               var result = creep.harvest(source)
               if( source==null || result == ERR_NOT_IN_RANGE || result == ERR_NOT_ENOUGH_RESOURCES ) {
-                  creep.moveTo(creep.memory.prefPos);
+                  creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
               }
 
 
