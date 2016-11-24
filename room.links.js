@@ -16,7 +16,7 @@ var roomLinks = {
           sourceLink.transferEnergy(linkUpgrader);
         } else if (linkCentral && linkCentral.energy<800) {
           sourceLink.transferEnergy(linkCentral);
-        } /
+        } 
       }
     });
     if (linkCentral&&linkUpgrader) {
