@@ -26,7 +26,7 @@ var roleRemoteHarvester = {
 
       if(!creep.memory.delivering) {
         if (!tasks.pickupEnergy(creep)) {
-          if(creep.room.name != creep.memory.targetRoom) {
+          //if(creep.room.name != creep.memory.targetRoom) {
 
               var source = Game.getObjectById(creep.memory.pref)
               var result = creep.harvest(source)
