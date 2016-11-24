@@ -37,6 +37,7 @@ var roleRemoteHarvester = {
             if (hostiles.length) {
               _.forEach(hostiles, function(creep){
                   if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) {
+                    creep.memory.fleeTime=30;
                     creep.memory.delivering = true;
                     creep.say('flee');
                   }
