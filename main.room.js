@@ -71,21 +71,25 @@ var mainRoom = {
       if (room.name=='E65S62') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
+        room.memory.bufferenergy=100000;
         room.memory.roomdesign=1;
         room.memory.expand=true;
       } else if (room.name=='E65S61') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
+        room.memory.bufferenergy=20000;
         room.memory.roomdesign=1;
         room.memory.expand=true;
       } else if (room.name=='E68S62') {
         room.memory.wallHitsMax=40000;
         room.memory.wallHitsmin=20000;
+        room.memory.bufferenergy=20000;
         room.memory.roomdesign=2;
         room.memory.expand=true;
       } else {
         room.memory.wallHitsMax=20000;
         room.memory.wallHitsmin=10000;
+        room.memory.bufferenergy=20000;
         room.memory.roomdesign=2;
       }
 
