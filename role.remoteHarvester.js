@@ -7,7 +7,7 @@ var roleRemoteHarvester = {
       if (creep.hits<creep.hitsMax || hostiles.lenght) {
           creep.memory.fleeTime=30;
       }
-      if (creep.memory.fleeTime) {
+      if (creep.memory.fleeTime) {//
         creep.memory.fleeTime--;
       }
 
