@@ -67,7 +67,7 @@ var tasks = {
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
 
         }
-        if (!timeSinceLastFullScout || timeSinceLastFullScout>=300 || timeSinceLastFullScout==-1) {
+        if (!timeSinceLastFullScout || timeSinceLastFullScout>=5 || timeSinceLastFullScout==-1) {
           var scout =Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom];
           var spawn= Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
           if (spawn) {
