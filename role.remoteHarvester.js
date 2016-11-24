@@ -3,7 +3,7 @@ var tasks = require('tasks');
 var roleRemoteHarvester = {
 
     run: function(creep) {
-      var hostiles = creep.pos.findInRange(FIND_HOSTILE_CREEPS,8);
+      var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACJ)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)});
       if (creep.hits<creep.hitsMax || hostiles.lenght) {
           creep.memory.fleeTime=30;
       }
@@ -34,17 +34,6 @@ var roleRemoteHarvester = {
               creep.moveTo(exit);
             }
           } else {
-            if (hostiles.length) {
-              _.forEach(hostiles, function(creep){
-                  if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) {
-                    creep.memory.fleeTime=30;
-                    creep.memory.delivering = true;
-                    creep.say('flee');
-                  }
-              });
-
-
-            } else {
               tasks.harvestPrefered(creep);
             }
           }
