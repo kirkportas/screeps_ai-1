@@ -46,7 +46,7 @@ var roleRemoteHarvester = {
             }
           } else {
               tasks.harvestPrefered(creep); */
-          }
+          //}
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
         var homeSpawn=Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
