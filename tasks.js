@@ -78,6 +78,16 @@ var tasks = {
               }
             }
           }
+          for (var source in scout.sources) {
+            var obj = Game.getObjectById(source);
+            var container = source.pos.findInRange(FIND_STRUCTURES,3,{filter: (structure) => {return (structure.structureType==STRUCTURE_CONTAINER)}})[0]
+            if (container) {
+              Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=container;
+            } else {
+              Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=null;
+            }
+          }
+
 
           //CODE
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout=0;
