@@ -27,6 +27,17 @@ var roleRemoteHarvester = {
       if(!creep.memory.delivering) {
         if (!tasks.pickupEnergy(creep)) {
           if(creep.room.name != creep.memory.targetRoom) {
+
+              var source = Game.getObjectById(creep.memory.pref)
+              var result = creep.harvest(source)
+              if( source==null || result == ERR_NOT_IN_RANGE || result == ERR_NOT_ENOUGH_RESOURCES ) {
+                  creep.moveTo(creep.memory.prefPos);
+              }
+
+
+
+
+            /*
             var res = creep.moveTo(Game.getObjectById(creep.memory.pref));
             if (res == ERR_INVALID_TARGET||res==ERR_NO_PATH) {
               var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
@@ -34,7 +45,7 @@ var roleRemoteHarvester = {
               creep.moveTo(exit);
             }
           } else {
-              tasks.harvestPrefered(creep);
+              tasks.harvestPrefered(creep); */
           }
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
