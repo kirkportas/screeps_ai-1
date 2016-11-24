@@ -3,7 +3,7 @@ var tasks = require('tasks');
 var roleRemoteHarvester = {
 
     run: function(creep) {
-      var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACJ)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
+      var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
       if (creep.hits<creep.hitsMax || hostiles.lenght) {
           creep.memory.fleeTime=30;
       }
