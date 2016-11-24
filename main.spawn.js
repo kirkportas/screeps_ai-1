@@ -133,8 +133,9 @@ var mainSpawn = {
         if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
         let remoteNeeded= Math.min(2,Math.ceil((constructionSites+damagedBuildings)/25));
+        var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
         if (remoteBuilders<remoteNeeded) {
-          createCreepAdvanced(spawn,'remoteBuilder',createBody({move:4,carry:2,work:2}),{targetRoom:roomName});
+          createCreepAdvanced(spawn,'remoteBuilder',createBody({move:size,carry:size,work:size}),{targetRoom:roomName});
           return true;
         }
     }
