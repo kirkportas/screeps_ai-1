@@ -120,6 +120,10 @@ var mainSpawn = {
       createCreepAdvanced(spawn,'attacker',createBody({move:1}),{flag:'attack',manual:'2'})
       return false;
     }
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<2) {
+      createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:4}),{flag:'attack2',manual:'3'})
+      return false;
+    }
     return false;
   }
 
