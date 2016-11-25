@@ -30,7 +30,7 @@ var roleRemoteHauler = {
 
 
               var target = Game.getObjectById('58109bb927a3a7b409ce5b13')
-              var result = creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE)
+              var result = creep.withdraw(target, RESOURCE_ENERGY)
               if( target==null || result == ERR_NOT_IN_RANGE) {
                   creep.moveTo(new RoomPosition(23,24,'E63S62'));
               }
