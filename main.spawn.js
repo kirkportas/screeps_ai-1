@@ -121,8 +121,8 @@ var mainSpawn = {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<0) {
       if (createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack2',manual:'3'})) return true;
     }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<5 && spawn.room.name=='E65S62') {
-      if (createCreepAdvanced(spawn,'remoteHauler',createBody({move:16,carry:16}),{manual:'4'})) return true;
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<10 && spawn.room.name=='E65S62') {
+      if (createCreepAdvanced(spawn,'remoteHauler',createBody({move:8,carry:16}),{manual:'4'})) return true;
     }
     return false;
   }
