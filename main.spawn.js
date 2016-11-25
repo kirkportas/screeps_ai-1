@@ -112,16 +112,16 @@ var mainSpawn = {
     return false;
   }
   global.spawnArmy = function(spawn) {
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) {
-      createCreepAdvanced(spawn,'attacker',createBody({tough:7,move:7,heal:7}),{flag:'attack',manual:'1'})
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<4) {
+      createCreepAdvanced(spawn,'attacker',createBody({tough:7,move:7,heal:7}),{flag:'attack2',manual:'1'})
       return false;
     }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<20) {
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<5) {
       createCreepAdvanced(spawn,'attacker',createBody({move:1}),{flag:'attack',manual:'2'})
       return false;
     }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<2) {
-      createCreepAdvanced(spawn,'attacker',createBody({move:4,attack:4}),{flag:'attack2',manual:'3'})
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<10) {
+      createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack2',manual:'3'})
       return false;
     }
     return false;
