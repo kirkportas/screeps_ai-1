@@ -5,7 +5,7 @@ var roleAttacker = {
       var controller = creep.pos.findClosestByPath(FIND_STRUCTURES,{ignoreCreeps:true,filter: (structure) => {return (structure.structureType == STRUCTURE_CONTROLLER)}});
       var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{filter: function(c) { return (c.getActiveBodyparts(ATTACK)+c.getActiveBodyparts(RANGED_ATTACK)>0)}});
 
-      if (targetHostile) {
+      if (targetHostile && creep.pos.getRangeTo(targetHostile)<10) {
         if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetHostile)
         }
