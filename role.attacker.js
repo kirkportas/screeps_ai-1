@@ -3,7 +3,7 @@ var roleAttacker = {
 
     attack: function(creep) {
       var controller = creep.pos.findClosestByPath(FIND_STRUCTURES,{maxRooms:1,filter: (structure) => {return (structure.structureType == STRUCTURE_CONTROLLER)}});
-      var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{ filter: function(c) { return (c.getActiveBodyparts(ATTACK)+c.getActiveBodyparts(RANGED_ATTACK)>0)}});
+      var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{maxRooms:1, filter: function(c) { return (c.getActiveBodyparts(ATTACK)+c.getActiveBodyparts(RANGED_ATTACK)>0)}});
 
       if (targetHostile) {
         if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
