@@ -112,7 +112,7 @@ var mainSpawn = {
     return false;
   }
   global.spawnArmy = function(spawn) {
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) {
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<4) {
       if(createCreepAdvanced(spawn,'attacker',createBody({tough:7,move:7,heal:7}),{flag:'attack',manual:'1'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
