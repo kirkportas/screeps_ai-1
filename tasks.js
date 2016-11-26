@@ -144,15 +144,17 @@ var tasks = {
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
 
-      if (target[0].structureType==STRUCTURE_STORAGE) {
-        for(var resourceType in creep.carry) {
-            if (creep.transfer(target[0], resourceType) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(target[0]);
+      if (target.length) {
+        if (target[0].structureType==STRUCTURE_STORAGE) {
+          for(var resourceType in creep.carry) {
+              if (creep.transfer(target[0], resourceType) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target[0]);
+              }
             }
-          }
-      } else if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
-          creep.moveTo(target[0]);
-      }
+        } else if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+            creep.moveTo(target[0]);
+        }
+    }
     },
 
     deliverSourceToMainLinkFirst: function(creep) {
