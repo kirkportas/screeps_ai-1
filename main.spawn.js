@@ -279,7 +279,7 @@ var mainSpawn = {
       if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=3;
       upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-20000)/8000));
     }
-    if (upgradersNeeded==0 && spawn.room.controller.ticksToDecay<2000) upgradersNeeded++;
+    if (upgradersNeeded==0 && spawn.room.controller.ticksToDowngrade<2000) upgradersNeeded++;
     //console.log('builders needed',buildersNeeded)
     //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
