@@ -128,11 +128,11 @@ var mainSpawn = {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<4 && spawn.room.name=='E65S62') {
       if (createCreepAdvanced(spawn,'remoteBuilder',createBody({move:16,carry:16,work:16}),{targetRoom:'E66S62',manual:'6'})) return true;
     }
-    /
+    
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<10 && spawn.room.name=='E65S62') {
       if (createCreepAdvanced(spawn,'remoteHauler',createBody({move:16,carry:32}),{manual:'4'})) return true;
     }
-    
+
     return false;
   }
 
