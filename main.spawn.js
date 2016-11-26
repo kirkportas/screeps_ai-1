@@ -122,7 +122,7 @@ var mainSpawn = {
       if (createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,attack:8}),{flag:'attack2',manual:'3'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '5').length<1) {
-      if (createCreepAdvanced(spawn,'claimer',createBody({move:2,claim:2}),{takeOver:true,targetRoom:'E66S62',manual:'5'})) return true;
+      if (createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E66S62',manual:'5'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<4) {
       if (createCreepAdvanced(spawn,'remoteBuilder',createBody({move:16,carry:16,work:16}),{targetRoom:'E66S62',manual:'6'})) return true;
