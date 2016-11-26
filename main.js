@@ -35,12 +35,13 @@ module.exports.loop = function () {
 
   for(var iRoom in Game.rooms) {
     var room = Game.rooms[iRoom]
-    var spawn = room.find(FIND_MY_SPAWNS)[0];
-    if (spawn!=undefined) {
+    var spawns = room.find(FIND_MY_SPAWNS);
+    if (spawns.length) {
       timeLast=cpu.getUsed(); mainRoom.run(room); timeRoom += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainTower.run(room); timeTower += cpu.getUsed()-timeLast;
-      timeLast=cpu.getUsed(); mainSpawn.run(spawn); timeSpawn += cpu.getUsed()-timeLast;
       timeLast=cpu.getUsed(); mainScout.run(room); timeScout += cpu.getUsed()-timeLast;
+
+      timeLast=cpu.getUsed(); mainSpawn.run(spawns[0]); timeSpawn += cpu.getUsed()-timeLast;
     }
 
   }
