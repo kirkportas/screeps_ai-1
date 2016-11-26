@@ -59,7 +59,7 @@ module.exports.loop = function () {
   timeLast=cpu.getUsed();
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        //try {
+        try {
           if (cpuLog) {var cpuTime=cpu.getUsed();}
           tasks.enterRoom(creep);
           tasks.scoutRoom(creep);
@@ -82,7 +82,7 @@ module.exports.loop = function () {
             if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
             Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
           }
-      //} catch(err) { Game.notify(err);console.log(err);}
+      } catch(err) { Game.notify(err);console.log(err);}
     }
     var timeAI = cpu.getUsed()-timeLast;
 
