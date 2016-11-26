@@ -64,7 +64,7 @@ var roleRemotebuilder = {
               }
 
         } else {
-          var source = creep.pos.findClosestByPath(FIND_SOURCES);
+          var source = creep.pos.findClosestByPath(FIND_SOURCES,{filter: (source) => {return source.energy>0} });
           if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
               creep.moveTo(source);
           }
