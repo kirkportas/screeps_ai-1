@@ -325,9 +325,10 @@ if (!spawn.spawning) {
         }
       } else if (expand && spawnArmy(spawn)) {
       } else if (expand && spawnRemoteBuilders(spawn)) {
+      } else if (expand && spawnClaimers(spawn)) {
       } else if (expand && spawnRemoteHarvesters(spawn)) {
       } else if (expand && sendScouts(spawn)) {
-      } else if (expand && spawnClaimers(spawn)) {
+
 
       } else if(spawn.room.name=='E65S61' && count.scouts < 0) {
         createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:'E64S61'});
