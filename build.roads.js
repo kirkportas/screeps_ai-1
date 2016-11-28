@@ -68,7 +68,7 @@ var buildRoads = {
       var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallbackDoubleroad(roomName)}} );
         for (i = 0; i < path.path.length; i++) {
             let pos = path.path[i];
-            if (pos.roomName==pos1.room.roomName) builtRoads.push(pos);
+            if (pos.roomName==pos1.roomName) builtRoads.push(pos);
             if (Game.rooms[pos.roomName]!=undefined) {
               Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
               Game.rooms[pos.roomName].createConstructionSite(pos.x-1,pos.y,STRUCTURE_ROAD);
