@@ -42,9 +42,11 @@ var buildRoads = {
       return costs;
     },
     buildRoad: function(pos1,pos2) {
+      //var builtRoads=[];
       var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
         for (i = 0; i < path.path.length; i++) {
             let pos = path.path[i];
+            //if (pos.roomName==pos1.room.roomName) builtRoads.push(pos);
             if (Game.rooms[pos.roomName]!=undefined) {
               Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
             } else console.log('undefined room ',pos.roomName);
@@ -62,10 +64,11 @@ var buildRoads = {
             } else console.log('undefined room ',pos.roomName);
         }
     },
-    buildDoubleRoad: function(pos1,pos2) {
+    buildDoubleRoad: function(pos1,pos2,builtRoads) {
       var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallbackDoubleroad(roomName)}} );
         for (i = 0; i < path.path.length; i++) {
             let pos = path.path[i];
+            if (pos.roomName==pos1.room.roomName) builtRoads.push(pos);
             if (Game.rooms[pos.roomName]!=undefined) {
               Game.rooms[pos.roomName].createConstructionSite(pos.x,pos.y,STRUCTURE_ROAD);
               Game.rooms[pos.roomName].createConstructionSite(pos.x-1,pos.y,STRUCTURE_ROAD);
@@ -75,6 +78,7 @@ var buildRoads = {
     },
 
     run: function(room) {
+        var builtRoads = [];
         var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
         var posRes = posSpawn.findClosestByRange(FIND_SOURCES);
         var posCtr = room.controller.pos;
@@ -89,10 +93,10 @@ var buildRoads = {
         //BYGG VEI TIL sources
         var sources = room.memory.allSources;
         for (var i=0;i<sources.length;i++) {
-          buildRoads.buildDoubleRoad(posSpawn,Game.getObjectById(sources[i].id).pos);
+          buildRoads.buildDoubleRoad(posSpawn,Game.getObjectById(sources[i].id).pos,builtRoads);
         }
 
-        buildRoads.buildDoubleRoad(posSpawn,posCtr);
+        buildRoads.buildDoubleRoad(posSpawn,posCtr,builtRoads);
 
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
@@ -122,7 +126,7 @@ var buildRoads = {
 
         }
 
-
+        return buildRoads;
     }
 
 
