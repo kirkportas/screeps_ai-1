@@ -123,7 +123,6 @@ var tasks = {
         }
     },
     deliverSourceToMain: function(creep) {
-      creep.say('1')
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
       var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
@@ -171,11 +170,12 @@ var tasks = {
 
        var target = []
        target = target.concat(towerCritical);
-       target = target.concat(centralLink);
+       //target = target.concat(centralLink);
 
       target = target.concat(spawnTar);
       target = target.concat(extensions);
       target = target.concat(tower);
+      target = target.concat(centralLink);
       target = target.concat(centralStorage);
 
 
