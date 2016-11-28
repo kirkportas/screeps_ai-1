@@ -97,7 +97,10 @@ var mainRoom = {
       if (room.memory.roomdesign==1) {
         buildContainers.run(room);
         if (containers.length>=1) buildExtension.run(room)
-        if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
+        if (containers.length>=1&&extensions.length>=3) {
+          var roads = buildRoads.run(room);
+          console.log(room.name,' has ',roads.length, 'roads.')
+        }
       }
       if (room.memory.roomdesign==2) {
         if (containers.length>=1&&extensions.length>=3) {
