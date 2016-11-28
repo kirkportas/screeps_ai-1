@@ -4,7 +4,7 @@ var roleSpawnhauler = {
     /** @param {Creep} creep **/
     run: function(creep) {
 
-	    if(creep.memory.delivering && creep.carry.energy == 0) {
+	    if(creep.memory.delivering && creep.carry.energy < 50) {
             creep.memory.delivering = false;
 	    }
 	    if(!creep.memory.delivering &&  _.sum(creep.carry) == creep.carryCapacity) {
