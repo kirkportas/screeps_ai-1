@@ -100,8 +100,11 @@ var mainRoom = {
         if (containers.length>=1&&extensions.length>=3) buildRoads.run(room);
       }
       if (room.memory.roomdesign==2) {
-        if (containers.length>=1&&extensions.length>=3) {var roads = buildRoads.run(room);}
-        console.log(room.name,' has ',roads.length, 'roads.')
+        if (containers.length>=1&&extensions.length>=3) {
+          var roads = buildRoads.run(room);
+          console.log(room.name,' has ',roads.length, 'roads.')
+        }
+
       }
 
       room.memory.timeToRecheck=100;
