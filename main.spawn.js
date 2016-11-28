@@ -57,21 +57,21 @@ var mainSpawn = {
         }
       }
         //spawns harvesters per source
+        var preferedSource = source.id;
+        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == room.name && creep.memory.role == 'harvester' && pref == preferedSource);
 
         if (energyAvav>=750 && count.harvesters>0) {
           //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
-          if ((source.miners.length<1 || (source.miners.length==1 && Game.getObjectById(source.miners[0]).ticksToLive<100) && source.safe)) {
+          if ((harvesters.length<1 || (harvesters.length==1 && Game.getObjectById(harvesters[0]).ticksToLive<100) && source.safe)) {
             if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
-              var preferedSource = source.id;
               createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
             }
             return true;;
           }
         } else {
           console.log('spawning simple')
-          if (source.miners.length<source.slots && source.safe) {
+          if (harvesters.length<source.slots && source.safe) {
             if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
-              var preferedSource = source.id;
               createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
             }
             return true;
