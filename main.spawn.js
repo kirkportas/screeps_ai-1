@@ -65,7 +65,7 @@ var mainSpawn = {
           }
         } else {
           console.log('spawning simple')
-          if (harvesters.length<source.slots && source.safe) {
+          if (harvesters.length<Math.min(3,source.slots) && source.safe) {
             if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
               createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
             }
