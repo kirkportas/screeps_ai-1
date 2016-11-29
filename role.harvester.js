@@ -4,16 +4,6 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        // -- INIT --
-        var sources = creep.room.memory.allSources;
-        for (var i=0;i<sources.length;i++) {
-          var source=sources[i];
-          if (source.id === creep.memory.pref && (source.miners.includes(creep.id)==false) && (creep.id != null)) {
-            console.log('adding ',creep.id,' as dedicated miner to source');
-            creep.room.memory.allSources[i].miners.push(creep.id);
-            //console.log(' ',Game.spawns['Spawn1'].room.memory.allSources[i].miners.length);
-          }
-        }
 
         if(creep.memory.delivering && creep.carry.energy == 0) {
               creep.memory.delivering = false;
