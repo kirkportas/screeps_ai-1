@@ -252,11 +252,12 @@ var mainSpawn = {
     }
     if (energyInContainers>3000) haulersNeeded++;
     if (links.length>2) haulersNeeded--;
+    if (links.length>3) haulersNeeded--;
 
 
     var spawnHaulersNeeded=0;
     if (links.length>=2 || expand) {
-      spawnHaulersNeeded=1;
+      spawnHaulersNeeded=2;
     }
 
     var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
