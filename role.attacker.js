@@ -11,7 +11,7 @@ var roleAttacker = {
         if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetHostile)
         }
-      } else {
+      } else { //
         if ((spawnRoom&&spawn)||controller) {
           //Attack base, tower first
           var targetTower = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER)}});
