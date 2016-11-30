@@ -307,7 +307,7 @@ if (!spawn.spawning) {
       } else if(count.spawnHaulers < spawnHaulersNeeded) {
         createCreepAdvanced(spawn,'spawnHauler',createBody({move:2, carry:4}));
       } else if(count.defenders < defendersNeeded) {
-        var modulesOfEach = Math.max(2,Math.min(4,Math.floor(energyNow/200)));
+        var modulesOfEach = Math.max(2,Math.min(16,Math.floor(energyNow/400)));
         createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach}));
       } else if(count.builders < buildersNeeded) {
         var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
