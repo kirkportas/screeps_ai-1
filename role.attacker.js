@@ -2,7 +2,7 @@ var tasks = require('tasks');
 var roleAttacker = {
 
     attack: function(creep) {
-      var spawnRoom creep.room.find(FIND_HOSTILE_SPAWNS)[0];
+      var spawnRoom =creep.room.find(FIND_HOSTILE_SPAWNS)[0];
       var spawn = creep.pos.findClosestByPath(FIND_HOSTILE_SPAWNS)[0];
       var controller = creep.pos.findClosestByPath(FIND_STRUCTURES,{ignoreCreeps:true,filter: (structure) => {return (structure.structureType == STRUCTURE_CONTROLLER)}});
       var targetHostile = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS,{filter: function(c) { return (c.getActiveBodyparts(ATTACK)+c.getActiveBodyparts(RANGED_ATTACK)>0)}});
