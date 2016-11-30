@@ -53,7 +53,7 @@ var mainSpawn = {
 
         //spawns harvesters per source
         var preferedSource = source.id;
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && creep.ticksToLive>100 &&creep.memory.pref == preferedSource);
+        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.pref == preferedSource);
 
         if (energyAvav>=750 && (harvesters.length>0 || energyNow>=750)) {
           //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
