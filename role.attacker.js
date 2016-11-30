@@ -12,7 +12,7 @@ var roleAttacker = {
           creep.moveTo(targetHostile)
         }
       } else { //
-        if ((spawnRoom&&spawn)||controller) {
+        if ((spawnRoom&&spawn)||(!spawnRoom&&controller)) {
           //Attack base, tower first
           var targetTower = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER)}});
           var targetStructure = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter: (structure) => {return (structure.structureType != STRUCTURE_CONTROLLER && structure.structureType != STRUCTURE_STORAGE && structure.structureType != STRUCTURE_CONTAINER && structure.structureType != STRUCTURE_ROAD&& structure.structureType != STRUCTURE_RAMPART&& structure.structureType != STRUCTURE_WALL)}});
