@@ -285,7 +285,7 @@ var mainSpawn = {
     _.forEach(hostiles, function(creep){
       hostilesBodyparts+=creep.body.length
     })
-    defendersNeeded=Math.floor(hostilesBodyparts/25);
+    defendersNeeded=Math.floor(hostilesBodyparts/20);
     if (spawn.room.name=='E65S62') {
       //defendersNeeded=Math.max(4,defendersNeeded);
     }
