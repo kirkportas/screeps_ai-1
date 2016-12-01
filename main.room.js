@@ -86,6 +86,12 @@ var mainRoom = {
         room.memory.bufferenergy=20000;
         room.memory.roomdesign=2;
         room.memory.expand=true;
+      } else if (room.name=='E66S62') {
+        room.memory.wallHitsMax=200000;
+        room.memory.wallHitsmin=100000;
+        room.memory.bufferenergy=20000;
+        room.memory.roomdesign=1;
+        room.memory.expand=false;
       } else {
         room.memory.wallHitsMax=20000;
         room.memory.wallHitsmin=10000;
