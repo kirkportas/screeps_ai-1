@@ -6,6 +6,7 @@ var buildBase = {
           room.createConstructionSite(mineral.pos,STRUCTURE_EXTRACTOR);
         });
       }
+    }
 
     };
     module.exports = buildBase;
