@@ -2,6 +2,7 @@ var buildExtension = require('build.extension');
 var buildContainers = require('build.containers');
 var buildRoads = require('build.roads');
 var buildWalls = require('build.walls');
+var buildBase = require('build.base');
 var roomLinks = require('room.links');
 
 var mainRoom = {
@@ -102,6 +103,7 @@ var mainRoom = {
 
       if (room.memory.roomdesign==1) {
         buildContainers.run(room);
+        buildBase.run(room);
         if (containers.length>=1) buildExtension.run(room)
         if (containers.length>=1&&extensions.length>=3) {
           var roads = buildRoads.run(room);
@@ -109,6 +111,7 @@ var mainRoom = {
         }
       }
       if (room.memory.roomdesign==2) {
+        buildBase.run(room);
         if (containers.length>=1&&extensions.length>=3) {
           var roads = buildRoads.run(room);
           console.log(room.name,' has ',roads.length, 'roads.')
