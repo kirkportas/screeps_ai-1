@@ -78,13 +78,13 @@ var mainRoom = {
       } else if (room.name=='E65S61') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
-        room.memory.bufferenergy=20000;
+        room.memory.bufferenergy=50000;
         room.memory.roomdesign=1;
         room.memory.expand=true;
       } else if (room.name=='E68S62') {
         room.memory.wallHitsMax=400000;
         room.memory.wallHitsmin=200000;
-        room.memory.bufferenergy=20000;
+        room.memory.bufferenergy=50000;
         room.memory.roomdesign=2;
         room.memory.expand=true;
       } else if (room.name=='E66S62') {
