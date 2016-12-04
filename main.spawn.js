@@ -351,10 +351,11 @@ if (!spawn.spawning) {
         createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
       } else if(count.upgraders < upgradersNeeded) {
         if (links.length>2) {
-          createCreepAdvanced(spawn,'upgrader',createBody({move:2, carry:2,work:Math.min(10,Math.floor((energyAvav-200)/100))}));
+          var moveModules = Math.min(4,Math.floor(energyAvav/500));
+          createCreepAdvanced(spawn,'upgrader',createBody({move:moveModules, carry:moveModules,work:moveModules*4}));
         } else {
           var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
-            createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
+          createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
         }
       } else if (expand && spawnArmy(spawn)) {
       } else if (expand && spawnRemoteBuilders(spawn)) {
