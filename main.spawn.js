@@ -155,7 +155,7 @@ var mainSpawn = {
       if (createCreepAdvanced(spawn,'remoteHauler',createBody({move:16,carry:32}),{manual:'4'})) return true;
     }
 
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '5').length<1 && spawn.room.name=='E68S62') {
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '5').length<0 && spawn.room.name=='E68S62') {
       if (createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E67S65',manual:'5'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<3) {
