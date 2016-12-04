@@ -3,18 +3,11 @@ var tasks = require('tasks');
 var roleRemoteHarvester = {
 
     run: function(creep) {
-      var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
-      if (creep.hits<creep.hitsMax || hostiles.lenght) {
-          creep.memory.fleeTime=30;
-      }
-      if (creep.memory.fleeTime) {//
-        creep.memory.fleeTime--;
-      }
 
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
       }
-      if((!creep.memory.delivering &&  _.sum(creep.carry) == creep.carryCapacity) || creep.memory.fleeTime>0) {
+      if((!creep.memory.delivering &&  _.sum(creep.carry) == creep.carryCapacity)) {
           creep.memory.delivering = true;
       }
 
