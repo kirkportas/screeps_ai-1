@@ -21,17 +21,12 @@ var roleRemoteHauler = {
 
       if(!creep.memory.delivering) {
         if (!tasks.pickupEnergy(creep)) {
-          //if(creep.room.name != creep.memory.targetRoom) {
+            var target = Game.getObjectById(creep.memory.pref)
+            var result = creep.withdraw(target, RESOURCE_ENERGY)
 
-
-              var target = Game.getObjectById(creep.memory.pref)
-              var result = creep.withdraw(target, RESOURCE_ENERGY)
-
-              if( target==null || result == ERR_NOT_IN_RANGE) {
-                creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
-              }
-
-
+            if( target==null || result == ERR_NOT_IN_RANGE) {
+              creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
+            }
 
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
@@ -45,22 +40,13 @@ var roleRemoteHauler = {
           }
 
         } else {
-          var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER)}})[0];
           var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
-          var resBefore=creep.carry[RESOURCE_ENERGY];
           if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
-              creep.memory.harvested+=(resBefore);
             } else {
               creep.moveTo(centralStorage);
             }
-          } else if (centralContainer) {
-            if(creep.transfer(centralContainer, RESOURCE_ENERGY)== OK) {
-                creep.memory.harvested+=(resBefore);
-              } else {
-                creep.moveTo(centralContainer);
-              }
-            }
+          }
         }
 
 
