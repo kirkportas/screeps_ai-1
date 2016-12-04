@@ -88,7 +88,7 @@ var mainSpawn = {
             if (!sources[sourceId].pathLen) continue;
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
-            let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sourceId).length;
+            let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id).length;
             var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
             var carrycap= (size*50)
             var pathLen=sources[sourceId].pathLen;
@@ -100,6 +100,10 @@ var mainSpawn = {
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<1) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
+              return true;
+            }
+            if (harvestersHauler<1) {
+              createCreepAdvanced(spawn,'remoteHauler',createBody({move:5,carry:10}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
               return true;
             }
         }
