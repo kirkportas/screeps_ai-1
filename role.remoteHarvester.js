@@ -18,11 +18,6 @@ var roleRemoteHarvester = {
           creep.memory.delivering = true;
       }
 
-      if (!creep.memory.harvested) creep.memory.harvested=0;
-      if (creep.ticksToLive==1) {
-        console.log('Remote Harvester died: '+creep.memory.pref+': '+creep.memory.harvested+'-'+creep.getActiveBodyparts(CARRY)*200);
-        Game.notify('Remote Harvester died: '+creep.memory.pref+': '+creep.memory.harvested+'-'+creep.getActiveBodyparts(CARRY)*200,120);
-      }
 
       if(!creep.memory.delivering) {
         if (!tasks.pickupEnergy(creep)) {
