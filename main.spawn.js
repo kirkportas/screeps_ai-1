@@ -88,6 +88,7 @@ var mainSpawn = {
             if (!sources[sourceId].pathLen) continue;
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
+            let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sourceId).length;
             var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
             var carrycap= (size*50)
             var pathLen=sources[sourceId].pathLen;
@@ -285,7 +286,7 @@ var mainSpawn = {
 
     var spawnHaulersNeeded=0;
     if (links.length>=2 || expand) {
-      spawnHaulersNeeded=2;
+      spawnHaulersNeeded=1;
     }
 
     var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
