@@ -40,7 +40,7 @@ var roleRemoteHauler = {
           }
 
         } else {
-          var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
+          var centralStorage=homeSpawn.room.storage;
           if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
             } else {
