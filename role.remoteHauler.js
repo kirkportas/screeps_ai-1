@@ -24,10 +24,10 @@ var roleRemoteHauler = {
           //if(creep.room.name != creep.memory.targetRoom) {
 
 
-              var target = Game.getObjectById(pref)
+              var target = Game.getObjectById(creep.memory.pref)
               var result = creep.withdraw(target, RESOURCE_ENERGY)
               if( target==null || result == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(prefPos);
+                  creep.moveTo(creep.memory.prefPos);
               }
 
 
