@@ -34,7 +34,7 @@ var roleRemoteHauler = {
         if (centralStorage) {
         if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
           } else {
-            creep.moveTo(centralStorage,{ignoreCreeps:true,reusePath:10}));
+            creep.moveTo(centralStorage,{ignoreCreeps:true,reusePath:10});
           }
         }
 
