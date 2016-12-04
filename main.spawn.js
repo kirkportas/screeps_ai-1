@@ -247,92 +247,93 @@ var mainSpawn = {
     });
     return false;
   }
-    var count = roomCreepcalc.creepCount(spawn.room);
-
-    var expand=spawn.room.memory.expand;
-    var energyNow = spawn.room.energyAvailable;
-    var energyAvav = spawn.room.energyCapacityAvailable;
-    //console.log(energyNow,'-',energyAvav);
-    var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
-    var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
-    //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
-    var centralContainer = tasks.getCentralStorage(spawn);
-    var energyNeeded = 0;
-    var repairNeeded = 0;
-    var constructionSites = spawn.room.find(FIND_CONSTRUCTION_SITES);
-    constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
-    var structures = spawn.room.find(FIND_STRUCTURES);
-    _.forEach(structures, function(struc){
-      if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
-        repairNeeded+= (struc.hitsMax*0.75-struc.hits)
-      }
-      if (struc.hitsMax!==undefined && struc.hits<spawn.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
-        repairNeeded+= (spawn.room.memory.wallHitsMax-struc.hits)
-      }
-    });
-    var energyInContainers=0;
-    _.forEach(containers, function(struc){
-      energyInContainers+=struc.store[RESOURCE_ENERGY];
-    });
-
-
-    var haulersNeeded=2;
-    if (energyAvav<450) {
-      haulersNeeded=2;
-    } else if (energyAvav<600) {
-      haulersNeeded=2;
-    } else {
-      haulersNeeded=2;
-    }
-    if (energyInContainers>3000) haulersNeeded++;
-    if (links.length>2) haulersNeeded--;
-    if (links.length>3) haulersNeeded--;
-
-
-    var spawnHaulersNeeded=0;
-    if (links.length>=2 || expand) {
-      spawnHaulersNeeded=1;
-    }
-
-    var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
-    var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
-    //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
-    if (centralContainer) {
-      if (centralContainer.store[RESOURCE_ENERGY]<1000) buildersNeeded=0;
-    }
-
-
-    var upgradersNeeded = 0;
-    if (centralContainer) {
-      if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
-      if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
-      if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=3;
-      upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-spawn.room.memory.bufferenergy)/8000));
-    }
-    if (upgradersNeeded==0 && spawn.room.controller.ticksToDowngrade<2000) upgradersNeeded++;
-    //console.log('builders needed',buildersNeeded)
-    //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
-
-    var defendersNeeded = 0;
-    var suicideDefenders=false;
-    var invaders=0;
-    var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
-    var hostilesBodyparts=0;
-    _.forEach(hostiles, function(creep){
-      hostilesBodyparts+=creep.body.length
-      if (creep.owner.username=='Invader') invaders++;
-    })
-    if (invaders==hostiles.length) { //Blir kun angrepet av NPC
-      suicideDefenders=true;
-    }
-
-    for(var name in Memory.creeps) {
-        if(!Game.creeps[name]) {
-            delete Memory.creeps[name];
-        }
-    }
 
 if (!spawn.spawning) {
+
+  var count = roomCreepcalc.creepCount(spawn.room);
+  var expand=spawn.room.memory.expand;
+  var energyNow = spawn.room.energyAvailable;
+  var energyAvav = spawn.room.energyCapacityAvailable;
+  //console.log(energyNow,'-',energyAvav);
+  var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
+  var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
+  //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
+  var centralContainer = tasks.getCentralStorage(spawn);
+  var energyNeeded = 0;
+  var repairNeeded = 0;
+  var constructionSites = spawn.room.find(FIND_CONSTRUCTION_SITES);
+  constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
+  var structures = spawn.room.find(FIND_STRUCTURES);
+  _.forEach(structures, function(struc){
+    if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
+      repairNeeded+= (struc.hitsMax*0.75-struc.hits)
+    }
+    if (struc.hitsMax!==undefined && struc.hits<spawn.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
+      repairNeeded+= (spawn.room.memory.wallHitsMax-struc.hits)
+    }
+  });
+  var energyInContainers=0;
+  _.forEach(containers, function(struc){
+    energyInContainers+=struc.store[RESOURCE_ENERGY];
+  });
+
+
+  var haulersNeeded=2;
+  if (energyAvav<450) {
+    haulersNeeded=2;
+  } else if (energyAvav<600) {
+    haulersNeeded=2;
+  } else {
+    haulersNeeded=2;
+  }
+  if (energyInContainers>3000) haulersNeeded++;
+  if (links.length>2) haulersNeeded--;
+  if (links.length>3) haulersNeeded--;
+
+
+  var spawnHaulersNeeded=0;
+  if (links.length>=2 || expand) {
+    spawnHaulersNeeded=1;
+  }
+
+  var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
+  var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
+  //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
+  if (centralContainer) {
+    if (centralContainer.store[RESOURCE_ENERGY]<1000) buildersNeeded=0;
+  }
+
+
+  var upgradersNeeded = 0;
+  if (centralContainer) {
+    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
+    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
+    if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=3;
+    upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-spawn.room.memory.bufferenergy)/8000));
+  }
+  if (upgradersNeeded==0 && spawn.room.controller.ticksToDowngrade<2000) upgradersNeeded++;
+  //console.log('builders needed',buildersNeeded)
+  //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
+
+  var defendersNeeded = 0;
+  var suicideDefenders=false;
+  var invaders=0;
+  var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
+  var hostilesBodyparts=0;
+  _.forEach(hostiles, function(creep){
+    hostilesBodyparts+=creep.body.length
+    if (creep.owner.username=='Invader') invaders++;
+  })
+  if (invaders==hostiles.length) { //Blir kun angrepet av NPC
+    suicideDefenders=true;
+  }
+
+  for(var name in Memory.creeps) {
+      if(!Game.creeps[name]) {
+          delete Memory.creeps[name];
+      }
+  }
+  
   if (renewAndKill(spawn)) {
   } else if (spawnHarvesters(spawn)) {
   } else if (containers.length>=1) {
