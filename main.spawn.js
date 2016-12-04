@@ -96,7 +96,7 @@ var mainSpawn = {
             var optimalSize=Math.round(obtainable*((pathLen*2)+5)/50);
             var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
             var size=Math.min(optimalSize,maxSize,25);
-            console.log(size);
+
             //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<1) {
