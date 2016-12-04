@@ -28,7 +28,7 @@ module.exports.loop = function() {
 
       var cpu = Game.cpu;
       var timeLast=cpu.getUsed();
-    
+
       var timeSpawn=0;
       var timeRoom=0;
       var timeTower=0;
@@ -192,5 +192,6 @@ module.exports.loop = function () {
 
     if (cpu.bucket<9500) console.log('Bucket: ',cpu.bucket);
     console.log('CPU('+cpu.getUsed().toFixed(2)+'): room: '+timeRoom.toFixed(2)+', tower: '+timeTower.toFixed(2)+', spawn: '+timeSpawn.toFixed(2)+', AI: '+timeAI.toFixed(2)+' (har: '+timeHarvester.toFixed(2)+').');
-    */
+
 }
+*/
