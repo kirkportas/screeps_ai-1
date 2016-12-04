@@ -26,15 +26,6 @@ var mainRoom = {
             var x=path[pathLen-1].x;
             var y=path[pathLen-1].y;
 
-            var dist = 100;
-            for (var ii = 0; ii < lairs.length; ii++) {
-              var a = x - lairs[ii].pos.x;
-              var b = y - lairs[ii].pos.y;
-              var c = Math.sqrt( a*a + b*b );
-              if (c<dist) dist=c;
-              }
-            if (dist<10) safe=0;
-
             var slots = 0;
             for (var x1=-1;x1<2;x1++) {
                 for (var y1=-1;y1<2;y1++) {
