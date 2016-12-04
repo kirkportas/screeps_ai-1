@@ -97,7 +97,7 @@ var mainSpawn = {
             var needed=Math.round(obtainable/sourcePerTick);
             //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
-            if (harvestersRemote<needed) {
+            if (harvestersRemote<1) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:size,carry:size,work:size}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
               return true;
             }
@@ -106,6 +106,34 @@ var mainSpawn = {
     }
     return false;
   }
+  global.spawnRemoteHarvesters2 = function(spawn) {
+    var scout=spawn.room.memory.scout;
+    for (var roomName in scout) {
+      if (scout[roomName].danger==0) {
+        var sources = scout[roomName].sources;
+        if ((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
+        for (var sourceId in sources) {
+          if (!sources[sourceId].pathLen) continue;
+          //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
+          let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
+          var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
+          var carrycap= (size*50)
+          var pathLen=sources[sourceId].pathLen;
+          var obtainable = 5;
+          if (sources[sourceId].reservation>1000) {obtainable=10}
+          var sourcePerTick=(carrycap/((pathLen*2)+25+2))*0.90; //Empirisk verdi for å justere feil
+          var needed=Math.round(obtainable/sourcePerTick);
+          //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
+          //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
+          if (harvestersRemote<needed) {
+            createCreepAdvanced(spawn,'remoteHarvester',createBody({move:size,carry:size,work:size}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
+            return true;
+          }
+      }
+    }
+  }
+  return false;
+}
   global.spawnArmy = function(spawn) {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) {
       if(createCreepAdvanced(spawn,'attacker',createBody({tough:7,move:7,heal:7}),{flag:'attack',manual:'1'})) return true;
