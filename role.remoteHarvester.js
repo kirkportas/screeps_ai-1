@@ -45,7 +45,7 @@ var roleRemoteHarvester = {
 
 
       }
-
+    }
 
     }
 };
