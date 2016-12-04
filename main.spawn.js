@@ -49,7 +49,7 @@ var mainSpawn = {
       var extractor = spawn.room.find(FIND_STRUCTURES,(structure)=>structure.structureType==STRUCTURE_EXTRACTOR)[0];
       if (extractor&&spawn.room.terminal) {
         var mineral = spawn.room.find(FIND_MINERALS)[0];
-          console.log(mineral.mineralType])
+          console.log(mineral.mineralType)
         console.log(spawn.room.terminal.store[mineral.mineralType])
           var extracters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'extracter' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.extractor==extractor.id&&creep.memory.mineral==mineral.id);
           if (extracters<1&&spawn.room.terminal.store[mineral.mineralType]<100000) {
