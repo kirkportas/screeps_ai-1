@@ -163,7 +163,7 @@ var mainSpawn = {
     }
 
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<2) { // HEALERS
-      if(createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'7'})) return true;
+      if(createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attacl2',manual:'7'})) return true;
     }
 
 
