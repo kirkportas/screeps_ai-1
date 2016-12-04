@@ -63,30 +63,32 @@ module.exports.loop = function() {
     timeLast=cpu.getUsed();
       for(var name in Game.creeps) {
           var creep = Game.creeps[name];
-          try {
-            if (cpuLog) {var cpuTime=cpu.getUsed();}
-            tasks.enterRoom(creep);
-            tasks.scoutRoom(creep);
-            if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
-            if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
-            if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
-            if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
-            if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
-            if(creep.memory.role == 'scout') {roleScout.run(creep);}
-            if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
-            if(creep.memory.role == 'defender') {roleDefender.run(creep);}
-            if(creep.memory.role == 'attacker') {roleAttacker.run(creep);}
-            if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
-            if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
-            if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
-            if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
-            if(creep.memory.role == 'remoteHauler') {roleRemoteHauler.run(creep);}
-            if (cpuLog) {
-              //creep.say(cpu.getUsed()-cpuTime);
-              if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
-              Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
-            }
-        } catch(err) { Game.notify(err.trace+": "+err);console.log(err.trace+": "+err);}
+          if (!creep.spawning) {
+            try {
+              if (cpuLog) {var cpuTime=cpu.getUsed();}
+              tasks.enterRoom(creep);
+              tasks.scoutRoom(creep);
+              if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
+              if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
+              if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
+              if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
+              if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
+              if(creep.memory.role == 'scout') {roleScout.run(creep);}
+              if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
+              if(creep.memory.role == 'defender') {roleDefender.run(creep);}
+              if(creep.memory.role == 'attacker') {roleAttacker.run(creep);}
+              if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
+              if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
+              if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
+              if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
+              if(creep.memory.role == 'remoteHauler') {roleRemoteHauler.run(creep);}
+              if (cpuLog) {
+                //creep.say(cpu.getUsed()-cpuTime);
+                if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
+                Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
+              }
+          } catch(err) { Game.notify(err.trace+": "+err);console.log(err.trace+": "+err);}
+        }
       }
       var timeAI = cpu.getUsed()-timeLast;
 
