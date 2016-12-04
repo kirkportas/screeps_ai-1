@@ -11,9 +11,6 @@ var mainRoom = {
 
       roomLinks.run(room);
 
-
-
-
       if (room.memory.allSources===undefined || room.memory.allSources.length===undefined || room.memory.allSources.length===0) {
         console.log('init room');
 
@@ -65,8 +62,6 @@ var mainRoom = {
       var extensions = room.find(FIND_MY_STRUCTURES, {filter: { structureType: STRUCTURE_EXTENSION }});
       var containers = room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
       //
-
-
       if (room.name=='E65S62') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
