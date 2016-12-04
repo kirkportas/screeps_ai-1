@@ -98,7 +98,7 @@ var mainSpawn = {
             //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<1) {
-              createCreepAdvanced(spawn,'remoteHarvester',createBody({move:size,carry:size,work:size}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
+              createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
               return true;
             }
         }
