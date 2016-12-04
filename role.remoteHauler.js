@@ -28,7 +28,7 @@ var roleRemoteHauler = {
               var result = creep.withdraw(target, RESOURCE_ENERGY)
 
               if( target==null || result == ERR_NOT_IN_RANGE) {
-                var result=creep.moveTo(new RoomPosition(newcreep.memory.prefPos.x,newcreep.memory.prefPos.y,newcreep.memory.prefPos.roomName));
+                var result=creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
                   //var result=creep.moveTo(newcreep.memory.prefPos);
                   creep.say(result)
               }
