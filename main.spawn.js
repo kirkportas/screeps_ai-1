@@ -308,16 +308,17 @@ var mainSpawn = {
     //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
     var defendersNeeded = 0;
+    var suicideDefenders=false;
+    var invaders=0;
     var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
     var hostilesBodyparts=0;
     _.forEach(hostiles, function(creep){
       hostilesBodyparts+=creep.body.length
+      if (creep.owner.username=='Invader') invaders++;
     })
-    defendersNeeded=Math.floor(hostilesBodyparts/20);
-    if (spawn.room.name=='E65S62') {
-      //defendersNeeded=Math.max(4,defendersNeeded);
+    if (invaders==hostiles.length) { //Blir kun angrepet av NPC
+      suicideDefenders=true;
     }
-
 
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
@@ -336,7 +337,7 @@ if (!spawn.spawning) {
         createCreepAdvanced(spawn,'spawnHauler',createBody({move:2, carry:4}));
       } else if(count.defenders < defendersNeeded) {
         var modulesOfEach = Math.max(2,Math.min(16,Math.floor(energyNow/400)));
-        createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach}));
+        createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
       } else if(count.builders < buildersNeeded) {
         var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
         createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
