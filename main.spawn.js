@@ -89,17 +89,15 @@ var mainSpawn = {
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId).length;
             let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id).length;
-            var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
-            var carrycap= (size*50)
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
             if (sources[sourceId].reservation>1000) {obtainable=10}
             var sourcePerTick=(carrycap/((pathLen*2)+5))*0.90; //Empirisk verdi for å justere feil
-            var needed=Math.round(obtainable/sourcePerTick);
-            var needed=Math.min(25,Math.round(obtainable*((pathLen*2)+5)/50));
-            var size = Math.floor(spawn.room.energyCapacityAvailable/100);
-            var needed=Math.min(needed,size);
-            console.log(needed);
+
+            var optimalSize=Math.round(obtainable*((pathLen*2)+5)/50);
+            var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
+            var size=Math.min(optimalSize,maxSize,25);
+            console.log(size);
             //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<1) {
@@ -107,7 +105,7 @@ var mainSpawn = {
               return true;
             }
             if (haulersRemote<1) {
-              createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.floor(needed/2),carry:needed}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
+              createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil(size/2),carry:size}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
               return true;
             }
         }
