@@ -20,8 +20,8 @@ var roleUpgrader = {
       if(!creep.memory.upgrading) {
         if (!tasks.pickupEnergy(creep)) {
           var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
-          var linkCentral=spawn.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
-          var linkController=creep.room.controller.pos.findInRange(FIND_MY_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
+          var linkCentral=spawn.pos.findInRange(FIND_MY_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
+          var linkController=creep.room.controller.pos.findInRange(FIND_MY_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK)}})[0];
           creep.say('1')
           if (linkCentral&&linkController) {
             if(creep.withdraw(linkController, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
