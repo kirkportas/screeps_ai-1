@@ -162,7 +162,7 @@ var mainSpawn = {
       if (createCreepAdvanced(spawn,'remoteBuilder',createBody({move:16,carry:16,work:16}),{targetRoom:'E66S62',manual:'6'})) return true;
     }
 
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<1) { // HEALERS
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<2) { // HEALERS
       if(createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'7'})) return true;
     }
 
