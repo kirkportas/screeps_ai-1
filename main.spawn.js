@@ -93,7 +93,7 @@ var mainSpawn = {
             var obtainable = 5;
             if (sources[sourceId].reservation>1000) {obtainable=10}
 
-            var optimalSize=Math.round(obtainable*((pathLen*2)+5)/50);
+            var optimalSize=Math.ceil(((obtainable*pathLen*2)+5)/50);
             var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
             var size=Math.min(optimalSize,maxSize,25);
 
@@ -333,7 +333,7 @@ if (!spawn.spawning) {
           delete Memory.creeps[name];
       }
   }
-  
+
   if (renewAndKill(spawn)) {
   } else if (spawnHarvesters(spawn)) {
   } else if (containers.length>=1) {
