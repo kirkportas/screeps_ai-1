@@ -24,7 +24,7 @@ var roleRemoteHauler = {
             var result = creep.withdraw(target, RESOURCE_ENERGY)
 
             if( target==null || result == ERR_NOT_IN_RANGE) {
-              creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName),{ignoreCreeps:true,reusePath:10});
+              creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName),{ignoreCreeps:false,reusePath:10});
             }
 
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
@@ -34,7 +34,7 @@ var roleRemoteHauler = {
         if (centralStorage) {
         if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
           } else {
-            creep.moveTo(centralStorage,{ignoreCreeps:true,reusePath:10});
+            creep.moveTo(centralStorage,{ignoreCreeps:false,reusePath:10});
           }
         }
 
