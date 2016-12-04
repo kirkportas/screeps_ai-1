@@ -18,14 +18,13 @@ var roleRemoteHauler = {
           creep.memory.delivering = true;
       }
 
-
       if(!creep.memory.delivering) {
         if (!tasks.pickupEnergy(creep)) {
             var target = Game.getObjectById(creep.memory.pref)
             var result = creep.withdraw(target, RESOURCE_ENERGY)
 
             if( target==null || result == ERR_NOT_IN_RANGE) {
-              creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
+              creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName),{ignoreCreeps:true,reusePath:10});
             }
 
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
