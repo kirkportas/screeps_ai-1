@@ -159,7 +159,7 @@ var mainSpawn = {
       if (createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E67S65',manual:'5'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<3&& spawn.room.name=='E68S62') {
-      if (createCreepAdvanced(spawn,'remoteBuilder',createBody({move:24,carry:12,work:12}),{targetRoom:'E67S65',manual:'6'})) return true;
+      if (createCreepAdvanced(spawn,'remoteBuilder',createBody({move:8,carry:8,work:8}),{targetRoom:'E67S65',manual:'6'})) return true;
     }
 
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<0) { // HEALERS
