@@ -353,6 +353,7 @@ if (!spawn.spawning) {
 
   if (renewAndKill(spawn)) {
   } else if (spawnHarvesters(spawn)) {
+  } else if (spawnExtracter(spawn)) {
   } else if (containers.length>=1) {
       if(count.haulers < haulersNeeded) {
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
