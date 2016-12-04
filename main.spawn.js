@@ -107,7 +107,7 @@ var mainSpawn = {
               return true;
             }
             if (haulersRemote<1) {
-              createCreepAdvanced(spawn,'remoteHauler',createBody({move:5,carry:10}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
+              createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.floor(needed/2),carry:needed}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
               return true;
             }
         }
