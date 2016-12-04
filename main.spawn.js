@@ -94,8 +94,10 @@ var mainSpawn = {
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
             if (sources[sourceId].reservation>1000) {obtainable=10}
-            var sourcePerTick=(carrycap/((pathLen*2)+25+2))*0.90; //Empirisk verdi for å justere feil
+            var sourcePerTick=(carrycap/((pathLen*2)+5))*0.90; //Empirisk verdi for å justere feil
             var needed=Math.round(obtainable/sourcePerTick);
+            var needed=Math.round(obtainable/((pathLen*2)+5))
+            console.log(needed);
             //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
             //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<1) {
