@@ -102,7 +102,7 @@ var mainSpawn = {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
               return true;
             }
-            if (harvestersHauler<1) {
+            if (haulersRemote<1) {
               createCreepAdvanced(spawn,'remoteHauler',createBody({move:5,carry:10}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
               return true;
             }
