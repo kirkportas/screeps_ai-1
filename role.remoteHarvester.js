@@ -34,19 +34,6 @@ var roleRemoteHarvester = {
                   creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
               }
 
-
-
-
-            /*
-            var res = creep.moveTo(Game.getObjectById(creep.memory.pref));
-            if (res == ERR_INVALID_TARGET||res==ERR_NO_PATH) {
-              var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
-              var exit = creep.pos.findClosestByRange(exitDir);
-              creep.moveTo(exit);
-            }
-          } else {
-              tasks.harvestPrefered(creep); */
-          //}
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
         var homeSpawn=Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
@@ -61,16 +48,13 @@ var roleRemoteHarvester = {
         } else {
           var centralContainer=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER)}})[0];
           var centralStorage=homeSpawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
-          var resBefore=creep.carry[RESOURCE_ENERGY];
           if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
-              creep.memory.harvested+=(resBefore);
             } else {
               creep.moveTo(centralStorage);
             }
           } else if (centralContainer) {
             if(creep.transfer(centralContainer, RESOURCE_ENERGY)== OK) {
-                creep.memory.harvested+=(resBefore);
               } else {
                 creep.moveTo(centralContainer);
               }
