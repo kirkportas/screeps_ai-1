@@ -92,7 +92,6 @@ var mainSpawn = {
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
             if (sources[sourceId].reservation>1000) {obtainable=10}
-            var sourcePerTick=(carrycap/((pathLen*2)+5))*0.90; //Empirisk verdi for å justere feil
 
             var optimalSize=Math.round(obtainable*((pathLen*2)+5)/50);
             var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
