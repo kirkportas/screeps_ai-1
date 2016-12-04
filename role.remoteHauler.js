@@ -26,9 +26,10 @@ var roleRemoteHauler = {
 
               var target = Game.getObjectById(creep.memory.pref)
               var result = creep.withdraw(target, RESOURCE_ENERGY)
-              creep.say(result)
+
               if( target==null || result == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(creep.memory.prefPos);
+                  var result=creep.moveTo(creep.memory.prefPos);
+                  creep.say(result)
               }
 
 
