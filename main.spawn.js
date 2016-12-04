@@ -51,12 +51,10 @@ var mainSpawn = {
         var source=sources[i];
         var sourceObj = Game.getObjectById(source.id);
 
-        //spawns harvesters per source
         var preferedSource = source.id;
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.pref == preferedSource);
 
         if (energyAvav>=750 && (harvesters.length>0 || energyNow>=750)) {
-          //console.log(Game.getObjectById(source.miners[0]).ticksToLive);
           if ((harvesters.length<1 &&  source.safe)) {
             if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
               createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
@@ -64,7 +62,7 @@ var mainSpawn = {
             return true;;
           }
         } else {
-          console.log('spawning simple')
+          //console.log('spawning simple')
           if (harvesters.length<Math.min(3,source.slots) && source.safe) {
             if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
               createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
@@ -97,8 +95,6 @@ var mainSpawn = {
             var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
             var size=Math.min(optimalSize,maxSize,25);
 
-            //if (sourceId=='57ef9ea486f108ae6e60fa55') needed=1;
-            //console.log('data: '+spawn.room+' '+roomName+' '+sourceId+' '+' '+harvestersRemote+' '+needed);
             if (harvestersRemote<1) {
               createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:sources[sourceId].pos, spawnerAction: "none"});
               return true;
