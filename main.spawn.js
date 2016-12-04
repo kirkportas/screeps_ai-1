@@ -44,6 +44,22 @@ var mainSpawn = {
       }
       return false;
     }
+    global.spawnExtracter = function(spawn) {
+      //cleanup dedicated miners && watch
+      var extractor = spawn.room.find(FIND_STRUCTURES,(structure)=>structure.structureType==STRUCTURE_EXTRACTOR)[0];
+      if (extractor&&spawn.room.terminal) {
+        var mineral = spawn.room.find(FIND_MINERALS)[0];
+          var extracters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'extracter' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.extractor==extractor.id&&creep.memory.mineral==mineral.id);
+          if (extracters<1&&spawn.room.terminal.store[mineral.mineralType]<100000) {
+            createCreepAdvanced(spawn,'extracter',[WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
+          }
+
+      }
+
+
+
+      return false;
+    }
     global.spawnHarvesters = function(spawn) {
       //cleanup dedicated miners && watch
       var sources = spawn.room.memory.allSources;
@@ -72,7 +88,6 @@ var mainSpawn = {
         }
 
       }
-
       return false;
     }
 
