@@ -33,7 +33,7 @@ module.exports.loop = function() {
     var timeTower=0;
     var timeScout=0;
 
-    var cpuLog=false;
+    var cpuLog=true;
 
     //PathFinder.use(true);
 
