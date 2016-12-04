@@ -11,17 +11,15 @@ var mainRoom = {
 
       roomLinks.run(room);
 
-      var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
-      //var posSpawn = new RoomPosition(Game.spawns['Spawn1'].pos.x, Game.spawns['Spawn1'].pos.y+1, Game.spawns['Spawn1'].room.name);
-      var sources = room.find(FIND_SOURCES);
-      var lairs = room.find(FIND_STRUCTURES, {
-              filter: (structure) => {
-                  return (
-                      structure.structureType == STRUCTURE_KEEPER_LAIR && structure.my == false )  }
-      });
+
+
 
       if (room.memory.allSources===undefined || room.memory.allSources.length===undefined || room.memory.allSources.length===0) {
         console.log('init room');
+
+        var posSpawn = room.find(FIND_MY_SPAWNS)[0].pos;
+        var sources = room.find(FIND_SOURCES);
+
         room.memory.allSources=[];
 
         for (var i = 0; i < sources.length; i++) {
