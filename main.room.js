@@ -15,7 +15,7 @@ var mainRoom = {
         	order.type == ORDER_BUY &&
             Game.market.calcTransactionCost(1000, targetRoom, order.roomName) < 2000);
         Memory.test=orders;
-        orders= _.sortBy(orders, o => o.price);
+        orders= _.sortBy(orders, o => -o.price);
         console.log(orders[0].price)
         //var res= Game.market.deal(orders[0].id, 100, targetRoom);
         //console.log(res)
