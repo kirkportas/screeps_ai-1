@@ -51,7 +51,7 @@ var mainRoom = {
         _.forEach(criticalBuildings, function(structure2){
           //var closest=structure2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
           //if (structure2.pos.inRangeTo(closest,3))
-          console.log('found something val')
+          console.log('found something val'+structure2)
         });
 
         if (triggerSafemode) {
