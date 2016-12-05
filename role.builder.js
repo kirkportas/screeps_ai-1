@@ -80,7 +80,7 @@ var roleBuilder = {
     }
 
     if (creep.memory.building) {
-      if (creep.memory.targetFix!==null) { roleBuilder.repairTarget(creep);creep.say('2')//
+      if (creep.memory.targetFix!==null) { roleBuilder.repairTarget(creep)//
       } else if (creep.memory.targetBuild!==null && creep.memory.targetBuild!==undefined) { roleBuilder.buildTarget(creep)
 
       } else if (roleBuilder.findBuildCritical(creep)) {
