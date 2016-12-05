@@ -155,7 +155,7 @@ var tasks = {
         } else if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
             creep.moveTo(target[0]);
         }
-    }
+    } else creep.moveTo(creep.room.controller)
     },
 
     deliverSourceToMainLinkFirst: function(creep) {
