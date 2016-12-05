@@ -25,9 +25,10 @@ var roleRemoteHarvester = {
 
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
-        var containers = creep.pos.findInRange(FIND_STRUCTURES,5,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } })[0];
+        var container = creep.pos.findInRange(FIND_STRUCTURES,2,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } })[0];
         var centralStorage=Game.rooms[creep.memory.homeRoom].find(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
-        if (containers) {
+        if (container) {
+          if (container.hits<containers.hitsMax) creep.repair(container);
           tasks.deliverSourceDedicated(creep,containers);//
         } else if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
