@@ -47,9 +47,9 @@ var mainRoom = {
         console.log("Hostile in "+room.name);
         var triggerSafemode=false;
         //if (room.spawn.hits<room.spawn.hitsMax*0.6) triggerSafemode=true;
-        _.forEach(room.find(FIND_STRUCTURES,{filter:(structure)=>{return structure.structureType==STRUCTURE_SPAWN||structure.structureType==STRUCTURE_TOWER||structure.structureType==STRUCTURE_STORAGE}}), function(structure){
-          var closest=structure.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-          if (structure.pos.inRangeTo(closest,3))
+        _.forEach(room.find(FIND_STRUCTURES,{filter:(structure)=>{return structure.structureType==STRUCTURE_SPAWN||structure.structureType==STRUCTURE_TOWER||structure.structureType==STRUCTURE_STORAGE}}), function(structure2){
+          var closest=structure2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+          if (structure2.pos.inRangeTo(closest,3))
           console.log('found something val')
         });
 
