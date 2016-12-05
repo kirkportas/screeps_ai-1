@@ -89,7 +89,7 @@ module.exports.loop = function() {
                 if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];
                 Memory.timeData[creep.memory.role].push(cpu.getUsed()-cpuTime);
               }
-          } catch(err) { Game.notify(err.trace+": "+err);console.log(err.trace+": "+err);}
+          } catch(err) { Game.notify(err.stack+": "+err);console.log(err.stack+": "+err);}
         }
       }
       var timeAI = cpu.getUsed()-timeLast;
