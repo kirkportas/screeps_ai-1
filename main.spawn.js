@@ -380,6 +380,7 @@ if (!spawn.spawning) {
       } else if (expand && spawnClaimers(spawn)) {
       } else if (expand && spawnRemoteHarvesters(spawn)) {
       } else if (expand && sendScouts(spawn)) {
+      }
 
     }
   }
