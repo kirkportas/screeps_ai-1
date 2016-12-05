@@ -11,10 +11,10 @@ var mainRoom = {
 
       global.viewOrders = function(roomName) {
         var targetRoom = "E65S61";
-        Game.market.getAllOrders(order => order.resourceType == RESOURCE_LEMERGIUM &&
+        var orders = Game.market.getAllOrders(order => order.resourceType == RESOURCE_LEMERGIUM &&
         	order.type == ORDER_SELL &&
             Game.market.calcTransactionCost(1000, targetRoom, order.roomName) < 500);
-
+            return orders;
       }
 
       roomLinks.run(room);
