@@ -54,7 +54,7 @@ var mainSpawn = {
         console.log(mineralsInTerm);
           var extracters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'extracter' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.extractor==extractor.id&&creep.memory.mineral==mineral.id);
           if (extracters<1&&(!mineralsInTerm||mineralsInTerm<100000)&&mineral.mineralAmount>5000) {
-            createCreepAdvanced(spawn,'extracter',[WORK,WORK,CARRY,CARRY,MOVE],{extractor:extractor.id,mineral:mineral.id});
+            createCreepAdvanced(spawn,'extracter',{work:8,carry:4,move:4},{extractor:extractor.id,mineral:mineral.id});
             return true;
           }
 
