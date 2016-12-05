@@ -25,12 +25,14 @@ var mainRoom = {
 
       global.viewOrders2 = function(roomName) {
         var targetRoom = "E65S61";
+        var amntToBuy=1000;
         var orders = Game.market.getAllOrders(order => order.resourceType == RESOURCE_ENERGY &&order.type == ORDER_SELL &&  Game.market.calcTransactionCost(1000, targetRoom, order.roomName) < 2000);
         Memory.test=orders;
-        orders= _.sortBy(orders, o => Game.market.calcTransactionCost(1000, targetRoom, o.roomName));
+        orders= _.sortBy(orders, o => Game.market.calcTransactionCost(amntToBuy, targetRoom, o.roomName));
         for(var i in orders) {
           var o = orders[i];
-          console.log(o.price+" - "+Game.market.calcTransactionCost(1000, targetRoom, o.roomName))
+          var cost=Game.market.calcTransactionCost(amntToBuy, targetRoom, o.roomName);
+          console.log(o.price+" - "+cost+" - "+(amntToBuy-cost)*o.price)
         }
         //var res= Game.market.deal(orders[0].id, 100, targetRoom);
         //console.log(res)
