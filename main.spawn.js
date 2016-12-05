@@ -159,7 +159,7 @@ var mainSpawn = {
       if (createCreepAdvanced(spawn,'attacker',createBody({move:1}),{flag:'attack',manual:'2'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<0) { //MELLEE
-      if (createCreepAdvanced(spawn,'attacker',createBody({tough:16,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
+      if (createCreepAdvanced(spawn,'attacker',createBody({tough:0,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
     }
 
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<0 && spawn.room.name=='E65S62') {
