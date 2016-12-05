@@ -28,7 +28,7 @@ var roleRemoteHarvester = {
         var container = creep.pos.findInRange(FIND_STRUCTURES,2,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } })[0];
         var centralStorage=Game.rooms[creep.memory.homeRoom].find(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
         if (container) {
-          creep.say(container.hits)
+          creep.say(container.hitsMax)
           if (container.hits<container.hitsMax) creep.repair(container);
           if(creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
               creep.moveTo(container);
