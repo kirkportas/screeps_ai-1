@@ -215,11 +215,14 @@ var tasks = {
     haulFromCentralCotainers: function(creep) {
       var target = [];
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
-      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>400) }});
-      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
+      var centralStorage=creep.room.storage;
+      if (centralStorage) {
+        var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>400) }});
+        target = target.concat(centralLink);
+        target = target.concat(centralStorage);
+      }
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
-      target = target.concat(centralLink);
-      target = target.concat(centralStorage);
+
       target = target.concat(centralContainer);
          if(creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
            creep.moveTo(target[0]);
