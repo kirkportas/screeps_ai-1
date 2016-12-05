@@ -41,7 +41,7 @@ var mainRoom = {
 
       roomLinks.run(room);
 
-      var allHostiles = room.find(FIND_HOSTILE_CREEPS,{filter:(creep)=>{return (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0}});
+      var allHostiles = room.find(FIND_HOSTILE_CREEPS,{filter:(creep)=>{return (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK))>0}});
       if (allHostiles.length) {
 
         console.log("Hostile in "+room.name);
