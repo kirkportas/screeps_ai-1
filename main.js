@@ -6,7 +6,7 @@ var mainScout = require('main.scout');
 var tasks = require('tasks');
 
 var roleHarvester = require('role.harvester');
-var roleExtracter = require('role.extracter2');
+var roleExtracter = require('role.extracter');
 var roleHauler = require('role.hauler');
 var roleSpawnhauler = require('role.spawnhauler');
 var roleUpgrader = require('role.upgrader');
