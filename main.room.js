@@ -42,7 +42,7 @@ var mainRoom = {
       roomLinks.run(room);
 
       var allHostiles = room.find(FIND_HOSTILE_CREEPS);
-      if (!allHostiles.length) {
+      if (allHostiles.length) {
 
         console.log("Hostile in "+room.name);
         var triggerSafemode=false;
@@ -51,14 +51,13 @@ var mainRoom = {
         _.forEach(criticalBuildings, function(structure){
           var closest=structure.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
           if (closest) {
-            if (structure.pos.inRangeTo(closest,3))
-            console.log('found something val'+structure.pos)
+            if (structure.pos.inRangeTo(closest,3)) triggerSafemode=true;
           }
 
         });
 
         if (triggerSafemode) {
-          //var value = spawn.room.controller.activateSafeMode();
+          var value = spawn.room.controller.activateSafeMode();
           console.log('WARNING - ENEMY IN BASE - safemode activated: '+value);
           Game.notify('WARNING - ENEMY IN BASE - safemode activated: '+value);
         }
