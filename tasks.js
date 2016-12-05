@@ -144,7 +144,7 @@ var tasks = {
       target = target.concat(centralLink);
       target = target.concat(centralStorage);
       target = target.concat(centralContainer);
-
+      creep.say(target.length)
       if (target.length) {
         if (target[0].structureType==STRUCTURE_STORAGE) {
           for(var resourceType in creep.carry) {

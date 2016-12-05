@@ -32,6 +32,7 @@ var mainRoom = {
         for(var i in orders) {
           var o = orders[i];
           var cost=Game.market.calcTransactionCost(amntToBuy, targetRoom, o.roomName);
+          var get = amntToBuy-cost;
           console.log(o.price+" - "+cost+" - "+(amntToBuy-cost)*o.price)
         }
         //var res= Game.market.deal(orders[0].id, 100, targetRoom);
