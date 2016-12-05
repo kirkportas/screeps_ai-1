@@ -70,7 +70,7 @@ module.exports.loop = function() {
               tasks.enterRoom(creep);
               tasks.scoutRoom(creep);
               if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
-              if(creep.memory.role == 'extracter') {roleHarvester.run(creep);}
+              if(creep.memory.role == 'extracter') {roleExtracter.run(creep);}
               if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
               if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
               if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
