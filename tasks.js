@@ -222,7 +222,6 @@ var tasks = {
         target = target.concat(centralStorage);
       }
       var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
-
       target = target.concat(centralContainer);
          if(creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
            creep.moveTo(target[0]);

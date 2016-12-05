@@ -370,7 +370,7 @@ if (!spawn.spawning) {
       } else if(count.upgraders < upgradersNeeded) {
         if (links.length>2) {
           var moveModules = Math.min(4,Math.floor(energyAvav/500));
-          createCreepAdvanced(spawn,'upgrader',createBody({move:moveModules, carry:moveModules,work:moveModules*4}));
+          createCreepAdvanced(spawn,'upgrader',createBody({move:moveModules, carry:moveModules,work:moveModules*4}),{spawnerAction: "none"});
         } else {
           var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
           createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
