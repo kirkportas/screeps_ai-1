@@ -54,6 +54,7 @@ var roleBuilder = {
   repairTarget: function(creep) {
     var target = Game.getObjectById(creep.memory.targetFix);
     if (target==null || target.hits==target.hitsMax)  {creep.memory.targetFix=null;return false;}
+    creep.say(creep.repair(target))
     if(creep.repair(target) == ERR_NOT_IN_RANGE) {
         creep.moveTo(target);
     }
@@ -86,7 +87,7 @@ var roleBuilder = {
       } else if (roleBuilder.findBuildCritical(creep)) {
       } else if (roleBuilder.findRepairCritical(creep)) {
       } else if (roleBuilder.findRepair(creep)) {
-        } else if (roleBuilder.findBuild(creep)) {
+      } else if (roleBuilder.findBuild(creep)) {
       } else if (roleBuilder.findRepairIdle(creep)) {
 
       }
