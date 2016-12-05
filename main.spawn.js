@@ -158,7 +158,7 @@ var mainSpawn = {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
       if (createCreepAdvanced(spawn,'attacker',createBody({move:1}),{flag:'attack',manual:'2'})) return true;
     }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<1) { //MELLEE
+    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<2) { //MELLEE
       if (createCreepAdvanced(spawn,'attacker',createBody({tough:0,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
     }
 
