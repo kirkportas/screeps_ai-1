@@ -2,7 +2,7 @@ var tasks = require('tasks');
 var roleBuilder = {
 
   findBuildCritical: function(creep) {
-    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: struct => (struct.structureType==STRUCTURE_WALL || struct.structureType==STRUCTURE_RAMPART|| struct.structureType==STRUCTURE_LINK)});
+    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: struct => (struct.structureType==STRUCTURE_WALL || struct.structureType==STRUCTURE_RAMPART|| struct.structureType==STRUCTURE_LINK||struct.structureType==STRUCTURE_CONTAINER)});
     if (target) {
       creep.memory.targetBuild=target.id;
       return true;
