@@ -179,6 +179,7 @@ var tasks = {
       target = target.concat(extensions);
       target = target.concat(tower);
       target = target.concat(centralLink);
+      if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<10000) target.push(creep.room.terminal);
       target = target.concat(centralStorage);
 
       if (target[0].structureType==STRUCTURE_STORAGE) {
