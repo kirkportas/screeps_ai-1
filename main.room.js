@@ -13,7 +13,7 @@ var mainRoom = {
         var targetRoom = "E65S61";
         Memory.test = Game.market.getAllOrders(order => order.resourceType == RESOURCE_LEMERGIUM &&
         	order.type == ORDER_BUY &&
-            Game.market.calcTransactionCost(1000, targetRoom, order.roomName) < 5000);
+            Game.market.calcTransactionCost(1000, targetRoom, order.roomName) < 2500);
       }
 
       roomLinks.run(room);
