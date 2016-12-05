@@ -30,7 +30,7 @@ var roleRemoteHarvester = {
         if (container) {
           creep.say(container.hitsMax)
           if (container.hits<container.hitsMax) creep.repair(container);
-          if(creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+          else if(creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
               creep.moveTo(container);
           }
         } else if (centralStorage) {
