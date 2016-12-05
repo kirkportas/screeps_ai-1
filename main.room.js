@@ -49,9 +49,12 @@ var mainRoom = {
         var criticalBuildings = room.find(FIND_STRUCTURES,{filter:(structure)=>{return structure.structureType==STRUCTURE_SPAWN||structure.structureType==STRUCTURE_TOWER||structure.structureType==STRUCTURE_STORAGE}});
         //if (room.spawn.hits<room.spawn.hitsMax*0.6) triggerSafemode=true;
         _.forEach(criticalBuildings, function(structure){
-          //var closest=structure.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-          //if (structure.pos.inRangeTo(closest,3))
-          console.log('found something val'+structure.pos)
+          var closest=structure.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+          if (closest) {
+            if (structure.pos.inRangeTo(closest,3))
+            console.log('found something val'+structure.pos)
+          }
+
         });
 
         if (triggerSafemode) {
