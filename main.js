@@ -6,6 +6,7 @@ var mainScout = require('main.scout');
 var tasks = require('tasks');
 
 var roleHarvester = require('role.harvester');
+var roleExtracter = require('role.extracter');
 var roleHauler = require('role.hauler');
 var roleSpawnhauler = require('role.spawnhauler');
 var roleUpgrader = require('role.upgrader');
@@ -69,6 +70,7 @@ module.exports.loop = function() {
               tasks.enterRoom(creep);
               tasks.scoutRoom(creep);
               if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
+              if(creep.memory.role == 'extracter') {roleHarvester.run(creep);}
               if(creep.memory.role == 'hauler') {roleHauler.run(creep);}
               if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
               if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
