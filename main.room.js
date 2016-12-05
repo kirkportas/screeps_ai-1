@@ -9,6 +9,14 @@ var mainRoom = {
 
     run: function(room) {
 
+      global.viewOrders = function(roomName) {
+        var targetRoom = "E65S61";
+        Game.market.getAllOrders(order => order.resourceType == RESOURCE_GHODIUM &&
+        	order.type == ORDER_SELL &&
+            Game.market.calcTransactionCost(1000, targetRoom, order.roomName) < 500);
+
+      }
+
       roomLinks.run(room);
 
       if (room.memory.allSources===undefined || room.memory.allSources.length===undefined || room.memory.allSources.length===0) {
