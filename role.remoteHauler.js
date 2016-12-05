@@ -14,7 +14,7 @@ var roleRemoteHauler = {
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
       }
-      if(!creep.memory.delivering && (creep.carry.energy == creep.carryCapacity || creep.memory.fleeTime>0)) {
+      if(!creep.memory.delivering && (creep.carry.energy >= creep.carryCapacity*0.8 || creep.memory.fleeTime>0)) {
           creep.memory.delivering = true;
       }
 
