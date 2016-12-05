@@ -15,10 +15,10 @@ var roleExtracter = {
 
 	    if(!creep.memory.delivering) {
 
-        var extracter=Game.getObjectById(creep.memory.extracter);
-        creep.say(extracter)
-        if (creep.harvest(extracter) == ERR_NOT_IN_RANGE) {
-          creep.moveTo(extracter)
+        var extractor=Game.getObjectById(creep.memory.extractor);
+        creep.say(extractor)
+        if (creep.harvest(extractor) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(extractor)
         }
       } else {
 
