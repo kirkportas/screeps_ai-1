@@ -16,7 +16,7 @@ var roleExtracter = {
 	    if(!creep.memory.delivering) {
 
         var extracter=Game.getObjectById(creep.memory.extracter);
-        creep.say(creep.harvest(extracter))
+        creep.say(extracter)
         if (creep.harvest(extracter) == ERR_NOT_IN_RANGE) {
           creep.moveTo(extracter)
         }
