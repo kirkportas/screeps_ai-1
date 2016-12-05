@@ -47,7 +47,7 @@ var mainRoom = {
         console.log("Hostile in "+room.name);
         var triggerSafemode=false;
         if (room.spawn.hits<room.spawn.hitsMax*0.6) triggerSafemode=true;
-        _.forEach(room.find(FIND_STRUCTURES,{filter:(structure)=>{return structure.structureType==STRUCTURE_TOWER||structure.structureType==STRUCTURE_STORAGE}}, function(structure){
+        _.forEach(room.find(FIND_STRUCTURES,{filter:(structure)=>{return structure.structureType==STRUCTURE_TOWER||structure.structureType==STRUCTURE_STORAGE}}), function(structure){
           console.log('found something val')
         });
 
