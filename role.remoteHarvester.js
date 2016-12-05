@@ -29,7 +29,7 @@ var roleRemoteHarvester = {
         var centralStorage=Game.rooms[creep.memory.homeRoom].find(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
         if (container) {
           if (container.hits<container.hitsMax) creep.repair(container);
-          tasks.deliverSourceDedicated(creep,containers);//
+          tasks.deliverSourceDedicated(creep,container);//
         } else if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
             } else {
