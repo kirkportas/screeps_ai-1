@@ -14,7 +14,7 @@ var mainRoom = {
         var orders = Game.market.getAllOrders(order => order.resourceType == RESOURCE_LEMERGIUM &&order.type == ORDER_BUY &&  Game.market.calcTransactionCost(100, targetRoom, order.roomName) < 200);
         Memory.test=orders;
         orders= _.sortBy(orders, o => -o.price);
-        for(var o : orders) {
+        for(var o in orders) {
           console.log(o.price+" - "+Game.market.calcTransactionCost(100, targetRoom, o.roomName))
         }
 
