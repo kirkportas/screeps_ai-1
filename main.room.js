@@ -42,8 +42,22 @@ var mainRoom = {
       roomLinks.run(room);
 
       var allHostiles = room.find(FIND_HOSTILE_CREEPS);
-      if (allHostiles.length) {
+      if (!allHostiles.length) {
+
         console.log("Hostile in "+room.name);
+        var triggerSafemode=false;
+        if (room.spawn.hits<room.spawn.hitsMax*0.6) triggerSafemode=true;
+        _.forEach(room.find(FIND_STRUCTURES,{filter:(structure)=>{return structure.structureType==STRUCTURE_TOWER||structure.structureType==STRUCTURE_STORAGE}}, function(structure){
+          console.log('found something val')
+        });
+
+        if (triggerSafemode) {
+          //var value = spawn.room.controller.activateSafeMode();
+          console.log('WARNING - ENEMY IN BASE - safemode activated: '+value);
+          Game.notify('WARNING - ENEMY IN BASE - safemode activated: '+value);
+        }
+
+
       }
       /*
       var hostileSpawn = spawn.pos.findInRange(FIND_HOSTILE_CREEPS,4); //
