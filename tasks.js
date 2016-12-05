@@ -130,10 +130,10 @@ var tasks = {
       var spawnTar = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN) && (structure.energy < structure.energyCapacity)}});
       var extensions=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION) && (structure.energy < structure.energyCapacity)}});
       extensions= _.sortBy(extensions, e => creep.pos.getRangeTo(e.pos));
-      var centralStoragePri=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) && (structure.store[RESOURCES_ALL] < 10000)}});
-      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE)}});
-      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)}});
-      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
+      var centralStoragePri=spawn.pos.findInRange(FIND_STRUCTURES,6, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) && (structure.store[RESOURCES_ALL] < 10000)}});
+      var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,6, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE)}});
+      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,6, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (structure.energy < structure.energyCapacity)}});
+      var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,6, {filter: (structure) => {  return (structure.structureType == STRUCTURE_CONTAINER)  }});
 
 	     var target = []
       target = target.concat(towerCritical);
