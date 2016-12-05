@@ -4,6 +4,7 @@ var roleExtracter = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+      creep.say('1')
 
         if(creep.memory.delivering && creep.carry.energy == 0) {
               creep.memory.delivering = false;
