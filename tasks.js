@@ -10,22 +10,19 @@ var tasks = {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.targetRoom]) {
         if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther) Memory.rooms[creep.memory.targetRoom].scoutFromOther={};
         //var scout=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
-        
+
         var sources= creep.room.find(FIND_SOURCES);
-        if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources) {
-          Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources={}
+        if (!sources.sources) {
+          sources.sources={}
         }
-        Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources={}
+        sources.sources={}
         for (var i = 0; i < sources.length; i++) {
-          if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id]) {
-            Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id]={}
+          if (!sources.sources[sources[i].id]) {
+            sources.sources[sources[i].id]={}
           }
-          Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id].pos=sources[i].pos
+          sources.sources[sources[i].id].pos=sources[i].pos
         }
-
-
-
-        //Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
+        Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
       }
 
     },
