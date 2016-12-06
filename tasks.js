@@ -9,21 +9,88 @@ var tasks = {
     scoutRoom2: function(creep) {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.targetRoom]) {
         if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther) Memory.rooms[creep.memory.targetRoom].scoutFromOther={};
-        //var scout=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
-
-        var sources= creep.room.find(FIND_SOURCES);
-        if (!sources.sources) {
+        var scout=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
+        let lastScout = scout.lastScout;
+        let lastFullScout = scout.lastFullScout;
+        if (!lastScout||(Game.time-lastScout)>5) {
+          var sources= creep.room.find(FIND_SOURCES);
+          if (!scout.sources) {scout.sources={}}
+          if (!scout.from) {scout.from={}}
+          if (!scout.from[creep.memory.homeRoom]) {scout.from[creep.memory.homeRoom]={}}
           sources.sources={}
-        }
-        sources.sources={}
-        for (var i = 0; i < sources.length; i++) {
-          if (!sources.sources[sources[i].id]) {
-            sources.sources[sources[i].id]={}
+          for (var i = 0; i < sources.length; i++) {
+            if (!sources.sources[sources[i].id]) {
+              sources.sources[sources[i].id]={}
+            }
+            sources.sources[sources[i].id].pos=sources[i].pos
           }
-          sources.sources[sources[i].id].pos=sources[i].pos
+
+          var myConstructionSites = creep.room.find(FIND_MY_CONSTRUCTION_SITES);
+          var allStructures = creep.room.find(FIND_STRUCTURES);
+          var damagedBuildings = 0;
+          _.forEach(allStructures, function(struc){
+            if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5) {
+              damagedBuildings++;
+            }
+          });
+          scout.myConstructionSites=myConstructionSites.length;
+          scout.myDamagedStructures=damagedBuildings;
+
+
+          var hostiles=creep.room.find(FIND_HOSTILE_CREEPS);
+          var npcInvadersWeak=0;
+          var dangerousHostiles=0;
+          var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES);
+          _.forEach(hostiles, function(creep){
+            if (creep.owner.username=='Invader' && creep.body.length<=16) {npcInvadersWeak++;} else {
+              if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) dangerousHostiles++;
+            }
+          });
+
+          if (hostileStruc.length || dangerousHostiles>2) {
+            scout.danger=10;
+          } else if (npcInvadersWeak>=1 || dangerousHostiles>0){
+            scout.danger=1;
+          } else {
+            scout.danger=0;
+          }
+          var controller = creep.room.controller;
+          var reservation = controller.reservation;
+          if (reservation) {
+            if (reservation.username=='vestad') {
+              scout.reservation=reservation.ticksToEnd;
+            } else {
+              scout.reservation=-1;
+            }
+          } else {
+            scout.reservation=0;
+          }
+          scout.lastScout=Game.time;
         }
-        Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
+
+        if (!lastFullScout||(Game.time-lastFullScout)>5) {
+          var spawn= Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
+          var storage= Game.rooms[creep.memory.homeRoom].storage;
+          if (storage) {
+            for (var source in scout.sources) {
+              var path = new PathFinder.search(storage.pos,{pos:Game.getObjectById(source).pos,range:1},{plainCost: 1,swampCost: 1});
+              if (path) {
+                //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].pathLen=path.path.length;
+              }
+            }
+          }
+          for (var source in scout.sources) {
+            var obj = Game.getObjectById(source);
+            var container = obj.pos.findInRange(FIND_STRUCTURES,3,{filter: (structure) => {return (structure.structureType==STRUCTURE_CONTAINER)}})[0]
+            if (container) {
+              //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=container;
+            } else {
+              //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=null;
+            }
+          }
+          scout.lastFullScout=Game.time;
       }
+        Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
 
     },
     scoutRoom: function(creep) {
