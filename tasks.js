@@ -6,7 +6,30 @@ var tasks = {
       } else if (creep.pos.y==0) {creep.move(BOTTOM);}
 
     },
+    scoutRoom2: function(creep) {
+      if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.targetRoom]) {
+        if (!Memory.rooms[creep.memory.targetRoom].scout) Memory.rooms[creep.memory.targetRoom].scout={};
+        var scout=Memory.rooms[creep.memory.targetRoom].scout;
+
+        var sources= creep.room.find(FIND_SOURCES);
+        if (!scout.sources) {
+          scout.sources={}
+        }
+        for (var i = 0; i < sources.length; i++) {
+          if (!scout.sources[sources[i].id]) {
+            scout.sources[sources[i].id]={}
+          }
+          scout.sources[sources[i].id].pos=sources[i].pos
+        }
+
+
+
+        Memory.rooms[creep.memory.targetRoom].scout=scout;
+      }
+
+    },
     scoutRoom: function(creep) {
+      scoutRoom2(creep);
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
         let timeSinceLastScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout;
         let timeSinceLastFullScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout;
@@ -51,8 +74,6 @@ var tasks = {
           } else {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].danger=0;
           }
-
-
           var controller = creep.room.controller;
           var reservation = controller.reservation;
           if (reservation) {
@@ -65,7 +86,6 @@ var tasks = {
             Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].reservation=0;
           }
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
-
         }
         if (!timeSinceLastFullScout || timeSinceLastFullScout>=300 || timeSinceLastFullScout==-1) {
           var scout =Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom];
@@ -88,17 +108,12 @@ var tasks = {
               Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=null;
             }
           }
-
-
-          //CODE
           Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout=0;
-
         }
-
-
-
       }
     },
+
+
 
     deliverSource: function(creep) {
       var targets = creep.room.find(FIND_STRUCTURES, {
