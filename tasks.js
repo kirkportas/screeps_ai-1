@@ -12,19 +12,19 @@ var tasks = {
         var scout=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
 
         var sources= creep.room.find(FIND_SOURCES);
-        if (!scout.sources) {
-          scout.sources={}
+        if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources) {
+          Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources={}
         }
         for (var i = 0; i < sources.length; i++) {
-          if (!scout.sources[sources[i].id]) {
-            scout.sources[sources[i].id]={}
+          if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id]) {
+            Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id]={}
           }
-          scout.sources[sources[i].id].pos=sources[i].pos
+          Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id].pos=sources[i].pos
         }
 
 
 
-        Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
+        //Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
       }
 
     },
