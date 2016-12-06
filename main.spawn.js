@@ -96,7 +96,7 @@ var mainSpawn = {
       for (var roomName in scoutTo) {
         if (scoutTo[roomName].danger==0) {
           if (!scoutFrom==Memory.rooms[roomName]) continue;
-          var scoutFrom=Memory.rooms[roomName].from[spawn.room.name];
+          var scoutFrom=Memory.rooms[roomName].scoutFromOther[spawn.room.name];
           if (!scoutFrom||(Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           console.log('test')
           var sources = scoutFrom.sources;
