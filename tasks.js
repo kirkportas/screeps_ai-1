@@ -98,7 +98,7 @@ var tasks = {
       }
     },
     scoutRoom: function(creep) {
-      //tasks.scoutRoom2(creep);
+      tasks.scoutRoom2(creep);
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom]) {
         let timeSinceLastScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout;
         let timeSinceLastFullScout = Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastFullScout;
