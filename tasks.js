@@ -15,6 +15,7 @@ var tasks = {
         if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources) {
           Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources={}
         }
+        Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources={}
         for (var i = 0; i < sources.length; i++) {
           if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id]) {
             Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources[sources[i].id]={}
