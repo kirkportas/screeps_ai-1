@@ -91,7 +91,7 @@ var tasks = {
           scout.lastFullScout=Game.time;
       }
         Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
-
+      }
     },
     scoutRoom: function(creep) {
       tasks.scoutRoom2(creep);
