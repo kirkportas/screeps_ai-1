@@ -8,8 +8,8 @@ var tasks = {
     },
     scoutRoom2: function(creep) {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.targetRoom]) {
-        if (!Memory.rooms[creep.memory.targetRoom].scout) Memory.rooms[creep.memory.targetRoom].scout={};
-        var scout=Memory.rooms[creep.memory.targetRoom].scout;
+        if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther) Memory.rooms[creep.memory.targetRoom].scoutFromOther={};
+        var scoutFromOther=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
 
         var sources= creep.room.find(FIND_SOURCES);
         if (!scout.sources) {
@@ -24,7 +24,7 @@ var tasks = {
 
 
 
-        Memory.rooms[creep.memory.targetRoom].scout=scout;
+        Memory.rooms[creep.memory.targetRoom].scoutFromOther=scout;
       }
 
     },
