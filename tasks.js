@@ -10,7 +10,7 @@ var tasks = {
       if (creep.room.name == creep.memory.targetRoom && Memory.rooms[creep.memory.targetRoom]) {
         if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther) Memory.rooms[creep.memory.targetRoom].scoutFromOther={};
         //var scout=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
-        //
+        
         var sources= creep.room.find(FIND_SOURCES);
         if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources) {
           Memory.rooms[creep.memory.targetRoom].scoutFromOther.sources={}
