@@ -71,11 +71,14 @@ var tasks = {
         if (!lastFullScout||(Game.time-lastFullScout)>5) {
           var spawn= Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
           var storage= Game.rooms[creep.memory.homeRoom].storage;
+          scout.from[creep.homeRoom].sources={};
           if (storage) {
             for (var source in scout.sources) {
+              scout.from[creep.homeRoom].sources[source]={};
               var path = new PathFinder.search(storage.pos,{pos:Game.getObjectById(source).pos,range:1},{plainCost: 1,swampCost: 1});
               if (path) {
-                //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].pathLen=path.path.length;
+
+                scout.from[creep.homeRoom].sources[source].pathLen=path.path.length;
               }
             }
           }
@@ -83,9 +86,9 @@ var tasks = {
             var obj = Game.getObjectById(source);
             var container = obj.pos.findInRange(FIND_STRUCTURES,3,{filter: (structure) => {return (structure.structureType==STRUCTURE_CONTAINER)}})[0]
             if (container) {
-              //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=container;
+              scout.from[creep.homeRoom].sources[source].container=container;
             } else {
-              //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].sources[source].container=null;
+              scout.from[creep.homeRoom].sources[source].container=null;
             }
           }
           scout.lastFullScout=Game.time;
