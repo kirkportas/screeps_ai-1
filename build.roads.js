@@ -102,7 +102,7 @@ var buildRoads = {
         var scout=room.memory.scout;
         for (var roomName in scout) {
           console.log(roomName)
-            if ((scout[roomName].danger==0&&Memory.rooms[roomName].scoutFromOther&&Memory.rooms[roomName].scoutFromOther.closestRoom==room) {
+            if (scout[roomName].danger==0&&Memory.rooms[roomName].scoutFromOther&&Memory.rooms[roomName].scoutFromOther.closestRoom==room) {
               var sources = scout[key1].sources;
               if ((Game.rooms[roomName]!=undefined) && !Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
               if (shouldBuildRoadsToSpawns) {
