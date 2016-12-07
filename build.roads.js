@@ -114,8 +114,8 @@ var buildRoads = {
                     var targetPos = new RoomPosition(posX,posY,posRoom);
                     buildRoads.buildRoadWithContainer(posSpawn,targetPos);
                 }
-            } else if (Game.rooms[key1]){   //SHOULD BUILD ROAD TO OWN ROOM
-              var target = Game.rooms[key1].find(FIND_MY_SPAWNS)[0];
+            } else if (Game.rooms[roomName]){   //SHOULD BUILD ROAD TO OWN ROOM
+              var target = Game.rooms[roomName].find(FIND_MY_SPAWNS)[0];
               if (target) {
                 buildRoads.buildRoad(posSpawn,target.pos);
               }
