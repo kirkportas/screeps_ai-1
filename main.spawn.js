@@ -91,6 +91,7 @@ var mainSpawn = {
       return false;
     }
 
+
     global.spawnRemoteHarvesters = function(spawn) {
       var scoutTo=spawn.room.memory.scout;
       for (var roomName in scoutTo) {
@@ -99,7 +100,6 @@ var mainSpawn = {
           if (!Memory.rooms[roomName].scoutFromOther) continue;
           var scoutFrom=Memory.rooms[roomName].scoutFromOther;
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
-
 
           var sources = scoutFrom.from[spawn.room.name].sources;
           for (var sourceId in sources) {
@@ -113,8 +113,8 @@ var mainSpawn = {
             var obtainable = 5;
             if (scoutFrom.reservation>1000) {obtainable=10}
 
-            var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
-            var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
+            var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.3);
+            var maxSize = Math.floor((spawn.room.energyCapacityAvailable/100)+100);
             var size=Math.min(optimalSize,maxSize,25);
 
             if (harvestersRemote<1) {
@@ -122,7 +122,7 @@ var mainSpawn = {
               return true;
             }
             if (haulersRemote<1) {
-              createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil(size/2),carry:size}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
+              createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil(size/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
               return true;
             }
         }
