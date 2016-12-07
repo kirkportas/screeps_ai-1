@@ -97,7 +97,7 @@ var mainSpawn = {
       for (var roomName in scoutTo) {
           if (!Memory.rooms[roomName]) continue;
           if (!Memory.rooms[roomName].scoutFromOther) continue;
-          if (Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room.name) {console.log('not best room');continue; }
+          if (Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room.name) {console.log('not best room '+creep.memory.room+' to '+roomName);continue; }
           var scoutFrom=Memory.rooms[roomName].scoutFromOther;
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
           var sources = scoutFrom.from[spawn.room.name].sources;
