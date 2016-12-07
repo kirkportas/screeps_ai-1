@@ -95,6 +95,19 @@ var mainSpawn = {
     global.spawnRemoteHarvesters = function(spawn) {
       var scoutTo=spawn.room.memory.scout;
       for (var roomName in scoutTo) {
+
+          //scout
+          console.log('consiering scout to ',roomName)
+          if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
+            if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
+              if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
+                console.log('sending a scout to ',roomName);
+                scoutTo[roomName].lastScoutSent=Game.time;
+                return true;
+              }
+            }
+          }
+
           if (!Memory.rooms[roomName]) continue;
           if (!Memory.rooms[roomName].scoutFromOther) continue;
           //if (Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room.name) {console.log('not best room '+spawn.room.name+' to '+roomName);continue; }
@@ -162,17 +175,6 @@ var mainSpawn = {
               console.log('sending a attacker to ',roomName);
               scoutFrom.lastAttackerSent=Game.time;
               return true;
-            }
-          }
-        } else {
-          console.log('consiering scout to ',roomName)
-          if (scoutFrom.timeSinceLastScout>1500 || scoutFrom.timeSinceLastScout==-1) {
-            if (!scoutFrom.lastScoutSent || ((Game.times-scoutFrom.lastScoutSent)>500)) {
-              if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
-                console.log('sending a scout to ',roomName);
-                scoutFrom.lastScoutSent=Game.time;
-                return true;
-              }
             }
           }
         }
