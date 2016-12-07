@@ -29,11 +29,10 @@ var roleRemoteHauler = {
 
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
-        var found = creep.room.lookForAt(LOOK_STRUCTURES,creep);
+        var found = creep.room.lookForAtArea(LOOK_STRUCTURES,creep);
         if (found.length && found[0].structureType==STRUCTURE_ROAD) {
           creep.repair(found[0]);
         }
-        //var homeSpawn=Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
         var centralStorage=Game.rooms[creep.memory.homeRoom].storage;
         if (centralStorage) {
         if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
