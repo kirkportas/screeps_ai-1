@@ -55,15 +55,17 @@ var tasks = {
             scout.danger=0;
           }
           var controller = creep.room.controller;
-          var reservation = controller.reservation;
-          if (reservation) {
-            if (reservation.username=='vestad') {
-              scout.reservation=reservation.ticksToEnd;
+          if (controller) {
+            var reservation = controller.reservation;
+            if (reservation) {
+              if (reservation.username=='vestad') {
+                scout.reservation=reservation.ticksToEnd;
+              } else {
+                scout.reservation=-1;
+              }
             } else {
-              scout.reservation=-1;
+              scout.reservation=0;
             }
-          } else {
-            scout.reservation=0;
           }
           scout.lastScout=Game.time;
         }
