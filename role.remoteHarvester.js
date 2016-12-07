@@ -38,11 +38,9 @@ var roleRemoteHarvester = {
           if (constructionSites.length) {
             creep.build(constructionSites[0]);
           } else if (centralStorage) {
-          if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
-            } else {
+          if(creep.transfer(centralStorage, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
               creep.say(centralStorage.pos.roomName)
               creep.moveTo(centralStorage);
-            }
           }
       }
 
