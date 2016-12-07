@@ -100,12 +100,15 @@ var mainSpawn = {
           var scoutFrom=Memory.rooms[roomName].scoutFromOther;
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
 
+
           var sources = scoutFrom.from[spawn.room.name].sources;
           for (var sourceId in sources) {
             if (!sources[sourceId].pathLen) continue;
+            var sourceGlobal=scoutFrom.sources[sourceId];
+            console.log(sourceGlobal.id)
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-            let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>100 || creep.spawning)).length;
-            let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>100 || creep.spawning)).length;
+            let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceGlobal.id && (creep.ticksToLive>100 || creep.spawning)).length;
+            let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sourceGlobal.container.id && (creep.ticksToLive>100 || creep.spawning)).length;
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
             if (sources[sourceId].reservation>1000) {obtainable=10}
