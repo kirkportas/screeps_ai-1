@@ -101,8 +101,8 @@ var mainSpawn = {
           var scoutFrom=Memory.rooms[roomName].scoutFromOther;
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
 
-          if (scoutFrom.danger==0&&Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room.name) {
-              var sources = scoutFrom.from[spawn.room.name].sources;
+          if (scoutFrom.danger==0&&Memory.rooms[roomName].scoutFromOther.closestRoom==spawn.room.name) {
+          var sources = scoutFrom.from[spawn.room.name].sources;
             // CLAIMERS
             var reservation = scoutFrom.reservation;
             if (reservation<2000 && reservation>=0) {
@@ -155,7 +155,7 @@ var mainSpawn = {
           }
         }
         //SCOUT & ATTACK
-        if (scoutFrom.danger==1&&ifMemory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room.name) {
+        if (scoutFrom.danger==1&&Memory.rooms[roomName].scoutFromOther.closestRoom==spawn.room.name) {
           if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
             var size = Math.min(15,Math.floor((energyAvav/180)*0.80));
             if (createCreepAdvanced(spawn,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
