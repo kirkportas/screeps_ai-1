@@ -98,8 +98,11 @@ var mainSpawn = {
       for (var roomName in scoutTo) {
         console.log('test2')
           if (!Memory.rooms[roomName]) continue;
+          console.log('test21')
           if (!Memory.rooms[roomName].scoutFromOther) continue;
+          console.log('test22')
           if (Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room) {continue; console.log('not best room')}
+          console.log('test23')
           var scoutFrom=Memory.rooms[roomName].scoutFromOther;
           console.log('test25')
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
