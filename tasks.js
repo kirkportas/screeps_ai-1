@@ -87,7 +87,7 @@ var tasks = {
             if (!scout.closestRoom||!scout.closest||(totalLenght<scout.closest)) {
               scout.closestRoom=creep.memory.homeRoom;
               scout.closest=totalLenght;
-              console.log('Found new closest');
+              console.log('Found new closest '+scout.closestRoom);
             }
           }
           for (var source in scout.sources) {
