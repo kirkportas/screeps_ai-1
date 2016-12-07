@@ -104,7 +104,7 @@ var mainSpawn = {
           var sources = scoutFrom.from[spawn.room.name].sources;
           for (var sourceId in sources) {
             if (!sources[sourceId].pathLen) continue;
-            console.log(scoutFrom.sources[sourceId].pos.x)
+            //console.log(scoutFrom.sources[sourceId].pos.x)
             //var sourceGlobal=scoutFrom.sources[sourceId];
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>100 || creep.spawning)).length;
@@ -112,7 +112,6 @@ var mainSpawn = {
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
             if (scoutFrom.reservation>1000) {obtainable=10}
-            console.log(obtainable)
 
             var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
             var maxSize = Math.floor(spawn.room.energyCapacityAvailable/100);
