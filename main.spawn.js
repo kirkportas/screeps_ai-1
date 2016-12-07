@@ -98,18 +98,15 @@ var mainSpawn = {
           if (!Memory.rooms[roomName]) continue;
           if (!Memory.rooms[roomName].scoutFromOther) continue;
           var scoutFrom=Memory.rooms[roomName].scoutFromOther;
-          console.log(scoutFrom)
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
 
           var sources = scoutFrom.from[spawn.room.name].sources;
           for (var sourceId in sources) {
-            console.log('test2')
             if (!sources[sourceId].pathLen) continue;
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>100 || creep.spawning)).length;
             let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>100 || creep.spawning)).length;
             var pathLen=sources[sourceId].pathLen;
-            console.log(pathLen)
             var obtainable = 5;
             if (sources[sourceId].reservation>1000) {obtainable=10}
 
