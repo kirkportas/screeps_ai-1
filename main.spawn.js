@@ -153,7 +153,6 @@ var mainSpawn = {
               }
           }
         }
-        console.log('test5')
         //SCOUT & ATTACK
         if (scoutFrom.danger==1) {
           if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
