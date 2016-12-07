@@ -8,6 +8,7 @@ var tasks = {
     },
     scoutRoom2: function(creep) {
       if (creep.room.name == creep.memory.targetRoom) {
+        if (!Memory.rooms[creep.memory.targetRoom]) Memory.rooms[creep.memory.targetRoom]={};
         if (!Memory.rooms[creep.memory.targetRoom].scoutFromOther) Memory.rooms[creep.memory.targetRoom].scoutFromOther={};
         var scout=Memory.rooms[creep.memory.targetRoom].scoutFromOther;
         let lastScout = scout.lastScout;
