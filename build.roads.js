@@ -100,10 +100,10 @@ var buildRoads = {
 
         //BYGG vei til kilder i trygge rom
         var scout=room.memory.scout;
-        for (var key1 in scout) {
-            if (scout[key1].danger==0) {
+        for (var roomName in scout) {
+            if (scout[roomName].danger==0&&Memory.rooms[roomName].scoutFromOther.closestRoom==room) {
               var sources = scout[key1].sources;
-              if ((Game.rooms[key1]!=undefined) && !Game.rooms[key1].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
+              if ((Game.rooms[roomName]!=undefined) && !Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) shouldBuildRoadsToSpawns=true; else shouldBuildRoadsToSpawns=false;
               if (shouldBuildRoadsToSpawns) {
                 for (var key2 in sources) {
                     var source = sources[key2];
