@@ -110,7 +110,7 @@ var mainSpawn = {
             let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>100 || creep.spawning)).length;
             var pathLen=sources[sourceId].pathLen;
             var obtainable = 5;
-            if (sources[sourceId].reservation>1000) {obtainable=10}
+            if (scoutFrom.reservation>1000) {obtainable=10}
             console.log(obtainable)
 
             var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
