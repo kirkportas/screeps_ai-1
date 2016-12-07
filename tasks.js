@@ -74,13 +74,20 @@ var tasks = {
           var storage= Game.rooms[creep.memory.homeRoom].storage;
           scout.from[creep.memory.homeRoom].sources={};
           if (storage) {
+            var totalLenght=0;
+            var pathComplete=true;
             for (var source in scout.sources) {
               scout.from[creep.memory.homeRoom].sources[source]={};
               var path = new PathFinder.search(storage.pos,{pos:Game.getObjectById(source).pos,range:1},{plainCost: 1,swampCost: 1});
               if (path) {
-
                 scout.from[creep.memory.homeRoom].sources[source].pathLen=path.path.length;
-              }
+                totalLenght+=path.path.length;
+              } else pathComplete=false;
+            }
+            if (!scout.closestRoom||!scout.closest||(totalLenght<scout.closest)) {
+              scout.closestRoom=creep.room.homeRoom;
+              scout.closest=totalLenght;
+              console.log('Found new closest');
             }
           }
           for (var source in scout.sources) {
