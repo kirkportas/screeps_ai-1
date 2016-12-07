@@ -97,7 +97,7 @@ var mainSpawn = {
         if (scoutTo[roomName].danger==0) {
           if (!Memory.rooms[roomName]) continue;
           if (!Memory.rooms[roomName].scoutFromOther) continue;
-          var scoutFrom=Memory.rooms[roomName].scoutFromOther[spawn.room.name];
+          var scoutFrom=Memory.rooms[roomName].scoutFromOther;
           console.log(scoutFrom)
           if (!scoutFrom||(Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0]) continue; //Dont send to own room
           console.log('test')
