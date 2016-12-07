@@ -42,6 +42,7 @@ var roleRemoteHarvester = {
               creep.say(centralStorage.pos.roomName)
               creep.moveTo(centralStorage);
           }
+        }
       }
 
       }
