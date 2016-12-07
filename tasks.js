@@ -68,7 +68,7 @@ var tasks = {
           scout.lastScout=Game.time;
         }
 
-        if (!lastFullScout||(Game.time-lastFullScout)>5) {
+        if (!lastFullScout||(Game.time-lastFullScout)>300) {
           console.log('perming big check')
           var spawn= Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
           var storage= Game.rooms[creep.memory.homeRoom].storage;
@@ -87,7 +87,7 @@ var tasks = {
             if (!scout.closestRoom||!scout.closest||(totalLenght<scout.closest)) {
               scout.closestRoom=creep.memory.homeRoom;
               scout.closest=totalLenght;
-              console.log('Found new closest '+scout.closestRoom);
+              //console.log('Found new closest '+scout.closestRoom);
             }
           }
           for (var source in scout.sources) {
