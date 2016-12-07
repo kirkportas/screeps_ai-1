@@ -21,7 +21,7 @@ var roleRemoteHarvester = {
         }
       } else {
         var container = creep.pos.findInRange(FIND_STRUCTURES,2,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } })[0];
-        var centralStorage=Game.rooms[creep.memory.homeRoom].find(FIND_STRUCTURES,8, {filter: (structure) => { return (structure.structureType == STRUCTURE_STORAGE)}})[0];
+        var centralStorage=Game.rooms[creep.memory.homeRoom].controller;
         if (container) {
           if (container.hits<container.hitsMax) {
             creep.repair(container);
