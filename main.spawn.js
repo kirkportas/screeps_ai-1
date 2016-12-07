@@ -94,7 +94,9 @@ var mainSpawn = {
 
     global.spawnRemoteHarvesters = function(spawn) {
       var scoutTo=spawn.room.memory.scout;
+      console.log('test1')
       for (var roomName in scoutTo) {
+        console.log('test3')
           if (!Memory.rooms[roomName]) continue;
           if (!Memory.rooms[roomName].scoutFromOther) continue;
           if (Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room) {continue; console.log('not best room')}
