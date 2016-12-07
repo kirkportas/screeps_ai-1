@@ -110,7 +110,7 @@ var buildRoads = {
                     var source = sources[key2];
                     var posX = source.pos.x;
                     var posY = source.pos.y;
-                    var posRoom = key1;
+                    var posRoom = roomName;
                     var targetPos = new RoomPosition(posX,posY,posRoom);
                     buildRoads.buildRoadWithContainer(posSpawn,targetPos);
                 }
