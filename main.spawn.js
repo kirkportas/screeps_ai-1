@@ -97,7 +97,6 @@ var mainSpawn = {
       for (var roomName in scoutTo) {
 
           //scout
-          console.log('consiering scout to ',roomName)
           if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
             if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
               if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
