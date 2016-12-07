@@ -141,8 +141,8 @@ var mainRoom = {
         room.memory.roomdesign=1;
         room.memory.expand=false;
       } else if (room.name=='E67S65') {
-        room.memory.wallHitsMax=10000;
-        room.memory.wallHitsmin=5000;
+        room.memory.wallHitsMax=40000;
+        room.memory.wallHitsmin=20000;
         room.memory.bufferenergy=20000;
         room.memory.roomdesign=2;
         room.memory.expand=false;
