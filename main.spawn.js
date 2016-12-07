@@ -164,7 +164,7 @@ var mainSpawn = {
             }
           }
         } else {
-          console.log('consiering scout')
+          console.log('consiering scout to ',roomName)
           if (scoutFrom.timeSinceLastScout>1500 || scoutFrom.timeSinceLastScout==-1) {
             if (!scoutFrom.lastScoutSent || ((Game.times-scoutFrom.lastScoutSent)>500)) {
               if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
