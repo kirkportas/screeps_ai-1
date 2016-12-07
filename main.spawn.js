@@ -104,6 +104,7 @@ var mainSpawn = {
           var sources = scoutFrom.from[spawn.room.name].sources;
           for (var sourceId in sources) {
             if (!sources[sourceId].pathLen) continue;
+            console.log(scoutFrom.sources[sourceId].pos)
             //var sourceGlobal=scoutFrom.sources[sourceId];
             //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
             let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>100 || creep.spawning)).length;
