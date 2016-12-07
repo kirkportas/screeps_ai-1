@@ -15,6 +15,7 @@ var tasks = {
         let lastFullScout = scout.lastFullScout;
         if (!lastScout||(Game.time-lastScout)>5) {
           var sources= creep.room.find(FIND_SOURCES);
+          creep.say(sources.length)
           if (!scout.sources) {scout.sources={}}
           if (!scout.from) {scout.from={}}
           if (!scout.from[creep.memory.homeRoom]) {scout.from[creep.memory.homeRoom]={}}
