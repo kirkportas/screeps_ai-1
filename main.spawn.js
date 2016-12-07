@@ -101,7 +101,7 @@ var mainSpawn = {
           console.log(scoutFrom)
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
 
-          var sources = scoutFrom.sources;
+          var sources = scoutFrom.from[spawn.room.name];
           for (var sourceId in sources) {
             console.log('test2')
             if (!sources[sourceId].pathLen) continue;
