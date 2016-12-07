@@ -279,7 +279,7 @@ if (!spawn.spawning) {
   var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
   //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
   if (centralContainer) {
-    if (centralContainer.store[RESOURCE_ENERGY]<1000) buildersNeeded=0;
+    if (centralContainer.store[RESOURCE_ENERGY]<spawn.room.memory.bufferenergy) buildersNeeded=Math.min(1,buildersNeeded);
   }
 
 
