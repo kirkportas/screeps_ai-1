@@ -85,7 +85,7 @@ var tasks = {
               } else pathComplete=false;
             }
             if (!scout.closestRoom||!scout.closest||(totalLenght<scout.closest)) {
-              scout.closestRoom=creep.room.homeRoom;
+              scout.closestRoom=creep.memory.homeRoom;
               scout.closest=totalLenght;
               console.log('Found new closest');
             }
