@@ -1,7 +1,7 @@
 var tasks = require('tasks');
 
 Creep.prototype.moveToOpt = function(target) {
-  creep.moveTo(target,{ignoreCreeps:false,reusePath:10});
+  creep.moveTo(target,{ignoreCreeps:true,reusePath:50});
 }
 
 Creep.prototype.runRemoteHauler = function(creep) {
