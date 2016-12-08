@@ -30,7 +30,7 @@ StructureSpawn.prototype.work  = function(spawn) {
       if (arg.move>0) {modules.push(MOVE);}
       return modules;
     }
-    global.createCreepAdvanced = function(spawn,type,body,memory2={}) {
+    var createCreepAdvanced = function(spawn,type,body,memory2={}) {
       memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction:'RENEW'}
       for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
       var res = spawn.canCreateCreep(body);
@@ -46,7 +46,7 @@ StructureSpawn.prototype.work  = function(spawn) {
       }
       return false;
     }
-    global.spawnExtracter = function(spawn) {
+    var spawnExtracter = function(spawn) {
       //cleanup dedicated miners && watch
       var extractor = spawn.room.find(FIND_STRUCTURES,(structure)=>structure.structureType==STRUCTURE_EXTRACTOR)[0];
       if (extractor&&spawn.room.terminal) {
@@ -62,7 +62,7 @@ StructureSpawn.prototype.work  = function(spawn) {
 
       return false;
     }
-    global.spawnHarvesters = function(spawn) {
+    var spawnHarvesters = function(spawn) {
       //cleanup dedicated miners && watch
       var sources = spawn.room.memory.allSources;
       for (var i=0;i<sources.length;i++) {
@@ -94,7 +94,7 @@ StructureSpawn.prototype.work  = function(spawn) {
     }
 
 
-    global.spawnRemoteHarvesters = function(spawn) {
+    var spawnRemoteHarvesters = function(spawn) {
       var scoutTo=spawn.room.memory.scout;
       for (var roomName in scoutTo) {
         if (spawn.room.memory.expand<scoutTo[roomName].dist) continue;
@@ -183,7 +183,7 @@ StructureSpawn.prototype.work  = function(spawn) {
     return false;
   }
 
-  global.spawnArmy = function(spawn) {
+  var spawnArmy = function(spawn) {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) { // HEALERS
       if(createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'1'})) return true;
     }
@@ -215,7 +215,7 @@ StructureSpawn.prototype.work  = function(spawn) {
   }
 
 
-  global.renewAndKill = function(spawn) {
+  var renewAndKill = function(spawn) {
     var creeps = spawn.pos.findInRange(FIND_MY_CREEPS,1);
     _.forEach(creeps, function(creep){
       if (creep.memory.spawnerAction=='KILL') {
