@@ -17,7 +17,7 @@ var roleSpawnhauler = {
 	    } else {
         var dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES,1);
         if (dropped.length) {
-          creep.say('d: '+creep.pos.getRangeTo(dropped));
+          creep.say('d: '+creep.pos.getRangeTo(dropped[0]));
           if(creep.pickup(dropped[0]) == ERR_NOT_IN_RANGE) {
             creep.moveTo(dropped[0]);
           }
