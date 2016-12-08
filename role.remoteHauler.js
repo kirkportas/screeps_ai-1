@@ -1,13 +1,13 @@
 var tasks = require('tasks');
 
 Creep.prototype.moveToOpt = function(target) {
-  var curPos=creep.pos;
-  var oldPod=creep.memory.oldPos;
+  var curPos=this.pos;
+  var oldPod=this.memory.oldPos;
   if (curPos==oldPos) {
-    creep.say('stuck')
+    this.say('stuck')
   }
-  creep.memory.oldPos=curPos;
-  creep.moveTo(target,{ignoreCreeps:true,reusePath:50});
+  this.memory.oldPos=curPos;
+  this.moveTo(target,{ignoreCreeps:true,reusePath:50});
 }
 
 Creep.prototype.runRemoteHauler = function(creep) {
