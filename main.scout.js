@@ -2,7 +2,7 @@ var tasks = require('tasks');
 var mainScout = {
 
     run: function(room) {
-      if (room.memory.scout===undefined||room.name=='sE68S62') {
+      if (room.memory.scout===undefined||room.name=='E68S62') {
         console.log('setting basic scout info');
         var exits =Game.map.describeExits(room.name);
         var rooms=[]; //
@@ -25,7 +25,7 @@ var mainScout = {
         //console.log('-----')
         for (var i=rooms.length;i<rooms2.length+rooms.length;i++) {
           //console.log(rooms2[i]);
-          room.memory.scout[rooms[rooms.length+i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
+          room.memory.scout[rooms2[i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
         }
 
 
