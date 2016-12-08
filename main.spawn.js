@@ -2,18 +2,20 @@ var tasks = require('tasks');
 var roomCreepcalc = require('room.creepcalc');
 
 
+StructureSpawn.prototype.findNextName = function(type) {
+    var finaleName
+    for (var i=1;true;i++) {
+        if(!Game.creeps[type+i]) {
+            finaleName=type+i;
+            break;
+        }
+    }
+    return finaleName;
+}
+
 StructureSpawn.prototype.work  = function(spawn) {
 
-    global.findNextName = function(type) {
-        var finaleName
-        for (var i=1;true;i++) {
-            if(!Game.creeps[type+i]) {
-                finaleName=type+i;
-                break;
-            }
-        }
-        return finaleName;
-    }
+
     global.createBody = function(arg) {
       var modules=[];
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
@@ -34,7 +36,7 @@ StructureSpawn.prototype.work  = function(spawn) {
       var res = spawn.canCreateCreep(body);
       console.log(type);
       if (res == OK) {
-        var name = spawn.createCreep(body, findNextName(type),memory1);
+        var name = spawn.createCreep(body, spawn.findNextName(type),memory1);
         console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
         return true;
       } else if (res==ERR_NOT_ENOUGH_ENERGY) {
