@@ -1,10 +1,6 @@
 var tasks = require('tasks');
 var roomCreepcalc = require('room.creepcalc');
 
-Spawn.prototype.createWorkerCreep = function(name) {
-    return this.createCreep([WORK, CARRY, MOVE], name);
-};
-
 var mainSpawn = {
 
     run: function(spawn) {
