@@ -152,7 +152,7 @@ var mainSpawn = {
               var obtainable = 5;
               if (scoutFrom.reservation>1000) {obtainable=10}
 
-              var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.3);
+              var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
               var maxSize = Math.floor((spawn.room.energyCapacityAvailable/100)+100);
               var size=Math.min(optimalSize,maxSize,24);
 
