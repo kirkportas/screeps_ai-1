@@ -12,7 +12,7 @@ Creep.prototype.moveToOpt = function(target) {
 }
 
 Creep.prototype.runRemoteHauler = function(creep) {
-  creep.say('test')
+  creep.say('tes2t')
   var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
   if (creep.hits<creep.hitsMax || hostiles.lenght) {
       creep.memory.fleeTime=30;
