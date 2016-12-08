@@ -69,7 +69,7 @@ module.exports.loop = function() {
           if (!creep.spawning) {
             try {
               if (cpuLog) {var cpuTime=cpu.getUsed();}
-              tasks.enterRoom(creep);
+              //tasks.enterRoom(creep);
               tasks.scoutRoom(creep);
               if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
               if(creep.memory.role == 'extracter') {roleExtracter.run(creep);}
