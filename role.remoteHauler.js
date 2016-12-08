@@ -48,11 +48,4 @@ Creep.prototype.runRemoteHauler = function(creep) {
 
 };
 
-var roleRemoteHauler = {
-
-    run: function(creep) {
-      creep.runRemoteHauler(creep);
-    }
-};
-
 module.exports = roleRemoteHauler;
