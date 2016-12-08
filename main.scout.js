@@ -17,9 +17,9 @@ var mainScout = {
 
           var exits2 =Game.map.describeExits(rooms[i]);
           if (exits2[1] != undefined&& !(_.contains(rooms2,exits2[1]))&& exits2[1]!=room) rooms2.push(exits2[1]);
-          if (exits2[3] != undefined&& !(_.contains(rooms2,exits2[3]))&& exits2[3]!=room))  rooms2.push(exits2[3]);
-          if (exits2[5] != undefined&& !(_.contains(rooms2,exits2[5]))&& exits2[5]!=room))  rooms2.push(exits2[5]);
-          if (exits2[7] != undefined&& !(_.contains(rooms2,exits2[7]))&& exits2[7]!=room))  rooms2.push(exits2[7]);
+          if (exits2[3] != undefined&& !(_.contains(rooms2,exits2[3]))&& exits2[3]!=room)  rooms2.push(exits2[3]);
+          if (exits2[5] != undefined&& !(_.contains(rooms2,exits2[5]))&& exits2[5]!=room)  rooms2.push(exits2[5]);
+          if (exits2[7] != undefined&& !(_.contains(rooms2,exits2[7]))&& exits2[7]!=room)  rooms2.push(exits2[7]);
 
         }
         console.log('-----')
