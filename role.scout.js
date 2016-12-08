@@ -1,4 +1,5 @@
 var tasks = require('tasks');
+var prototypeCreep = require('prototype.creep');
 var roleScout = {
 
     /** @param {Creep} creep **/

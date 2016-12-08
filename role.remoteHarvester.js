@@ -1,4 +1,5 @@
 var tasks = require('tasks');
+var prototypeCreep = require('prototype.creep');
 
 Creep.prototype.runRemoteHarvester = function(creep) {
       if(creep.memory.delivering && creep.carry.energy == 0) {
@@ -14,7 +15,7 @@ Creep.prototype.runRemoteHarvester = function(creep) {
         var source = Game.getObjectById(creep.memory.pref)
         var result = creep.harvest(source)
         if( source==null || result == ERR_NOT_IN_RANGE || result == ERR_NOT_ENOUGH_RESOURCES ) {
-            creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
+            creep.moveToOpt(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
         }
       } else {
         var container = creep.pos.findInRange(FIND_STRUCTURES,2,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } })[0];
@@ -37,7 +38,7 @@ Creep.prototype.runRemoteHarvester = function(creep) {
           } else if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
               creep.say(centralStorage.pos.x)
-              creep.moveTo(centralStorage);
+              creep.moveToOpt(centralStorage);
           }
         }
       }
