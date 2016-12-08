@@ -1,6 +1,11 @@
 var tasks = require('tasks');
 
 Creep.prototype.moveToOpt = function(target) {
+  var curPos=creep.pos;
+  var oldPod=creep.memory.oldPos;
+  if (curPos==oldPos) {
+    creep.say('stuck?')
+  }
   creep.moveTo(target,{ignoreCreeps:true,reusePath:50});
 }
 
