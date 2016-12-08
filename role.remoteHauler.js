@@ -1,6 +1,7 @@
 var tasks = require('tasks');
 
 Creep.prototype.moveToOpt = function(target) {
+  this.say('test')
   var curPos=this.pos;
   var oldPod=this.memory.oldPos;
   if (curPos==oldPos) {
