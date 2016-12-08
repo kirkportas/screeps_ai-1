@@ -118,7 +118,7 @@ var mainSpawn = {
             // CLAIMERS
             var reservation = scoutFrom.reservation;
             if (reservation<2000 && reservation>=0) {
-              console.log(sources.size)
+              console.log(sources.length)
               if (sources.length>=2) {  // do I WANT to claim this room?
 
                 let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
