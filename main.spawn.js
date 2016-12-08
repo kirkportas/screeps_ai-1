@@ -353,6 +353,7 @@ if (!spawn.spawning) {
 module.exports = mainSpawn;
 
 StructureSpawn.prototype.work  = function(spawn) {
+  console.log('test1')
   mainSpawn.run(spawn);
 
 }
