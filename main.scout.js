@@ -11,9 +11,9 @@ var mainScout = {
         if (exits[3] != undefined) rooms.push(exits[3]);
         if (exits[5] != undefined) rooms.push(exits[5]);
         if (exits[7] != undefined) rooms.push(exits[7]);
-        //room.memory.scout={}
+        room.memory.scout={}
         for (var i=0;i<rooms.length;i++) {
-          //room.memory.scout[rooms[i]]={dist:1,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
+          room.memory.scout[rooms[i]]={dist:1,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
 
           var exits2 =Game.map.describeExits(rooms[i]);
           if (exits2[1] != undefined&& !(_.contains(rooms2,exits2[1]))&& exits2[1]!=room.name) rooms2.push(exits2[1]);
@@ -22,10 +22,10 @@ var mainScout = {
           if (exits2[7] != undefined&& !(_.contains(rooms2,exits2[7]))&& exits2[7]!=room.name)  rooms2.push(exits2[7]);
 
         }
-        console.log('-----')
-        for (var i=0;i<rooms2.length;i++) {
-          console.log(rooms2[i]);
-          //room.memory.scout[rooms[rooms.length+i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
+        //console.log('-----')
+        for (var i=rooms.length;i<rooms2.length+rooms.length;i++) {
+          //console.log(rooms2[i]);
+          room.memory.scout[rooms[rooms.length+i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
         }
 
 
