@@ -95,7 +95,7 @@ var mainSpawn = {
     global.spawnRemoteHarvesters = function(spawn) {
       var scoutTo=spawn.room.memory.scout;
       for (var roomName in scoutTo) {
-
+        if (spawn.room.memory.expand<scoutTo[roomName].dist) continue;
           //scout
           if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
             if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
