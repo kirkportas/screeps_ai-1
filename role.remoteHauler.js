@@ -1,7 +1,5 @@
 var tasks = require('tasks');
-run: function(creep) {
-  creep.say('test')
-}
+
 Creep.prototype.runRemoteHauler = function(creep) {
 
 
