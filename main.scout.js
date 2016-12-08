@@ -16,6 +16,7 @@ var mainScout = {
         }
 
       }
+      /*
       for (var key in room.memory.scout) {
         if (room.memory.scout[key].timeSinceLastScout!=-1) {
           room.memory.scout[key].timeSinceLastScout++;
@@ -23,7 +24,7 @@ var mainScout = {
         if (!room.memory.scout[key].timeSinceLastFullScout || room.memory.scout[key].timeSinceLastFullScout!=-1) { //TODO: fjerne !timeSinceLastFullScout
           room.memory.scout[key].timeSinceLastFullScout++;
         }
-      }
+      } */
 
 
 

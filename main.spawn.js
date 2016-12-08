@@ -271,7 +271,7 @@ if (!spawn.spawning) {
 
 
   var spawnHaulersNeeded=0;
-  if (links.length>=2 || expand) {
+  if (links.length>=2 || expand>0) {
     spawnHaulersNeeded=1;
   }
 
@@ -337,8 +337,8 @@ if (!spawn.spawning) {
           var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
           createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
         }
-      } else if (expand && spawnArmy(spawn)) {
-      } else if (expand && spawnRemoteHarvesters(spawn)) {
+      } else if (expand>0 && spawnArmy(spawn)) {
+      } else if (expand>0 && spawnRemoteHarvesters(spawn)) {
       }
 
     }
