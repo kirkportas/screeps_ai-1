@@ -2,7 +2,7 @@ var tasks = require('tasks');
 var mainScout = {
 
     run: function(room) {
-      if (true||room.memory.scout===undefined) {
+      if (room.memory.scout===undefined) {
         console.log('setting basic scout info');
         var exits =Game.map.describeExits(room.name);
         var rooms=[]; //
