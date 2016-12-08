@@ -133,7 +133,7 @@ var mainRoom = {
         room.memory.wallHitsmin=200000;
         room.memory.bufferenergy=50000;
         room.memory.roomdesign=2;
-        room.memory.expand=1;
+        room.memory.expand=2;
       } else if (room.name=='E66S62') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
