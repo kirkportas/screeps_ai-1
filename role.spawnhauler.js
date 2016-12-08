@@ -11,7 +11,7 @@ var roleSpawnhauler = {
       if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
         creep.moveTo(dropped);
       }
-    }
+    },
     run: function(creep) {
 
 	    if(creep.memory.delivering && creep.carry.energy < 50) {
