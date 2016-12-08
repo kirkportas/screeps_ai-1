@@ -156,14 +156,14 @@ var mainSpawn = {
 
               var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.3);
               var maxSize = Math.floor((spawn.room.energyCapacityAvailable/100)+100);
-              var size=Math.min(optimalSize,maxSize,25);
+              var size=Math.min(optimalSize,maxSize,24);
 
               if (harvestersRemote<1) {
                 createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:scoutFrom.sources[sourceId].pos, spawnerAction: "none"});
                 return true;
               }
               if (haulersRemote<1 && sources[sourceId].container) {
-                createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil(size/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
+                createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil(size+1/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
                 return true;
               }
           }
