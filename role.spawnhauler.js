@@ -1,7 +1,17 @@
 var tasks = require('tasks');
 var roleSpawnhauler = {
 
-    /** @param {Creep} creep **/
+    pickupdropped: function(creep) {
+      var dropped = Game.getObjectById(creep.memory.targetDropped)
+      if (dropped===null) {
+        creep.memory.targetDropped=null;
+        return;
+      }
+      creep.say('d: '+creep.pos.getRangeTo(dropped));
+      if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(dropped);
+      }
+    }
     run: function(creep) {
 
 	    if(creep.memory.delivering && creep.carry.energy < 50) {
@@ -15,16 +25,18 @@ var roleSpawnhauler = {
 	    if(creep.memory.delivering) {
         tasks.deliverSourceToMainLinkFirst(creep);
 	    } else {
-        var dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES,10,{filter:(dropped)=>{return dropped.amount>200}});
-        if (dropped.length) {
-          creep.memory.targetDropped=dropped[0];
-          creep.say('d: '+creep.pos.getRangeTo(dropped[0]));
-          if(creep.pickup(dropped[0]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(dropped[0]);
-          }
+        if (creep.memory.targetDropped) {
+          roleSpawnhauler.pickupdropped(creep);
         } else {
-            tasks.haulFromCentralCotainers(creep);
-          }
+          var dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES,10,{filter:(dropped)=>{return dropped.amount>200}});
+          if (dropped.length) {
+            creep.memory.targetDropped=dropped[0].id;
+            roleSpawnhauler.pickupdropped(creep);
+          } else {
+              tasks.haulFromCentralCotainers(creep);
+            }
+        }
+
 	    }
 	}
 };
