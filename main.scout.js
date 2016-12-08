@@ -2,7 +2,7 @@ var tasks = require('tasks');
 var mainScout = {
 
     run: function(room) {
-      if (room.memory.scout===undefined) {
+      if (room.memory.scout===undefined||room.name=='E68S62') {
         console.log('setting basic scout info');
         var exits =Game.map.describeExits(room.name);
         var rooms=[]; //
@@ -14,19 +14,20 @@ var mainScout = {
         room.memory.scout={}
         for (var i=0;i<rooms.length;i++) {
           room.memory.scout[rooms[i]]={dist:1,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
-          /*
-          var exits2 =Game.map.describeExits(room.name);
-          if (exits2[1] != undefined) rooms2.push(exits2[1]);
-          if (exits2[3] != undefined) rooms2.push(exits2[3]);
-          if (exits2[5] != undefined) rooms2.push(exits2[5]);
-          if (exits2[7] != undefined) rooms2.push(exits2[7]);
-          */
+
+          var exits2 =Game.map.describeExits(rooms[i]);
+          if (exits2[1] != undefined) if (!(exits2[1] in rooms2) rooms2.push(exits2[1]);
+          if (exits2[3] != undefined) if (!(exits2[3] in rooms2) rooms2.push(exits2[3]);
+          if (exits2[5] != undefined) if (!(exits2[5] in rooms2) rooms2.push(exits2[5]);
+          if (exits2[7] != undefined) if (!(exits2[7] in rooms2) rooms2.push(exits2[7]);
+
         }
-        /*
+        console.log('-----')
         for (var i=rooms.length;i<rooms2.length+rooms.length;i++) {
-          room.memory.scout[rooms[rooms.length+i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
+          console.log(rooms2[i]);
+          //room.memory.scout[rooms[rooms.length+i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
         }
-        */
+
 
       }
       /*
