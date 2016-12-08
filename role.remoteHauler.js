@@ -33,7 +33,6 @@ var roleRemoteHauler = {
         var found = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
         //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
         if (found.length) {
-          creep.say('found')
           creep.repair(found[0]);
         }
         var centralStorage=Game.rooms[creep.memory.homeRoom].storage;
