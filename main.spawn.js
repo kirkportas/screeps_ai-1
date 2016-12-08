@@ -4,6 +4,7 @@ var roomCreepcalc = require('room.creepcalc');
 var mainSpawn = {
 
     run: function(spawn) {
+      console.log('test2')
 
     global.findNextName = function(type) {
         var finaleName
@@ -353,7 +354,6 @@ if (!spawn.spawning) {
 module.exports = mainSpawn;
 
 StructureSpawn.prototype.work  = function(spawn) {
-  console.log('test1')
   mainSpawn.run(spawn);
 
 }
