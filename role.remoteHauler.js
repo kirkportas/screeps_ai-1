@@ -1,5 +1,9 @@
 var tasks = require('tasks');
 
+Creep.prototype.moveToOpt = function(target) {
+  creep.moveTo(target,{ignoreCreeps:false,reusePath:10});
+}
+
 Creep.prototype.runRemoteHauler = function(creep) {
 
   var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
@@ -23,7 +27,7 @@ Creep.prototype.runRemoteHauler = function(creep) {
         var result = creep.withdraw(target, RESOURCE_ENERGY)
 
         if( target==null || result == ERR_NOT_IN_RANGE) {
-          creep.moveTo(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName),{ignoreCreeps:false,reusePath:10});
+          creep.moveToOpt(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
         }
 
     } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
@@ -38,7 +42,7 @@ Creep.prototype.runRemoteHauler = function(creep) {
     if (centralStorage) {
     if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
       } else {
-        creep.moveTo(centralStorage,{ignoreCreeps:false,reusePath:10});
+        creep.moveToOpt(centralStorage);
       }
     }
 
