@@ -7,9 +7,9 @@ Creep.prototype.moveToOpt = function(target) {
   if (oldPos!=undefined&&curPos==oldPos) {
     this.say('stuck')
     console.log('stuck in ',this.room.name)
-    this.moveTo(target,{ignoreCreeps:true,reusePath:5});
+    this.moveTo(target,{ignoreCreeps:false,reusePath:5});
   } else {
-      this.moveTo(target,{ignoreCreeps:false,reusePath:100});
+      this.moveTo(target,{ignoreCreeps:true,reusePath:100});
   }
   this.memory.oldPos=curPos;
 }
