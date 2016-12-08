@@ -114,7 +114,7 @@ var mainSpawn = {
           if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
 
           if (scoutFrom.danger==0&&Memory.rooms[roomName].scoutFromOther.closestRoom==spawn.room.name) {
-          var sources = scoutFrom.from[spawn.room.name].sources;
+          var sources = scoutFrom.sources;
             // CLAIMERS
             var reservation = scoutFrom.reservation;
             if (reservation<2000 && reservation>=0) {
