@@ -16,10 +16,10 @@ var mainScout = {
           room.memory.scout[rooms[i]]={dist:1,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
 
           var exits2 =Game.map.describeExits(rooms[i]);
-          if (exits2[1] != undefined) if (!(exits2[1] in rooms2) rooms2.push(exits2[1]);
-          if (exits2[3] != undefined) if (!(exits2[3] in rooms2) rooms2.push(exits2[3]);
-          if (exits2[5] != undefined) if (!(exits2[5] in rooms2) rooms2.push(exits2[5]);
-          if (exits2[7] != undefined) if (!(exits2[7] in rooms2) rooms2.push(exits2[7]);
+          if (exits2[1] != undefined) if (!(exits2[1] in rooms2)) rooms2.push(exits2[1]);
+          if (exits2[3] != undefined) if (!(exits2[3] in rooms2)) rooms2.push(exits2[3]);
+          if (exits2[5] != undefined) if (!(exits2[5] in rooms2)) rooms2.push(exits2[5]);
+          if (exits2[7] != undefined) if (!(exits2[7] in rooms2)) rooms2.push(exits2[7]);
 
         }
         console.log('-----')
