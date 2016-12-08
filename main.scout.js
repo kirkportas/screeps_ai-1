@@ -14,7 +14,19 @@ var mainScout = {
         room.memory.scout={}
         for (var i=0;i<rooms.length;i++) {
           room.memory.scout[rooms[i]]={dist:1,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
+          /*
+          var exits2 =Game.map.describeExits(room.name);
+          if (exits2[1] != undefined) rooms2.push(exits2[1]);
+          if (exits2[3] != undefined) rooms2.push(exits2[3]);
+          if (exits2[5] != undefined) rooms2.push(exits2[5]);
+          if (exits2[7] != undefined) rooms2.push(exits2[7]);
+          */
         }
+        /*
+        for (var i=rooms.length;i<rooms2.length+rooms.length;i++) {
+          room.memory.scout[rooms[rooms.length+i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
+        }
+        */
 
       }
       /*
