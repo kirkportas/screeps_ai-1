@@ -16,7 +16,7 @@ StructureSpawn.prototype.findNextName = function(type) {
 StructureSpawn.prototype.work  = function(spawn) {
 
 
-    global.createBody = function(arg) {
+    var createBody = function(arg) {
       var modules=[];
       for (var m=0;m<arg.tough;m++) {modules.push(TOUGH);}
       for (var m=0;m<arg.work;m++) {modules.push(WORK);}
