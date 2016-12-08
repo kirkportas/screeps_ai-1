@@ -68,7 +68,7 @@ var roleRemotebuilder = {
           var container = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter:(structure)=> {return structure.structureType==STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY]>0} })
           if (container) {
             if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(container);
+              creep.moveTo(container,{swampCost:1,plainCost:1});
             }
           } else {
             var source = creep.pos.findClosestByPath(FIND_SOURCES,{filter: (source) => {return source.energy>0} });
