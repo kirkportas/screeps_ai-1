@@ -46,7 +46,7 @@ module.exports.loop = function() {
         timeLast=cpu.getUsed(); mainTower.run(room); timeTower += cpu.getUsed()-timeLast;
         timeLast=cpu.getUsed(); mainScout.run(room); timeScout += cpu.getUsed()-timeLast;
         var spawnNum = (Game.time % spawns.length)
-        timeLast=cpu.getUsed(); mainSpawn.run(spawns[spawnNum]); timeSpawn += cpu.getUsed()-timeLast;
+        timeLast=cpu.getUsed(); StructureSpawn.work(spawns[spawnNum]));mainSpawn.run(spawns[spawnNum]); timeSpawn += cpu.getUsed()-timeLast;
       }
 
     }
@@ -55,9 +55,11 @@ module.exports.loop = function() {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) createCreepAdvanced(Game.spawns['Spawn2'],'attacker',createBody({tough:8,move:8,heal:4}),{targetRoom:'E68S62',flag:'attack',manual:'1'});
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) createCreepAdvanced(Game.spawns['Spawn1'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack',manual:'2'});
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) createCreepAdvanced(Game.spawns['Spawn2'],'attacker',createBody({tough:8,move:8,attack:8}),{targetRoom:'E68S62',flag:'attack',manual:'2'});
+
     //createCreepAdvanced(Game.spawns['Spawn2'],'claimer',createBody({move:2,claim:2}),{targetRoom:'E68S62',takeover: true});
     //createCreepAdvanced(Game.spawns['Spawn1'],'remoteBuilder',createBody({move:8,carry:4,work:4}),{targetRoom:'E68S62'});
     //createCreepAdvanced(Game.spawns['Spawn2'],'remoteBuilder',createBody({move:8,carry:4,work:4}),{targetRoom:'E68S62'});
+
     if (cpuLog && !Memory.timeData) {Memory.timeData={}}
     var timeHarvester=0;
 
