@@ -6,6 +6,7 @@ Creep.prototype.moveToOpt = function(target) {
   if (curPos==oldPos) {
     creep.say('stuck')
   }
+  creep.memory.oldPos=curPos;
   creep.moveTo(target,{ignoreCreeps:true,reusePath:50});
 }
 
