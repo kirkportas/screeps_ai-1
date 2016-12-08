@@ -123,7 +123,7 @@ var mainSpawn = {
                 console.log('yes')
                 let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
                 let size= Math.min(3,Math.floor(energyAvav/650));
-                let claimersNeeded= Math.min(1,Math.floor(2/size));
+                let claimersNeeded= Math.max(1,Math.floor(2/size));
                 if (claimers<claimersNeeded) {
                   createCreepAdvanced(spawn,'claimer',createBody({move:size,claim:size}),{targetRoom:roomName});
                   return true;
