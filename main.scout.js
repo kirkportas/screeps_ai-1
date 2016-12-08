@@ -23,7 +23,7 @@ var mainScout = {
 
         }
         //console.log('-----')
-        for (var i=rooms.length;i<rooms2.length+rooms.length;i++) {
+        for (var i=0;i<rooms2.length;i++) {
           //console.log(rooms2[i]);
           room.memory.scout[rooms2[i]]={dist:2,timeSinceLastScout:-1,timeSinceLastScout:-1, danger:-1,sources:{}};
         }
