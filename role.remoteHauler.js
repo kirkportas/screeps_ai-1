@@ -1,9 +1,6 @@
 var tasks = require('tasks');
 
 Creep.prototype.runRemoteHauler = function(creep) {
-  var nested = function() {
-    return 1;
- }
 
   var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
   if (creep.hits<creep.hitsMax || hostiles.lenght) {

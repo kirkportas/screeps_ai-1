@@ -1,9 +1,6 @@
 var tasks = require('tasks');
 
-var roleRemoteHarvester = {
-
-    run: function(creep) {
-
+Creep.prototype.runRemoteHarvester = function(creep) {
       if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
       }
@@ -48,7 +45,4 @@ var roleRemoteHarvester = {
       }
 
 
-    }
 };
-
-module.exports = roleRemoteHarvester;

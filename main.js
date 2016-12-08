@@ -81,7 +81,7 @@ module.exports.loop = function() {
               if(creep.memory.role == 'attacker') {roleAttacker.run(creep);}
               if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
               if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
-              if(creep.memory.role == 'remoteHarvester') {roleRemoteHarvester.run(creep);}
+              if(creep.memory.role == 'remoteHarvester') {creep.runRemoteHarvester(creep);}
               if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
               if(creep.memory.role == 'remoteHauler') {creep.runRemoteHauler(creep);}
               if (cpuLog) {
