@@ -1,18 +1,20 @@
 var tasks = require('tasks');
 
 Creep.prototype.moveToOpt = function(target) {
-  this.say('test')
+
   var curPos=this.pos;
-  var oldPod=this.memory.oldPos;
-  if (curPos==oldPos) {
+  var oldPos=this.memory.oldPos;
+  if (oldPos!=undefined&&curPos==oldPos) {
     this.say('stuck')
+    console.log('stuck in ',this.room.name)
+    this.moveTo(target,{ignoreCreeps:true,reusePath:50});
+  } else {
+      this.moveTo(target,{ignoreCreeps:false,reusePath:5});
   }
   this.memory.oldPos=curPos;
-  this.moveTo(target,{ignoreCreeps:true,reusePath:50});
 }
 
 Creep.prototype.runRemoteHauler = function(creep) {
-  creep.say('tes2ts')
   var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
   if (creep.hits<creep.hitsMax || hostiles.lenght) {
       creep.memory.fleeTime=30;
