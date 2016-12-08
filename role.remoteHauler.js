@@ -31,6 +31,7 @@ var roleRemoteHauler = {
       } else {
         var found = creep.room.lookForAtArea(LOOK_STRUCTURES,Math.max(0,creep.pos.y-2),Math.max(0,creep.pos.x-2),Math.min(49,creep.pos.y+2),Math.min(49,creep.pos.x+2),{filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}});
         if (found.length) {
+          creep.say('found')
           creep.repair(found[0]);
         }
         var centralStorage=Game.rooms[creep.memory.homeRoom].storage;
