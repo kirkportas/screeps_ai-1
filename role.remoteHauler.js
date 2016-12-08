@@ -29,7 +29,7 @@ var roleRemoteHauler = {
 
         } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
       } else {
-        var found = creep.room.lookForAtArea(LOOK_STRUCTURES,creep);
+        var found = creep.room.lookForAt(LOOK_STRUCTURES,creep);
         if (found.length && found[0].structureType==STRUCTURE_ROAD) {
           creep.repair(found[0]);
         }
