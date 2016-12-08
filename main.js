@@ -18,7 +18,7 @@ var roleClaimer = require('role.claimer');
 var roleRemotebuilder = require('role.remoteBuilder');
 var roleRemoteHarvester = require('role.remoteHarvester');
 var roleSuicide = require('role.suicide');
-//var roleRemoteHauler = require('role.remoteHauler');
+var roleRemoteHauler = require('role.remoteHauler');
 
 const profiler = require('screeps-profiler');
 
