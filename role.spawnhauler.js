@@ -24,7 +24,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
         tasks.deliverSourceToMainLinkFirst(creep);
 	    } else {
         if (creep.memory.targetDropped) {
-          roleSpawnhauler.pickupdropped(creep);
+          pickupdropped(creep);
         } else {
           var dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES,10,{filter:(dropped)=>{return dropped.amount>200}});
           if (dropped.length) {
