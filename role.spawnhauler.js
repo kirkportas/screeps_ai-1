@@ -20,8 +20,8 @@ Creep.prototype.runSpawnhauler = function(creep) {
             creep.memory.deliverId=tower[0].id;
           } else {
             var extensions=creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION||structure.structureType == STRUCTURE_SPAWN) && (structure.energyCapacity-structure.energy > 0)&&(structure.energyCapacity-structure.energy <= creep.carry[RESOURCE_ENERGY])}});
-            if (extensions.length) {
-              creep.memory.deliverId=extensions[0].id;
+            if (extensions) {
+              creep.memory.deliverId=extensions.id;
             } else {
               var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
               if (centralStorage.length) {
