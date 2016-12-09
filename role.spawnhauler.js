@@ -1,6 +1,56 @@
 var tasks = require('tasks');
 Creep.prototype.runSpawnhauler = function(creep) {
 
+  var deliverSourceToMainLinkFirst= function(creep) {
+        var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
+        var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+        var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy < 400)}});
+        var centralLinkCrit=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy <= 200)}});
+
+
+        var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
+        var extensions=creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION||structure.structureType == STRUCTURE_SPAWN) && (structure.energyCapacity-structure.energy > 0)&&(structure.energyCapacity-structure.energy <= creep.carry[RESOURCE_ENERGY])}});
+        var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
+
+         var target = []
+         target = target.concat(towerCritical);
+         target = target.concat(centralLinkCrit);
+
+        if (extensions) target.push(extensions)
+        target = target.concat(tower);
+        if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
+        target = target.concat(centralLink);
+        target = target.concat(centralStorage);
+
+        if (target[0].structureType==STRUCTURE_STORAGE) {
+          for(var resourceType in creep.carry) {
+            if(creep.transfer(target[0], resourceType)== ERR_NOT_IN_RANGE) {
+                creep.moveTo(target[0]);
+            }
+          }
+        } else {
+          if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+              creep.moveTo(target[0]);
+          }
+        }
+
+
+      }
+      var haulFromCentralCotainers= function(creep) {
+        var target = [];
+        var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
+        var centralStorage=creep.room.storage;
+        if (centralStorage) {
+          var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy==800) }});
+          target = target.concat(centralLink);
+          target = target.concat(centralStorage);
+        }
+        var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
+        target = target.concat(centralContainer);
+           if(creep.withdraw(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+             creep.moveTo(target[0]);
+           }
+      }
     var pickupdropped = function(creep) {
       var dropped = Game.getObjectById(creep.memory.targetDropped)
       if (dropped===null) {
@@ -21,7 +71,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
 	    }
 
 	    if(creep.memory.delivering) {
-        tasks.deliverSourceToMainLinkFirst(creep);
+        deliverSourceToMainLinkFirst(creep);
 	    } else {
         if (creep.memory.targetDropped) {
           pickupdropped(creep);
@@ -31,7 +81,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
             creep.memory.targetDropped=dropped[0].id;
             pickupdropped(creep);
           } else {
-              tasks.haulFromCentralCotainers(creep);
+              haulFromCentralCotainers(creep);
             }
         }
 
