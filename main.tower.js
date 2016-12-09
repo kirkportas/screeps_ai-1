@@ -1,10 +1,8 @@
-var mainTower = {
-  run: function(room) {
+Room.prototype.towerWork = function() {
 
-
-    var closestDamagedStructure = room.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<room.memory.wallHitsmin/8 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
+    var closestDamagedStructure = this.find(FIND_STRUCTURES, {filter: struct => ((struct.hits<struct.hitsMax*0.25 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<this.memory.wallHitsmin/8 && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))   });
     closestDamagedStructure=_.sortBy(closestDamagedStructure, s => s.hits);
-    var allHostiles = room.find(FIND_HOSTILE_CREEPS,{
+    var allHostiles = this.find(FIND_HOSTILE_CREEPS,{
       filter: (creep) => {
         var hits = creep.hits;
         var attacks = creep.getActiveBodyparts(ATTACK);
@@ -18,7 +16,7 @@ var mainTower = {
 
 
 
-    var towers = room.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+    var towers = this.find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     _.forEach(towers, function(tower){
       var closeHostiles = tower.pos.findInRange(FIND_HOSTILE_CREEPS,10);
       closeHostiles=_.sortBy(closeHostiles, creep => creep.hits);
@@ -35,11 +33,9 @@ var mainTower = {
       } else if (closestDamagedStructure && tower.energy>=400) {
         tower.repair(closestDamagedStructure[0]);
       } else {
-        room.memory.towerSleep=9;
+        this.memory.towerSleep=9;
       }
 
     });
 
   }
-};
-module.exports = mainTower;

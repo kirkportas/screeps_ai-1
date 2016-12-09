@@ -33,7 +33,7 @@ module.exports.loop = function() {
         var spawns = room.find(FIND_MY_SPAWNS);
         if (spawns.length) {
           room.work(room);
-          mainTower.run(room);
+          room.towerWork();
           mainScout.run(room);
           var spawnNum = (Game.time % spawns.length)
           spawns[spawnNum].work(spawns[spawnNum]);
