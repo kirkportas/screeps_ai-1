@@ -5,9 +5,7 @@ var buildWalls = require('build.walls');
 var buildBase = require('build.base');
 var roomLinks = require('room.links');
 
-var mainRoom = {
-
-    run: function(room) {
+Room.prototype.work = function(room) {
 
       global.viewOrders = function(roomName) {
         var targetRoom = "E65S61";
