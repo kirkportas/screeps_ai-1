@@ -29,10 +29,13 @@ Creep.prototype.runRemoteHauler = function(creep) {
     } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
   } else {
     //var found = creep.room.lookForAtArea(LOOK_STRUCTURES,Math.max(0,creep.pos.y-2),Math.max(0,creep.pos.x-2),Math.min(49,creep.pos.y+2),Math.min(49,creep.pos.x+2));
-    var found = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
+    var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
+    var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})
     //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
-    if (found.length) {
-      creep.repair(found[0]);
+    if (foundStruc.length) {
+      creep.repair(foundStruc[0]);
+    } else if (foundConst.length) {
+      creep.build(foundConst[0]);
     }
     var centralStorage=Game.rooms[creep.memory.homeRoom].storage;
     if (centralStorage) {
