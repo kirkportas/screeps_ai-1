@@ -312,7 +312,7 @@ var tasks = {
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
       var centralStorage=creep.room.storage;
       if (centralStorage) {
-        var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>400) }});
+        var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy==800) }});
         target = target.concat(centralLink);
         target = target.concat(centralStorage);
       }
