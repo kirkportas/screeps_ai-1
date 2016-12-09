@@ -11,16 +11,14 @@ var roomLinks = {
 
     _.forEach(linksSource, function(sourceLink){
       var energy=sourceLink.energy;
-      if (energy>200) {
-        if (linkUpgrader && linkUpgrader.energy<300) {
+      if (energy>=400) {
+        if (linkUpgrader && linkUpgrader.energy<400) {
           room.memory.linkUpgrade=true;
           sourceLink.transferEnergy(linkUpgrader);
         } else if (linkCentral && linkCentral.energy<800) {
-          sourceLink.transferEnergy(linkCentral);
-        } else {
-          //NO Upgraders
           room.memory.linkUpgrade=false;
-        }
+          sourceLink.transferEnergy(linkCentral);
+        } 
       }
     });
     if (linkCentral&&linkUpgrader) {
