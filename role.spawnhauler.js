@@ -1,7 +1,7 @@
 var tasks = require('tasks');
 Creep.prototype.runSpawnhauler = function(creep) {
 
-    var pickupdropped: function(creep) {
+    var pickupdropped = function(creep) {
       var dropped = Game.getObjectById(creep.memory.targetDropped)
       if (dropped===null) {
         creep.memory.targetDropped=null;
