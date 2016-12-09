@@ -35,4 +35,3 @@ Creep.prototype.runUpgrader = function(creep) {
 
       }
 	}
-};
