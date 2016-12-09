@@ -27,7 +27,7 @@ module.exports.loop = function() {
   profiler.wrap(function() {
 
     var cpu = Game.cpu;
-    if (cpu.bucket>5000) {
+    if (cpu.bucket>5000) { // Skip tick if bucket too low
       for(var iRoom in Game.rooms) {
         var room = Game.rooms[iRoom]
         var spawns = room.find(FIND_MY_SPAWNS);
