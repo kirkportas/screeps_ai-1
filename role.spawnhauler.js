@@ -1,38 +1,52 @@
 var tasks = require('tasks');
 Creep.prototype.runSpawnhauler = function(creep) {
 
+
+
   var deliverSourceToMainLinkFirst= function(creep) {
-        var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
+        var target = []
+        var linkUpgrade =creep.room.memory.linkUpgrade;
         var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
-        var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy < 400)}});
-        var centralLinkCrit=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy <= 200)}});
 
-
-        var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
-        var extensions=creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION||structure.structureType == STRUCTURE_SPAWN) && (structure.energyCapacity-structure.energy > 0)&&(structure.energyCapacity-structure.energy <= creep.carry[RESOURCE_ENERGY])}});
-        var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
-
-         var target = []
-         target = target.concat(towerCritical);
-         target = target.concat(centralLinkCrit);
-
-        if (extensions) target.push(extensions)
-        target = target.concat(tower);
-        if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
-        target = target.concat(centralLink);
-        target = target.concat(centralStorage);
-
-        if (target[0].structureType==STRUCTURE_STORAGE) {
-          for(var resourceType in creep.carry) {
-            if(creep.transfer(target[0], resourceType)== ERR_NOT_IN_RANGE) {
-                creep.moveTo(target[0]);
+        var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
+        if (towerCritical.length) {
+          creep.memory.deliverId=towerCritical[0].id;
+        } else if (linkUpgrade) {
+          var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy < 600)}});
+          creep.memory.deliverId=centralLink[0].id;
+        } else {
+          var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
+          if (tower.length) {
+            creep.memory.deliverId=tower[0].id;
+          } else {
+            var extensions=creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION||structure.structureType == STRUCTURE_SPAWN) && (structure.energyCapacity-structure.energy > 0)&&(structure.energyCapacity-structure.energy <= creep.carry[RESOURCE_ENERGY])}});
+            if (extensions.length) {
+              creep.memory.deliverId=extensions[0].id;
+            } else {
+              var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
+              if (centralStorage.length) {
+                creep.memory.deliverId=centralStorage[0].id;
+              }
             }
           }
-        } else {
-          if(creep.transfer(target[0], RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
-              creep.moveTo(target[0]);
+        }
+
+        //if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
+        var target=Game.getObjectById(creep.memory.deliverId);
+        if (target) {
+          if (target.structureType==STRUCTURE_STORAGE) {
+            for(var resourceType in creep.carry) {
+              if(creep.transfer(target, resourceType)== ERR_NOT_IN_RANGE) {
+                  creep.moveTo(target);
+              }
+            }
+          } else {
+            if(creep.transfer(target, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+                creep.moveTo(target);
+            }
           }
         }
+
 
 
       }
