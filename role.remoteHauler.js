@@ -36,10 +36,11 @@ Creep.prototype.runRemoteHauler = function(creep) {
     }
     var centralStorage=Game.rooms[creep.memory.homeRoom].storage;
     if (centralStorage) {
-    if(creep.transfer(centralStorage, RESOURCE_ENERGY)== OK) {
-      } else {
-        creep.moveToOpt(centralStorage);
-      }
+      for(var resourceType in creep.carry) {
+          if (creep.transfer(centralStorage, resourceType) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(centralStorage);
+          }
+        }
     }
 
 
