@@ -173,6 +173,3 @@ Room.prototype.work = function(room) {
       room.memory.timeToRecheck=100;
       }
   }
-};
-
-module.exports = mainRoom;
