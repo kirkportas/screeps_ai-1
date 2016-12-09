@@ -1,8 +1,5 @@
 var tasks = require('tasks');
-var roleSuicide = {
-
-    /** @param {Creep} creep **/
-    run: function(creep) {
+Creep.prototype.runSuicide = function(creep) {
       creep.memory.spawnerAction='KILL';
       var spawn= Game.rooms[creep.memory.homeRoom].find(FIND_MY_SPAWNS)[0];
 
@@ -17,6 +14,3 @@ var roleSuicide = {
 
       }
     }
-  };
-
-  module.exports = roleSuicide;

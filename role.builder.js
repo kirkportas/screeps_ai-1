@@ -1,7 +1,7 @@
 var tasks = require('tasks');
-var roleBuilder = {
+Creep.prototype.runBuilder = function(creep) {
 
-  findBuildCritical: function(creep) {
+  var findBuildCritical =  function(creep) {
     var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES,{filter: struct => (struct.structureType==STRUCTURE_WALL || struct.structureType==STRUCTURE_RAMPART|| struct.structureType==STRUCTURE_LINK||struct.structureType==STRUCTURE_CONTAINER)});
     if (target) {
       creep.memory.targetBuild=target.id;
@@ -10,7 +10,7 @@ var roleBuilder = {
     return false;
   },
 
-  findBuild: function(creep) {
+  var findBuild =  function(creep) {
     var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
     if (target) {
       creep.memory.targetBuild=target.id;
@@ -18,40 +18,40 @@ var roleBuilder = {
     }
     return false;
   },
-  findRepair: function(creep) {
+  var findRepair= function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => ((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<Math.min(struct.hitsMax,creep.room.memory.wallHitsMax*0.5) && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
       });
       if (target) {
         creep.memory.targetFix=target.id;
-        roleBuilder.repairTarget(creep);
+        repairTarget(creep);
         return true;
       }
       return false;
   },
-  findRepairIdle: function(creep) {
+  var findRepairIdle= function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => ((struct.hits<struct.hitsMax && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<Math.min(struct.hitsMax,creep.room.memory.wallHitsMax)  && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
       });
       if (target) {
         creep.memory.targetFix=target.id;
-        roleBuilder.repairTarget(creep);
+        repairTarget(creep);
         return true;
       }
       return false;
   },
-  findRepairCritical: function(creep) {
+  var findRepairCritical= function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => ((struct.hits<struct.hitsMax*0.50 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<Math.min(struct.hitsMax,creep.room.memory.wallHitsMin) && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
       });
       if (target) {
         creep.memory.targetFix=target.id;
-        roleBuilder.repairTarget(creep);
+        repairTarget(creep);
         return true;
       }
       return false;
   },
-  repairTarget: function(creep) {
+  var repairTarget= function(creep) {
     var target = Game.getObjectById(creep.memory.targetFix);
     if (target==null || target.hits==target.hitsMax)  {creep.memory.targetFix=null;return false;}
     if(creep.repair(target) == ERR_NOT_IN_RANGE) {
@@ -59,7 +59,7 @@ var roleBuilder = {
     }
     return true;
   },
-  buildTarget: function(creep) {
+  var buildTarget= function(creep) {
     var target = Game.getObjectById(creep.memory.targetBuild);
     if (target==null) {creep.memory.targetBuild=null;return false;}
     if(creep.build(target) == ERR_NOT_IN_RANGE) {
@@ -67,9 +67,6 @@ var roleBuilder = {
     }
     return true;
   },
-
-  run: function(creep) {
-
     if(creep.memory.building && creep.carry.energy == 0) {
           creep.memory.building = false;
           creep.memory.targetFix = null;
@@ -80,14 +77,14 @@ var roleBuilder = {
     }
 
     if (creep.memory.building) {
-      if (creep.memory.targetFix!==null) { roleBuilder.repairTarget(creep)//
-      } else if (creep.memory.targetBuild!==null && creep.memory.targetBuild!==undefined) { roleBuilder.buildTarget(creep)
+      if (creep.memory.targetFix!==null) { repairTarget(creep)//
+      } else if (creep.memory.targetBuild!==null && creep.memory.targetBuild!==undefined) { buildTarget(creep)
 
-      } else if (roleBuilder.findBuildCritical(creep)) {
-      } else if (roleBuilder.findRepairCritical(creep)) {
-      } else if (roleBuilder.findRepair(creep)) {
-      } else if (roleBuilder.findBuild(creep)) {
-      } else if (roleBuilder.findRepairIdle(creep)) {
+      } else if (findBuildCritical(creep)) {
+      } else if (findRepairCritical(creep)) {
+      } else if (findRepair(creep)) {
+      } else if (findBuild(creep)) {
+      } else if (findRepairIdle(creep)) {
 
       }
 
@@ -95,6 +92,3 @@ var roleBuilder = {
       tasks.haulFromContainerAny(creep);
     }
   }
-};
-
-module.exports = roleBuilder;

@@ -1,8 +1,5 @@
 var tasks = require('tasks');
-var roleClaimer = {
-
-    /** @param {Creep} creep **/
-    run: function(creep) {
+Creep.prototype.runClaimer = function(creep) {
       if(creep.room.name != creep.memory.targetRoom) {
         var res=null;
         if (Game.rooms[creep.memory.targetRoom]) {
@@ -26,6 +23,3 @@ var roleClaimer = {
 
       }
     }
-  };
-
-  module.exports = roleClaimer;

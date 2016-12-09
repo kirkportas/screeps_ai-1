@@ -71,21 +71,20 @@ module.exports.loop = function() {
               if (cpuLog) {var cpuTime=cpu.getUsed();}
               //tasks.enterRoom(creep);
               tasks.scoutRoom(creep);
-              if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
-              if(creep.memory.role == 'extracter') {roleExtracter.run(creep);}
-              if(creep.memory.role == 'hauler') {creep.runHauler(creep);}
-              if(creep.memory.role == 'spawnHauler') {creep.runSpawnhauler(creep);}
-              if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
-              if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
-              if(creep.memory.role == 'scout') {roleScout.run(creep);}
-              //if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
-              if(creep.memory.role == 'defender') {roleDefender.run(creep);}
-              if(creep.memory.role == 'attacker') {roleAttacker.run(creep);}
-              if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}
-              if(creep.memory.role == 'remoteBuilder') {roleRemotebuilder.run(creep);}
-              if(creep.memory.role == 'remoteHarvester') {creep.runRemoteHarvester(creep);}
-              if(creep.memory.role == 'suicide') {roleSuicide.run(creep);}
-              if(creep.memory.role == 'remoteHauler') {creep.runRemoteHauler(creep);}
+              if(creep.memory.role == 'harvester') creep.runHarvester(creep);
+              if(creep.memory.role == 'extracter') creep.runExtracter(creep);
+              if(creep.memory.role == 'hauler') creep.runHauler(creep);
+              if(creep.memory.role == 'spawnHauler') creep.runSpawnhauler(creep);
+              if(creep.memory.role == 'upgrader') creep.runUpgrader(creep);
+              if(creep.memory.role == 'builder') creep.runBuilder(creep);
+              if(creep.memory.role == 'scout') creep.runScout(creep);
+              if(creep.memory.role == 'defender') creep.runDefender(creep);
+              if(creep.memory.role == 'attacker') creep.runAttacker(creep);
+              if(creep.memory.role == 'claimer') creep.runClaimer(creep);
+              if(creep.memory.role == 'remoteBuilder') creep.runRemoteBuilder(creep);
+              if(creep.memory.role == 'remoteHarvester') creep.runRemoteHarvester(creep);
+              if(creep.memory.role == 'suicide') creep.runSuicide(creep);
+              if(creep.memory.role == 'remoteHauler') creep.runRemoteHauler(creep);
               if (cpuLog) {
                 //creep.say(cpu.getUsed()-cpuTime);
                 if (!Memory.timeData[creep.memory.role]) Memory.timeData[creep.memory.role]=[];

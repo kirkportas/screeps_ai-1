@@ -1,7 +1,7 @@
 var tasks = require('tasks');
-var roleAttacker = {
+Creep.prototype.runAttacker = function(creep) {
 
-    attack: function(creep) {
+    var attack = function(creep) {
       var spawnRoom =creep.room.find(FIND_HOSTILE_SPAWNS)[0];
       var spawn = creep.pos.findClosestByPath(FIND_HOSTILE_SPAWNS);
       var controller = creep.pos.findClosestByPath(FIND_STRUCTURES,{ignoreCreeps:true,filter: (structure) => {return (structure.structureType == STRUCTURE_CONTROLLER)}});
@@ -52,7 +52,7 @@ var roleAttacker = {
       return true;
 
     },
-    heal: function(creep) {
+    var heal = function(creep) {
       var target = creep.pos.findClosestByRange(FIND_MY_CREEPS, {maxRooms:1,filter: function(object) {return object.hits < object.hitsMax}});
       var leader = creep.pos.findClosestByRange(FIND_MY_CREEPS, {maxRooms:1,filter: function(object) {return (object.getActiveBodyparts(ATTACK)>0)}});
       if(target) {
@@ -83,7 +83,6 @@ var roleAttacker = {
       */
     },
 
-    run: function(creep) {
       if (creep.memory.flag && (!Game.flags[creep.memory.flag].room || creep.room.name!=Game.flags[creep.memory.flag].room.name)) {
         creep.moveTo(Game.flags[creep.memory.flag]);
       } else if(!creep.memory.flag && creep.room.name != creep.memory.targetRoom) {
@@ -93,8 +92,8 @@ var roleAttacker = {
       } else {
 
 
-        if (creep.getActiveBodyparts(HEAL)>0 && roleAttacker.heal(creep)) {
-        } else if (creep.getActiveBodyparts(ATTACK)>0 && roleAttacker.attack(creep)) {
+        if (creep.getActiveBodyparts(HEAL)>0 && heal(creep)) {
+        } else if (creep.getActiveBodyparts(ATTACK)>0 && attack(creep)) {
         } else if (creep.memory.fleeAfter==true) {
           creep.say('suicide')
           creep.memory.role='suicide'
@@ -105,6 +104,3 @@ var roleAttacker = {
         }
       }
     }
-  };
-
-  module.exports = roleAttacker;
