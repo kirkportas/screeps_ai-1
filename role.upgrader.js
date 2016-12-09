@@ -1,8 +1,5 @@
 var tasks = require('tasks');
-var roleUpgrader = {
-
-    /** @param {Creep} creep **/
-    run: function(creep) {
+Creep.prototype.runUpgrader = function(creep) {
       if(creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
 	    }
@@ -39,5 +36,3 @@ var roleUpgrader = {
       }
 	}
 };
-
-module.exports = roleUpgrader;
