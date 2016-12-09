@@ -34,6 +34,7 @@ Creep.prototype.runRemoteHarvester = function(creep) {
         } else {
           var constructionSites=creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3);
           if (constructionSites.length) {
+            creep.moveTo(constructionSites[0])
             creep.build(constructionSites[0]);
           } else if (centralStorage) {
           if(creep.transfer(centralStorage, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
