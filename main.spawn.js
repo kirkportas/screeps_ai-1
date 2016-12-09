@@ -152,7 +152,7 @@ StructureSpawn.prototype.work  = function(spawn) {
               //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
               var pathLen=sources[sourceId].pathLen;
               let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
-              let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
+              //let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
 
               var obtainable = 5;
               if (scoutFrom.reservation>1000) {obtainable=10}
