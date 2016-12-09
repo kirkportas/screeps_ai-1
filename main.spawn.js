@@ -150,9 +150,10 @@ StructureSpawn.prototype.work  = function(spawn) {
               //console.log(scoutFrom.sources[sourceId].pos.x)
               //var sourceGlobal=scoutFrom.sources[sourceId];
               //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-              let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>100 || creep.spawning)).length;
-              let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>100 || creep.spawning)).length;
               var pathLen=sources[sourceId].pathLen;
+              let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
+              let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
+
               var obtainable = 5;
               if (scoutFrom.reservation>1000) {obtainable=10}
 
@@ -165,7 +166,7 @@ StructureSpawn.prototype.work  = function(spawn) {
                 return true;
               }
               if (haulersRemote<1 && sources[sourceId].container) {
-                createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil((size+1)/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, spawnerAction: "none"});
+                createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil((size+1)/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, pathLen:pathLen,spawnerAction: "none"});
                 return true;
               }
           }
