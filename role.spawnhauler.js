@@ -11,24 +11,27 @@ Creep.prototype.runSpawnhauler = function(creep) {
         var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
         if (towerCritical.length) {
           creep.memory.deliverId=towerCritical[0].id;
-        } else if (linkUpgrade) {
-          var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy < 600)}});
-          creep.memory.deliverId=centralLink[0].id;
         } else {
-          var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
-          if (tower.length) {
-            creep.memory.deliverId=tower[0].id;
+          var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy < 600)}});
+          if (linkUpgrade&&centralLink.length) {
+            creep.memory.deliverId=centralLink[0].id;
           } else {
-            var extensions=creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION||structure.structureType == STRUCTURE_SPAWN) && (structure.energyCapacity-structure.energy > 0)&&(structure.energyCapacity-structure.energy <= creep.carry[RESOURCE_ENERGY])}});
-            if (extensions) {
-              creep.memory.deliverId=extensions.id;
+            var tower=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.95)}});
+            if (tower.length) {
+              creep.memory.deliverId=tower[0].id;
             } else {
-              var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
-              if (centralStorage.length) {
-                creep.memory.deliverId=centralStorage[0].id;
+              var extensions=creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_EXTENSION||structure.structureType == STRUCTURE_SPAWN) && (structure.energyCapacity-structure.energy > 0)&&(structure.energyCapacity-structure.energy <= creep.carry[RESOURCE_ENERGY])}});
+              if (extensions) {
+                creep.memory.deliverId=extensions.id;
+              } else {
+                var centralStorage=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_STORAGE) }});
+                if (centralStorage.length) {
+                  creep.memory.deliverId=centralStorage[0].id;
+                }
               }
             }
           }
+
         }
 
         //if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
