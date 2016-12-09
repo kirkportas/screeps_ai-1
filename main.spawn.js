@@ -338,7 +338,7 @@ if (!spawn.spawning) {
           var moveModules = Math.min(4,Math.floor(energyAvav/500));
           createCreepAdvanced(spawn,'upgrader',createBody({move:moveModules, carry:moveModules,work:moveModules*4}),{spawnerAction: "none"});
         } else {
-          var modulesOfEach = Math.min(6,Math.floor(energyAvav/200));
+          var modulesOfEach = Math.min(12,Math.floor(energyAvav/200));
           createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
         }
       } else if (expand>0 && spawnArmy(spawn)) {
