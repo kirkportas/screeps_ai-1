@@ -1,8 +1,6 @@
 var tasks = require('tasks');
-var roleHauler = {
 
-    /** @param {Creep} creep **/
-    run: function(creep) {
+Creep.prototype.runHauler = function(creep) {
 
 	    if(creep.memory.delivering && creep.carry.energy == 0) {
             creep.memory.delivering = false;
@@ -32,7 +30,4 @@ var roleHauler = {
           }
           }
 	    }
-	}
 };
-
-module.exports = roleHauler;
