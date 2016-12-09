@@ -3,7 +3,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
 
 
 
-  var deliverSourceToMainLinkFirst= function(creep) {
+  var findTarget= function(creep) {
         var target = []
         var linkUpgrade =creep.room.memory.linkUpgrade;
         var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
@@ -31,10 +31,12 @@ Creep.prototype.runSpawnhauler = function(creep) {
               }
             }
           }
+          deliverToTarget();
 
         }
-
         //if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
+      }
+      var deliverToTarget=function(creep) {
         var target=Game.getObjectById(creep.memory.deliverId);
         if (target) {
           if (target.structureType==STRUCTURE_STORAGE) {
@@ -48,11 +50,12 @@ Creep.prototype.runSpawnhauler = function(creep) {
                 creep.moveTo(target);
             }
           }
+        } else {
+          console.log('spawnHauler lost target');
+          creep.memory.deliverId=null;
         }
-
-
-
       }
+
       var haulFromCentralCotainers= function(creep) {
         var linkUpgrade =creep.room.memory.linkUpgrade;
         var target = [];
@@ -94,7 +97,11 @@ Creep.prototype.runSpawnhauler = function(creep) {
 	    }
 
 	    if(creep.memory.delivering) {
-        deliverSourceToMainLinkFirst(creep);
+        if (creep.memory.deliverId) {
+          deliverToTarget(creep)
+        } else {
+          findTarget(creep);
+        }
 	    } else {
         if (creep.memory.targetDropped) {
           pickupdropped(creep);
