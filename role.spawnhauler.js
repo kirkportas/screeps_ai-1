@@ -37,7 +37,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
 
       }
       var haulFromCentralCotainers= function(creep) {
-        var linkUpgrade =room.memory.linkUpgrade;
+        var linkUpgrade =creep.room.memory.linkUpgrade;
         var target = [];
         var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
         var centralStorage=creep.room.storage;
