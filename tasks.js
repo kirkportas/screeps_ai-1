@@ -270,7 +270,7 @@ var tasks = {
        target = target.concat(centralLinkCrit);
 
       //target = target.concat(spawnTar);
-      target = target.concat(extensions);
+      target.push(extensions)
       target = target.concat(tower);
       if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
       target = target.concat(centralLink);
