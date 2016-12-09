@@ -51,7 +51,7 @@ Creep.prototype.runAttacker = function(creep) {
       }
       return true;
 
-    },
+    }
     var heal = function(creep) {
       var target = creep.pos.findClosestByRange(FIND_MY_CREEPS, {maxRooms:1,filter: function(object) {return object.hits < object.hitsMax}});
       var leader = creep.pos.findClosestByRange(FIND_MY_CREEPS, {maxRooms:1,filter: function(object) {return (object.getActiveBodyparts(ATTACK)>0)}});
@@ -81,7 +81,7 @@ Creep.prototype.runAttacker = function(creep) {
         return false;
       }
       */
-    },
+    }
 
       if (creep.memory.flag && (!Game.flags[creep.memory.flag].room || creep.room.name!=Game.flags[creep.memory.flag].room.name)) {
         creep.moveTo(Game.flags[creep.memory.flag]);

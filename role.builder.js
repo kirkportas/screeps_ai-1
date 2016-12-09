@@ -8,7 +8,7 @@ Creep.prototype.runBuilder = function(creep) {
       return true;
     }
     return false;
-  },
+  }
 
   var findBuild =  function(creep) {
     var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
@@ -17,7 +17,7 @@ Creep.prototype.runBuilder = function(creep) {
       return true;
     }
     return false;
-  },
+  }
   var findRepair= function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => ((struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<Math.min(struct.hitsMax,creep.room.memory.wallHitsMax*0.5) && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
@@ -28,7 +28,7 @@ Creep.prototype.runBuilder = function(creep) {
         return true;
       }
       return false;
-  },
+  }
   var findRepairIdle= function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => ((struct.hits<struct.hitsMax && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<Math.min(struct.hitsMax,creep.room.memory.wallHitsMax)  && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
@@ -39,7 +39,7 @@ Creep.prototype.runBuilder = function(creep) {
         return true;
       }
       return false;
-  },
+  }
   var findRepairCritical= function(creep) {
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
        filter: struct => ((struct.hits<struct.hitsMax*0.50 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART)||(struct.hits<Math.min(struct.hitsMax,creep.room.memory.wallHitsMin) && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART)))
@@ -50,7 +50,7 @@ Creep.prototype.runBuilder = function(creep) {
         return true;
       }
       return false;
-  },
+  }
   var repairTarget= function(creep) {
     var target = Game.getObjectById(creep.memory.targetFix);
     if (target==null || target.hits==target.hitsMax)  {creep.memory.targetFix=null;return false;}
@@ -58,7 +58,7 @@ Creep.prototype.runBuilder = function(creep) {
         creep.moveTo(target);
     }
     return true;
-  },
+  }
   var buildTarget= function(creep) {
     var target = Game.getObjectById(creep.memory.targetBuild);
     if (target==null) {creep.memory.targetBuild=null;return false;}
@@ -66,7 +66,7 @@ Creep.prototype.runBuilder = function(creep) {
         creep.moveTo(target);
     }
     return true;
-  },
+  }
     if(creep.memory.building && creep.carry.energy == 0) {
           creep.memory.building = false;
           creep.memory.targetFix = null;
