@@ -15,7 +15,7 @@ Creep.prototype.runRemoteHarvester = function(creep) {
         var source = Game.getObjectById(creep.memory.pref)
         var result = creep.harvest(source)
         if( source==null || result == ERR_NOT_IN_RANGE ) {
-          creep.say('yes')
+          creep.say(creep.memory.prefPos.y)
           creep.moveToOpt(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName));
         }
       } else {
