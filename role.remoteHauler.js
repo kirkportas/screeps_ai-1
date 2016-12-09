@@ -10,7 +10,7 @@ Creep.prototype.runRemoteHauler = function(creep) {
     creep.memory.fleeTime--;
   }
 
-  if(creep.memory.delivering && creep.carry.energy == 0) {
+  if(creep.memory.delivering && ( _.sum(creep.carry)  == 0) {
         creep.memory.delivering = false;
   }
   if(!creep.memory.delivering && ( _.sum(creep.carry) >= creep.carryCapacity*0.7 || creep.memory.fleeTime>0)) {
