@@ -255,7 +255,7 @@ var tasks = {
     deliverSourceToMainLinkFirst: function(creep) {
       var towerCritical=creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_TOWER) && (structure.energy < structure.energyCapacity*0.6)}});
       var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {return (structure.structureType == STRUCTURE_SPAWN)}})[0];
-      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy <= 400)}});
+      var centralLink=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy < 400)}});
       var centralLinkCrit=spawn.pos.findInRange(FIND_STRUCTURES,8, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK) && (creep.carry.energy == creep.carryCapacity && structure.energy <= 200)}});
 
 
