@@ -74,11 +74,11 @@ module.exports.loop = function() {
               if(creep.memory.role == 'harvester') {roleHarvester.run(creep);}
               if(creep.memory.role == 'extracter') {roleExtracter.run(creep);}
               if(creep.memory.role == 'hauler') {creep.runHauler(creep);}
-              if(creep.memory.role == 'spawnHauler') {roleSpawnhauler.run(creep);}
+              if(creep.memory.role == 'spawnHauler') {creep.runSpawnhauler(creep);}
               if(creep.memory.role == 'upgrader') {roleUpgrader.run(creep);}
               if(creep.memory.role == 'builder') {roleBuilder.run(creep);}
               if(creep.memory.role == 'scout') {roleScout.run(creep);}
-              if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
+              //if(creep.memory.role == 'warrior') {roleWarrior.run(creep);}
               if(creep.memory.role == 'defender') {roleDefender.run(creep);}
               if(creep.memory.role == 'attacker') {roleAttacker.run(creep);}
               if(creep.memory.role == 'claimer') {roleClaimer.run(creep);}

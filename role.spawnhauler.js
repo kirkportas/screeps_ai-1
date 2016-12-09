@@ -1,7 +1,7 @@
 var tasks = require('tasks');
-var roleSpawnhauler = {
+Creep.prototype.runSpawnhauler = function(creep) {
 
-    pickupdropped: function(creep) {
+    var pickupdropped: function(creep) {
       var dropped = Game.getObjectById(creep.memory.targetDropped)
       if (dropped===null) {
         creep.memory.targetDropped=null;
@@ -11,9 +11,7 @@ var roleSpawnhauler = {
       if(creep.pickup(dropped) == ERR_NOT_IN_RANGE) {
         creep.moveTo(dropped);
       }
-    },
-    run: function(creep) {
-
+    }
 	    if(creep.memory.delivering && creep.carry.energy < 50) {
             creep.memory.delivering = false;
 	    }
@@ -38,7 +36,4 @@ var roleSpawnhauler = {
         }
 
 	    }
-	}
-};
-
-module.exports = roleSpawnhauler;
+	};
