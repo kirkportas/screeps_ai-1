@@ -1,5 +1,5 @@
 Creep.prototype.moveToOpt = function(target) {
-  if (this.fatigue==0) return;
+  if (this.fatigue>0) return;
   var curPos=this.pos;
   var oldPos=this.memory.oldPos;
   if (oldPos!=undefined&&curPos.x==oldPos.x&&curPos.y==oldPos.y) {
