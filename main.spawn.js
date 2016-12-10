@@ -1,6 +1,22 @@
 var tasks = require('tasks');
 var roomCreepcalc = require('room.creepcalc');
 
+StructureSpawn.prototype.createCreepAdvanced = function(spawn,type,body,memory2={}) {
+  memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction:'RENEW'}
+  for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
+  var res = spawn.canCreateCreep(body);
+  console.log(type);
+  if (res == OK) {
+    var name = spawn.createCreep(body, spawn.findNextName(type),memory1);
+    console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
+    return true;
+  } else if (res==ERR_NOT_ENOUGH_ENERGY) {
+    console.log('Need more energy at ',spawn.name)
+  } else {
+    console.log('error ',res,' at ',spawn.name)
+  }
+  return false;
+}
 
 StructureSpawn.prototype.findNextName = function(type) {
     var finaleName
@@ -19,7 +35,7 @@ StructureSpawn.prototype.spawnExtracter = function() {
     var mineralsInTerm=this.room.terminal.store[mineral.mineralType];
       var extracters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.role == 'extracter' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.extractor==extractor.id&&creep.memory.mineral==mineral.id);
       if (extracters<1&&(!mineralsInTerm||mineralsInTerm<25000)&&mineral.mineralAmount>5000) {
-        createCreepAdvanced(this,'extracter',createBody({work:8,carry:4,move:4}),{extractor:extractor.id,mineral:mineral.id});
+        this.createCreepAdvanced(this,'extracter',createBody({work:8,carry:4,move:4}),{extractor:extractor.id,mineral:mineral.id});
         return true;
       }
 
@@ -35,7 +51,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
       //scout
       if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
         if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
-          if (createCreepAdvanced(this,'scout',createBody({move:1}),{targetRoom:roomName})) {
+          if (this.createCreepAdvanced(this,'scout',createBody({move:1}),{targetRoom:roomName})) {
             console.log('sending a scout to ',roomName);
             scoutTo[roomName].lastScoutSent=Game.time;
             return true;
@@ -59,7 +75,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
             let size= Math.min(3,Math.floor(energyAvav/650));
             let claimersNeeded= Math.max(1,Math.floor(2/size));
             if (claimers<claimersNeeded) {
-              createCreepAdvanced(this,'claimer',createBody({move:size,claim:size}),{targetRoom:roomName});
+              this.createCreepAdvanced(this,'claimer',createBody({move:size,claim:size}),{targetRoom:roomName});
               return true;
             }
           }
@@ -96,13 +112,13 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
           var size=Math.min(optimalSize,maxSize,32);
 
           if (harvestersRemote<1) {
-            createCreepAdvanced(this,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:scoutFrom.sources[sourceId].pos, spawnerAction: "none"});
+            this.createCreepAdvanced(this,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:scoutFrom.sources[sourceId].pos, spawnerAction: "none"});
             return true;
           }
           if (sources[sourceId].container) {
             let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
             if (haulersRemote<1) {
-              createCreepAdvanced(this,'remoteHauler',createBody({move:Math.ceil((size+1)/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, pathLen:pathLen,spawnerAction: "none"});
+              this.createCreepAdvanced(this,'remoteHauler',createBody({move:Math.ceil((size+1)/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, pathLen:pathLen,spawnerAction: "none"});
               return true;
             }
           }
@@ -112,7 +128,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
     if (scoutFrom.danger==1&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
       if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
         var size = Math.min(15,Math.floor((energyAvav/180)*0.80));
-        if (createCreepAdvanced(this,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
+        if (this.createCreepAdvanced(this,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
           console.log('sending a attacker to ',roomName);
           scoutFrom.lastAttackerSent=Game.time;
           return true;
@@ -140,22 +156,7 @@ StructureSpawn.prototype.work  = function(spawn) {
       if (arg.move>0) {modules.push(MOVE);}
       return modules;
     }
-    var createCreepAdvanced = function(spawn,type,body,memory2={}) {
-      memory1 = {role: type, homeRoom: spawn.room.name, spawnerAction:'RENEW'}
-      for (var attrname in memory2) { memory1[attrname] = memory2[attrname]; }
-      var res = spawn.canCreateCreep(body);
-      console.log(type);
-      if (res == OK) {
-        var name = spawn.createCreep(body, spawn.findNextName(type),memory1);
-        console.log('Spawning new '+type+': '+ name+' in room '+spawn.room.name) ;
-        return true;
-      } else if (res==ERR_NOT_ENOUGH_ENERGY) {
-        console.log('Need more energy at ',spawn.name)
-      } else {
-        console.log('error ',res,' at ',spawn.name)
-      }
-      return false;
-    }
+
     var spawnHarvesters = function(spawn) {
       //cleanup dedicated miners && watch
       var sources = spawn.room.memory.allSources;
@@ -169,7 +170,7 @@ StructureSpawn.prototype.work  = function(spawn) {
         if (energyAvav>=750 && (harvesters.length>0 || energyNow>=750)) {
           if ((harvesters.length<1 &&  source.safe)) {
             if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
-              createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
+              spawn.createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
             }
             return true;;
           }
@@ -177,7 +178,7 @@ StructureSpawn.prototype.work  = function(spawn) {
           //console.log('spawning simple')
           if (harvesters.length<Math.min(3,source.slots) && source.safe) {
             if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
-              createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
+              spawn.createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
             }
             return true;
           }
@@ -190,28 +191,28 @@ StructureSpawn.prototype.work  = function(spawn) {
 
   var spawnArmy = function(spawn) {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) { // HEALERS
-      if(createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'1'})) return true;
+      if(spawn.createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'1'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
-      if (createCreepAdvanced(spawn,'attacker',createBody({move:1}),{flag:'attack',manual:'2'})) return true;
+      if (spawn.createCreepAdvanced(spawn,'attacker',createBody({move:1}),{flag:'attack',manual:'2'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<0) { //MELLEE
-      if (createCreepAdvanced(spawn,'attacker',createBody({tough:0,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
+      if (spawn.createCreepAdvanced(spawn,'attacker',createBody({tough:0,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
     }
 
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<0 && spawn.room.name=='E65S62') {
-      if (createCreepAdvanced(spawn,'remoteHauler',createBody({move:16,carry:32}),{manual:'4'})) return true;
+      if (spawn.createCreepAdvanced(spawn,'remoteHauler',createBody({move:16,carry:32}),{manual:'4'})) return true;
     }
 
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '5').length<0 && spawn.room.name=='E68S62') {
-      if (createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E67S65',manual:'5'})) return true;
+      if (spawn.createCreepAdvanced(spawn,'claimer',createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E67S65',manual:'5'})) return true;
     }
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<0&& spawn.room.name=='E68S62') {
-      if (createCreepAdvanced(spawn,'remoteBuilder',createBody({move:8,carry:8,work:8}),{targetRoom:'E67S65',manual:'6'})) return true;
+      if (spawn.createCreepAdvanced(spawn,'remoteBuilder',createBody({move:8,carry:8,work:8}),{targetRoom:'E67S65',manual:'6'})) return true;
     }
 
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<0) { // HEALERS
-      if(createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attacl2',manual:'7'})) return true;
+      if(spawn.createCreepAdvanced(spawn,'attacker',createBody({tough:8,move:8,heal:8}),{flag:'attacl2',manual:'7'})) return true;
     }
 
 
@@ -326,28 +327,28 @@ if (!spawn.spawning) {
   } else if (containers.length>=1) {
       if(count.haulers < haulersNeeded) {
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
-        createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
+        spawn.createCreepAdvanced(spawn,'hauler',createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
       } else if(count.spawnHaulers < spawnHaulersNeeded) {
         var modulesOfEach = Math.min(4,Math.floor(energyNow/150));
-        createCreepAdvanced(spawn,'spawnHauler',createBody({move:modulesOfEach, carry:modulesOfEach*2}));
+        spawn.createCreepAdvanced(spawn,'spawnHauler',createBody({move:modulesOfEach, carry:modulesOfEach*2}));
       } else if(count.defenders < defendersNeeded) {
         var modulesOfEach = Math.max(2,Math.min(16,Math.floor(energyNow/400)));
-        createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
+        spawn.createCreepAdvanced(spawn,'defender',createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
       } else if(count.builders < buildersNeeded) {
         var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
-        createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
+        spawn.createCreepAdvanced(spawn,'builder',createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
       } else if(count.upgraders < upgradersNeeded) {
         if (links.length>2) {
           var moveModules = Math.min(4,Math.floor(energyAvav/500));
-          createCreepAdvanced(spawn,'upgrader',createBody({move:moveModules, carry:moveModules,work:moveModules*4}),{spawnerAction: "none"});
+          spawn.createCreepAdvanced(spawn,'upgrader',createBody({move:moveModules, carry:moveModules,work:moveModules*4}),{spawnerAction: "none"});
         } else {
 
           if (spawn.room.storage && spawn.room.storage.pos.getRangeTo(spawn.room.controller)<6) {
             var modulesOfEach = Math.min(8,Math.floor(energyAvav/300)); //Spawn compact
-            createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach*2}));
+            spawn.createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach*2}));
           } else {
             var modulesOfEach = Math.min(12,Math.floor(energyAvav/200));
-            createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
+            spawn.createCreepAdvanced(spawn,'upgrader',createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
           }
 
         }
