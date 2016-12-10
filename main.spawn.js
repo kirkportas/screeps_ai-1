@@ -66,11 +66,11 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
       //scout
       if (!(Game.time-scoutTo.lastScout>1500) || scoutTo[roomName].timeSinceLastScout==-1) {
         if (!scoutTo[roomName].lastScoutSent || ((Game.time-scoutTo[roomName].lastScoutSent)>500)) {
-          if (this.createCreepAdvanced(this,'scout',this.createBody({move:1}),{targetRoom:roomName})) {
+          /* if (this.createCreepAdvanced(this,'scout',this.createBody({move:1}),{targetRoom:roomName})) {
             console.log('sending a scout to ',roomName);
             scoutTo[roomName].lastScoutSent=Game.time;
             return true;
-          }
+          } */
         }
       }
 
