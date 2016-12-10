@@ -366,6 +366,7 @@ if (!spawn.spawning) {
   var expand=spawn.room.memory.expand;
   var energyNow = spawn.room.energyAvailable;
   var energyAvav = spawn.room.energyCapacityAvailable;
+  var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
   //console.log(energyNow,'-',energyAvav);
 
 
