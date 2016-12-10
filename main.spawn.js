@@ -323,7 +323,7 @@ StructureSpawn.prototype.spawnDefenders  = function(cur) {
   var defendersNeeded = 0;
   var suicideDefenders=false;
   var invaders=0;
-  var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
+  var hostiles = this.room.find(FIND_HOSTILE_CREEPS);
   var hostilesBodyparts=0;
   _.forEach(hostiles, function(creep){
     hostilesBodyparts+=creep.body.length
