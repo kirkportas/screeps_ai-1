@@ -48,7 +48,7 @@ Creep.prototype.runRemoteHauler = function(creep) {
     if (centralStorage) {
       for(var resourceType in creep.carry) {
           if (creep.transfer(centralStorage, resourceType) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(centralStorage);
+            creep.moveToOpt(centralStorage);
           }
         }
     }
