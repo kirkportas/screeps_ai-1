@@ -141,7 +141,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
     }
     //ATTACK (defend)
     if (scoutFrom.danger==1&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
-      if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>20)) {
+      if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
         var size = Math.min(15,Math.floor(((energyAvav/180)+300)*0.80));
         if (this.createCreepAdvanced(this,'attacker',this.createBody({move:size,attack:size,rangedAttack:2}),{targetRoom:roomName,fleeAfter:true})) {
           console.log('sending a attacker to ',roomName);
