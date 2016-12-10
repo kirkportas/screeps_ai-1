@@ -10,6 +10,7 @@ Creep.prototype.runAttacker = function(creep) {
       if (targetHostile && creep.pos.getRangeTo(targetHostile)<10) {
         if(creep.attack(targetHostile) == ERR_NOT_IN_RANGE) {
           creep.moveTo(targetHostile)
+          if (creep.getActiveBodyparts(RANGED_ATTACK)) creep.rangedAttack(targetHostile);
         }
       } else { //
         if ((spawnRoom&&spawn)||(!spawnRoom&&controller)) {
