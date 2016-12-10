@@ -23,6 +23,7 @@ var roomLinks = {
     });
     if (linkCentral&&linkUpgrader) {
       if (linkCentral.energy>=200&&linkUpgrader.energy<100) {
+        room.memory.linkUpgrade=true;
         linkCentral.transferEnergy(linkUpgrader);
       }
 
