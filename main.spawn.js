@@ -13,7 +13,6 @@ StructureSpawn.prototype.findNextName = function(type) {
     return finaleName;
 }
 StructureSpawn.prototype.spawnExtracter = function() {
-  //cleanup dedicated miners && watch
   var extractor = this.room.find(FIND_STRUCTURES,(structure)=>structure.structureType==STRUCTURE_EXTRACTOR)[0];
   if (extractor&&this.room.terminal) {
     var mineral = this.room.find(FIND_MINERALS)[0];
@@ -25,9 +24,102 @@ StructureSpawn.prototype.spawnExtracter = function() {
       }
 
   }
-
   return false;
+}
 
+StructureSpawn.prototype.spawnRemoteHarvesters = function() {
+  var scoutTo=this.room.memory.scout;
+  for (var roomName in scoutTo) {
+    if (this.room.memory.expand<scoutTo[roomName].dist) continue;
+      //scout
+      if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
+        if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
+          if (createCreepAdvanced(this,'scout',createBody({move:1}),{targetRoom:roomName})) {
+            console.log('sending a scout to ',roomName);
+            scoutTo[roomName].lastScoutSent=Game.time;
+            return true;
+          }
+        }
+      }
+
+      if (!Memory.rooms[roomName]) continue;
+      if (!Memory.rooms[roomName].scoutFromOther) continue;
+      //if (Memory.rooms[roomName].scoutFromOther.closestRoom!=this.room.name) {console.log('not best room '+this.room.name+' to '+roomName);continue; }
+      var scoutFrom=Memory.rooms[roomName].scoutFromOther;
+      if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
+
+      if (scoutFrom.danger==0&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
+      var sources = scoutFrom.from[this.room.name].sources;
+        // CLAIMERS
+        var reservation = scoutFrom.reservation;
+        if (reservation<2000 && reservation>=0) {
+          if (Object.keys(sources).length>=2) {  // do I WANT to claim this room?
+            let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
+            let size= Math.min(3,Math.floor(energyAvav/650));
+            let claimersNeeded= Math.max(1,Math.floor(2/size));
+            if (claimers<claimersNeeded) {
+              createCreepAdvanced(this,'claimer',createBody({move:size,claim:size}),{targetRoom:roomName});
+              return true;
+            }
+          }
+        }
+
+        //builders
+        /*
+        var constructionSites = scoutFrom.myConstructionSites;
+        var damagedBuildings = scoutFrom.myDamagedStructures;
+        let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
+        let remoteNeeded= Math.min(1,Math.ceil((constructionSites+damagedBuildings)/25));
+        var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
+        if (remoteBuilders<remoteNeeded) {
+          createCreepAdvanced(spawn,'remoteBuilder',createBody({move:size,carry:size,work:size}),{targetRoom:roomName});
+          return true;
+        }
+        */
+
+        // REMOTE HARVESTERS AND HAULERS
+        for (var sourceId in sources) {
+          if (!sources[sourceId].pathLen) continue;
+          //console.log(scoutFrom.sources[sourceId].pos.x)
+          //var sourceGlobal=scoutFrom.sources[sourceId];
+          //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
+          var pathLen=sources[sourceId].pathLen;
+          let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
+          //let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
+
+          var obtainable = 5;
+          if (scoutFrom.reservation>1000) {obtainable=10}
+
+          var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
+          var maxSize = Math.floor((this.room.energyCapacityAvailable/100)+100);
+          var size=Math.min(optimalSize,maxSize,32);
+
+          if (harvestersRemote<1) {
+            createCreepAdvanced(this,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:scoutFrom.sources[sourceId].pos, spawnerAction: "none"});
+            return true;
+          }
+          if (sources[sourceId].container) {
+            let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
+            if (haulersRemote<1) {
+              createCreepAdvanced(this,'remoteHauler',createBody({move:Math.ceil((size+1)/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, pathLen:pathLen,spawnerAction: "none"});
+              return true;
+            }
+          }
+      }
+    }
+    //SCOUT & ATTACK
+    if (scoutFrom.danger==1&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
+      if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
+        var size = Math.min(15,Math.floor((energyAvav/180)*0.80));
+        if (createCreepAdvanced(this,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
+          console.log('sending a attacker to ',roomName);
+          scoutFrom.lastAttackerSent=Game.time;
+          return true;
+        }
+      }
+    }
+}
+return false;
 }
 
 StructureSpawn.prototype.work  = function(spawn) {
@@ -94,101 +186,6 @@ StructureSpawn.prototype.work  = function(spawn) {
       return false;
     }
 
-
-    var spawnRemoteHarvesters = function(spawn) {
-      var scoutTo=spawn.room.memory.scout;
-      for (var roomName in scoutTo) {
-        if (spawn.room.memory.expand<scoutTo[roomName].dist) continue;
-          //scout
-          if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
-            if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
-              if (createCreepAdvanced(spawn,'scout',createBody({move:1}),{targetRoom:roomName})) {
-                console.log('sending a scout to ',roomName);
-                scoutTo[roomName].lastScoutSent=Game.time;
-                return true;
-              }
-            }
-          }
-
-          if (!Memory.rooms[roomName]) continue;
-          if (!Memory.rooms[roomName].scoutFromOther) continue;
-          //if (Memory.rooms[roomName].scoutFromOther.closestRoom!=spawn.room.name) {console.log('not best room '+spawn.room.name+' to '+roomName);continue; }
-          var scoutFrom=Memory.rooms[roomName].scoutFromOther;
-          if (!scoutFrom||((Game.rooms[roomName]) && Game.rooms[roomName].find(FIND_MY_SPAWNS)[0])) continue; //Dont send to own room
-
-          if (scoutFrom.danger==0&&Memory.rooms[roomName].scoutFromOther.closestRoom==spawn.room.name) {
-          var sources = scoutFrom.from[spawn.room.name].sources;
-            // CLAIMERS
-            var reservation = scoutFrom.reservation;
-            if (reservation<2000 && reservation>=0) {
-              if (Object.keys(sources).length>=2) {  // do I WANT to claim this room?
-                let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
-                let size= Math.min(3,Math.floor(energyAvav/650));
-                let claimersNeeded= Math.max(1,Math.floor(2/size));
-                if (claimers<claimersNeeded) {
-                  createCreepAdvanced(spawn,'claimer',createBody({move:size,claim:size}),{targetRoom:roomName});
-                  return true;
-                }
-              }
-            }
-
-            //builders
-            /*
-            var constructionSites = scoutFrom.myConstructionSites;
-            var damagedBuildings = scoutFrom.myDamagedStructures;
-            let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-            let remoteNeeded= Math.min(1,Math.ceil((constructionSites+damagedBuildings)/25));
-            var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
-            if (remoteBuilders<remoteNeeded) {
-              createCreepAdvanced(spawn,'remoteBuilder',createBody({move:size,carry:size,work:size}),{targetRoom:roomName});
-              return true;
-            }
-            */
-
-            // REMOTE HARVESTERS AND HAULERS
-            for (var sourceId in sources) {
-              if (!sources[sourceId].pathLen) continue;
-              //console.log(scoutFrom.sources[sourceId].pos.x)
-              //var sourceGlobal=scoutFrom.sources[sourceId];
-              //let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
-              var pathLen=sources[sourceId].pathLen;
-              let harvestersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHarvester' && creep.memory.pref == sourceId && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
-              //let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
-
-              var obtainable = 5;
-              if (scoutFrom.reservation>1000) {obtainable=10}
-
-              var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
-              var maxSize = Math.floor((spawn.room.energyCapacityAvailable/100)+100);
-              var size=Math.min(optimalSize,maxSize,32);
-
-              if (harvestersRemote<1) {
-                createCreepAdvanced(spawn,'remoteHarvester',createBody({move:3,carry:2,work:6}),{targetRoom:roomName, pref: sourceId, prefPos:scoutFrom.sources[sourceId].pos, spawnerAction: "none"});
-                return true;
-              }
-              if (sources[sourceId].container) {
-                let haulersRemote = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteHauler' && creep.memory.pref == sources[sourceId].container.id && (creep.ticksToLive>pathLen+10 || creep.spawning)).length;
-                if (haulersRemote<1) {
-                  createCreepAdvanced(spawn,'remoteHauler',createBody({move:Math.ceil((size+1)/2),carry:size,work:1}),{targetRoom:roomName, pref: sources[sourceId].container.id, prefPos:sources[sourceId].container.pos, pathLen:pathLen,spawnerAction: "none"});
-                  return true;
-                }
-              }
-          }
-        }
-        //SCOUT & ATTACK
-        if (scoutFrom.danger==1&&Memory.rooms[roomName].scoutFromOther.closestRoom==spawn.room.name) {
-          if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
-            var size = Math.min(15,Math.floor((energyAvav/180)*0.80));
-            if (createCreepAdvanced(spawn,'attacker',createBody({move:size,attack:size}),{targetRoom:roomName,fleeAfter:true})) {
-              console.log('sending a attacker to ',roomName);
-              scoutFrom.lastAttackerSent=Game.time;
-              return true;
-            }
-          }
-        }
-    }
-    return false;
-  }
 
   var spawnArmy = function(spawn) {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) { // HEALERS
@@ -354,7 +351,7 @@ if (!spawn.spawning) {
 
         }
       } else if (expand>0 && spawnArmy(spawn)) {
-      } else if (expand>0 && spawnRemoteHarvesters(spawn)) {
+      } else if (expand>0 && this.spawnRemoteHarvesters()) {
       }
 
     }
