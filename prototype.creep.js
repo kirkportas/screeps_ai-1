@@ -29,12 +29,12 @@ Creep.prototype.moveToOpt = function(target) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
 
-      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return creep.getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,costCallback: function(roomName) {return creep.getCallback(roomName)}});
     }
 
   } else {
       this.memory.stuckTime=0;
-      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return creep.getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,costCallback: function(roomName) {return creep.getCallback(roomName)}});
   }
   this.memory.oldPos=curPos;
 }
