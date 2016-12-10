@@ -308,7 +308,7 @@ StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
 
   if(cur1 < haulersNeeded) {
     var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
-    spawn.createCreepAdvanced(spawn,'hauler',spawn.createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
+    this.createCreepAdvanced(this,'hauler',this.createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
     return true;
   } else if(cur2 < spawnHaulersNeeded) {
     var modulesOfEach = Math.min(4,Math.floor(energyNow/150));
