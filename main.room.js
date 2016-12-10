@@ -119,7 +119,7 @@ Room.prototype.work = function(room) {
         room.memory.wallHitsmin=100000;
         room.memory.bufferenergy=100000;
         room.memory.roomdesign=1;
-        room.memory.expand=1;
+        room.memory.expand=2;
       } else if (room.name=='E65S61') {
         room.memory.wallHitsMax=200000;
         room.memory.wallHitsmin=100000;
