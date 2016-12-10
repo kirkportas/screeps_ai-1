@@ -67,7 +67,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
         var centralStorage=creep.room.storage;
         if (centralStorage) {
           if (!linkUpgrade) {
-            var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>=400) }});
+            var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>=200) }});
             target = target.concat(centralLink);
           }
           target = target.concat(centralStorage);
