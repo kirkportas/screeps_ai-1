@@ -2,6 +2,19 @@ var tasks = require('tasks');
 var prototypeCreep = require('prototype.creep');
 
 Creep.prototype.runRemoteHauler = function(creep) {
+
+  var repairRoads = function() {
+    //var found = creep.room.lookForAtArea(LOOK_STRUCTURES,Math.max(0,creep.pos.y-2),Math.max(0,creep.pos.x-2),Math.min(49,creep.pos.y+2),Math.min(49,creep.pos.x+2));
+    var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
+    var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})
+    //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
+    if (foundStruc.length) {
+      creep.repair(foundStruc[0]);
+    } else if (foundConst.length) {
+      creep.build(foundConst[0]);
+    }
+  }
+
   var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
   if (creep.hits<creep.hitsMax || hostiles.lenght) {
       creep.memory.fleeTime=30;
@@ -28,15 +41,7 @@ Creep.prototype.runRemoteHauler = function(creep) {
 
     } else if (creep.carry.energy == creep.carryCapacity*0.6) {creep.memory.delivering = true;}  //Picked up alot - should return?
   } else {
-    //var found = creep.room.lookForAtArea(LOOK_STRUCTURES,Math.max(0,creep.pos.y-2),Math.max(0,creep.pos.x-2),Math.min(49,creep.pos.y+2),Math.min(49,creep.pos.x+2));
-    var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
-    var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})
-    //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
-    if (foundStruc.length) {
-      creep.repair(foundStruc[0]);
-    } else if (foundConst.length) {
-      creep.build(foundConst[0]);
-    }
+    repairRoads();
     var centralStorage=Game.rooms[creep.memory.homeRoom].storage;
     if (centralStorage) {
       for(var resourceType in creep.carry) {
