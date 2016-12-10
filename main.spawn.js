@@ -154,43 +154,37 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
 return false;
 }
 
-StructureSpawn.prototype.work  = function(spawn) {
+StructureSpawn.prototype.spawnHarvesters  = function(spawn) {
+  var sources = this.room.memory.allSources;
+  for (var i=0;i<sources.length;i++) {
+    var source=sources[i];
+    var sourceObj = Game.getObjectById(source.id);
 
+    var preferedSource = source.id;
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.role == 'harvester' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.pref == preferedSource);
 
-
-
-    var spawnHarvesters = function(spawn) {
-      //cleanup dedicated miners && watch
-      var sources = spawn.room.memory.allSources;
-      for (var i=0;i<sources.length;i++) {
-        var source=sources[i];
-        var sourceObj = Game.getObjectById(source.id);
-
-        var preferedSource = source.id;
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'harvester' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.pref == preferedSource);
-
-        if (energyAvav>=750 && (harvesters.length>0 || energyNow>=750)) {
-          if ((harvesters.length<1 &&  source.safe)) {
-            if (spawn.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
-              spawn.createCreepAdvanced(spawn,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
-            }
-            return true;;
-          }
-        } else {
-          //console.log('spawning simple')
-          if (harvesters.length<Math.min(3,source.slots) && source.safe) {
-            if (spawn.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
-              spawn.createCreepAdvanced(spawn,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
-            }
-            return true;
-          }
+    if (energyAvav>=750 && (harvesters.length>0 || energyNow>=750)) {
+      if ((harvesters.length<1 &&  source.safe)) {
+        if (this.canCreateCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE])== OK) {
+          this.createCreepAdvanced(this,'harvester',[WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,MOVE],{pref:preferedSource})
         }
-
+        return true;;
       }
-      return false;
+    } else {
+      //console.log('spawning simple')
+      if (harvesters.length<Math.min(3,source.slots) && source.safe) {
+        if (this.canCreateCreep([WORK,WORK,CARRY,MOVE])== OK) {
+          this.createCreepAdvanced(this,'harvester',[WORK,WORK,CARRY,MOVE],{pref:preferedSource})
+        }
+        return true;
+      }
     }
 
+  }
+  return false;
+}
 
+StructureSpawn.prototype.work  = function(spawn) {
   var spawnArmy = function(spawn) {
     if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) { // HEALERS
       if(spawn.createCreepAdvanced(spawn,'attacker',spawn.createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'1'})) return true;
@@ -324,7 +318,7 @@ if (!spawn.spawning) {
   }
 
   if (renewAndKill(spawn)) {
-  } else if (spawnHarvesters(spawn)) {
+  } else if (this.spawnHarvesters()) {
   } else if (this.spawnExtracter()) {
   } else if (containers.length>=1) {
       if(count.haulers < haulersNeeded) {
