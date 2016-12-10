@@ -156,6 +156,7 @@ return false;
 
 StructureSpawn.prototype.spawnHarvesters  = function() {
   var energyAvav = this.room.energyCapacityAvailable;
+  var energyNow = this.room.energyAvailable;
   var sources = this.room.memory.allSources;
   for (var i=0;i<sources.length;i++) {
     var source=sources[i];
@@ -224,14 +225,6 @@ StructureSpawn.prototype.spawnBuilders  = function(cur) {
   var constructionSites = this.room.find(FIND_CONSTRUCTION_SITES);
   constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
   var structures = this.room.find(FIND_STRUCTURES);
-  /* _.forEach(structures, function(struc){
-    if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
-      repairNeeded+= (struc.hitsMax*0.75-struc.hits)
-    }
-    if (struc.hitsMax!==undefined && struc.hits<this.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
-      repairNeeded+= (this.room.memory.wallHitsMax-struc.hits)
-    }
-  }); */
   var room2=this.room;
   _.forEach(structures, function(struc){
     if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
@@ -257,37 +250,48 @@ StructureSpawn.prototype.spawnBuilders  = function(cur) {
 
 }
 
-StructureSpawn.prototype.work  = function(spawn) {
-  var spawnArmy = function(spawn) {
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) { // HEALERS
-      if(spawn.createCreepAdvanced(spawn,'attacker',spawn.createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'1'})) return true;
-    }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
-      if (spawn.createCreepAdvanced(spawn,'attacker',spawn.createBody({move:1}),{flag:'attack',manual:'2'})) return true;
-    }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<0) { //MELLEE
-      if (spawn.createCreepAdvanced(spawn,'attacker',spawn.createBody({tough:0,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
-    }
-
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<0 && spawn.room.name=='E65S62') {
-      if (spawn.createCreepAdvanced(spawn,'remoteHauler',spawn.createBody({move:16,carry:32}),{manual:'4'})) return true;
-    }
-
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '5').length<0 && spawn.room.name=='E68S62') {
-      if (spawn.createCreepAdvanced(spawn,'claimer',spawn.createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E67S65',manual:'5'})) return true;
-    }
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<0&& spawn.room.name=='E68S62') {
-      if (spawn.createCreepAdvanced(spawn,'remoteBuilder',spawn.createBody({move:8,carry:8,work:8}),{targetRoom:'E67S65',manual:'6'})) return true;
-    }
-
-    if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<0) { // HEALERS
-      if(spawn.createCreepAdvanced(spawn,'attacker',spawn.createBody({tough:8,move:8,heal:8}),{flag:'attacl2',manual:'7'})) return true;
-    }
-
-
-
-    return false;
+StructureSpawn.prototype.spawnArmy  = function() {
+  var energyAvav = this.room.energyCapacityAvailable;
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '1').length<0) { // HEALERS
+    if(this.createCreepAdvanced(this,'attacker',this.createBody({tough:8,move:8,heal:8}),{flag:'attack',manual:'1'})) return true;
   }
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '2').length<0) {
+    if (this.createCreepAdvanced(this,'attacker',this.createBody({move:1}),{flag:'attack',manual:'2'})) return true;
+  }
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '3').length<0) { //MELLEE
+    if (this.createCreepAdvanced(this,'attacker',this.createBody({tough:0,move:16,attack:16}),{flag:'attack',manual:'3'})) return true;
+  }
+
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '4').length<0 && spawn.room.name=='E65S62') {
+    if (this.createCreepAdvanced(this,'remoteHauler',this.createBody({move:16,carry:32}),{manual:'4'})) return true;
+  }
+
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '5').length<0 && spawn.room.name=='E68S62') {
+    if (this.createCreepAdvanced(this,'claimer',this.createBody({move:1,claim:1}),{takeOver:true,targetRoom:'E67S65',manual:'5'})) return true;
+  }
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '6').length<0&& spawn.room.name=='E68S62') {
+    if (this.createCreepAdvanced(this,'remoteBuilder',this.createBody({move:8,carry:8,work:8}),{targetRoom:'E67S65',manual:'6'})) return true;
+  }
+
+  if (_.filter(Game.creeps, (creep)  => creep.memory.manual == '7').length<0) { // HEALERS
+    if(this.createCreepAdvanced(this,'attacker',this.createBody({tough:8,move:8,heal:8}),{flag:'attacl2',manual:'7'})) return true;
+  }
+  return false;
+}
+
+StructureSpawn.prototype.spawnHaulers  = function() {
+  var energyAvav = this.room.energyCapacityAvailable;
+
+
+}
+StructureSpawn.prototype.spawnDefenders  = function() {
+  var energyAvav = this.room.energyCapacityAvailable;
+
+
+}
+
+StructureSpawn.prototype.work  = function(spawn) {
+
 
 
   var renewAndKill = function(spawn) {
@@ -378,7 +382,7 @@ if (!spawn.spawning) {
         spawn.createCreepAdvanced(spawn,'defender',spawn.createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
       } else if(this.spawnBuilders(count.builders)) {
       } else if(this.spawnUpgraders(count.upgraders)) {
-      } else if (expand>0 && spawnArmy(spawn)) {
+      } else if (expand>0 && this.spawnArmy(spawn)) {
       } else if (expand>0 && this.spawnRemoteHarvesters()) {
       }
 
