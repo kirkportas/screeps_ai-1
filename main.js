@@ -29,14 +29,16 @@ module.exports.loop = function() {
     var cpu = Game.cpu;
     if (cpu.bucket>5000) { // Skip tick if bucket too low
       for(var iRoom in Game.rooms) {
-        var room = Game.rooms[iRoom]
-        var spawns = room.find(FIND_MY_SPAWNS);
-        if (spawns.length) {
-          room.work(room);
-          room.towerWork();
-          mainScout.run(room);
-          var spawnNum = (Game.time % spawns.length)
-          spawns[spawnNum].work(spawns[spawnNum]);
+        try {
+          var room = Game.rooms[iRoom]
+          var spawns = room.find(FIND_MY_SPAWNS);
+          if (spawns.length) {
+            room.work(room);
+            room.towerWork();
+            mainScout.run(room);
+            var spawnNum = (Game.time % spawns.length)
+            spawns[spawnNum].work(spawns[spawnNum]);
+          } catch(err) { Game.notify(err.stack+": "+err);console.log(err.stack+": "+err);}
         }
 
       }
