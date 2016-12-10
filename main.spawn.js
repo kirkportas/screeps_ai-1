@@ -223,14 +223,14 @@ StructureSpawn.prototype.spawnBuilders  = function(cur) {
   var constructionSites = this.room.find(FIND_CONSTRUCTION_SITES);
   constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
   var structures = this.room.find(FIND_STRUCTURES);
-  _.forEach(structures, function(struc){
+  /* _.forEach(structures, function(struc){
     if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
       repairNeeded+= (struc.hitsMax*0.75-struc.hits)
     }
     if (struc.hitsMax!==undefined && struc.hits<this.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
       repairNeeded+= (this.room.memory.wallHitsMax-struc.hits)
     }
-  });
+  }); */
 
   var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
   var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
