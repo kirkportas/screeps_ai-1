@@ -279,13 +279,64 @@ StructureSpawn.prototype.spawnArmy  = function() {
   return false;
 }
 
-StructureSpawn.prototype.spawnHaulers  = function() {
+StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
   var energyAvav = this.room.energyCapacityAvailable;
+  var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
+  var energyInContainers=0;
+  _.forEach(containers, function(struc){
+    energyInContainers+=struc.store[RESOURCE_ENERGY];
+  });
+
+  var haulersNeeded=2;
+  if (energyAvav<450) {
+    haulersNeeded=2;
+  } else if (energyAvav<600) {
+    haulersNeeded=2;
+  } else {
+    haulersNeeded=2;
+  }
+  if (energyInContainers>3000) haulersNeeded++;
+  if (links.length>2) haulersNeeded--;
+  if (links.length>3) haulersNeeded--;
+
+
+  var spawnHaulersNeeded=0;
+  if (links.length>=2 || expand>0) {
+    spawnHaulersNeeded=1;
+  }
+
+  if(cur1 < haulersNeeded) {
+    var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
+    spawn.createCreepAdvanced(spawn,'hauler',spawn.createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
+    return true;
+  } else if(cur2 < spawnHaulersNeeded) {
+    var modulesOfEach = Math.min(4,Math.floor(energyNow/150));
+    this.createCreepAdvanced(this,'spawnHauler',this.createBody({move:modulesOfEach, carry:modulesOfEach*2}));
+    return true;
+  } else return false;
 
 
 }
-StructureSpawn.prototype.spawnDefenders  = function() {
+StructureSpawn.prototype.spawnDefenders  = function(cur) {
   var energyAvav = this.room.energyCapacityAvailable;
+  var defendersNeeded = 0;
+  var suicideDefenders=false;
+  var invaders=0;
+  var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
+  var hostilesBodyparts=0;
+  _.forEach(hostiles, function(creep){
+    hostilesBodyparts+=creep.body.length
+    if (creep.owner.username=='Invader') invaders++;
+  })
+  if (invaders==hostiles.length) { //Blir kun angrepet av NPC
+    suicideDefenders=true;
+  }
+
+  if(cur < defendersNeeded) {
+      var modulesOfEach = Math.max(2,Math.min(16,Math.floor(energyNow/400)));
+      this.createCreepAdvanced(this,'defender',this.createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
+      return true;
+    } else return false;
 
 
 }
@@ -316,50 +367,6 @@ if (!spawn.spawning) {
   var energyAvav = spawn.room.energyCapacityAvailable;
   //console.log(energyNow,'-',energyAvav);
   var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
-  var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
-  //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
-
-  var energyInContainers=0;
-  _.forEach(containers, function(struc){
-    energyInContainers+=struc.store[RESOURCE_ENERGY];
-  });
-
-
-  var haulersNeeded=2;
-  if (energyAvav<450) {
-    haulersNeeded=2;
-  } else if (energyAvav<600) {
-    haulersNeeded=2;
-  } else {
-    haulersNeeded=2;
-  }
-  if (energyInContainers>3000) haulersNeeded++;
-  if (links.length>2) haulersNeeded--;
-  if (links.length>3) haulersNeeded--;
-
-
-  var spawnHaulersNeeded=0;
-  if (links.length>=2 || expand>0) {
-    spawnHaulersNeeded=1;
-  }
-
-  //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
-
-  //console.log('builders needed',buildersNeeded)
-  //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
-
-  var defendersNeeded = 0;
-  var suicideDefenders=false;
-  var invaders=0;
-  var hostiles = spawn.room.find(FIND_HOSTILE_CREEPS);
-  var hostilesBodyparts=0;
-  _.forEach(hostiles, function(creep){
-    hostilesBodyparts+=creep.body.length
-    if (creep.owner.username=='Invader') invaders++;
-  })
-  if (invaders==hostiles.length) { //Blir kun angrepet av NPC
-    suicideDefenders=true;
-  }
 
   for(var name in Memory.creeps) {
       if(!Game.creeps[name]) {
@@ -371,16 +378,9 @@ if (!spawn.spawning) {
   } else if (this.spawnHarvesters()) {
   } else if (this.spawnExtracter()) {
   } else if (containers.length>=1) {
-      if(count.haulers < haulersNeeded) {
-        var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
-        spawn.createCreepAdvanced(spawn,'hauler',spawn.createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
-      } else if(count.spawnHaulers < spawnHaulersNeeded) {
-        var modulesOfEach = Math.min(4,Math.floor(energyNow/150));
-        spawn.createCreepAdvanced(spawn,'spawnHauler',spawn.createBody({move:modulesOfEach, carry:modulesOfEach*2}));
-      } else if(count.defenders < defendersNeeded) {
-        var modulesOfEach = Math.max(2,Math.min(16,Math.floor(energyNow/400)));
-        spawn.createCreepAdvanced(spawn,'defender',spawn.createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
-      } else if(this.spawnBuilders(count.builders)) {
+    if (this.spawnHaulers(count.haulers,count.spawnHaulers)) {
+    } else if (this.spawnDefenders(count.defenders)) {
+    } else if(this.spawnBuilders(count.builders)) {
       } else if(this.spawnUpgraders(count.upgraders)) {
       } else if (expand>0 && this.spawnArmy(spawn)) {
       } else if (expand>0 && this.spawnRemoteHarvesters()) {
