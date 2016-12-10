@@ -154,7 +154,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
 return false;
 }
 
-StructureSpawn.prototype.spawnHarvesters  = function(spawn) {
+StructureSpawn.prototype.spawnHarvesters  = function() {
   var energyAvav = this.room.energyCapacityAvailable;
   var sources = this.room.memory.allSources;
   for (var i=0;i<sources.length;i++) {
@@ -183,6 +183,68 @@ StructureSpawn.prototype.spawnHarvesters  = function(spawn) {
 
   }
   return false;
+}
+
+StructureSpawn.prototype.spawnUpgraders  = function(cur) {
+  var energyAvav = this.room.energyCapacityAvailable;
+  var centralContainer = tasks.getCentralStorage(this);
+  var upgradersNeeded = 0;
+  if (centralContainer) {
+    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
+    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
+    if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=3;
+    upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-this.room.memory.bufferenergy)/8000));
+  }
+  if (upgradersNeeded==0 && this.room.controller.ticksToDowngrade<2000) upgradersNeeded++;
+
+  if (cur<upgradersNeeded) {
+    if (links.length>2) {
+      var moveModules = Math.min(4,Math.floor(energyAvav/500));
+      this.createCreepAdvanced(this,'upgrader',this.createBody({move:moveModules, carry:moveModules,work:moveModules*4}),{spawnerAction: "none"});
+    } else {
+      if (this.room.storage && this.room.storage.pos.getRangeTo(this.room.controller)<6) {
+        var modulesOfEach = Math.min(8,Math.floor(energyAvav/300)); //Spawn compact
+        this.createCreepAdvanced(this,'upgrader',this.createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach*2}));
+      } else {
+        var modulesOfEach = Math.min(12,Math.floor(energyAvav/200));
+        this.createCreepAdvanced(this,'upgrader',this.createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
+      }
+    }
+    return true;
+  } else return false;
+
+
+}
+StructureSpawn.prototype.spawnBuilders  = function(cur) {
+  var energyAvav = this.room.energyCapacityAvailable;
+  var centralContainer = tasks.getCentralStorage(this);
+  var energyNeeded = 0;
+  var repairNeeded = 0;
+  var constructionSites = this.room.find(FIND_CONSTRUCTION_SITES);
+  constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
+  var structures = this.room.find(FIND_STRUCTURES);
+  _.forEach(structures, function(struc){
+    if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
+      repairNeeded+= (struc.hitsMax*0.75-struc.hits)
+    }
+    if (struc.hitsMax!==undefined && struc.hits<this.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
+      repairNeeded+= (this.room.memory.wallHitsMax-struc.hits)
+    }
+  });
+
+  var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
+  var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
+
+  if (centralContainer) {
+    if (centralContainer.store[RESOURCE_ENERGY]<this.room.memory.bufferenergy) buildersNeeded=Math.min(1,buildersNeeded);
+  }
+
+  if (cur<buildersNeeded) {
+    var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
+    this.createCreepAdvanced(this,'builder',this.createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
+    return true;
+  } else return false;
+
 }
 
 StructureSpawn.prototype.work  = function(spawn) {
@@ -242,20 +304,7 @@ if (!spawn.spawning) {
   var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
   var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
   //var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {  filter: (structure) => { return (structure.structureType == STRUCTURE_CONTAINER) }})[0];
-  var centralContainer = tasks.getCentralStorage(spawn);
-  var energyNeeded = 0;
-  var repairNeeded = 0;
-  var constructionSites = spawn.room.find(FIND_CONSTRUCTION_SITES);
-  constructionSites.forEach(site => energyNeeded+=(site.progressTotal-site.progress));
-  var structures = spawn.room.find(FIND_STRUCTURES);
-  _.forEach(structures, function(struc){
-    if (struc.hitsMax!==undefined && struc.hits<struc.hitsMax*0.5 && struc.structureType!=STRUCTURE_WALL && struc.structureType!=STRUCTURE_RAMPART) {
-      repairNeeded+= (struc.hitsMax*0.75-struc.hits)
-    }
-    if (struc.hitsMax!==undefined && struc.hits<spawn.room.memory.wallHitsmin && (struc.structureType==STRUCTURE_WALL || struc.structureType==STRUCTURE_RAMPART)) {
-      repairNeeded+= (spawn.room.memory.wallHitsMax-struc.hits)
-    }
-  });
+
   var energyInContainers=0;
   _.forEach(containers, function(struc){
     energyInContainers+=struc.store[RESOURCE_ENERGY];
@@ -283,19 +332,7 @@ if (!spawn.spawning) {
   var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
   var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
   //console.log(constructionSites.length,' sites need energy: ', energyNeeded,' by builders: ',buildersNeeded,'. Damage to repair: ',repairNeeded);
-  if (centralContainer) {
-    if (centralContainer.store[RESOURCE_ENERGY]<spawn.room.memory.bufferenergy) buildersNeeded=Math.min(1,buildersNeeded);
-  }
 
-
-  var upgradersNeeded = 0;
-  if (centralContainer) {
-    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
-    if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75) upgradersNeeded+=1;
-    if (centralContainer.store[RESOURCE_ENERGY]==centralContainer.storeCapacity) upgradersNeeded+=3;
-    upgradersNeeded+=Math.max(0,Math.floor((centralContainer.store[RESOURCE_ENERGY]-spawn.room.memory.bufferenergy)/8000));
-  }
-  if (upgradersNeeded==0 && spawn.room.controller.ticksToDowngrade<2000) upgradersNeeded++;
   //console.log('builders needed',buildersNeeded)
   //  || ((centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.75 || centralContainer.store[RESOURCE_ENERGY]>20000) && upgraders<4
 
@@ -331,24 +368,8 @@ if (!spawn.spawning) {
       } else if(count.defenders < defendersNeeded) {
         var modulesOfEach = Math.max(2,Math.min(16,Math.floor(energyNow/400)));
         spawn.createCreepAdvanced(spawn,'defender',spawn.createBody({move:modulesOfEach,rangedAttack:modulesOfEach},{suicideAfter:suicideDefenders}));
-      } else if(count.builders < buildersNeeded) {
-        var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
-        spawn.createCreepAdvanced(spawn,'builder',spawn.createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
-      } else if(count.upgraders < upgradersNeeded) {
-        if (links.length>2) {
-          var moveModules = Math.min(4,Math.floor(energyAvav/500));
-          spawn.createCreepAdvanced(spawn,'upgrader',spawn.createBody({move:moveModules, carry:moveModules,work:moveModules*4}),{spawnerAction: "none"});
-        } else {
-
-          if (spawn.room.storage && spawn.room.storage.pos.getRangeTo(spawn.room.controller)<6) {
-            var modulesOfEach = Math.min(8,Math.floor(energyAvav/300)); //Spawn compact
-            spawn.createCreepAdvanced(spawn,'upgrader',spawn.createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach*2}));
-          } else {
-            var modulesOfEach = Math.min(12,Math.floor(energyAvav/200));
-            spawn.createCreepAdvanced(spawn,'upgrader',spawn.createBody({move:modulesOfEach,carry:modulesOfEach,work:modulesOfEach}));
-          }
-
-        }
+      } else if(this.spawnBuilders(count.builders)) {
+      } else if(this.spawnUpgraders(count.upgraders)) {
       } else if (expand>0 && spawnArmy(spawn)) {
       } else if (expand>0 && this.spawnRemoteHarvesters()) {
       }
