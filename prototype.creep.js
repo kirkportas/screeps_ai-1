@@ -28,13 +28,13 @@ Creep.prototype.moveToOpt = function(target) {
     if (this.memory.stuckTime>=2) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
-
-      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,costCallback: function(roomName) {return getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:false,reusePath:5});
+      //this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,costCallback: function(roomName) {return getCallback(roomName)}});
     }
 
   } else {
       this.memory.stuckTime=0;
-      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,costCallback: function(roomName) {return getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:true,reusePath:200});
   }
   this.memory.oldPos=curPos;
 }
