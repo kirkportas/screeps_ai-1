@@ -302,7 +302,7 @@ StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
 
 
   var spawnHaulersNeeded=0;
-  if (links.length>=2 || spawn.room.memory.expand>0) {
+  if (links.length>=2 || this.room.memory.expand>0) {
     spawnHaulersNeeded=1;
   }
 
