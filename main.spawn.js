@@ -155,6 +155,7 @@ return false;
 }
 
 StructureSpawn.prototype.spawnHarvesters  = function(spawn) {
+  var energyAvav = this.room.energyCapacityAvailable;
   var sources = this.room.memory.allSources;
   for (var i=0;i<sources.length;i++) {
     var source=sources[i];
