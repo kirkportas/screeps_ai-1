@@ -1,7 +1,6 @@
 var prototypeRoom = require('prototype.room');
 
 Creep.prototype.getCallback = function(target) {
-  console.log('callback')
     let room = Game.rooms[roomName];
     if (!room||room.isSourceKeeperRoom()) return;
     let costs = new PathFinder.CostMatrix;
