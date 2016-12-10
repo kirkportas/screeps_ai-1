@@ -6,7 +6,7 @@ Creep.prototype.runScout = function(creep) {
       var exit = creep.pos.findClosestByRange(exitDir);
       creep.moveTo(exit,{maxRooms:1});
     } else {
-      creep.suicide();
+      
       if (creep.moveTo(Game.rooms[creep.memory.targetRoom].controller) == ERR_NO_PATH) {
         var target = creep.pos.findClosestByRange(FIND_STRUCTURES);
         creep.moveToOpt(target);
