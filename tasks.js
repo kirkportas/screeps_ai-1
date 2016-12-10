@@ -40,7 +40,7 @@ var tasks = {
           var hostiles=creep.room.find(FIND_HOSTILE_CREEPS);
           var npcInvadersWeak=0;
           var dangerousHostiles=0;
-          var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES);
+          var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES,{filter:(structure)=>{return structure.structureType!=STRUCTURE_STORAGE}});
           _.forEach(hostiles, function(creep){
             if (creep.owner.username=='Invader' && creep.body.length<=16) {npcInvadersWeak++;} else {
               if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) dangerousHostiles++;
