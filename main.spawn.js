@@ -12,6 +12,23 @@ StructureSpawn.prototype.findNextName = function(type) {
     }
     return finaleName;
 }
+StructureSpawn.prototype.spawnExtracter = function() {
+  //cleanup dedicated miners && watch
+  var extractor = this.room.find(FIND_STRUCTURES,(structure)=>structure.structureType==STRUCTURE_EXTRACTOR)[0];
+  if (extractor&&this.room.terminal) {
+    var mineral = this.room.find(FIND_MINERALS)[0];
+    var mineralsInTerm=this.room.terminal.store[mineral.mineralType];
+      var extracters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.role == 'extracter' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.extractor==extractor.id&&creep.memory.mineral==mineral.id);
+      if (extracters<1&&(!mineralsInTerm||mineralsInTerm<25000)&&mineral.mineralAmount>5000) {
+        createCreepAdvanced(this,'extracter',createBody({work:8,carry:4,move:4}),{extractor:extractor.id,mineral:mineral.id});
+        return true;
+      }
+
+  }
+
+  return false;
+
+}
 
 StructureSpawn.prototype.work  = function(spawn) {
 
@@ -44,22 +61,6 @@ StructureSpawn.prototype.work  = function(spawn) {
       } else {
         console.log('error ',res,' at ',spawn.name)
       }
-      return false;
-    }
-    var spawnExtracter = function(spawn) {
-      //cleanup dedicated miners && watch
-      var extractor = spawn.room.find(FIND_STRUCTURES,(structure)=>structure.structureType==STRUCTURE_EXTRACTOR)[0];
-      if (extractor&&spawn.room.terminal) {
-        var mineral = spawn.room.find(FIND_MINERALS)[0];
-        var mineralsInTerm=spawn.room.terminal.store[mineral.mineralType];
-          var extracters = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.role == 'extracter' && (creep.ticksToLive>100 || creep.spawning) &&creep.memory.extractor==extractor.id&&creep.memory.mineral==mineral.id);
-          if (extracters<1&&(!mineralsInTerm||mineralsInTerm<25000)&&mineral.mineralAmount>5000) {
-            createCreepAdvanced(spawn,'extracter',createBody({work:8,carry:4,move:4}),{extractor:extractor.id,mineral:mineral.id});
-            return true;
-          }
-
-      }
-
       return false;
     }
     var spawnHarvesters = function(spawn) {
@@ -323,7 +324,7 @@ if (!spawn.spawning) {
 
   if (renewAndKill(spawn)) {
   } else if (spawnHarvesters(spawn)) {
-  } else if (spawnExtracter(spawn)) {
+  } else if (this.spawnExtracter()) {
   } else if (containers.length>=1) {
       if(count.haulers < haulersNeeded) {
         var modulesOfEach = Math.min(8,Math.floor(energyAvav/100));
