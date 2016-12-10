@@ -66,13 +66,10 @@ Creep.prototype.runSpawnhauler = function(creep) {
         var spawn = creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => { return (structure.structureType == STRUCTURE_SPAWN)}})[0];
         var centralStorage=creep.room.storage;
         if (centralStorage) {
-          if (linkUpgrade) {
-            var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>=900) }});
+          if (!linkUpgrade) {
+            var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>=4000) }});
             target = target.concat(centralLink);
-          } else {
-            var centralLink=centralStorage.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_LINK && structure.energy>=100) }});
-            target = target.concat(centralLink);
-          }
+          } 
           target = target.concat(centralStorage);
         }
         var centralContainer=spawn.pos.findInRange(FIND_STRUCTURES,5, {filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER) }});
