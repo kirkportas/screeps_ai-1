@@ -4,6 +4,9 @@ Creep.prototype.runScout = function(creep) {
     if(creep.room.name != creep.memory.targetRoom) {
       if (creep.memory.targetExit) {
         creep.moveToOpt(Game.getObjectById(creep.memory.targetExit));
+        if (creep.pos.isNearTo(Game.getObjectById(creep.memory.targetExit).pos)) {
+          creep.memory.targetExit=null;
+        }
       } else {
         var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
         creep.memory.targetExit = creep.pos.findClosestByRange(exitDir);
