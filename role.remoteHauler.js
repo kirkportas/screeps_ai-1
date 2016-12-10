@@ -10,10 +10,10 @@ Creep.prototype.runRemoteHauler = function(creep) {
     //var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
     //var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})
     //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
-    if (foundStruc.length) {
-      creep.repair(foundStruc[0]);
-    } else if (foundConst.length) {
-      creep.build(foundConst[0]);
+    if (foundStruc) {
+      creep.repair(foundStruc);
+    } else if (foundConst) {
+      creep.build(foundConst);
     }
   }
 
