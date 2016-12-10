@@ -28,6 +28,7 @@ StructureSpawn.prototype.spawnExtracter = function() {
 }
 
 StructureSpawn.prototype.spawnRemoteHarvesters = function() {
+  var energyAvav = this.room.energyCapacityAvailable;
   var scoutTo=this.room.memory.scout;
   for (var roomName in scoutTo) {
     if (this.room.memory.expand<scoutTo[roomName].dist) continue;
