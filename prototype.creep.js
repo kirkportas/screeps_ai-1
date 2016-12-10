@@ -20,6 +20,7 @@ Creep.prototype.getCallback = function(target) {
 
 Creep.prototype.moveToOpt = function(target) {
   if (this.fatigue>0) return;
+  var creep=this;
   var curPos=this.pos;
   var oldPos=this.memory.oldPos;
   if (oldPos!=undefined&&curPos.x==oldPos.x&&curPos.y==oldPos.y) {
@@ -27,12 +28,13 @@ Creep.prototype.moveToOpt = function(target) {
     if (this.memory.stuckTime>=2) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
-      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return this.getCallback(roomName)}});
+
+      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return creep.getCallback(roomName)}});
     }
 
   } else {
       this.memory.stuckTime=0;
-      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return this.getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return creep.getCallback(roomName)}});
   }
   this.memory.oldPos=curPos;
 }
