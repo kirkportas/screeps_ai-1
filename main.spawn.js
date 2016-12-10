@@ -188,7 +188,7 @@ StructureSpawn.prototype.spawnHarvesters  = function() {
 StructureSpawn.prototype.spawnUpgraders  = function(cur) {
   var energyAvav = this.room.energyCapacityAvailable;
   var centralContainer = tasks.getCentralStorage(this);
-  var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
+  var links = this.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
   var upgradersNeeded = 0;
   if (centralContainer) {
     if (centralContainer.store[RESOURCE_ENERGY]>centralContainer.storeCapacity*0.50) upgradersNeeded+=1;
