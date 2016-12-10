@@ -68,6 +68,7 @@ var tasks = {
             }
           }
           scout.lastScout=Game.time;
+          //Memory.rooms[creep.memory.homeRoom].scout[creep.memory.targetRoom].timeSinceLastScout=0;
         }
 
         if (!lastFullScout||(Game.time-lastFullScout)>300) {
