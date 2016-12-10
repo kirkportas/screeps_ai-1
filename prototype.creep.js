@@ -32,7 +32,7 @@ Creep.prototype.moveToOpt = function(target) {
 
   } else {
       this.memory.stuckTime=0;
-      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return getCallback(roomName)}});
   }
   this.memory.oldPos=curPos;
 }
