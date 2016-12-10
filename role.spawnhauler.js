@@ -51,6 +51,9 @@ Creep.prototype.runSpawnhauler = function(creep) {
                 creep.moveTo(target);
             }
           }
+          if (result==0) {
+            creep.memory.deliverId=null;
+          }
         } else {
           console.log('spawnHauler lost target');
           creep.memory.deliverId=null;
