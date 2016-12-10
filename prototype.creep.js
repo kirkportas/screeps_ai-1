@@ -1,5 +1,5 @@
 Creep.prototype.moveToOpt = function(target) {
-  global getCallback: function(roomName) {
+  var getCallback= function(roomName) {
       console.log('callback')
         let room = Game.rooms[roomName];
         if (!room||room.isSourceKeeperRoom()) return;
@@ -28,12 +28,12 @@ Creep.prototype.moveToOpt = function(target) {
     if (this.memory.stuckTime>=2) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
-      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return getCallback2(roomName)}});
     }
 
   } else {
       this.memory.stuckTime=0;
-      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:true,reusePath:200,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return getCallback2(roomName)}});
   }
   this.memory.oldPos=curPos;
 }
