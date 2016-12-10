@@ -38,8 +38,8 @@ module.exports.loop = function() {
             mainScout.run(room);
             var spawnNum = (Game.time % spawns.length)
             spawns[spawnNum].work(spawns[spawnNum]);
-          } catch(err) { Game.notify(err.stack+": "+err);console.log(err.stack+": "+err);}
-        }
+          }
+        } catch(err) { Game.notify(err.stack+": "+err);console.log(err.stack+": "+err);}
 
       }
         for(var name in Game.creeps) {
