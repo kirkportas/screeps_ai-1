@@ -1,5 +1,5 @@
 Creep.prototype.moveToOpt = function(target) {
-  var getCallback= function(roomName) {
+  global getCallback: function(roomName) {
       console.log('callback')
         let room = Game.rooms[roomName];
         if (!room||room.isSourceKeeperRoom()) return;
