@@ -282,6 +282,7 @@ StructureSpawn.prototype.spawnArmy  = function() {
 StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
   var energyAvav = this.room.energyCapacityAvailable;
   var links = this.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
+  var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
   var energyInContainers=0;
   _.forEach(containers, function(struc){
     energyInContainers+=struc.store[RESOURCE_ENERGY];
@@ -366,7 +367,7 @@ if (!spawn.spawning) {
   var energyNow = spawn.room.energyAvailable;
   var energyAvav = spawn.room.energyCapacityAvailable;
   //console.log(energyNow,'-',energyAvav);
-  var containers = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
+
 
   for(var name in Memory.creeps) {
       if(!Game.creeps[name]) {
