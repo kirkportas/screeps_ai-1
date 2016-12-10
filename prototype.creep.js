@@ -1,3 +1,5 @@
+var prototypeRoom = require('prototype.room');
+
 Creep.prototype.getCallback = function(target) {
   console.log('callback')
     let room = Game.rooms[roomName];
