@@ -39,14 +39,15 @@ Creep.prototype.runSpawnhauler = function(creep) {
       var deliverToTarget=function(creep) {
         var target=Game.getObjectById(creep.memory.deliverId);
         if (target) {
+          var result;
           if (target.structureType==STRUCTURE_STORAGE) {
             for(var resourceType in creep.carry) {
-              if(creep.transfer(target, resourceType)== ERR_NOT_IN_RANGE) {
+              if(result=creep.transfer(target, resourceType)== ERR_NOT_IN_RANGE) {
                   creep.moveTo(target);
               }
             }
           } else {
-            if(creep.transfer(target, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
+            if(result=creep.transfer(target, RESOURCE_ENERGY)== ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
           }
