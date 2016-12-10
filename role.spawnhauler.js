@@ -51,7 +51,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
                 creep.moveTo(target);
             }
           }
-          if (result==0) {
+          if (result==0||result==ERR_FULL) {
             creep.memory.deliverId=null;
           }
         } else {
