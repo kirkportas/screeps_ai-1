@@ -9,7 +9,7 @@ Creep.prototype.runScout = function(creep) {
         }
       } else {
         var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
-        creep.memory.targetExit = creep.pos.findClosestByRange(exitDir);
+        creep.memory.targetExit = creep.pos.findClosestByRange(exitDir).id;
         creep.moveToOpt(Game.getObjectById(creep.memory.targetExit));
       }
     } else {
