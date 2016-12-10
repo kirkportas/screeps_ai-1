@@ -3,8 +3,10 @@ var prototypeCreep = require('prototype.creep');
 Creep.prototype.runScout = function(creep) {
     if(creep.room.name != creep.memory.targetRoom) {
       if (creep.memory.targetExit) {
-        creep.moveToOpt(Game.getObjectById(creep.memory.targetExit));
-        if (creep.pos.isNearTo(Game.getObjectById(creep.memory.targetExit).pos)) {
+        var object=Game.getObjectById(creep.memory.targetExit);
+        if (object==null) {creep.memory.targetExit=null; return;}
+        creep.moveToOpt(object);
+        if (creep.pos.isNearTo(object.pos)) {
           creep.memory.targetExit=null;
         }
       } else {
