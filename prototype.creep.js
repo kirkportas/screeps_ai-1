@@ -1,15 +1,18 @@
 Creep.prototype.moveToOpt = function(target) {
   var getCallback= function(roomName) {
         let room = Game.rooms[roomName];
-        if (!room) return;
+        if (!room||room.isSourceKeeperRoom()) return;
         let costs = new PathFinder.CostMatrix;
 
         room.find(FIND_STRUCTURES).forEach(function(structure) {
-          if (structure.structureType == STRUCTURE_WALL) {
-            costs.set(structure.pos.x, structure.pos.y, 255);
-          }
-          if (structure.structureType == STRUCTURE_RAMPART) {
+          if (structure.structureType === STRUCTURE_ROAD) {
+            // Favor roads over plain tiles
             costs.set(structure.pos.x, structure.pos.y, 1);
+          } else if (structure.structureType !== STRUCTURE_CONTAINER &&
+                     (structure.structureType !== STRUCTURE_RAMPART ||
+                      !structure.my)) {
+            // Can't walk through non-walkable buildings
+            costs.set(structure.pos.x, structure.pos.y, 0xff);
           }
         });
         return costs;
