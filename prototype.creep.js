@@ -27,7 +27,7 @@ Creep.prototype.moveToOpt = function(target) {
     if (this.memory.stuckTime>=2) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
-      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}});
+      this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,roomCallback: function(roomName) {return getCallback(roomName)}});
     }
 
   } else {
