@@ -31,7 +31,7 @@ Creep.prototype.runSpawnhauler = function(creep) {
               }
             }
           }
-          deliverToTarget();
+          deliverToTarget(creep);
 
         }
         //if (creep.room.terminal&&creep.room.terminal.store[RESOURCE_ENERGY]<3000) target.push(creep.room.terminal);
