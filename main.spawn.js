@@ -65,7 +65,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
     if (this.room.memory.expand<scoutTo[roomName].dist) continue;
       //scout
       if (!scoutTo[roomName].timeSinceLastScout>1500 || scoutTo[roomName].timeSinceLastScout==-1) {
-        if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>500)) {
+        if (!scoutTo[roomName].lastScoutSent || ((Game.times-scoutTo[roomName].lastScoutSent)>10)) {
           if (this.createCreepAdvanced(this,'scout',this.createBody({move:1}),{targetRoom:roomName})) {
             console.log('sending a scout to ',roomName);
             scoutTo[roomName].lastScoutSent=Game.time;
