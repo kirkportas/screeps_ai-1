@@ -281,7 +281,7 @@ StructureSpawn.prototype.spawnArmy  = function() {
 
 StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
   var energyAvav = this.room.energyCapacityAvailable;
-  var links = spawn.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
+  var links = this.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
   var energyInContainers=0;
   _.forEach(containers, function(struc){
     energyInContainers+=struc.store[RESOURCE_ENERGY];
