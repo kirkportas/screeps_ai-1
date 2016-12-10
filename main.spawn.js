@@ -281,6 +281,7 @@ StructureSpawn.prototype.spawnArmy  = function() {
 
 StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
   var energyAvav = this.room.energyCapacityAvailable;
+  var energyNow = this.room.energyAvailable;
   var links = this.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_LINK }});
   var containers = this.room.find(FIND_STRUCTURES, {filter: { structureType: STRUCTURE_CONTAINER }});
   var energyInContainers=0;
