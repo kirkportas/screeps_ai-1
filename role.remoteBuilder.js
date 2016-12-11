@@ -32,11 +32,11 @@ Creep.prototype.runRemoteBuilder = function(creep) {
           var targetsAll = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
             if(targetsPri) {
                 if(creep.build(targetsPri) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetsPri,{maxRooms:1});
+                    creep.moveToOpt(targetsPri,{maxRooms:1});
                 }
             } else if (targetsAll) {
               if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(targetsAll,{maxRooms:1});
+                  creep.moveToOpt(targetsAll,{maxRooms:1});
               }
             } else {
                 creep.memory.targetFix= tasks.findStructureToRepairIdle(creep);
@@ -52,7 +52,7 @@ Creep.prototype.runRemoteBuilder = function(creep) {
               if((creep.memory.repairToFull && struct.hits<struct.hitsMax) || (struct.hits<struct.hitsMax*0.75 && struct.structureType!=STRUCTURE_WALL && struct.structureType!=STRUCTURE_RAMPART) || (struct.hits<creep.room.memory.wallHitsMax && (struct.structureType==STRUCTURE_WALL||struct.structureType==STRUCTURE_RAMPART))) {
                 //console.log(Game.getObjectById(creep.memory.targetFix).hits,'  ',Game.getObjectById(creep.memory.targetFix).hitsMax*0.75);
                   if(creep.repair(Game.getObjectById(creep.memory.targetFix)) == ERR_NOT_IN_RANGE) {
-                      creep.moveTo(Game.getObjectById(creep.memory.targetFix));
+                      creep.moveToOpt(Game.getObjectById(creep.memory.targetFix));
                   }
                 } else {
                   creep.memory.targetFix=null;
@@ -69,7 +69,7 @@ Creep.prototype.runRemoteBuilder = function(creep) {
           if (target) {
             foundDismantle=true;
             if (creep.dismantle(target)==ERR_NOT_IN_RANGE) {
-              creep.moveTo(target)
+              creep.moveToOpt(target)
             }
           }
         }
@@ -77,12 +77,12 @@ Creep.prototype.runRemoteBuilder = function(creep) {
           var container = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter:(structure)=> {return structure.structureType==STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY]>0} })
           if (container) {
             if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(container,{swampCost:1,plainCost:1});
+              creep.moveToOpt(container,{swampCost:1,plainCost:1});
             }
           } else {
             var source = creep.pos.findClosestByPath(FIND_SOURCES,{filter: (source) => {return source.energy>0} });
             if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source,{swampCost:1,plainCost:1});
+                creep.moveToOpt(source,{swampCost:1,plainCost:1});
             }
           }
         }
