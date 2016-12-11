@@ -28,7 +28,7 @@ StructureSpawn.prototype.createBody = function(arg) {
   for (var m=0;m<arg.rangedAttack;m++) {modules.push(RANGED_ATTACK);}
   for (var m=0;m<arg.heal;m++) {modules.push(HEAL);}
   for (var m=0;m<arg.claim;m++) {modules.push(CLAIM);}
-  console.log(modules)
+
   if (arg.move>0) {modules.push(MOVE);}
   return modules;
 }
@@ -151,7 +151,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         if (scoutFrom.danger==1) size=2;
         if (scoutFrom.danger==2) size=4;
         if (scoutFrom.danger==3) size=8;
-        size = Math.min(15,Math.floor((((energyAvav)/330))*0.80));
+        size = Math.min(12,Math.floor((((energyAvav)/330))*0.80));
         if (this.createCreepAdvanced(this,'attacker',this.createBody({move:size*2,attack:size,rangedAttack:size}),{targetRoom:roomName,fleeAfter:true})) {
           console.log('sending a attacker to ',roomName,' with size ',size);
           scoutFrom.lastAttackerSent=Game.time;
