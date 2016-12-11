@@ -98,7 +98,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         }
 
         //builders
-        /
+        
         var constructionSites = scoutFrom.myConstructionSites;
         var damagedBuildings = scoutFrom.myDamagedStructures;
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == spawn.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
