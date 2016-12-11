@@ -19,6 +19,8 @@ Creep.prototype.runRemoteHauler = function(creep) {
     //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
     if (foundStruc) {
       Memory.test=creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right,true)
+      var test=creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right,true);
+      console.log(test.length)
       creep.repair(foundStruc);
     } else if (foundConst) {
       creep.build(foundConst);
