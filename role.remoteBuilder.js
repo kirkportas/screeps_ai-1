@@ -34,11 +34,11 @@ Creep.prototype.runRemoteBuilder = function(creep) {
           var targetsAll = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
             if(targetsPri) {
                 if(creep.build(targetsPri) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targetsPri);
+                    creep.moveTo(targetsPri,{maxRooms:1});
                 }
             } else if (targetsAll) {
               if(creep.build(targetsAll) == ERR_NOT_IN_RANGE) {
-                  creep.moveTo(targetsAll);
+                  creep.moveTo(targetsAll,{maxRooms:1});
               }
             } else {
                 creep.memory.targetFix= tasks.findStructureToRepairIdle(creep);
