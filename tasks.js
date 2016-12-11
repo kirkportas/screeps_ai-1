@@ -43,11 +43,12 @@ var tasks = {
           var totalBodyParts=0;
           var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES,{filter:(structure)=>{return structure.structureType!=STRUCTURE_STORAGE}});
           _.forEach(hostiles, function(creep){
+            for (var i=0;i<creep.body.length;i++) {
+              totalBodyParts++;
+              if (creep.body[i]) totalBodyParts++;
+            }
             if (creep.owner.username=='Invader' && creep.body.length<=16) {npcInvadersWeak++;} else {
-              for (var i=0;i<creep.body.length;i++) {
-                totalBodyParts++;
-                if (creep.body[i]) totalBodyParts++;
-              }
+
               if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) dangerousHostiles++;
             }
           });
