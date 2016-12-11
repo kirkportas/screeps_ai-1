@@ -12,13 +12,16 @@ Creep.prototype.runClaimer = function(creep) {
         }
       } else {
         if (creep.memory.takeOver) {
-          creep.say('takeover')
           if (creep.claimController(Game.rooms[creep.memory.targetRoom].controller) == ERR_NOT_IN_RANGE) {
             creep.moveTo(Game.rooms[creep.memory.targetRoom].controller);
           }
         }
         if (creep.reserveController(Game.rooms[creep.memory.targetRoom].controller) == ERR_NOT_IN_RANGE) {
           creep.moveTo(Game.rooms[creep.memory.targetRoom].controller);
+        }
+        if (creep.ticksToLive==1) {
+          if (Game.rooms[creep.memory.targetRoom].controller.sign)
+          creep.signController(Game.rooms[creep.memory.targetRoom].controller,'');
         }
 
       }
