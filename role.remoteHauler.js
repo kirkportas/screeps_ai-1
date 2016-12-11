@@ -10,13 +10,13 @@ Creep.prototype.runRemoteHauler = function(creep) {
     var lower=Math.min(49,creep.pos.y+1);
     var left=Math.max(0,creep.pos.x-1);
     var right=Math.min(49,creep.pos.x+1);
-    var foundStruc=  _.find(creep.room.lookForAt(LOOK_STRUCTURES,x,y), s => s instanceof StructureRoad);
+    //var foundStruc=  _.find(creep.room.lookForAt(LOOK_STRUCTURES,x,y), s => s instanceof StructureRoad);
     //Memory.test=creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right,true)
-    var foundConst = _.find(creep.room.lookForAt(LOOK_CONSTRUCTION_SITES,x,y), s => s.structureType==STRUCTURE_ROAD);
+    //var foundConst = _.find(creep.room.lookForAt(LOOK_CONSTRUCTION_SITES,x,y), s => s.structureType==STRUCTURE_ROAD);
     //var test=creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right,true)[0].structure;
     //console.log(test)
-    //var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
-    //var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})
+    var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})[0]
+    var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})[0]
     //  {filter:(structure)=>{return (strcture.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}}
     if (foundStruc) {
       Memory.test=creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right,true)[0].structure
