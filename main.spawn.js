@@ -86,7 +86,8 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         // CLAIMERS
         var reservation = scoutFrom.reservation;
         if (reservation<2000 && reservation>=0) {
-          if (Object.keys(sources).length>=2) {  // do I WANT to claim this room?
+          if ((Object.keys(sources).length>=2&&scoutTo[roomName].dist==2)||scoutTo[roomName].dist==1) {  // do I WANT to claim this room?
+          //if (Object.keys(sources).length>=2) {  // do I WANT to claim this room?
             let claimers = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'claimer').length;
             let size= Math.min(3,Math.floor(energyAvav/650));
             let claimersNeeded= Math.max(1,Math.floor(2/size));
