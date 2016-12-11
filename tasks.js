@@ -40,17 +40,25 @@ var tasks = {
           var hostiles=creep.room.find(FIND_HOSTILE_CREEPS);
           var npcInvadersWeak=0;
           var dangerousHostiles=0;
+          var totalBodyParts=0;
           var hostileStruc=creep.room.find(FIND_HOSTILE_STRUCTURES,{filter:(structure)=>{return structure.structureType!=STRUCTURE_STORAGE}});
           _.forEach(hostiles, function(creep){
             if (creep.owner.username=='Invader' && creep.body.length<=16) {npcInvadersWeak++;} else {
+              for (var i=0;i<creep.body.length;i++) {
+                totalBodyParts++;
+                if (creep.body[i]) totalBodyParts++;
+              }
               if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) dangerousHostiles++;
             }
           });
 
-          if (hostileStruc.length || dangerousHostiles>2) {
+          if (hostileStruc.length || dangerousHostiles>3) {
             scout.danger=10;
           } else if (npcInvadersWeak>=1 || dangerousHostiles>0){
-            scout.danger=1;
+            console.log('attack with bp: ',totalBodyParts);
+            if (totalBodyParts=<10) {scout.danger=1;}
+            else if (totalBodyParts=<20) {scout.danger=2;}
+            else {scout.danger=3;}
           } else {
             scout.danger=0;
           }

@@ -127,7 +127,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
           if (scoutFrom.reservation>1000) {obtainable=10}
 
           var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
-          var maxSize = Math.floor((this.room.energyCapacityAvailable/100)+100);
+          var maxSize = Math.floor((this.room.energyCapacityAvailable/100)-100);
           var size=Math.min(optimalSize,maxSize,32);
 
           if (harvestersRemote<1) {
@@ -144,11 +144,16 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
       }
     }
     //ATTACK (defend)
-    if (scoutFrom.danger==1&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
+    if (scoutFrom.danger>0&&scoutFrom.danger<4&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
       if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
-        var size = Math.min(15,Math.floor((((energyAvav-400)/180))*0.80));
+        //var size = Math.min(15,Math.floor((((energyAvav-400)/180))*0.80));
+        var size=10;
+        if (scoutFrom.danger==1) size=2;
+        if (scoutFrom.danger==2) size=4
+        if (scoutFrom.danger==3) size=8
+
         console.log(size)
-        if (this.createCreepAdvanced(this,'attacker',this.createBody({move:size+2,attack:size,rangedAttack:2}),{targetRoom:roomName,fleeAfter:true})) {
+        if (this.createCreepAdvanced(this,'attacker',this.createBody({move:size*2,attack:size,rangedAttack:size}),{targetRoom:roomName,fleeAfter:true})) {
           console.log('sending a attacker to ',roomName);
           scoutFrom.lastAttackerSent=Game.time;
           return true;
