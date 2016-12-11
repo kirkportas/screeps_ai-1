@@ -11,7 +11,7 @@ Creep.prototype.moveToOpt = function(target,opts) {
     if (this.memory.stuckTime>=2) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
-      this.moveTo(target);
+      this.moveTo(target,opts);
     }
 
   } else {
