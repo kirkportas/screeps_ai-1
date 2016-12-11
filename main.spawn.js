@@ -127,7 +127,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
           if (scoutFrom.reservation>1000) {obtainable=10}
 
           var optimalSize=Math.ceil((((obtainable*pathLen*2)+5)/50) * 1.4);
-          var maxSize = Math.floor((this.room.energyCapacityAvailable/100)+100);
+          var maxSize = Math.floor(((this.room.energyCapacityAvailable-100)/100));
           var size=Math.min(optimalSize,maxSize,32);
 
           if (harvestersRemote<1) {
