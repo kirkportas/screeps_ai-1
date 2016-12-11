@@ -239,7 +239,7 @@ StructureSpawn.prototype.spawnBuilders  = function(cur) {
     }
   });
 
-  var energyPerBuilder=6000*(Math.min(5,Math.floor(energyAvav/200))/5);
+  var energyPerBuilder=6000*(Math.min(12,Math.floor(energyAvav/200))/12);
   var buildersNeeded = Math.min(3,Math.max(0,Math.ceil( (energyNeeded/energyPerBuilder) + (repairNeeded/(energyPerBuilder*20)) )));
 
   if (centralContainer) {
@@ -247,7 +247,7 @@ StructureSpawn.prototype.spawnBuilders  = function(cur) {
   }
 
   if (cur<buildersNeeded) {
-    var modulesOfEach = Math.min(5,Math.floor(energyAvav/200));
+    var modulesOfEach = Math.min(12,Math.floor(energyAvav/200));
     this.createCreepAdvanced(this,'builder',this.createBody({carry:modulesOfEach,move:modulesOfEach, work:modulesOfEach}));
     return true;
   } else return false;
