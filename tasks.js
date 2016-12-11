@@ -56,8 +56,8 @@ var tasks = {
             scout.danger=10;
           } else if (npcInvadersWeak>=1 || dangerousHostiles>0){
             console.log('attack with bp: ',totalBodyParts);
-            if (totalBodyParts=<10) {scout.danger=1;}
-            else if (totalBodyParts=<20) {scout.danger=2;}
+            if (totalBodyParts<=10) {scout.danger=1;}
+            else if (totalBodyParts<=20) {scout.danger=2;}
             else {scout.danger=3;}
           } else {
             scout.danger=0;
