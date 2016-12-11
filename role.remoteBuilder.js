@@ -68,9 +68,10 @@ Creep.prototype.runRemoteBuilder = function(creep) {
         creep.say(flag.pos.roomName)
         if (flag&&flag.pos.roomName==creep.room.name) {
           var target=flag.pos.findClosestByRange(FIND_STRUCTURES,3);
-          creep.say(target)
           if (target) {
-            creep.dismantle(target);
+            if (creep.dismantle(target)==ERR_NOT_IN_RANGE) {
+              creep.moveTo(target)
+            }
           }
         }
         var container = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter:(structure)=> {return structure.structureType==STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY]>0} })
