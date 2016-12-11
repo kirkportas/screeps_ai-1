@@ -1,7 +1,8 @@
 var prototypeRoom = require('prototype.room');
 
-Creep.prototype.moveToOpt = function(target) {
+Creep.prototype.moveToOpt = function(target,opts) {
   if (this.fatigue>0) return;
+  opts = opts || {};
   var creep=this;
   var curPos=this.pos;
   var oldPos=this.memory.oldPos;
@@ -10,13 +11,15 @@ Creep.prototype.moveToOpt = function(target) {
     if (this.memory.stuckTime>=2) {
       this.say('stuck')
       console.log('stuck in ',this.room.name)
-      this.moveTo(target,{ignoreCreeps:false,reusePath:5});
-      //this.moveTo(target,{ignoreCreeps:false,reusePath:5,plainCost: 2,swampCost: 4,costCallback: function(roomName) {return getCallback(roomName)}});
+      this.moveTo(target);
     }
 
   } else {
+      opts.reusePath = 200;
+      opts.ignoreCreeps = true;
       this.memory.stuckTime=0;
-      this.moveTo(target,{ignoreCreeps:true,reusePath:200});
+      this.moveTo(target,opts);
   }
+
   this.memory.oldPos=curPos;
 }
