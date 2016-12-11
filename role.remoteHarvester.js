@@ -15,7 +15,7 @@ Creep.prototype.runRemoteHarvester = function(creep) {
         var source = Game.getObjectById(creep.memory.pref)
         var result = creep.harvest(source)
         if( source==null || result == ERR_NOT_IN_RANGE ) {
-          creep.moveToOpt(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName),{swampCost:2});
+          creep.moveToOpt(new RoomPosition(creep.memory.prefPos.x,creep.memory.prefPos.y,creep.memory.prefPos.roomName),{swampCost:3});
         }
       } else {
         var container = creep.pos.findInRange(FIND_STRUCTURES,2,{ filter: (structure) => {return (structure.structureType == STRUCTURE_CONTAINER )  } })[0];
