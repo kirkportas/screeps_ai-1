@@ -45,10 +45,9 @@ var tasks = {
           _.forEach(hostiles, function(creep){
             for (var i=0;i<creep.body.length;i++) {
               totalBodyParts++;
-              if (creep.body[i]) totalBodyParts++;
+              if (creep.body[i].boost) totalBodyParts++;
             }
             if (creep.owner.username=='Invader' && creep.body.length<=16) {npcInvadersWeak++;} else {
-
               if (creep.getActiveBodyparts(ATTACK)+creep.getActiveBodyparts(RANGED_ATTACK)>0) dangerousHostiles++;
             }
           });
