@@ -18,7 +18,7 @@ Creep.prototype.moveToOpt = function(target,opts) {
       opts.reusePath = 200;
       opts.ignoreCreeps = true;
       this.memory.stuckTime=0;
-      this.moveTo(target,opts);
+      this.moveTo(target,{reusePath:200,ignoreCreeps:true}});
   }
 
   this.memory.oldPos=curPos;
