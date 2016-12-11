@@ -4,12 +4,14 @@ var prototypeCreep = require('prototype.creep');
 Creep.prototype.runRemoteHauler = function(creep) {
 
   var repairRoads = function(creep) {
+    var x=creep.pos.x
+    var y=creep.pos.y
     var upper=Math.max(0,creep.pos.y-1);
     var lower=Math.min(49,creep.pos.y+1);
     var left=Math.max(0,creep.pos.x-1);
     var right=Math.min(49,creep.pos.x+1);
-    var foundStruc=  _.find(creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right), s => s instanceof StructureRoad);
-    var foundConst = _.find(creep.room.lookForAtArea(LOOK_CONSTRUCTION_SITES,upper,left,lower,right), s => s.structureType==STRUCTURE_ROAD);
+    var foundStruc=  _.find(creep.room.lookForAt(LOOK_STRUCTURES,x,y), s => s instanceof StructureRoad);
+    var foundConst = _.find(creep.room.lookForAt(LOOK_CONSTRUCTION_SITES,x,y), s => s.structureType==STRUCTURE_ROAD);
     creep.say(foundStruc);
     //var foundStruc = creep.pos.findInRange(FIND_STRUCTURES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD&&structure.hits<structure.hitsMax)}})
     //var foundConst= creep.pos.findInRange(FIND_CONSTRUCTION_SITES,3,{filter:(structure)=>{return (structure.structureType==STRUCTURE_ROAD)}})
