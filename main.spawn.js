@@ -105,7 +105,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         let remoteNeeded=0;
         if (constructionSites=>10) remoteNeeded++;
         //let remoteNeeded= Math.min(1,Math.ceil((constructionSites+damagedBuildings)/25));
-        var size = Math.min(8,Math.floor((spawn.room.energyCapacityAvailable)/200));
+        var size = Math.min(8,Math.floor((this.room.energyCapacityAvailable)/200));
         if (remoteBuilders<remoteNeeded) {
           this.createCreepAdvanced(this,'remoteBuilder',this.createBody({move:size,carry:size,work:size}),{targetRoom:roomName});
           return true;
