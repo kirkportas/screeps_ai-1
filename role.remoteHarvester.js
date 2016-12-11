@@ -26,7 +26,7 @@ Creep.prototype.runRemoteHarvester = function(creep) {
           } else {
             var result=creep.transfer(container, RESOURCE_ENERGY);
             if(result == ERR_NOT_IN_RANGE) {
-              creep.moveToOpt(container);
+              creep.moveToOpt(container,{swampCost:2});
             } else if (result == ERR_FULL) {
               creep.drop(RESOURCE_ENERGY);
             }
