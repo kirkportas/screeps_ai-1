@@ -4,10 +4,10 @@ var prototypeCreep = require('prototype.creep');
 Creep.prototype.runRemoteHauler = function(creep) {
 
   var repairRoads = function(creep) {
-    var upper=Math.max(0,creep.pos.y-1);
-    var lower=Math.min(49,creep.pos.y+1);
-    var left=Math.min(49,creep.pos.x-1);
-    var right=Math.max(0,creep.pos.x+1);
+    var upper=Math.max(0,creep.pos.y-2);
+    var lower=Math.min(49,creep.pos.y+2);
+    var left=Math.min(49,creep.pos.x-2);
+    var right=Math.max(0,creep.pos.x+2);
     var foundStruc=  _.find(creep.room.lookForAtArea(LOOK_STRUCTURES,upper,left,lower,right), s => s instanceof StructureRoad);
     var foundConst = _.find(creep.room.lookForAtArea(LOOK_CONSTRUCTION_SITES,upper,left,lower,right), s => s.structureType==STRUCTURE_ROAD);
 
