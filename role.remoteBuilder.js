@@ -64,25 +64,29 @@ Creep.prototype.runRemoteBuilder = function(creep) {
 
       } else {
         //var flag = Memory.flags['dismantle'];
+        var foundDismantle=false;
         var flag = Game.flags['dis']
         creep.say(flag.pos.roomName)
         if (flag&&flag.pos.roomName==creep.room.name) {
           var target=flag.pos.findClosestByRange(FIND_STRUCTURES,3);
           if (target) {
+            foundDismantle=true;
             if (creep.dismantle(target)==ERR_NOT_IN_RANGE) {
               creep.moveTo(target)
             }
           }
         }
-        var container = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter:(structure)=> {return structure.structureType==STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY]>0} })
-        if (container) {
-          if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(container,{swampCost:1,plainCost:1});
-          }
-        } else {
-          var source = creep.pos.findClosestByPath(FIND_SOURCES,{filter: (source) => {return source.energy>0} });
-          if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(source,{swampCost:1,plainCost:1});
+        if (!foundDismantle) {
+          var container = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter:(structure)=> {return structure.structureType==STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY]>0} })
+          if (container) {
+            if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(container,{swampCost:1,plainCost:1});
+            }
+          } else {
+            var source = creep.pos.findClosestByPath(FIND_SOURCES,{filter: (source) => {return source.energy>0} });
+            if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(source,{swampCost:1,plainCost:1});
+            }
           }
         }
       }
