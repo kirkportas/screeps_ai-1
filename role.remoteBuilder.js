@@ -1,4 +1,5 @@
 var tasks = require('tasks');
+var prototypeCreep = require('prototype.creep');
 Creep.prototype.runRemoteBuilder = function(creep) {
 
     if(creep.memory.building && creep.carry.energy == 0) {
@@ -14,7 +15,7 @@ Creep.prototype.runRemoteBuilder = function(creep) {
 
       var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
       var exit = creep.pos.findClosestByRange(exitDir);
-      creep.moveTo(exit);
+      creep.moveToOpt(exit);
     } else {
       if(creep.memory.building) {
 
