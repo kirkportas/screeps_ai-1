@@ -28,7 +28,7 @@ StructureSpawn.prototype.createBody = function(arg) {
   for (var m=0;m<arg.rangedAttack;m++) {modules.push(RANGED_ATTACK);}
   for (var m=0;m<arg.heal;m++) {modules.push(HEAL);}
   for (var m=0;m<arg.claim;m++) {modules.push(CLAIM);}
-
+  console.log(modules)
   if (arg.move>0) {modules.push(MOVE);}
   return modules;
 }
