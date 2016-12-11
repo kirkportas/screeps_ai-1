@@ -63,6 +63,13 @@ Creep.prototype.runRemoteBuilder = function(creep) {
             }
 
       } else {
+        var flag = Game.flags['dismantle'];
+        if (flag&&flag.roomName==creep.room.name) {
+          var target=flag.pos.findClosestByRange(FIND_STRUCTURES,3);
+          if (target) {
+            creep.dismantle(target);
+          }
+        }
         var container = creep.pos.findClosestByPath(FIND_STRUCTURES,{filter:(structure)=> {return structure.structureType==STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY]>0} })
         if (container) {
           if(creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
