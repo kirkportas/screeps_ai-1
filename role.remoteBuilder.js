@@ -15,7 +15,7 @@ Creep.prototype.runRemoteBuilder = function(creep) {
 
       var exitDir = Game.map.findExit(creep.room, creep.memory.targetRoom);
       var exit = creep.pos.findClosestByRange(exitDir);
-      creep.moveToOpt(exit);
+      creep.moveToOpt(exit,{maxRooms:1});
     } else {
       if(creep.memory.building) {
 
