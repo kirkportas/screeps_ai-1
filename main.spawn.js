@@ -62,6 +62,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
   var energyAvav = this.room.energyCapacityAvailable;
   var scoutTo=this.room.memory.scout;
   for (var roomName in scoutTo) {
+    if (roomName=='E64S63') continue;
     if (this.room.memory.expand<scoutTo[roomName].dist) continue;
       //scout
       if (!(Game.time-scoutTo.lastScout>1500) || scoutTo[roomName].timeSinceLastScout==-1) {
