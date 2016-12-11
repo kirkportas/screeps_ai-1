@@ -99,13 +99,17 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         }
 
         //builders
-        /*
+
         var constructionSites = scoutFrom.myConstructionSites;
         var damagedBuildings = scoutFrom.myDamagedStructures;
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
         let remoteNeeded=0;
         if (constructionSites=>10) remoteNeeded++;
         //let remoteNeeded= Math.min(1,Math.ceil((constructionSites+damagedBuildings)/25));
+
+
+        console.log(constructionSites,' constructionsites at ',roomName)
+        /*
         var size = Math.min(8,Math.floor((this.room.energyCapacityAvailable)/200));
         if (remoteBuilders<remoteNeeded) {
           this.createCreepAdvanced(this,'remoteBuilder',this.createBody({move:size,carry:size,work:size}),{targetRoom:roomName});
