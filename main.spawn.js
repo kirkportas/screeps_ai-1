@@ -316,7 +316,7 @@ StructureSpawn.prototype.spawnHaulers  = function(cur1,cur2) {
     this.createCreepAdvanced(this,'hauler',this.createBody({carry:modulesOfEach,move:Math.ceil(modulesOfEach/2)}));
     return true;
   } else if(cur2 < spawnHaulersNeeded) {
-    var modulesOfEach = Math.min(4,Math.floor(energyNow/150));
+    var modulesOfEach = Math.min(6,Math.floor(energyNow/150));
     this.createCreepAdvanced(this,'spawnHauler',this.createBody({move:modulesOfEach, carry:modulesOfEach*2}));
     return true;
   } else return false;
