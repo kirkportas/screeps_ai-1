@@ -29,7 +29,7 @@ Creep.prototype.runRemoteHauler = function(creep) {
   }
 
   var hostiles = creep.room.find(FIND_HOSTILE_CREEPS,{filter: (hostile) => { return (hostile.getActiveBodyparts(ATTACK)+hostile.getActiveBodyparts(RANGED_ATTACK)>0)}});
-  if (creep.hits<creep.hitsMax || hostiles.lenght) {
+  if (creep.hits<creep.hitsMax || hostiles.length) {
       creep.memory.fleeTime=30;
   }
   if (creep.memory.fleeTime) {//
