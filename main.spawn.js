@@ -149,12 +149,11 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         //var size = Math.min(15,Math.floor((((energyAvav-400)/180))*0.80));
         var size=10;
         if (scoutFrom.danger==1) size=2;
-        if (scoutFrom.danger==2) size=4
-        if (scoutFrom.danger==3) size=8
-
-        console.log(size)
+        if (scoutFrom.danger==2) size=4;
+        if (scoutFrom.danger==3) size=8;
+        size = Math.min(15,Math.floor((((energyAvav)/330))*0.80));
         if (this.createCreepAdvanced(this,'attacker',this.createBody({move:size*2,attack:size,rangedAttack:size}),{targetRoom:roomName,fleeAfter:true})) {
-          console.log('sending a attacker to ',roomName);
+          console.log('sending a attacker to ',roomName,' with size ',(size);
           scoutFrom.lastAttackerSent=Game.time;
           return true;
         }
