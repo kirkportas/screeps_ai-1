@@ -151,11 +151,11 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
     if (scoutFrom.danger>0&&scoutFrom.danger<4&&Memory.rooms[roomName].scoutFromOther.closestRoom==this.room.name) {
       if (!scoutFrom.lastAttackerSent || ((Game.time-scoutFrom.lastAttackerSent)>500)) {
         //var size = Math.min(15,Math.floor((((energyAvav-400)/180))*0.80));
-        var size=10;
+        var size = Math.min(12,Math.floor((((energyAvav)/330))*0.80));
         if (scoutFrom.danger==1) size=2;
         if (scoutFrom.danger==2) size=4;
         if (scoutFrom.danger==3) size=8;
-        size = Math.min(12,Math.floor((((energyAvav)/330))*0.80));
+
         if (this.createCreepAdvanced(this,'attacker',this.createBody({move:size*2,attack:size,rangedAttack:size}),{targetRoom:roomName,fleeAfter:true})) {
           console.log('sending a attacker to ',roomName,' with size ',size);
           scoutFrom.lastAttackerSent=Game.time;
