@@ -53,7 +53,7 @@ var buildRoads = {
         }
     },
     buildRoadWithContainer: function(pos1,pos2,builtRoads) {
-      var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 1,swampCost: 1,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
+      var path = new PathFinder.search(pos1,{pos:pos2,range:1},{plainCost: 3,swampCost: 4,roomCallback: function(roomName) {return buildRoads.getCallback(roomName)}} );
         for (i = 0; i < path.path.length; i++) {
             let pos = path.path[i];
             if (pos.roomName==pos1.roomName) builtRoads.push(pos);
