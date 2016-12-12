@@ -65,7 +65,7 @@ Creep.prototype.runRemoteBuilder = function(creep) {
         var foundDismantle=false;
         var flag = Game.flags['dis']
         if (flag&&flag.pos.roomName==creep.room.name) {
-          var target=flag.pos.findInRange(FIND_STRUCTURES,1);
+          var target=flag.pos.findInRange(FIND_STRUCTURES,3);
           if (target.length) {
             foundDismantle=true;
             if (creep.dismantle(target[0])==ERR_NOT_IN_RANGE) {
