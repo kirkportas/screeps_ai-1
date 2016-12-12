@@ -104,7 +104,7 @@ StructureSpawn.prototype.spawnRemoteHarvesters = function() {
         var damagedBuildings = scoutFrom.myDamagedStructures;
         let remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.homeRoom == this.room.name && creep.memory.targetRoom == roomName && creep.memory.role == 'remoteBuilder' ).length;
         let remoteNeeded=0;
-        if (constructionSites=>20) remoteNeeded++;
+        if (constructionSites=>10) remoteNeeded++;
         //let remoteNeeded= Math.min(1,Math.ceil((constructionSites+damagedBuildings)/25));
 
 
