@@ -31,6 +31,8 @@ module.exports.loop = function() {
       for(var iRoom in Game.rooms) {
         try {
           var room = Game.rooms[iRoom]
+          var cs = room.find(FIND_CONSTRUCTION_SITES);
+          console.log(iRoom,' cs: ',cs.length)
           var spawns = room.find(FIND_MY_SPAWNS);
           if (spawns.length) {
             room.work(room);
